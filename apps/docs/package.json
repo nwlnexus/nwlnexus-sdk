@@ -50,7 +50,7 @@
     "shx": "^0.3.4",
     "stylelint": "^14.11.0",
     "stylelint-config-standard-scss": "^5.0.0",
-    "wrangler": "2.1.9"
+    "wrangler": "2.20.1"
   },
   "packageManager": "pnpm@7.11.0",
   "engines": {
