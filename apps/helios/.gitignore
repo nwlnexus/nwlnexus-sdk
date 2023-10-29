@@ -1,6 +1,17 @@
 node_modules
 
 /.cache
-/build
+/functions/\[\[path\]\].js
+/functions/\[\[path\]\].js.map
+/functions/metafile.*
+/functions/version.*
 /public/build
+.dev.vars
 .env
+.cache
+.wrangler
+**/.DS_Store
+.mf
+#/migrations/**/meta
+#!/migrations/**/seed-*.sql
+#!/migrations/**/*-seed-*.sql

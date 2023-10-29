@@ -8,9 +8,12 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
+import tailwindCSS from './css/app.css';
 
 export const links: LinksFunction = () => [
   ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
+  { rel: 'stylesheet', href: tailwindCSS },
+  { rel: 'canonical', href: 'https://helios.dtlr.io' }
 ];
 
 export default function App() {

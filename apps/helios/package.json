@@ -1,33 +1,59 @@
 {
-  "name": "helios",
+  "name": "@nwlnexus/helios",
   "private": true,
   "sideEffects": false,
   "version": "1.0.0",
   "type": "module",
   "scripts": {
     "build": "remix build",
-    "dev": "remix dev --manual",
-    "start": "remix-serve ./build/index.js",
+    "dev": "remix dev --manual -c \"npm run start\"",
+    "start": "wrangler pages dev ./public --compatibility-date=${COMPAT_DATE} --persist-to=\"../../.wrangler\"",
+    "format": "prettier --write .",
+    "lint": "prettier --check ./ && eslint ./",
     "typecheck": "tsc"
   },
   "dependencies": {
+    "@remix-run/cloudflare": "^2.1.0",
+    "@remix-run/cloudflare-pages": "^2.1.0",
     "@remix-run/css-bundle": "^2.1.0",
     "@remix-run/node": "^2.1.0",
     "@remix-run/react": "^2.1.0",
     "@remix-run/serve": "^2.1.0",
+    "@tailwindcss/forms": "^0.5.6",
+    "@tailwindcss/typography": "^0.5.10",
+    "drizzle-orm": "^0.28.6",
+    "drizzle-zod": "^0.5.1",
     "isbot": "^3.6.8",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "tailwindcss-radix": "^2.8.0",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "^4.20231025.0",
+    "@ianvs/prettier-plugin-sort-imports": "^4.1.1",
     "@remix-run/dev": "^2.1.0",
     "@remix-run/eslint-config": "^2.1.0",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
-    "eslint": "^8.38.0",
-    "typescript": "^5.1.6"
+    "autoprefixer": "^10.4.16",
+    "cssnano": "^6.0.1",
+    "eslint": "^8.52.0",
+    "eslint-config-prettier": "^9.0.0",
+    "husky": "^8.0.3",
+    "postcss": "^8.4.31",
+    "prettier": "^3.0.3",
+    "prettier-plugin-tailwindcss": "^0.5.6",
+    "tailwindcss": "^3.3.5",
+    "typescript": "^5.2.2",
+    "wrangler": "^3.15.0"
   },
   "engines": {
-    "node": ">=18.0.0"
-  }
+    "node": ">=18.0.0",
+    "npm": ">=8.3.0",
+    "yarn": ">=1"
+  },
+  "browserslist": [
+    "> 2%"
+  ]
 }

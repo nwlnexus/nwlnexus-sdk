@@ -15,3 +15,26 @@ trim_trailing_whitespace = false
 
 [*.{yml,yaml}]
 indent_size = 2
+
+[*.py]
+indent_size = 4
+
+[*.c]
+indent_size = 4
+
+[Makefile]
+indent_style = tab
+indent_size = 4
+
+# Batch files use tabs for indentation
+[*.bat]
+indent_style = tab
+
+[*.hbs]
+insert_final_newline = false
+
+[*.{ex,exs,eex}]
+max_line_length = 120
+
+[*.rs]
+indent_size = 4
