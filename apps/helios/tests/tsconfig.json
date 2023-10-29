@@ -1,5 +1,0 @@
-{
-  "extends": "../tsconfig.json",
-  "types": ["cloudflare-env", "@cloudflare/workers-types", "node", "vitest/globals"],
-  "include": ["../src/**/*"]
-}

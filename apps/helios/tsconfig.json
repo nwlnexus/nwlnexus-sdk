@@ -1,30 +1,22 @@
 {
-  "$schema": "https://json.schemastore.org/tsconfig",
-  "extends": "tsconfig/base.json",
-  "include": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "../../packages/cloudflare-env/index.d.ts"],
-  "exclude": ["node_modules", "build", "public/build", "dist", "test", "__tests__"],
-  "types": ["cloudflare-env", "@cloudflare/workers-types", "node"],
+  "include": ["remix.env.d.ts", "**/*.ts", "**/*.tsx"],
   "compilerOptions": {
-    "lib": ["DOM", "DOM.Iterable", "esnext"],
+    "lib": ["DOM", "DOM.Iterable", "ES2022"],
     "isolatedModules": true,
     "esModuleInterop": true,
     "jsx": "react-jsx",
-    "module": "ESNext",
-    "moduleResolution": "node",
+    "moduleResolution": "Bundler",
     "resolveJsonModule": true,
-    "target": "ES2019",
+    "target": "ES2022",
     "strict": true,
     "allowJs": true,
-    "skipLibCheck": true,
-    "incremental": true,
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
-    "outDir": "tscOutDir",
     "paths": {
-      "~/*": ["./src/*"],
-      "~/types/*": ["./types/*"]
+      "~/*": ["./app/*"]
     },
 
+    // Remix takes care of building everything in `remix build`.
     "noEmit": true
   }
 }

@@ -1,0 +1,16 @@
+{
+  "name": "olympus-net",
+  "version": "1.0.0",
+  "description": "Suite of apps for local hosting",
+  "repository": "git@github.com:nwlnexus/olympus-net.git",
+  "author": "Nigel Williams-Lucas <nigel.williamslucas@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "devDependencies": {
+    "prettier": "^3.0.3"
+  }
+}

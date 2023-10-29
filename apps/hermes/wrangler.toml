@@ -2,22 +2,17 @@ name = "olympus-entry-worker"
 
 workers_dev = false
 main = "src/index.ts"
-# https://developers.cloudflare.com/workers/platform/compatibility-dates
 compatibility_date = "2022-09-06"
 
-[site]
-bucket = "../olympus-remix-app/public"
+kv_namespaces = [
+  { binding = "HELIOS_KV", id = "ebe5f7523c3e4b3cb24d0d09e943b561", preview_id = "e5f7fce4e4b7496b8f2fb4745ccf943d" },
+]
 
 
-[[ kv_namespaces ]]
-  binding = "HELIOS_KV"
-  id = "ebe5f7523c3e4b3cb24d0d09e943b561"
-  preview_id = "e5f7fce4e4b7496b8f2fb4745ccf943d"
+d1_databases = [
+  { binding = "HELIOS_DB", database_name = "olympus", database_id = "75eee409-72e2-4df4-a6bb-e790aff52cbd " },
+]
 
-[[ d1_databases ]]
-binding = "HELIOS_DB" # i.e. available in your Worker on env.DB
-database_name = "olympus"
-database_id = "75eee409-72e2-4df4-a6bb-e790aff52cbd "
 
 #[build]
 #command = "npm run build"
