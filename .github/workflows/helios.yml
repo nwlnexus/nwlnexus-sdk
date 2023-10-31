@@ -1,9 +1,9 @@
 name: 'Deploy Helios'
-on:
-  push:
-    paths:
-      - 'apps/helios/**'
-      - '.github/workflows/helios.yml'
+#on:
+#  push:
+#    paths:
+#      - 'apps/helios/**'
+#      - '.github/workflows/helios.yml'
 
 defaults:
   run:
