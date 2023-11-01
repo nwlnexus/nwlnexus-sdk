@@ -1,7 +1,6 @@
 import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react';
 import { cssBundleHref } from '@remix-run/css-bundle';
 import { Theme } from '@radix-ui/themes';
-import { AppProvider } from '~/lib/context/AppProvider';
 import { ThemeProvider } from 'next-themes';
 import type { LinksFunction } from '@remix-run/cloudflare';
 import type { PropsWithChildren } from 'react';
@@ -25,10 +24,8 @@ function Document({ children }: PropsWithChildren) {
       disableTransitionOnChange
     >
       <Theme>
-        <AppProvider>
-          <Outlet />
-          {children}
-        </AppProvider>
+        <Outlet />
+        {children}
       </Theme>
     </ThemeProvider>
   );
