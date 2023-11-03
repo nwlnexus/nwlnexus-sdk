@@ -11,7 +11,7 @@ export const links: LinksFunction = () => [
   ...(cssBundleHref ? [{ rel: 'stylesheet', href: cssBundleHref }] : []),
   { rel: 'stylesheet', href: radixUITheme },
   { rel: 'stylesheet', href: tailwindCSS },
-  { rel: 'canonical', href: 'https://helios.nwlnexus.net' }
+  { rel: 'canonical', href: 'https://helios.nwlnexus.xyz' }
 ];
 
 function Document({ children }: PropsWithChildren) {
@@ -55,7 +55,6 @@ export default function App() {
         <Document>
           <ScrollRestoration />
           <Scripts />
-          {/*<ThemePanel />*/}
           <LiveReload />
         </Document>
       </body>
