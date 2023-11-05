@@ -1,0 +1,21 @@
+{
+  "name": "helios",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "pages:build": "yarn next-on-pages",
+    "pages:deploy": "yarn pages:build && wrangler pages deploy .vercel/output/static",
+    "pages:watch": "yarn next-on-pages --watch",
+    "pages:dev": "yarn wrangler pages dev .vercel/output/static --compatibility-date=2023-05-18 --compatibility-flag=nodejs_compat"
+  },
+  "devDependencies": {
+    "@cloudflare/next-on-pages": "1",
+    "eslint-plugin-next-on-pages": "^1.7.2",
+    "vercel": "^32.5.0",
+    "wrangler": "^3.15.0"
+  }
+}
