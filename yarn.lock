@@ -6158,6 +6158,7 @@ __metadata:
     eslint-plugin-next-on-pages: "npm:^1.7.2"
     husky: "npm:^8.0.3"
     next: "npm:^14.0.1"
+    next-themes: "npm:^0.2.1"
     postcss: "npm:^8.4.31"
     prettier: "npm:^3.0.3"
     prettier-plugin-tailwindcss: "npm:^0.5.6"
@@ -7674,6 +7675,17 @@ __metadata:
   version: 2.6.2
   resolution: "neo-async@npm:2.6.2"
   checksum: c2f5a604a54a8ec5438a342e1f356dff4bc33ccccdb6dc668d94fe8e5eccfc9d2c2eea6064b0967a767ba63b33763f51ccf2cd2441b461a7322656c1f06b3f5d
+  languageName: node
+  linkType: hard
+
+"next-themes@npm:^0.2.1":
+  version: 0.2.1
+  resolution: "next-themes@npm:0.2.1"
+  peerDependencies:
+    next: "*"
+    react: "*"
+    react-dom: "*"
+  checksum: 979dec0a2de049ce7d1b5da835e7f7dc3b7ec83ba9e464348f497a52a6a6e5b5c395c97f071f66a63f50f22cce89fb6d19061ec7e75643b0eab215b21794bde7
   languageName: node
   linkType: hard
 
