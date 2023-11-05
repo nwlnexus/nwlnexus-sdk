@@ -1,5 +1,4 @@
 import { Outlet } from '@remix-run/react';
-import { Suspense } from 'react';
 import NavBar from '~/lib/components/ui/NavBar';
 import { appSessionStorage } from '~/lib/services/session.server';
 import { typedjson, useTypedLoaderData } from 'remix-typedjson';

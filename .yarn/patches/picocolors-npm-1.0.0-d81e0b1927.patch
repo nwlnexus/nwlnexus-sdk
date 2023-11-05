@@ -1,0 +1,10 @@
+diff --git a/picocolors.js b/picocolors.js
+index fdb630451d89b134b069355bb97556e39b0b171a..902a27720fd611ea1ec7d9e1bb8db871e8a264e7 100644
+--- a/picocolors.js
++++ b/picocolors.js
+@@ -1,4 +1,4 @@
+-let tty = require("tty")
++let tty = require("node:tty")
+ 
+ let isColorSupported =
+ 	!("NO_COLOR" in process.env || process.argv.includes("--no-color")) &&

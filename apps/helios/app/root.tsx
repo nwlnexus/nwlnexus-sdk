@@ -1,15 +1,15 @@
+import process from 'node:process';
 import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react';
 import { cssBundleHref } from '@remix-run/css-bundle';
-import { Theme } from '@radix-ui/themes';
 import { ThemeProvider } from 'next-themes';
 import type { LinksFunction } from '@remix-run/cloudflare';
 import type { PropsWithChildren } from 'react';
+import tailwindConfig from '../tailwind.config';
 import tailwindCSS from './css/app.css';
-import radixUITheme from '@radix-ui/themes/styles.css';
 
+globalThis.process = process;
 export const links: LinksFunction = () => [
   ...(cssBundleHref ? [{ rel: 'stylesheet', href: cssBundleHref }] : []),
-  { rel: 'stylesheet', href: radixUITheme },
   { rel: 'stylesheet', href: tailwindCSS },
   { rel: 'canonical', href: 'https://helios.nwlnexus.xyz' }
 ];
@@ -17,16 +17,14 @@ export const links: LinksFunction = () => [
 function Document({ children }: PropsWithChildren) {
   return (
     <ThemeProvider
-      attribute={'class'}
-      enableSystem={true}
+      attribute={'data-theme'}
       enableColorScheme={true}
       defaultTheme={'dark'}
       disableTransitionOnChange
+      themes={tailwindConfig.daisyui.themes}
     >
-      <Theme>
-        <Outlet />
-        {children}
-      </Theme>
+      <Outlet />
+      {children}
     </ThemeProvider>
   );
 }
