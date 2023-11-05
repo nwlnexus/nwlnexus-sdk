@@ -8,7 +8,7 @@ type SessionConfig = {
 };
 
 const appSessionStorage = async ({ tag, secrets, kv, node_env }: SessionConfig) => {
-  const sessionStorage = createWorkersKVSessionStorage({
+  const { getSession, commitSession, destroySession } = createWorkersKVSessionStorage({
     cookie: {
       name: tag ?? '__session', // use any name you want here
       sameSite: 'lax', // this helps with CSRF
@@ -20,9 +20,7 @@ const appSessionStorage = async ({ tag, secrets, kv, node_env }: SessionConfig) 
     kv
   });
 
-  const { getSession, commitSession, destroySession } = sessionStorage;
-
-  return { sessionStorage, getSession, commitSession, destroySession };
+  return { getSession, commitSession, destroySession };
 };
 
 export { type SessionConfig, appSessionStorage };

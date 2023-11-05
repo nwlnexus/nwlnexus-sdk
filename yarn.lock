@@ -2443,6 +2443,7 @@ __metadata:
     "@cloudflare/workers-types": "npm:^4.20231025.0"
     "@ianvs/prettier-plugin-sort-imports": "npm:^4.1.1"
     "@preact/signals-react": "npm:^1.3.6"
+    "@radix-ui/react-icons": "npm:^1.3.0"
     "@radix-ui/themes": "npm:^2.0.0"
     "@remix-run/cloudflare": "npm:^2.1.0"
     "@remix-run/cloudflare-pages": "npm:^2.1.0"
@@ -2452,6 +2453,7 @@ __metadata:
     "@remix-run/node": "npm:^2.1.0"
     "@remix-run/react": "npm:^2.1.0"
     "@remix-run/serve": "npm:^2.1.0"
+    "@remix-run/server-runtime": "npm:^2.2.0"
     "@tailwindcss/forms": "npm:^0.5.6"
     "@tailwindcss/typography": "npm:^0.5.10"
     "@types/react": "npm:^18.2.20"
@@ -2937,6 +2939,15 @@ __metadata:
     "@types/react-dom":
       optional: true
   checksum: f29f3da5bd9a967b5a35e91ac2d1b223191c7a074550d9d9cc10a0c0baf62ba0705b32912a7d2ef1ea5c27dd5e130a9fda9cbe6c2a7f3c2037ed5dfed89aa8cc
+  languageName: node
+  linkType: hard
+
+"@radix-ui/react-icons@npm:^1.3.0":
+  version: 1.3.0
+  resolution: "@radix-ui/react-icons@npm:1.3.0"
+  peerDependencies:
+    react: ^16.x || ^17.x || ^18.x
+  checksum: 581657680e43fd13ff06e01f963e3afa94671d4ce6c3fb126e2c70c993ab8650faa55286974032dbccfecca4db57308fb66d53771d765887e03600cddee84ae5
   languageName: node
   linkType: hard
 
@@ -3791,6 +3802,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@remix-run/router@npm:1.11.0":
+  version: 1.11.0
+  resolution: "@remix-run/router@npm:1.11.0"
+  checksum: 046b382e149e198f4aac02355545ef83c4c97b203d08008dcdb9b25d0f2193e21c3ba2332aba572d4f1450b68aabc77cbc278cb5a7b252cc6e1d239d81a6f7e2
+  languageName: node
+  linkType: hard
+
 "@remix-run/serve@npm:^2.1.0":
   version: 2.1.0
   resolution: "@remix-run/serve@npm:2.1.0"
@@ -3825,6 +3843,25 @@ __metadata:
     typescript:
       optional: true
   checksum: 8c836f824157fd1d32ecc97beeb530db408a660e673e03363890f0d0db4c8df3b3d3157246e91ac80f5034e8a0f7440a9dad3b0dcf11f4164ccdb6af8ba35450
+  languageName: node
+  linkType: hard
+
+"@remix-run/server-runtime@npm:^2.2.0":
+  version: 2.2.0
+  resolution: "@remix-run/server-runtime@npm:2.2.0"
+  dependencies:
+    "@remix-run/router": "npm:1.11.0"
+    "@types/cookie": "npm:^0.4.1"
+    "@web3-storage/multipart-parser": "npm:^1.0.0"
+    cookie: "npm:^0.4.1"
+    set-cookie-parser: "npm:^2.4.8"
+    source-map: "npm:^0.7.3"
+  peerDependencies:
+    typescript: ^5.1.0
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: 3af8312fc35de2ebc4a8d0a312d6c8793738e4ef6da86249d4acabc53a338228b7751c035dfac16e93541f482e4e40621451e8ef1856985efb05bd75b3419c5b
   languageName: node
   linkType: hard
 
@@ -10825,6 +10862,7 @@ __metadata:
   dependencies:
     chalk: "npm:^5.3.0"
     prettier: "npm:^3.0.3"
+    semver: "npm:^7.5.2"
     toml: "npm:^3.0.0"
     yargs: "npm:^17.7.2"
   languageName: unknown
@@ -13819,12 +13857,6 @@ __metadata:
   checksum: 09a5877402d082bb1134930c10249edeebc0211f36150c35e1c542e5b91f1047b1ccf7da1e59babca1ef1f014c525510f4f870de7c9bda470c73bb4e2721b3ea
   languageName: node
   linkType: hard
-
-"tsconfig@workspace:packages/tsconfig":
-  version: 0.0.0-use.local
-  resolution: "tsconfig@workspace:packages/tsconfig"
-  languageName: unknown
-  linkType: soft
 
 "tslib@npm:^1.8.1":
   version: 1.14.1

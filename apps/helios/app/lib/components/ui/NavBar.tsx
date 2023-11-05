@@ -1,10 +1,13 @@
 import { Form, Link } from '@remix-run/react';
+import { ThemeToggle } from '~/lib/components/ui/ThemeToggle';
 import useScroll from '~/lib/hooks/use-scroll';
-import { useTheme } from 'next-themes';
 
-export default function NavBar() {
+type NavBarProps = {
+  isAuthenticated: boolean;
+};
+
+export default function NavBar({ isAuthenticated }: NavBarProps) {
   const scrolled = useScroll(50);
-  const { theme } = useTheme();
   return (
     <>
       <div
@@ -20,15 +23,18 @@ export default function NavBar() {
               </text>
             </Link>
           </svg>
-          <div>
-            <Form action={'/auth/auth0'} method={'post'}>
-              <button
-                type="submit"
-                className="rounded-full border border-black bg-black p-1.5 px-4 text-sm text-white transition-all hover:bg-white hover:text-black dark:text-purple-400"
-              >
-                Sign In
-              </button>
-            </Form>
+          <div className="inline-flex items-center justify-center gap-2">
+            <ThemeToggle />
+            {!isAuthenticated && (
+              <Form action={'/auth/auth0'} method={'post'}>
+                <button
+                  type="submit"
+                  className="rounded-full border border-black bg-black p-1.5 px-4 text-sm text-white transition-all hover:bg-white hover:text-black dark:text-purple-400"
+                >
+                  Sign In
+                </button>
+              </Form>
+            )}
           </div>
         </div>
       </div>
