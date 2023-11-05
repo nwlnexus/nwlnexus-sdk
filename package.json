@@ -19,14 +19,5 @@
     "toml": "^3.0.0",
     "yargs": "^17.7.2"
   },
-  "packageManager": "yarn@4.0.1",
-  "resolutions": {
-    "picocolors@npm:^1.0.0": "patch:picocolors@npm%3A1.0.0#~/.yarn/patches/picocolors-npm-1.0.0-d81e0b1927.patch",
-    "postcss@npm:^8.4.4": "patch:postcss@npm%3A8.4.31#~/.yarn/patches/postcss-npm-8.4.31-385051a82b.patch",
-    "postcss@npm:^8": "patch:postcss@npm%3A8.4.31#~/.yarn/patches/postcss-npm-8.4.31-385051a82b.patch",
-    "postcss@npm:^8.4.28": "patch:postcss@npm%3A8.4.31#~/.yarn/patches/postcss-npm-8.4.31-385051a82b.patch",
-    "postcss@npm:^8.4.23": "patch:postcss@npm%3A8.4.31#~/.yarn/patches/postcss-npm-8.4.31-385051a82b.patch",
-    "postcss@npm:^8.4.19": "patch:postcss@npm%3A8.4.31#~/.yarn/patches/postcss-npm-8.4.31-385051a82b.patch",
-    "postcss@npm:^8.4.27": "patch:postcss@npm%3A8.4.31#~/.yarn/patches/postcss-npm-8.4.31-385051a82b.patch"
-  }
+  "packageManager": "yarn@4.0.1"
 }
