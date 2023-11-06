@@ -10,7 +10,7 @@
     "pages:build": "next-on-pages",
     "pages:deploy": "yarn pages:build && wrangler pages deploy .vercel/output/static",
     "pages:watch": "next-on-pages --watch",
-    "pages:dev": "wrangler pages dev .vercel/output/static --compatibility-date=2023-05-18 --compatibility-flag=nodejs_compat"
+    "pages:dev": "wrangler pages dev .vercel/output/static --compatibility-date=2023-05-18 --compatibility-flag=nodejs_compat --persist-to=\"../../.wrangler\""
   },
   "devDependencies": {
     "@cloudflare/next-on-pages": "1",
