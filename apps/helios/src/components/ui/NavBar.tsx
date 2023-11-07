@@ -1,5 +1,3 @@
-'use client';
-
 import { Button, Join, Navbar } from 'react-daisyui';
 import ThemeToggle from '@/components/ui/ThemeToggle';
 import useScroll from '@/hooks/use-scroll';
