@@ -4,12 +4,11 @@ export default function LandingView() {
   return (
     <main className="flex min-h-screen justify-center p-24">
       <Hero className="h-1/2">
-        <Hero.Overlay className="bg-opacity-60" />
         <Hero.Content>
           <WindowMockup
             border
-            borderColor="primary"
-            frameColor="primary"
+            borderColor="accent"
+            frameColor="base-100"
             backgroundColor="base-300"
             className="h-1/2 w-[400px]"
           >

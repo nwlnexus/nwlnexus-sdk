@@ -12,7 +12,7 @@ const config = {
     extend: {}
   },
   daisyui: {
-    themes: ['light', 'dark', 'synthwave', 'corporate', 'black', 'dracula', 'night', 'valentine', 'pastel', 'cmyk'],
+    themes: ['cmyk', 'dark', 'dracula', 'night'],
     darkTheme: 'dark',
     base: true,
     styled: true,

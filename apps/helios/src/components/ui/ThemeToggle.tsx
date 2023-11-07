@@ -4,11 +4,11 @@ import { Select } from 'react-daisyui';
 import { useTheme } from 'next-themes';
 
 export default function ThemeToggle() {
-  const { theme, themes, setTheme } = useTheme();
-
+  const { resolvedTheme, themes, setTheme } = useTheme();
+  console.log(resolvedTheme);
   return (
     <>
-      <Select value={theme} onChange={(e) => setTheme(e.target.value)}>
+      <Select value={resolvedTheme} onChange={(e) => setTheme(e.target.value)} aria-label="Theme toggle">
         {themes.map((val, idx) => (
           <Select.Option key={idx} value={val}>
             {val}
