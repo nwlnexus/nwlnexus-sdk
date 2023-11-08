@@ -3540,6 +3540,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"clsx@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "clsx@npm:2.0.0"
+  checksum: c09f43b3144a0b7826b6b11b6a111b2c7440831004eecc02d333533c5e58ef0aa5f2dce071d3b25fbb8c8ea97b45df96c74bcc1d51c8c2027eb981931107b0cd
+  languageName: node
+  linkType: hard
+
 "code-block-writer@npm:^10.1.1":
   version: 10.1.1
   resolution: "code-block-writer@npm:10.1.1"
@@ -6150,6 +6157,7 @@ __metadata:
     "@types/react": "npm:^18.2.35"
     "@types/react-dom": "npm:^18.2.14"
     autoprefixer: "npm:^10.4.16"
+    clsx: "npm:^2.0.0"
     cssnano: "npm:^6.0.1"
     daisyui: "npm:^3.9.4"
     eslint: "npm:^8.53.0"
