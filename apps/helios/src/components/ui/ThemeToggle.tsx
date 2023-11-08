@@ -1,17 +1,13 @@
-import { Dropdown, Select } from 'react-daisyui';
-import { useTheme } from 'next-themes';
+import { Dropdown } from 'react-daisyui';
 
-export default function ThemeToggle() {
-  const { resolvedTheme, themes, setTheme } = useTheme();
+type ThemeToggleProps = {
+  resolvedTheme: string | undefined;
+  themes: Array<string>;
+  setTheme: (theme: string) => void;
+};
+export default function ThemeToggle({ resolvedTheme, themes, setTheme }: ThemeToggleProps) {
   return (
     <>
-      {/*<Select value={resolvedTheme} onChange={(e) => setTheme(e.target.value)} aria-label="Theme toggle">*/}
-      {/*  {themes.map((val, idx) => (*/}
-      {/*    <Select.Option key={idx} value={val}>*/}
-      {/*      {val}*/}
-      {/*    </Select.Option>*/}
-      {/*  ))}*/}
-      {/*</Select>*/}
       <Dropdown dataTheme={resolvedTheme} end={true} title="Change Theme">
         <Dropdown.Toggle button={false} className="btn btn-ghost normal-case">
           <svg

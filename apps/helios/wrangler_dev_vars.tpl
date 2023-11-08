@@ -1,6 +1,6 @@
 WEATHERAPI_KEY="{{ op://Private/5yfpacpx76vsorecmkdby2mdlq/api_key }}"
-SESSION_SECRET="{{ op://Private/njuvxrshvgijxbpybbx2vhq7qu/session_secret }}"
 NODE_ENV="development"
+AUTH_SECRET="{{ op://Private/njuvxrshvgijxbpybbx2vhq7qu/session_secret }}"
 AUTH0_CALLBACK_URL="http://localhost:8788/auth/auth0/callback"
 AUTH0_CLIENT_ID="{{ op://Private/njuvxrshvgijxbpybbx2vhq7qu/auth0_client_id }}"
 AUTH0_CLIENT_SECRET="{{ op://Private/njuvxrshvgijxbpybbx2vhq7qu/auth0_client_secret }}"

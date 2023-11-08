@@ -11,7 +11,7 @@ export default function AppLayout({ children }: { children: ReactNode }) {
   }, []);
   return (
     <>
-      <Drawer open={visible} onClickOverlay={toggleVisible} side={<></>}>
+      <Drawer open={visible} onClickOverlay={toggleVisible} className="bg-base-100" aria-label="Menu" side={<></>}>
         <NavBar toggleVisible={toggleVisible} />
         {children}
       </Drawer>
