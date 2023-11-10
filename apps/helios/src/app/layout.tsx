@@ -6,6 +6,8 @@ import { Inter } from 'next/font/google';
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 
+export const runtime = 'edge';
+
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {

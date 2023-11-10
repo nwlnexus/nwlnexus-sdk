@@ -1,4 +1,6 @@
-import { Hero, WindowMockup } from 'react-daisyui';
+'use client';
+
+import { WindowMockup } from 'react-daisyui';
 
 export default function LandingView() {
   return (
