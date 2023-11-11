@@ -10,7 +10,7 @@
     "pages:build": "next-on-pages",
     "pages:deploy": "yarn pages:build && wrangler pages deploy .vercel/output/static",
     "pages:watch": "next-on-pages --watch",
-    "pages:dev": "wrangler pages dev .vercel/output/static --compatibility-date=2023-05-18 --compatibility-flag=nodejs_compat --persist-to=\"../../.wrangler\""
+    "pages:dev": "wrangler pages dev .vercel/output/static --compatibility-date=${COMPAT_DATE} --compatibility-flag=nodejs_compat --persist-to=\"../../.wrangler\""
   },
   "devDependencies": {
     "@cloudflare/next-on-pages": "1",
@@ -42,7 +42,7 @@
     "@tailwindcss/typography": "^0.5.10",
     "clsx": "^2.0.0",
     "next": "^14.0.1",
-    "next-auth": "^4.24.4",
+    "next-auth": "0.0.0-manual.cfb42ae7",
     "next-themes": "^0.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
