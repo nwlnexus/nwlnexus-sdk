@@ -1,7 +1,6 @@
-import { GetServerSidePropsContext, NextApiRequest, NextApiResponse } from 'next';
-import getServerSession from 'next-auth';
-import Auth0Provider from 'next-auth/providers/auth0';
-import type { NextAuthConfig } from 'next-auth';
+import Auth0Provider from '@auth/core/providers/auth0';
+import { D1Adapter } from '@auth/d1-adapter';
+import type { AuthConfig } from '@auth/core';
 
 export const config = {
   providers: [
@@ -10,11 +9,8 @@ export const config = {
       clientSecret: process.env.AUTH_AUTH0_SECRET!,
       issuer: process.env.AUTH_AUTH0_DOMAIN
     })
-  ]
-} satisfies NextAuthConfig;
-
-export function auth(
-  ...args: [GetServerSidePropsContext['req'], GetServerSidePropsContext['res']] | [NextApiRequest, NextApiResponse] | []
-) {
-  return getServerSession(...args, config);
-}
+  ],
+  adapter: D1Adapter(process.env.DB),
+  trustHost: true,
+  secret: process.env.AUTH_SECRET
+} satisfies AuthConfig;

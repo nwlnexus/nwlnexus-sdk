@@ -1,6 +1,12 @@
+import { Auth } from '@auth/core';
 import { config } from 'auth';
-import NextAuth from 'next-auth';
 
 export const runtime = 'edge';
-const { handlers } = NextAuth(config);
-export const { GET, POST } = handlers;
+
+export async function GET(req: Request) {
+  return await Auth(req, config);
+}
+
+export async function POST(req: Request) {
+  return await Auth(req, config);
+}
