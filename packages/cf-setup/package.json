@@ -1,0 +1,33 @@
+{
+  "name": "cf-setup",
+  "packageManager": "yarn@4.0.1",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "toml": "^3.0.0",
+    "yargs": "^17.7.2"
+  },
+  "devDependencies": {
+    "@types/eslint": "^8",
+    "@types/yargs": "^17.0.31",
+    "@typescript-eslint/eslint-plugin": "^6.10.0",
+    "@typescript-eslint/parser": "^6.10.0",
+    "esbuild": "^0.19.5",
+    "eslint": "^8.53.0",
+    "eslint-config-prettier": "^9.0.0",
+    "prettier": "^3.1.0",
+    "typescript": "^5.2.2"
+  },
+  "bin": {
+    "cf-setup": "dist/index.js"
+  },
+  "files": [
+    "./dist/*"
+  ]
+}

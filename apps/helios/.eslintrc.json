@@ -6,5 +6,6 @@
   ],
   "plugins": [
     "eslint-plugin-next-on-pages"
-  ]
+  ],
+  "root": true
 }

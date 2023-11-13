@@ -8,7 +8,7 @@ import toml from 'toml';
 import { hideBin } from 'yargs/helpers';
 import yargs from 'yargs/yargs';
 
-const setupDB = async (binding, schemaDir, migrationDir) => {
+const setupDB = async (binding: string, schemaDir: string, migrationDir: string) => {
   console.info(chalk.blue(`Preparing to setup D1 Database: ${binding}`));
   const schema = path.normalize(schemaDir + '/' + binding.toLowerCase() + '.ts');
   const outDir = path.normalize(`${migrationDir}`);
@@ -25,14 +25,15 @@ const setupDB = async (binding, schemaDir, migrationDir) => {
   console.info(chalk.blue(`Completed setup of D1 Database: ${binding}`));
 };
 
-const setupKV = async b => {
+const setupKV = async (b: string) => {
   console.info(chalk.blue(`Preparing to setup KV: ${b}`));
 };
 
-const setupR2 = async b => {
+const setupR2 = async (b: string) => {
   console.info(chalk.blue(`Preparing to setup R2: ${b}`));
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 const parser = yargs(hideBin(process.argv))
   .options({
     'wrangler-file': {
@@ -42,17 +43,6 @@ const parser = yargs(hideBin(process.argv))
       demandOption: true,
       type: 'string'
     }
-  })
-  .check(argv => {
-    let fileExists = false;
-
-    try {
-      fs.accessSync(argv['wrangler-file']);
-      fileExists = true;
-    } catch (e) {
-      throw e;
-    }
-    return fileExists;
   })
   .command(
     'prepare',
@@ -71,18 +61,18 @@ const parser = yargs(hideBin(process.argv))
     async argv => {
       const wranglerCfg = toml.parse(fs.readFileSync(argv.wranglerFile, 'utf-8'));
       if ('d1_databases' in wranglerCfg) {
-        for (const database of wranglerCfg.d1_databases) {
-          await setupDB(database.binding, argv.schemaDir, database.migrations_dir);
+        for (const database of wranglerCfg['d1_databases']) {
+          await setupDB(database['binding'], argv.schemaDir, database['migrations_dir']);
         }
       }
       if ('kv_namespaces' in wranglerCfg) {
-        for (const kv of wranglerCfg.kv_namespaces) {
-          await setupKV(kv.binding);
+        for (const kv of wranglerCfg['kv_namespaces']) {
+          await setupKV(kv['binding']);
         }
       }
       if ('r2_namespaces' in wranglerCfg) {
-        for (const r2 of wranglerCfg.r2_namespaces) {
-          await setupR2(r2.binding);
+        for (const r2 of wranglerCfg['r2_namespaces']) {
+          await setupR2(r2['binding']);
         }
       }
     }
