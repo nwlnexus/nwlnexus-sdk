@@ -1,0 +1,7 @@
+d1_databases = [
+  { binding = "DB", database_name = "olympus", database_id = "<UUID>", preview_database_id = "DB" }
+]
+
+kv_namespaces = [
+  { binding = "KV", id = "<UUID>", preview_id = "KV" }
+]

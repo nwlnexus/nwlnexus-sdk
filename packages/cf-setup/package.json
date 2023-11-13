@@ -24,9 +24,7 @@
     "prettier": "^3.1.0",
     "typescript": "^5.2.2"
   },
-  "bin": {
-    "cf-setup": "dist/index.js"
-  },
+  "bin": "dist/index.js",
   "files": [
     "./dist/*"
   ]

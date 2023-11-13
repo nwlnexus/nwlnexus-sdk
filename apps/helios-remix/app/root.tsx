@@ -1,21 +1,18 @@
-import type { LinksFunction } from "@remix-run/cloudflare";
-import { cssBundleHref } from "@remix-run/css-bundle";
-import {
-  Links,
-  LiveReload,
-  Meta,
-  Outlet,
-  Scripts,
-  ScrollRestoration,
-} from "@remix-run/react";
+import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react';
+import { cssBundleHref } from '@remix-run/css-bundle';
+import { AppThemeProvider } from '~/providers/AppThemeProvider';
+import type { LinksFunction } from '@remix-run/cloudflare';
+import tailwindCSS from './styles/tailwind.css';
 
 export const links: LinksFunction = () => [
-  ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
+  ...(cssBundleHref ? [{ rel: 'stylesheet', href: cssBundleHref }] : []),
+  { rel: 'stylesheet', href: tailwindCSS },
+  { rel: 'canonical', href: 'https://helios.nwlnexus.xyz' }
 ];
 
 export default function App() {
   return (
-    <html lang="en">
+    <html lang="en-US" suppressHydrationWarning>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -23,10 +20,12 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <Outlet />
-        <ScrollRestoration />
-        <Scripts />
-        <LiveReload />
+        <AppThemeProvider>
+          <Outlet />
+          <ScrollRestoration />
+          <Scripts />
+          <LiveReload />
+        </AppThemeProvider>
       </body>
     </html>
   );
