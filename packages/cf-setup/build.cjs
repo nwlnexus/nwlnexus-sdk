@@ -11,8 +11,7 @@ const sharedConfig = {
 build({
   ...sharedConfig,
   platform: 'node', // for CJS
-  outfile: 'dist/index.js',
-  format: 'esm'
+  outfile: 'dist/index.cjs',
 }).catch((err) => {
   console.log(err);
   process.exit(1);

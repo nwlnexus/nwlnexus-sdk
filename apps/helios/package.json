@@ -10,6 +10,7 @@
     "pages:build": "next-on-pages",
     "pages:deploy": "yarn pages:build && wrangler pages deploy .vercel/output/static",
     "pages:watch": "next-on-pages --watch",
+    "prepages:dev": "yarn cf-setup prepare --schema-dir=./src/db --migrations-dir=./migrations",
     "pages:dev": "wrangler pages dev .vercel/output/static --compatibility-date=${COMPAT_DATE} --compatibility-flag=nodejs_compat --persist-to=\"../../.wrangler\""
   },
   "devDependencies": {
