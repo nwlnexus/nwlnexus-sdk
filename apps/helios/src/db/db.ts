@@ -1,7 +1,7 @@
 import { integer, primaryKey, sqliteTable, text } from 'drizzle-orm/sqlite-core';
 import type { AdapterAccount } from '@auth/core/adapters';
 
-export const users = sqliteTable('user', {
+export const users = sqliteTable('users', {
   id: text('id').notNull().primaryKey(),
   name: text('name'),
   email: text('email').notNull(),
@@ -10,8 +10,9 @@ export const users = sqliteTable('user', {
 });
 
 export const accounts = sqliteTable(
-  'account',
+  'accounts',
   {
+    id: text('id').notNull().primaryKey(),
     userId: text('userId')
       .notNull()
       .references(() => users.id, { onDelete: 'cascade' }),
@@ -31,7 +32,7 @@ export const accounts = sqliteTable(
   })
 );
 
-export const sessions = sqliteTable('session', {
+export const sessions = sqliteTable('sessions', {
   sessionToken: text('sessionToken').notNull().primaryKey(),
   userId: text('userId')
     .notNull()
@@ -40,7 +41,7 @@ export const sessions = sqliteTable('session', {
 });
 
 export const verificationTokens = sqliteTable(
-  'verificationToken',
+  'verificationTokens',
   {
     identifier: text('identifier').notNull(),
     token: text('token').notNull(),

@@ -1,18 +1,10 @@
 import type { Config } from 'tailwindcss';
 
 const config = {
-  content: ['./app/**/*.{js,jsx,ts,tsx}', '../../node_modules/daisyui/dist/**/*.js'],
+  content: ['./app/**/*.{js,jsx,ts,tsx}', '../../node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {}
   },
-  daisyui: {
-    themes: ['cmyk', 'dark', 'dracula', 'night'],
-    darkTheme: 'dark',
-    base: true,
-    styled: true,
-    utils: true,
-    log: false
-  },
-  plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography'), require('daisyui')]
+  plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography'), require('flowbite/plugin')]
 } satisfies Config;
 export default config;

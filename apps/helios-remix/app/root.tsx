@@ -1,11 +1,9 @@
-import process from 'node:process';
 import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react';
 import { cssBundleHref } from '@remix-run/css-bundle';
 import { AppThemeProvider } from '~/providers/AppThemeProvider';
 import type { LinksFunction } from '@remix-run/cloudflare';
 import tailwindCSS from './styles/tailwind.css';
 
-globalThis.process = process;
 export const links: LinksFunction = () => [
   ...(cssBundleHref ? [{ rel: 'stylesheet', href: cssBundleHref }] : []),
   { rel: 'stylesheet', href: tailwindCSS },

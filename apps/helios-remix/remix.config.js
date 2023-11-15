@@ -1,10 +1,5 @@
 /** @type {import('@remix-run/dev').AppConfig} */
 export default {
-  browserNodeBuiltinsPolyfill: {
-    modules: {
-      process: true
-    }
-  },
   ignoredRouteFiles: ['**/.*'],
   server: './server.ts',
   serverBuildPath: 'functions/[[path]].js',
@@ -16,10 +11,7 @@ export default {
   serverPlatform: 'neutral',
   serverNodeBuiltinsPolyfill: {
     modules: {
-      fs: 'empty',
-      path: true,
-      tty: true,
-      url: true
+      tty: true
     }
   },
   postcss: true,

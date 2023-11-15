@@ -3,15 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "next:dev": "next dev",
-    "next:build": "next build",
-    "next:start": "next start",
-    "next:lint": "next lint",
-    "build": "next-on-pages",
-    "deploy": "yarn build && wrangler pages deploy .vercel/output/static",
-    "watch": "next-on-pages --watch",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "pages:build": "next-on-pages",
+    "pages:deploy": "yarn build && wrangler pages deploy .vercel/output/static",
+    "pages:watch": "next-on-pages --watch",
     "app:prepare": "cf-setup prepare --schemaDir=./src/db --migrationsDir=./migrations --persistTo=\"../../.wrangler\"",
-    "dev": "yarn app:prepare && wrangler pages dev .vercel/output/static --compatibility-date=${COMPAT_DATE} --compatibility-flag=nodejs_compat --persist-to=\"../../.wrangler\""
+    "pages:dev": "yarn app:prepare && wrangler pages dev .vercel/output/static --compatibility-date=${COMPAT_DATE} --compatibility-flag=nodejs_compat --persist-to=\"../../.wrangler\""
   },
   "devDependencies": {
     "@cloudflare/next-on-pages": "1",
@@ -46,6 +46,7 @@
     "clsx": "^2.0.0",
     "drizzle-orm": "^0.29.0",
     "next": "^14.0.1",
+    "next-auth": "^5.0.0-beta.3",
     "next-themes": "^0.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
