@@ -5,6 +5,7 @@ import tailwindCSS from './styles/tailwind.css';
 
 export const links: LinksFunction = () => [
   ...(cssBundleHref ? [{ rel: 'stylesheet', href: cssBundleHref }] : []),
+  { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Inter' },
   { rel: 'stylesheet', href: tailwindCSS },
   { rel: 'canonical', href: 'https://helios.nwlnexus.xyz' }
 ];

@@ -1,3 +1,4 @@
+import defaultTheme from 'tailwindcss/defaultTheme';
 import type { Config } from 'tailwindcss';
 
 const config = {
@@ -7,6 +8,9 @@ const config = {
     '../../node_modules/react-daisyui/dist/**/*.js'
   ],
   theme: {
+    fontFamily: {
+      sans: ['Inter', ...defaultTheme.fontFamily.sans]
+    },
     extend: {}
   },
   plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography'), require('daisyui')]
