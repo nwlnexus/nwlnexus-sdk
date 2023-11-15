@@ -2465,58 +2465,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@floating-ui/core@npm:^1.4.2":
-  version: 1.5.0
-  resolution: "@floating-ui/core@npm:1.5.0"
-  dependencies:
-    "@floating-ui/utils": "npm:^0.1.3"
-  checksum: bca811cefd09c3f56c4cf58c3e94826c1ce4a0b40124e9030ddca2ef1cc68b4ddc5ba5b4d7cc94c9555aea6876d2428a77a2ae261fe5b39c79df247a9518b053
-  languageName: node
-  linkType: hard
-
-"@floating-ui/dom@npm:^1.5.1":
-  version: 1.5.3
-  resolution: "@floating-ui/dom@npm:1.5.3"
-  dependencies:
-    "@floating-ui/core": "npm:^1.4.2"
-    "@floating-ui/utils": "npm:^0.1.3"
-  checksum: e5f30b911f939e40003851077bba441f269ae689bdc43c674bee43aa98fc6b7a5f59be432d27b7be599b1e4ab7b15c752875ea777a89cff01d157e593b78b25b
-  languageName: node
-  linkType: hard
-
-"@floating-ui/react-dom@npm:^2.0.1":
-  version: 2.0.4
-  resolution: "@floating-ui/react-dom@npm:2.0.4"
-  dependencies:
-    "@floating-ui/dom": "npm:^1.5.1"
-  peerDependencies:
-    react: ">=16.8.0"
-    react-dom: ">=16.8.0"
-  checksum: 5d597a7939e484428452cee775884f6c14055783d811a1abedf03151eb8825ecf42a544553efecdc502f30ca2a6b3e6630485367c39473d259e74f5f1331bc0a
-  languageName: node
-  linkType: hard
-
-"@floating-ui/react@npm:^0.24.3":
-  version: 0.24.8
-  resolution: "@floating-ui/react@npm:0.24.8"
-  dependencies:
-    "@floating-ui/react-dom": "npm:^2.0.1"
-    aria-hidden: "npm:^1.2.3"
-    tabbable: "npm:^6.0.1"
-  peerDependencies:
-    react: ">=16.8.0"
-    react-dom: ">=16.8.0"
-  checksum: b9fd32e736f2a17f575dd4159535f6570a82e2f1a321c68a42f8b4161db257597e88e11c948563f78b80e3450ed20a0ed9c511e9372b4b8a904784f62d87d57e
-  languageName: node
-  linkType: hard
-
-"@floating-ui/utils@npm:^0.1.3":
-  version: 0.1.6
-  resolution: "@floating-ui/utils@npm:0.1.6"
-  checksum: 0a089db0e0526b89e83cb0a773a903517db5c9067cd473febfd8fa91a3a2ccbc3a835234796c1bb528def21dbb67be50e28d9c473cb58a6d90679d7e549b9c0c
-  languageName: node
-  linkType: hard
-
 "@fullhuman/postcss-purgecss@npm:^5.0.0":
   version: 5.0.0
   resolution: "@fullhuman/postcss-purgecss@npm:5.0.0"
@@ -2914,7 +2862,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@popperjs/core@npm:^2.11.8, @popperjs/core@npm:^2.9.3":
+"@popperjs/core@npm:^2.11.8":
   version: 2.11.8
   resolution: "@popperjs/core@npm:2.11.8"
   checksum: 4681e682abc006d25eb380d0cf3efc7557043f53b6aea7a5057d0d1e7df849a00e281cd8ea79c902a35a414d7919621fc2ba293ecec05f413598e0b23d5a1e63
@@ -4344,15 +4292,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"aria-hidden@npm:^1.2.3":
-  version: 1.2.3
-  resolution: "aria-hidden@npm:1.2.3"
-  dependencies:
-    tslib: "npm:^2.0.0"
-  checksum: 46b07b7273167ad3fc2625f1ecbb43f8e6f73115c66785cbb5dcf1e2508133a43b6419d610c39676ceaeb563239efbd8974d5c0187695db8b3e8c3e11f549c2d
-  languageName: node
-  linkType: hard
-
 "aria-query@npm:5.1.3":
   version: 5.1.3
   resolution: "aria-query@npm:5.1.3"
@@ -5173,13 +5112,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"classnames@npm:^2.2.6":
-  version: 2.3.2
-  resolution: "classnames@npm:2.3.2"
-  checksum: cd50ead57b4f97436aaa9f9885c6926323efc7c2bea8e3d4eb10e4e972aa6a1cfca1c7a0e06f8a199ca7498d4339e30bb6002e589e61c9f21248cbf3e8b0b18d
-  languageName: node
-  linkType: hard
-
 "clean-stack@npm:^2.0.0":
   version: 2.2.0
   resolution: "clean-stack@npm:2.2.0"
@@ -5666,6 +5598,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"culori@npm:^3":
+  version: 3.2.0
+  resolution: "culori@npm:3.2.0"
+  checksum: c6c9189c7c4b5aa8db8697174e77fd86543fac55d85be2fdee613d22c85ed62147099b5011a58e8ccd16e39fcf58085ea28e073a0b93ec3d623c7701cc20e2e9
+  languageName: node
+  linkType: hard
+
 "d@npm:1, d@npm:^1.0.1":
   version: 1.0.1
   resolution: "d@npm:1.0.1"
@@ -5689,6 +5628,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"daisyui@npm:^4.0.7":
+  version: 4.0.7
+  resolution: "daisyui@npm:4.0.7"
+  dependencies:
+    css-selector-tokenizer: "npm:^0.8"
+    culori: "npm:^3"
+    picocolors: "npm:^1"
+    postcss-js: "npm:^4"
+  checksum: 4f34935a69d460822275bce95cfb2ef43770e198efcb1b40f9a37e07d8bb2b5bf1391c92b78e9bed19c357beacb9283e58dd2f51b3c596752e2ce25643b44e62
+  languageName: node
+  linkType: hard
+
 "damerau-levenshtein@npm:^1.0.8":
   version: 1.0.8
   resolution: "damerau-levenshtein@npm:1.0.8"
@@ -5707,13 +5658,6 @@ __metadata:
   version: 3.0.1
   resolution: "data-uri-to-buffer@npm:3.0.1"
   checksum: 01fa28525402582fbb972c91822533f5528156e9e7241512b903467acbe2e0505760504e22c548bb707c7a56b5459194ee4fa6434e5995fa1a658744c2ce0cff
-  languageName: node
-  linkType: hard
-
-"debounce@npm:^1.2.0":
-  version: 1.2.1
-  resolution: "debounce@npm:1.2.1"
-  checksum: 6c9320aa0973fc42050814621a7a8a78146c1975799b5b3cc1becf1f77ba9a5aa583987884230da0842a03f385def452fad5d60db97c3d1c8b824e38a8edf500
   languageName: node
   linkType: hard
 
@@ -6214,13 +6158,6 @@ __metadata:
   version: 0.2.0
   resolution: "eastasianwidth@npm:0.2.0"
   checksum: 26f364ebcdb6395f95124fda411f63137a4bfb5d3a06453f7f23dfe52502905bd84e0488172e0f9ec295fdc45f05c23d5d91baf16bd26f0fe9acd777a188dc39
-  languageName: node
-  linkType: hard
-
-"easy-bem@npm:^1.1.1":
-  version: 1.1.1
-  resolution: "easy-bem@npm:1.1.1"
-  checksum: 83b54e5c854795612a245fba9bc48053da3593205ff19d8aad38ef9bc0cbf56d2df7af73d90b533602696ead1ffe6beef55d756e2356e981f50156e044a1463e
   languageName: node
   linkType: hard
 
@@ -8199,43 +8136,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"flowbite-react@npm:^0.6.4":
-  version: 0.6.4
-  resolution: "flowbite-react@npm:0.6.4"
-  dependencies:
-    "@floating-ui/react": "npm:^0.24.3"
-    flowbite: "npm:^1.6.6"
-    react-icons: "npm:^4.10.1"
-    react-indiana-drag-scroll: "npm:^2.2.0"
-    tailwind-merge: "npm:^1.13.2"
-  peerDependencies:
-    react: ^18
-    react-dom: ^18
-    tailwindcss: ^3
-  checksum: 7fdfe3c49472b7e9c5b68ea591dfb1bd1a5a2e61f2ed6c8a87fd301c276149043527ea1e74a034e75520ea34afbf17042738177c2f965201a372c6d1067d8aff
-  languageName: node
-  linkType: hard
-
-"flowbite@npm:^1.6.6":
-  version: 1.8.1
-  resolution: "flowbite@npm:1.8.1"
-  dependencies:
-    "@popperjs/core": "npm:^2.9.3"
-    mini-svg-data-uri: "npm:^1.4.3"
-  checksum: e8e4990c80bab2350a7a5dec767ff007fa21e244fdf5343def85b156882ec32b23ec5df211e959ecdec6de14b072e185f576123a185f457918f3f33ebf13831f
-  languageName: node
-  linkType: hard
-
-"flowbite@npm:^2.1.1":
-  version: 2.1.1
-  resolution: "flowbite@npm:2.1.1"
-  dependencies:
-    "@popperjs/core": "npm:^2.9.3"
-    mini-svg-data-uri: "npm:^1.4.3"
-  checksum: c6b7e85bbfeda79b526ab8c90f8fd26536f0566b1b63832062162c722b31208fc20b124b67a67729f9fd188a88ae7e0451fc378c106134a9cee51f0273d944b1
-  languageName: node
-  linkType: hard
-
 "for-each@npm:^0.3.3":
   version: 0.3.3
   resolution: "for-each@npm:0.3.3"
@@ -8988,15 +8888,15 @@ __metadata:
     "@types/react-dom": "npm:^18.2.7"
     autoprefixer: "npm:^10.4.16"
     clsx: "npm:^2.0.0"
+    daisyui: "npm:^4.0.7"
     eslint: "npm:^8.38.0"
     eslint-config-prettier: "npm:^9.0.0"
-    flowbite: "npm:^2.1.1"
-    flowbite-react: "npm:^0.6.4"
     isbot: "npm:^3.6.8"
     next-themes: "npm:^0.2.1"
     postcss: "npm:^8.4.31"
     prettier: "npm:^3.1.0"
     react: "npm:^18.2.0"
+    react-daisyui: "npm:^4.1.2"
     react-dom: "npm:^18.2.0"
     tailwindcss: "npm:^3.3.5"
     typescript: "npm:^5.1.0"
@@ -9004,9 +8904,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"helios@workspace:apps/helios":
+"helios@workspace:apps/helios-nextjs":
   version: 0.0.0-use.local
-  resolution: "helios@workspace:apps/helios"
+  resolution: "helios@workspace:apps/helios-nextjs"
   dependencies:
     "@auth/core": "npm:^0.18.1"
     "@auth/d1-adapter": "npm:^0.2.4"
@@ -11165,7 +11065,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mini-svg-data-uri@npm:^1.2.3, mini-svg-data-uri@npm:^1.4.3":
+"mini-svg-data-uri@npm:^1.2.3":
   version: 1.4.4
   resolution: "mini-svg-data-uri@npm:1.4.4"
   bin:
@@ -12325,7 +12225,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"picocolors@npm:1.0.0, picocolors@npm:^1.0.0":
+"picocolors@npm:1.0.0, picocolors@npm:^1, picocolors@npm:^1.0.0":
   version: 1.0.0
   resolution: "picocolors@npm:1.0.0"
   checksum: 20a5b249e331c14479d94ec6817a182fd7a5680debae82705747b2db7ec50009a5f6648d0621c561b0572703f84dbef0858abcbd5856d3c5511426afcb1961f7
@@ -13281,35 +13181,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-icons@npm:^4.10.1":
-  version: 4.12.0
-  resolution: "react-icons@npm:4.12.0"
-  peerDependencies:
-    react: "*"
-  checksum: 2170f43031ee7365539f72d4075cbe6c7fbf9a66d6cf4494aa9393b194272da0564f5b19d1b24dbfc567c0ac89f5fe5b8974d92dd83f61e252388dde6a226fb8
-  languageName: node
-  linkType: hard
-
 "react-icons@npm:^4.11.0":
   version: 4.11.0
   resolution: "react-icons@npm:4.11.0"
   peerDependencies:
     react: "*"
   checksum: 95e837e11ece80cc39ef1beac026d10f96cd7e567afc718e717517beb35b82dd59307a758c10b3a449dc15d6682d6551ecc630b2821d9365819af921fa279a73
-  languageName: node
-  linkType: hard
-
-"react-indiana-drag-scroll@npm:^2.2.0":
-  version: 2.2.0
-  resolution: "react-indiana-drag-scroll@npm:2.2.0"
-  dependencies:
-    classnames: "npm:^2.2.6"
-    debounce: "npm:^1.2.0"
-    easy-bem: "npm:^1.1.1"
-  peerDependencies:
-    react: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
-    react-dom: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
-  checksum: 2c337ec8b2cf0628ac4f17df3c84d4a24b5357f8f93d5a4cfc74c4d104cc1bc32c3e0eeb33ed5ffd505d74bc345a30615a0b0b4f6a761767db57378f45e8d87b
   languageName: node
   linkType: hard
 
@@ -14772,13 +14649,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tabbable@npm:^6.0.1":
-  version: 6.2.0
-  resolution: "tabbable@npm:6.2.0"
-  checksum: ced8b38f05f2de62cd46836d77c2646c42b8c9713f5bd265daf0e78ff5ac73d3ba48a7ca45f348bafeef29b23da7187c72250742d37627883ef89cbd7fa76898
-  languageName: node
-  linkType: hard
-
 "table@npm:^6.8.1":
   version: 6.8.1
   resolution: "table@npm:6.8.1"
@@ -14789,13 +14659,6 @@ __metadata:
     string-width: "npm:^4.2.3"
     strip-ansi: "npm:^6.0.1"
   checksum: 591ed84b2438b01c9bc02248e2238e21e8bfb73654bc5acca0d469053eb39be3db2f57d600dcf08ac983b6f50f80842c44612c03877567c2afee3aec4a033e5f
-  languageName: node
-  linkType: hard
-
-"tailwind-merge@npm:^1.13.2":
-  version: 1.14.0
-  resolution: "tailwind-merge@npm:1.14.0"
-  checksum: a66f5ab1a2bb2b0f5a40a031867a6bc900de98eb3339b2a51759351221527a3d600eecb6cb5a038830aa89548eba72bb63aa3856cb9f31c9a3918b42eb3df350
   languageName: node
   linkType: hard
 
@@ -15158,7 +15021,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tslib@npm:^2.0.0, tslib@npm:^2.0.1, tslib@npm:^2.2.0, tslib@npm:^2.4.0":
+"tslib@npm:^2.0.1, tslib@npm:^2.2.0, tslib@npm:^2.4.0":
   version: 2.6.2
   resolution: "tslib@npm:2.6.2"
   checksum: e03a8a4271152c8b26604ed45535954c0a45296e32445b4b87f8a5abdb2421f40b59b4ca437c4346af0f28179780d604094eb64546bee2019d903d01c6c19bdb
