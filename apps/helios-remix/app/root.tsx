@@ -1,5 +1,6 @@
 import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react';
 import { cssBundleHref } from '@remix-run/css-bundle';
+import { AppThemeProvider } from '~/providers/AppThemeProvider';
 import type { LinksFunction } from '@remix-run/cloudflare';
 import tailwindCSS from './styles/tailwind.css';
 
@@ -21,10 +22,12 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <Outlet />
-        <ScrollRestoration />
-        <Scripts />
-        <LiveReload />
+        <AppThemeProvider>
+          <Outlet />
+          <ScrollRestoration />
+          <Scripts />
+          <LiveReload />
+        </AppThemeProvider>
       </body>
     </html>
   );

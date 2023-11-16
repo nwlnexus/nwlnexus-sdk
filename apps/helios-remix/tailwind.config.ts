@@ -1,5 +1,6 @@
 import defaultTheme from 'tailwindcss/defaultTheme';
 import type { Config } from 'tailwindcss';
+import { config as appConfig } from './app/config/app.config';
 
 const config = {
   content: [
@@ -14,7 +15,7 @@ const config = {
     extend: {}
   },
   daisyui: {
-    themes: ['cupcake', 'dark', 'business', 'night', 'sunset'],
+    themes: appConfig.appThemes,
     darkTheme: 'sunset',
     base: true,
     styled: true,

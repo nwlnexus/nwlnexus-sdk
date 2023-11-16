@@ -1,5 +1,6 @@
 import { Button, Input, Join, Navbar, Tooltip, useTheme } from 'react-daisyui';
 import ThemeToggle from '~/components/ui/ThemeToggle';
+import { config } from '~/config/app.config';
 import useScroll from '~/hooks/use-scroll';
 import clsx from 'clsx';
 
@@ -11,7 +12,6 @@ type NavBarProps = {
 export default function NavBar({ toggleVisible, version }: NavBarProps) {
   const scrolled = useScroll(50);
   const { theme, setTheme } = useTheme('dark');
-  const themes = ['cupcake', 'dark', 'business', 'night', 'sunset'];
 
   return (
     <>
@@ -56,7 +56,7 @@ export default function NavBar({ toggleVisible, version }: NavBarProps) {
           </div>
         </div>
         <Join className="flex-none gap-x-2">
-          <ThemeToggle resolvedTheme={theme} setTheme={setTheme} themes={themes} />
+          <ThemeToggle resolvedTheme={theme} setTheme={setTheme} themes={config.appThemes} />
           <Button size="md" color="accent" variant="outline" aria-label="sign in">
             Sign In
           </Button>

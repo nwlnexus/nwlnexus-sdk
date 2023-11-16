@@ -8898,6 +8898,8 @@ __metadata:
     react: "npm:^18.2.0"
     react-daisyui: "npm:^4.1.2"
     react-dom: "npm:^18.2.0"
+    remix-auth: "npm:^3.6.0"
+    remix-auth-auth0: "npm:^1.9.0"
     tailwindcss: "npm:^3.3.5"
     typescript: "npm:^5.1.0"
     wrangler: "npm:^3.15.0"
@@ -13492,6 +13494,42 @@ __metadata:
   languageName: node
   linkType: hard
 
+"remix-auth-auth0@npm:^1.9.0":
+  version: 1.9.0
+  resolution: "remix-auth-auth0@npm:1.9.0"
+  dependencies:
+    remix-auth-oauth2: "npm:1.10.0"
+  peerDependencies:
+    "@remix-run/server-runtime": 1.x || 2.x
+    remix-auth: 3.x
+  checksum: b7f51ff74c010d1e00ed53f2cda91f29486bb768ffd3f86cc7f154a33b9fff6e58e2641eded694cf6926c536daa4f17448bcebb80d947615a42c43d89c9e2e33
+  languageName: node
+  linkType: hard
+
+"remix-auth-oauth2@npm:1.10.0":
+  version: 1.10.0
+  resolution: "remix-auth-oauth2@npm:1.10.0"
+  dependencies:
+    debug: "npm:^4.3.4"
+  peerDependencies:
+    "@remix-run/server-runtime": ^1.0.0 || ^2.0.0
+    remix-auth: ^3.6.0
+  checksum: 88d7f0da6052f484e21892355ac3cf7f58b6c53f25f5da74f18390556b4acec86bf3e349442c3e705150ff2655ee43e46b6da1730ef1bb1ec3f04349b73e2e06
+  languageName: node
+  linkType: hard
+
+"remix-auth@npm:^3.6.0":
+  version: 3.6.0
+  resolution: "remix-auth@npm:3.6.0"
+  dependencies:
+    uuid: "npm:^8.3.2"
+  peerDependencies:
+    "@remix-run/react": ^1.0.0 || ^2.0.0
+    "@remix-run/server-runtime": ^1.0.0 || ^2.0.0
+  checksum: 2b9d9f5ad02e7addbf2082d0968b8a23cb7569d68c322b713b35864e21028ceca9d554c36e33f42e7ece04c826a08411e120fdc827595cee3932facd5071fcf5
+  languageName: node
+  linkType: hard
+
 "require-directory@npm:^2.1.1":
   version: 2.1.1
   resolution: "require-directory@npm:2.1.1"
@@ -15465,6 +15503,15 @@ __metadata:
   bin:
     uuid: ./bin/uuid
   checksum: 847bd7b389f44d05cf5341134d52803116b616c7344f12c74040effd75280b58273ea3a2bee6ba6e5405688c5edbb0696f4adcbc89e1206dc1d8650bdaece7a6
+  languageName: node
+  linkType: hard
+
+"uuid@npm:^8.3.2":
+  version: 8.3.2
+  resolution: "uuid@npm:8.3.2"
+  bin:
+    uuid: dist/bin/uuid
+  checksum: bcbb807a917d374a49f475fae2e87fdca7da5e5530820ef53f65ba1d12131bd81a92ecf259cc7ce317cbe0f289e7d79fdfebcef9bfa3087c8c8a2fa304c9be54
   languageName: node
   linkType: hard
 

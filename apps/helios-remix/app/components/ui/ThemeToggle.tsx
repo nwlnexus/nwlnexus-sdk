@@ -1,4 +1,3 @@
-import { useCallback } from 'react';
 import { Dropdown } from 'react-daisyui';
 
 type ThemeToggleProps = {
@@ -8,14 +7,6 @@ type ThemeToggleProps = {
 };
 
 export default function ThemeToggle({ resolvedTheme, setTheme, themes }: ThemeToggleProps) {
-  const handleTheme = useCallback(
-    (t: string) => {
-      document.getElementsByTagName('html')[0].setAttribute('data-theme', t);
-      window.localStorage.setItem('olympus-theme', t);
-      setTheme(t);
-    },
-    [setTheme]
-  );
   return (
     <>
       <Dropdown dataTheme={resolvedTheme} end={true} title="Change Theme">
@@ -53,7 +44,7 @@ export default function ThemeToggle({ resolvedTheme, setTheme, themes }: ThemeTo
               aria-label="Theme select"
               aria-pressed={t === resolvedTheme}
               tabIndex={i}
-              onClick={() => handleTheme(t)}
+              onClick={() => setTheme(t)}
             >
               {t}
             </Dropdown.Item>

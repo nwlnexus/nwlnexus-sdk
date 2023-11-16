@@ -12,14 +12,32 @@ export default function LandingView() {
         <div className="shrink xl:w-1/2">
           <div className="flex min-h-[calc(100vh-4rem)] items-center justify-center px-2 py-10 text-center xl:justify-start xl:pl-10 xl:pr-0 xl:text-left">
             <div>
-              <h1 className="font-title text-center text-[clamp(2rem,6vw,4.2rem)] font-black leading-[1.1] xl:text-left">
-                The system administration application.
+              <h1 className="font-title text-center text-[clamp(2rem,6vw,4.2rem)] font-black leading-[1.1] xl:text-left [:root[dir=rtl]_&]:leading-[1.35]">
+                <span className="brightness-150 contrast-150 [&::selection]:bg-blue-700/20 [&::selection]:text-base-content">
+                  The
+                </span>
+                <br />
+                <span className="inline-grid">
+                  <span
+                    className="pointer-events-none col-start-1 row-start-1 bg-[linear-gradient(90deg,theme(colors.error)_0%,theme(colors.secondary)_9%,theme(colors.secondary)_42%,theme(colors.primary)_47%,theme(colors.accent)_100%)] bg-clip-text blur-2xl [-webkit-text-fill-color:transparent] [transform:translate3d(0,0,0)] [@supports(color:oklch(0_0_0))]:bg-[linear-gradient(90deg,oklch(var(--s))_4%,color-mix(in_oklch,oklch(var(--s)),oklch(var(--er)))_22%,oklch(var(--p))_45%,color-mix(in_oklch,oklch(var(--p)),oklch(var(--a)))_67%,oklch(var(--a))_100.2%)]"
+                    aria-hidden={true}
+                  >
+                    system administration
+                  </span>
+                  <span className="relative col-start-1 row-start-1 bg-[linear-gradient(90deg,theme(colors.error)_0%,theme(colors.secondary)_9%,theme(colors.secondary)_42%,theme(colors.primary)_47%,theme(colors.accent)_100%)] bg-clip-text [-webkit-text-fill-color:transparent] [&::selection]:bg-blue-700/20 [&::selection]:text-base-content [@supports(color:oklch(0_0_0))]:bg-[linear-gradient(90deg,oklch(var(--s))_4%,color-mix(in_oklch,oklch(var(--s)),oklch(var(--er)))_22%,oklch(var(--p))_45%,color-mix(in_oklch,oklch(var(--p)),oklch(var(--a)))_67%,oklch(var(--a))_100.2%)]">
+                    system administration
+                  </span>
+                </span>
+                <br />
+                <span className="brightness-150 contrast-150 [&::selection]:bg-blue-700/20 [&::selection]:text-base-content">
+                  application.
+                </span>
               </h1>
             </div>
           </div>
         </div>
         <div className="invisible sticky bottom-4 flex w-[calc(100%-2rem)] shrink duration-700 xl:visible xl:-right-32 xl:bottom-auto xl:top-16 xl:w-auto xl:!transform-none xl:overflow-x-hidden xl:overflow-y-clip xl:bg-transparent xl:pb-16 xl:pt-16">
-          <WindowMockup className="bg-base-200/90 xl:bg-base-200 mx-auto origin-top overflow-visible pb-4 backdrop-blur will-change-auto [transform:rotateX(20deg)rotateZ(-20deg)skewY(8deg)scale(1)] max-[1280px]:![transform:translate3d(0,0,0)] xl:-right-20 xl:-mr-10 xl:h-[32rem] xl:w-[50rem] xl:rounded-r-none xl:pr-4 xl:shadow-[-0.05rem_0.1rem_0rem_#00000014] xl:backdrop-blur-0">
+          <WindowMockup className="mx-auto origin-top overflow-visible bg-base-200/90 pb-4 backdrop-blur will-change-auto [transform:rotateX(20deg)rotateZ(-20deg)skewY(8deg)scale(1)] max-[1280px]:![transform:translate3d(0,0,0)] xl:-right-20 xl:-mr-10 xl:h-[32rem] xl:w-[50rem] xl:rounded-r-none xl:bg-base-200 xl:pr-4 xl:shadow-[-0.05rem_0.1rem_0rem_#00000014] xl:backdrop-blur-0">
             <div className="grid">
               <div className="invisible z-[1] col-start-1 row-start-1 grid overflow-y-hidden overflow-x-scroll [scrollbar-width:none] xl:visible xl:overflow-x-visible xl:overflow-y-visible [&::-webkit-scrollbar]:hidden">
                 <div className="col-start-1 row-start-1 mx-6 flex items-end gap-6 xl:mx-0 xl:items-start xl:gap-0">
@@ -29,17 +47,17 @@ export default function LandingView() {
                       style={{ transform: 'translate(0px,0px)' }}
                     >
                       <div className="tabs">
-                        <button className="tab tab-active tab-lifted tab-border-none w-1/3 grow whitespace-nowrap text-xs">
+                        <button className="tab-lifted tab tab-active tab-border-none w-1/3 grow whitespace-nowrap text-xs">
                           Features
                         </button>
-                        <button className="tab tab-lifted tab-border-none w-1/3 grow whitespace-nowrap text-xs">
+                        <button className="tab-lifted tab tab-border-none w-1/3 grow whitespace-nowrap text-xs">
                           Links
                         </button>
-                        <button className="tab tab-lifted tab-border-none w-1/3 grow whitespace-nowrap text-xs">
+                        <button className="tab-lifted tab tab-border-none w-1/3 grow whitespace-nowrap text-xs">
                           Message
                         </button>
                       </div>
-                      <div className="rounded-b-box rounded-tr-box bg-base-100 h-60 shrink-0">
+                      <div className="h-60 shrink-0 rounded-b-box rounded-tr-box bg-base-100">
                         <div className="flex flex-col items-stretch p-6">
                           <div className="form-control">
                             <label className="label cursor-pointer">
@@ -76,7 +94,7 @@ export default function LandingView() {
                     </div>
                     <div className="flex w-60 flex-col justify-end gap-4 xl:w-auto xl:justify-normal xl:p-6">
                       <div
-                        className="alert border-base-300 border will-change-auto motion-reduce:!transform-none motion-reduce:!shadow-none max-[1280px]:![transform:translate3d(0,0,0)]"
+                        className="alert border border-base-300 will-change-auto motion-reduce:!transform-none motion-reduce:!shadow-none max-[1280px]:![transform:translate3d(0,0,0)]"
                         style={{ boxShadow: '0rem 0rem 0rem #00000012', transform: 'translate(0px,0px)' }}
                       >
                         <svg
@@ -97,7 +115,7 @@ export default function LandingView() {
                         </span>
                       </div>
                       <div
-                        className="alert border-base-300 border will-change-auto motion-reduce:!transform-none motion-reduce:!shadow-none max-[1280px]:![transform:translate3d(0,0,0)]"
+                        className="alert border border-base-300 will-change-auto motion-reduce:!transform-none motion-reduce:!shadow-none max-[1280px]:![transform:translate3d(0,0,0)]"
                         style={{ boxShadow: '0rem 0rem 0rem #00000012', transform: 'translate(0px,0px)' }}
                       >
                         <svg
@@ -125,37 +143,37 @@ export default function LandingView() {
                         <div className="grid grid-cols-4 items-end gap-4" data-svelte-h="svelte-xsb8cb">
                           <label className="flex cursor-pointer flex-col items-center gap-1">
                             <input name="checkbox" type="checkbox" className="checkbox checkbox-xs" tabIndex={-1} />
-                            <span className="text-base-content/60 text-[.6rem]">checkbox-xs</span>
+                            <span className="text-[.6rem] text-base-content/60">checkbox-xs</span>
                           </label>
                           <label className="flex cursor-pointer flex-col items-center gap-1">
                             <input name="checkbox" type="checkbox" className="checkbox checkbox-sm" tabIndex={-1} />
-                            <span className="text-base-content/60 text-[.6rem]">checkbox-sm</span>
+                            <span className="text-[.6rem] text-base-content/60">checkbox-sm</span>
                           </label>
                           <label className="flex cursor-pointer flex-col items-center gap-1">
                             <input name="checkbox" type="checkbox" className="checkbox checkbox-md" tabIndex={-1} />
-                            <span className="text-base-content/60 text-[.6rem]">checkbox-md</span>
+                            <span className="text-[.6rem] text-base-content/60">checkbox-md</span>
                           </label>
                           <label className="flex cursor-pointer flex-col items-center gap-1">
                             <input name="checkbox" type="checkbox" className="checkbox checkbox-lg" tabIndex={-1} />
-                            <span className="text-base-content/60 text-[.6rem]">checkbox-lg</span>
+                            <span className="text-[.6rem] text-base-content/60">checkbox-lg</span>
                           </label>
                         </div>
                         <div className="grid grid-cols-4 items-end gap-4" data-svelte-h="svelte-1a9bjat">
                           <label className="flex cursor-pointer flex-col items-center gap-1">
                             <input name="radio" type="radio" className="radio radio-xs" tabIndex={-1} />
-                            <span className="text-base-content/60 text-[.6rem]">radio-xs</span>
+                            <span className="text-[.6rem] text-base-content/60">radio-xs</span>
                           </label>
                           <label className="flex cursor-pointer flex-col items-center gap-1">
                             <input name="radio" type="radio" className="radio radio-sm" tabIndex={-1} />
-                            <span className="text-base-content/60 text-[.6rem]">radio-sm</span>
+                            <span className="text-[.6rem] text-base-content/60">radio-sm</span>
                           </label>
                           <label className="flex cursor-pointer flex-col items-center gap-1">
                             <input name="radio" type="radio" className="radio radio-md" tabIndex={-1} />
-                            <span className="text-base-content/60 text-[.6rem]">radio-md</span>
+                            <span className="text-[.6rem] text-base-content/60">radio-md</span>
                           </label>
                           <label className="flex cursor-pointer flex-col items-center gap-1">
                             <input name="radio" type="radio" className="radio radio-lg" tabIndex={-1} />
-                            <span className="text-base-content/60 text-[.6rem]">radio-lg</span>
+                            <span className="text-[.6rem] text-base-content/60">radio-lg</span>
                           </label>
                         </div>
                       </div>
@@ -171,36 +189,36 @@ export default function LandingView() {
                         <h2 className="card-title mb-4 text-sm">Semantic colors</h2>
                         <div className="grid grid-cols-4 gap-4">
                           <div className="flex flex-col items-center gap-1">
-                            <div className="rounded-btn bg-primary aspect-square w-10"></div>
-                            <div className="text-base-content/60 text-[.6rem]">primary</div>
+                            <div className="aspect-square w-10 rounded-btn bg-primary"></div>
+                            <div className="text-[.6rem] text-base-content/60">primary</div>
                           </div>
                           <div className="flex flex-col items-center gap-1">
-                            <div className="rounded-btn bg-secondary aspect-square w-10"></div>
-                            <div className="text-base-content/60 text-[.6rem]">secondary</div>
+                            <div className="aspect-square w-10 rounded-btn bg-secondary"></div>
+                            <div className="text-[.6rem] text-base-content/60">secondary</div>
                           </div>
                           <div className="flex flex-col items-center gap-1">
-                            <div className="rounded-btn bg-accent aspect-square w-10"></div>
-                            <div className="text-base-content/60 text-[.6rem]">accent</div>
+                            <div className="aspect-square w-10 rounded-btn bg-accent"></div>
+                            <div className="text-[.6rem] text-base-content/60">accent</div>
                           </div>
                           <div className="flex flex-col items-center gap-1">
-                            <div className="rounded-btn bg-neutral aspect-square w-10"></div>
-                            <div className="text-base-content/60 text-[.6rem]">neutral</div>
+                            <div className="aspect-square w-10 rounded-btn bg-neutral"></div>
+                            <div className="text-[.6rem] text-base-content/60">neutral</div>
                           </div>
                           <div className="flex flex-col items-center gap-1">
-                            <div className="rounded-btn bg-info aspect-square w-10"></div>
-                            <div className="text-base-content/60 text-[.6rem]">info</div>
+                            <div className="aspect-square w-10 rounded-btn bg-info"></div>
+                            <div className="text-[.6rem] text-base-content/60">info</div>
                           </div>
                           <div className="flex flex-col items-center gap-1">
-                            <div className="rounded-btn bg-success aspect-square w-10"></div>
-                            <div className="text-base-content/60 text-[.6rem]">success</div>
+                            <div className="aspect-square w-10 rounded-btn bg-success"></div>
+                            <div className="text-[.6rem] text-base-content/60">success</div>
                           </div>
                           <div className="flex flex-col items-center gap-1">
-                            <div className="rounded-btn bg-warning aspect-square w-10"></div>
-                            <div className="text-base-content/60 text-[.6rem]">warning</div>
+                            <div className="aspect-square w-10 rounded-btn bg-warning"></div>
+                            <div className="text-[.6rem] text-base-content/60">warning</div>
                           </div>
                           <div className="flex flex-col items-center gap-1">
-                            <div className="rounded-btn bg-error aspect-square w-10"></div>
-                            <div className="text-base-content/60 text-[.6rem]">error</div>
+                            <div className="aspect-square w-10 rounded-btn bg-error"></div>
+                            <div className="text-[.6rem] text-base-content/60">error</div>
                           </div>
                         </div>
                       </div>
