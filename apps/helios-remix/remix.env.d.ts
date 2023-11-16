@@ -14,6 +14,7 @@ declare module '@remix-run/server-runtime' {
       AUTH_AUTH0_CALLBACK_URL: string;
       AUTH_SECRET: string;
       NODE_ENV: string;
+      APP_VERSION: string;
     };
   }
 }

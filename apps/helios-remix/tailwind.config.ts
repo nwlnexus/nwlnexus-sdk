@@ -13,6 +13,14 @@ const config = {
     },
     extend: {}
   },
+  daisyui: {
+    themes: ['cupcake', 'dark', 'business', 'night', 'sunset'],
+    darkTheme: 'sunset',
+    base: true,
+    styled: true,
+    utils: true,
+    log: false
+  },
   plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography'), require('daisyui')]
 } satisfies Config;
 export default config;

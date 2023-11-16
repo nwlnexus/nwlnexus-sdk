@@ -1,3 +1,4 @@
+APP_VERSION="1.0.0"
 WEATHERAPI_KEY="{{ op://Private/5yfpacpx76vsorecmkdby2mdlq/api_key }}"
 AUTH_SECRET="{{ op://Private/njuvxrshvgijxbpybbx2vhq7qu/session_secret }}"
 AUTH_AUTH0_CALLBACK_URL="http://localhost:8788/auth/auth0/callback"

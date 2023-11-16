@@ -1,19 +1,23 @@
-import { Button, Join, Navbar, Tooltip } from 'react-daisyui';
+import { Button, Input, Join, Navbar, Tooltip, useTheme } from 'react-daisyui';
+import ThemeToggle from '~/components/ui/ThemeToggle';
 import useScroll from '~/hooks/use-scroll';
 import clsx from 'clsx';
 
 type NavBarProps = {
   toggleVisible: () => void;
+  version: string;
 };
 
-export default function NavBar({ toggleVisible }: NavBarProps) {
+export default function NavBar({ toggleVisible, version }: NavBarProps) {
   const scrolled = useScroll(50);
+  const { theme, setTheme } = useTheme('dark');
+  const themes = ['cupcake', 'dark', 'business', 'night', 'sunset'];
 
   return (
     <>
       <Navbar
         className={clsx(
-          'bg-base-100 text-base-content sticky top-0 z-30 h-16 justify-center bg-opacity-90 backdrop-blur transition-all duration-100 [transform:translate3d(0,0,0)]',
+          'sticky top-0 z-30 h-16 justify-center bg-base-100 bg-opacity-90 text-base-content backdrop-blur transition-all duration-100 [transform:translate3d(0,0,0)]',
           { 'shadow-sm': scrolled }
         )}
       >
@@ -36,14 +40,23 @@ export default function NavBar({ toggleVisible }: NavBarProps) {
             <Button tag="a" color="ghost" aria-label="Homepage" href="/" className="flex-0 gap-1 px-2 md:gap-2">
               <div className="font-title inline-flex text-lg md:text-2xl">
                 <span className="lowercase">helios</span>
-                <span className="text-accent uppercase">UI</span>
+                <span className="uppercase text-accent">UI</span>
               </div>
             </Button>
-            <div className="font-mono text-xs">v1.0.0</div>
+            <div className="font-mono text-xs">{version}</div>
+          </div>
+          <div className="hidden w-full max-w-sm lg:flex">
+            <Input
+              className="searchbox relative mx-3 w-full"
+              placeholder="Search..."
+              size="md"
+              color="neutral"
+              bordered={false}
+            />
           </div>
         </div>
         <Join className="flex-none gap-x-2">
-          {/*<ThemeToggle resolvedTheme={resolvedTheme} setTheme={setTheme} themes={themes} />*/}
+          <ThemeToggle resolvedTheme={theme} setTheme={setTheme} themes={themes} />
           <Button size="md" color="accent" variant="outline" aria-label="sign in">
             Sign In
           </Button>
