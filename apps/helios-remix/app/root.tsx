@@ -11,6 +11,7 @@ export const links: LinksFunction = () => [
 ];
 
 export default function App() {
+  // noinspection HtmlRequiredTitleElement
   return (
     <html lang="en-US" suppressHydrationWarning>
       <head>
