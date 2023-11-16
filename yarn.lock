@@ -8887,6 +8887,7 @@ __metadata:
     "@types/react": "npm:^18.2.20"
     "@types/react-dom": "npm:^18.2.7"
     autoprefixer: "npm:^10.4.16"
+    cf-setup: "npm:*"
     clsx: "npm:^2.0.0"
     daisyui: "npm:^4.0.7"
     eslint: "npm:^8.38.0"

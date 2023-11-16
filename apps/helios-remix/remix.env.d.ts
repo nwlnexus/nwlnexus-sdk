@@ -1,6 +1,7 @@
 /// <reference types="@remix-run/dev" />
 /// <reference types="@remix-run/cloudflare" />
 /// <reference types="@cloudflare/workers-types" />
+// noinspection JSAnnotator
 
 declare module '@remix-run/server-runtime' {
   export interface AppLoadContext {

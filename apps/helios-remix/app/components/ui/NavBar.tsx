@@ -57,7 +57,7 @@ export default function NavBar({ toggleVisible, version }: NavBarProps) {
         </div>
         <Join className="flex-none gap-x-2">
           <ThemeToggle resolvedTheme={theme} setTheme={setTheme} themes={config.appThemes} />
-          <Button size="md" color="accent" variant="outline" aria-label="sign in">
+          <Button size="md" color="accent" variant="outline" aria-label="sign in" tag="a" href="/auth/login">
             Sign In
           </Button>
         </Join>

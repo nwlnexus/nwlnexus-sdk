@@ -9,6 +9,11 @@ export default {
   serverMinify: true,
   serverModuleFormat: 'esm',
   serverPlatform: 'neutral',
+  serverNodeBuiltinsPolyfill: {
+    modules: {
+      crypto: true
+    }
+  },
   postcss: true,
   tailwind: true,
   dev: true

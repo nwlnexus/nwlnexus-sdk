@@ -6,6 +6,7 @@
   "scripts": {
     "build": "remix build",
     "dev": "remix dev --manual -c \"npm run start\"",
+    "app:prepare": "cf-setup prepare --schemaDir=./app/db --migrationsDir=./migrations --persistTo=\"../../.wrangler\"",
     "start": "wrangler pages dev --compatibility-date=${COMPAT_DATE} --compatibility-flag=nodejs_compat --persist-to=\"../../.wrangler\" ./public",
     "typecheck": "tsc",
     "pages:deploy": "yarn run build && wrangler pages deploy ./public"
@@ -34,6 +35,7 @@
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
     "autoprefixer": "^10.4.16",
+    "cf-setup": "*",
     "eslint": "^8.38.0",
     "eslint-config-prettier": "^9.0.0",
     "postcss": "^8.4.31",

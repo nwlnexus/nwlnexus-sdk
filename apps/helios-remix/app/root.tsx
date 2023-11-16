@@ -11,7 +11,7 @@ export const links: LinksFunction = () => [
   { rel: 'canonical', href: 'https://helios.nwlnexus.xyz' }
 ];
 
-export default function App() {
+export default function Helios() {
   // noinspection HtmlRequiredTitleElement
   return (
     <html lang="en-US" suppressHydrationWarning>

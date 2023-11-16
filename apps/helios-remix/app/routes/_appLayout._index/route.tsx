@@ -2,7 +2,7 @@ import { WindowMockup } from 'react-daisyui';
 import type { MetaFunction } from '@remix-run/cloudflare';
 
 export const meta: MetaFunction = () => {
-  return [{ title: 'OLYMPUS | Helios' }, { description: 'Helios node management app.' }];
+  return [{ title: 'OLYMPUS | Helios' }, { description: 'Helios system management application.' }];
 };
 
 export default function LandingView() {
