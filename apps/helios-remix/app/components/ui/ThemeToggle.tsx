@@ -9,7 +9,7 @@ type ThemeToggleProps = {
 export default function ThemeToggle({ resolvedTheme, setTheme, themes }: ThemeToggleProps) {
   return (
     <>
-      <Dropdown dataTheme={resolvedTheme} end={true} title="Change Theme">
+      <Dropdown end={true} title="Change Theme">
         <Dropdown.Toggle button={false} className="btn btn-ghost normal-case">
           <svg
             width="20"
@@ -39,13 +39,7 @@ export default function ThemeToggle({ resolvedTheme, setTheme, themes }: ThemeTo
         </Dropdown.Toggle>
         <Dropdown.Menu>
           {themes.map((t, i) => (
-            <Dropdown.Item
-              key={i}
-              aria-label="Theme select"
-              aria-pressed={t === resolvedTheme}
-              tabIndex={i}
-              onClick={() => setTheme(t)}
-            >
+            <Dropdown.Item key={i} aria-label="Theme select" tabIndex={i} onClick={() => setTheme(t)}>
               {t}
             </Dropdown.Item>
           ))}

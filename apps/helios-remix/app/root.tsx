@@ -14,7 +14,7 @@ export const links: LinksFunction = () => [
 export default function Helios() {
   // noinspection HtmlRequiredTitleElement
   return (
-    <html lang="en-US" suppressHydrationWarning>
+    <html lang="en-US" suppressHydrationWarning={true}>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />

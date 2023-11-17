@@ -1,8 +1,10 @@
-import { Button, Input, Join, Navbar, Tooltip, useTheme } from 'react-daisyui';
+import { useCallback, useState } from 'react';
+import { Button, Input, Join, Menu, Navbar, Tooltip } from 'react-daisyui';
 import ThemeToggle from '~/components/ui/ThemeToggle';
 import { config } from '~/config/app.config';
 import useScroll from '~/hooks/use-scroll';
 import clsx from 'clsx';
+import { useTheme } from 'next-themes';
 
 type NavBarProps = {
   toggleVisible: () => void;
@@ -11,13 +13,13 @@ type NavBarProps = {
 
 export default function NavBar({ toggleVisible, version }: NavBarProps) {
   const scrolled = useScroll(50);
-  const { theme, setTheme } = useTheme('dark');
+  const { resolvedTheme, setTheme } = useTheme();
 
   return (
     <>
       <Navbar
         className={clsx(
-          'sticky top-0 z-30 h-16 justify-center bg-base-100 bg-opacity-90 text-base-content backdrop-blur transition-all duration-100 [transform:translate3d(0,0,0)]',
+          'bg-base-100 text-base-content sticky top-0 z-30 h-16 justify-center bg-opacity-90 backdrop-blur transition-all duration-100 [transform:translate3d(0,0,0)]',
           { 'shadow-sm': scrolled }
         )}
       >
@@ -40,7 +42,7 @@ export default function NavBar({ toggleVisible, version }: NavBarProps) {
             <Button tag="a" color="ghost" aria-label="Homepage" href="/" className="flex-0 gap-1 px-2 md:gap-2">
               <div className="font-title inline-flex text-lg md:text-2xl">
                 <span className="lowercase">helios</span>
-                <span className="uppercase text-accent">UI</span>
+                <span className="text-accent uppercase">UI</span>
               </div>
             </Button>
             <div className="font-mono text-xs">{version}</div>
@@ -55,13 +57,34 @@ export default function NavBar({ toggleVisible, version }: NavBarProps) {
             />
           </div>
         </div>
+        <DesktopMenu c="hidden lg:flex mr-2"></DesktopMenu>
         <Join className="flex-none gap-x-2">
-          <ThemeToggle resolvedTheme={theme} setTheme={setTheme} themes={config.appThemes} />
+          <ThemeToggle resolvedTheme={resolvedTheme!} setTheme={setTheme} themes={config.appThemes} />
           <Button size="md" color="accent" variant="outline" aria-label="sign in" tag="a" href="/auth/login">
             Sign In
           </Button>
         </Join>
       </Navbar>
     </>
+  );
+}
+
+type DesktopMenuProps = {
+  c?: string;
+};
+
+function DesktopMenu({ c }: DesktopMenuProps) {
+  const [open, setOpen] = useState(false);
+  const toggleOpen = useCallback(() => {
+    setOpen((val) => !val);
+  }, [setOpen]);
+  return (
+    <div className={typeof c == 'undefined' ? undefined : c}>
+      <Menu className="bg-base-200 rounded-box lg:min-w-max " responsive={true}>
+        <Menu.Item>
+          <Menu.Dropdown label="Menu" onClick={() => toggleOpen} open={open}></Menu.Dropdown>
+        </Menu.Item>
+      </Menu>
+    </div>
   );
 }

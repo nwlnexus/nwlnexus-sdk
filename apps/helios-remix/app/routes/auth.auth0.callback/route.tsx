@@ -16,6 +16,6 @@ export const loader = async ({ context, request }: LoaderFunctionArgs) => {
 
   return authenticator.authenticate('auth0', request, {
     successRedirect: '/dashboard',
-    failureRedirect: '/login'
+    failureRedirect: '/auth/login'
   });
 };
