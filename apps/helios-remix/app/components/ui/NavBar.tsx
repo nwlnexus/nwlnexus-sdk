@@ -1,8 +1,8 @@
 import { useCallback, useState } from 'react';
 import { Button, Input, Join, Menu, Navbar, Tooltip } from 'react-daisyui';
 import ThemeToggle from '~/components/ui/ThemeToggle';
-import { config } from '~/config/app.config';
-import useScroll from '~/hooks/use-scroll';
+import { appConfig } from '~/config/app.config';
+import useScroll from '~/hooks/useScroll';
 import clsx from 'clsx';
 import { useTheme } from 'next-themes';
 
@@ -59,7 +59,7 @@ export default function NavBar({ toggleVisible, version }: NavBarProps) {
         </div>
         <DesktopMenu c="hidden lg:flex mr-2"></DesktopMenu>
         <Join className="flex-none gap-x-2">
-          <ThemeToggle resolvedTheme={resolvedTheme!} setTheme={setTheme} themes={config.appThemes} />
+          <ThemeToggle resolvedTheme={resolvedTheme!} setTheme={setTheme} themes={appConfig.appThemes} />
           <Button size="md" color="accent" variant="outline" aria-label="sign in" tag="a" href="/auth/login">
             Sign In
           </Button>

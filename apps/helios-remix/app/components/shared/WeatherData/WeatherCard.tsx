@@ -18,14 +18,18 @@ import {
   WiSnow,
   WiWindy
 } from 'react-icons/wi';
+import type { WeatherData } from '~/components/shared/WeatherData/types';
 import type { ReactElement } from 'react';
-import type { WeatherCardData } from './weather-types';
+import type { WeatherDataProps } from './useWeatherData';
+import { useWeatherData } from './useWeatherData';
 
-export function WeatherCard({ weatherData }: { weatherData: WeatherCardData }) {
+function WeatherCard({ size = 'lg', apiKey }: WeatherDataProps & { size: 'lg' | 'sm' }) {
+  const wData = useWeatherData({ apiKey });
+  if (typeof wData == 'undefined') return <></>;
   let precipIndicator;
   let weatherIcon: ReactElement;
-  const code = weatherData.w.current.condition.code;
-  const is_day = weatherData.w.current.is_day === 1;
+  const code = wData.w.current.condition.code;
+  const is_day = wData.w.current.is_day === 1;
 
   // TODO: Add in remaining weather icons by code
   if (code === 1000 && is_day) {
@@ -64,51 +68,55 @@ export function WeatherCard({ weatherData }: { weatherData: WeatherCardData }) {
     weatherIcon = <WiNightFog size={108} />;
   } else {
     weatherIcon = <p></p>;
-    console.log(code);
   }
 
-  if (weatherData.w.forecast.forecastday[0].day.daily_will_it_rain === 1) {
+  if (wData.w.forecast.forecastday[0].day.daily_will_it_rain === 1) {
     precipIndicator = (
       <>
         <WiRain size="24" />
-        {weatherData.w.forecast.forecastday[0].day.daily_chance_of_rain}%
+        {wData.w.forecast.forecastday[0].day.daily_chance_of_rain}%
       </>
     );
-  } else if (weatherData.w.forecast.forecastday[0].day.daily_will_it_snow === 1) {
+  } else if (wData.w.forecast.forecastday[0].day.daily_will_it_snow === 1) {
     precipIndicator = (
       <>
         <WiSnow size="24" />
-        {weatherData.w.forecast.forecastday[0].day.daily_chance_of_snow}%
+        {wData.w.forecast.forecastday[0].day.daily_chance_of_snow}%
       </>
     );
   }
 
+  return <></>;
+}
+
+function DesktopSize(wData: WeatherData) {
   return (
     <>
+      {' '}
       <div className="w-full p-2 md:p-4">
         <div className="flex justify-between">
           <div className="flex flex-col">
-            <span className="text-7xl font-bold">{weatherData.w.current.temp_f}&deg;</span>
+            <span className="text-7xl font-bold">{wData.w.current.temp_f}&deg;</span>
             <span className="mt-1 font-semibold text-gray-500">
-              {weatherData.w.location.name}, {weatherData.w.location.region}
+              {wData.w.location.name}, {wData.w.location.region}
             </span>
           </div>
           <div className="grid grid-cols-2 items-center justify-end">
             <span className="col-span-1 justify-self-start">{weatherIcon}</span>
             <div className="col-span-1 flex flex-col items-end">
-              <span className="items-center text-sm">{weatherData.w.forecast.forecastday[0].day.condition.text}</span>
+              <span className="items-center text-sm">{wData.w.forecast.forecastday[0].day.condition.text}</span>
               <span className="items-center text-xs font-semibold lg:text-sm">
-                H: {weatherData.w.forecast.forecastday[0].day.maxtemp_f}
-                &deg; L: {weatherData.w.forecast.forecastday[0].day.mintemp_f}
+                H: {wData.w.forecast.forecastday[0].day.maxtemp_f}
+                &deg; L: {wData.w.forecast.forecastday[0].day.mintemp_f}
                 &deg;
               </span>
               <span className="ml-1 mt-1 flex items-center text-sm font-semibold">
                 <WiHumidity size="24" />
-                {weatherData.w.forecast.forecastday[0].day.avghumidity}
+                {wData.w.forecast.forecastday[0].day.avghumidity}
               </span>
               <span className="ml-1 mt-1 flex items-center text-sm font-semibold">
                 <WiWindy size="24" />
-                {weatherData.w.forecast.forecastday[0].day.maxwind_mph}
+                {wData.w.forecast.forecastday[0].day.maxwind_mph}
               </span>
               <span className="ml-1 flex items-center text-sm font-semibold">{precipIndicator}</span>
             </div>
@@ -126,3 +134,5 @@ export function WeatherCard({ weatherData }: { weatherData: WeatherCardData }) {
     </>
   );
 }
+
+export { WeatherCard };

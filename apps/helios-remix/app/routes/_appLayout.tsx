@@ -3,7 +3,7 @@ import { useCallback, useState } from 'react';
 import { Drawer } from 'react-daisyui';
 import { json } from '@remix-run/cloudflare';
 import NavBar from '~/components/ui/NavBar';
-import { config as appConfig } from '~/config/app.config';
+import { appConfig } from '~/config/app.config';
 import { getAuthenticator } from '~/services/auth.server';
 import { appSessionStorage } from '~/services/session.server';
 import type { LoaderFunctionArgs } from '@remix-run/cloudflare';

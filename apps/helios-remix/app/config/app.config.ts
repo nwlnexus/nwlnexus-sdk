@@ -1,4 +1,35 @@
-export const config = {
-  cookieTag: '__helios_session',
-  appThemes: ['cupcake', 'dark', 'business', 'night', 'sunset']
+import type { ReactNode } from 'react';
+
+type AppConfig = {
+  appThemes: Array<string>;
+  appDefaultTheme: string;
+  cookieTag: string;
+  defaultWeatherOptions: {
+    q: string;
+    days: number;
+    alerts: 'yes' | 'no';
+  };
+  navMenu: Array<NavItem> | [];
 };
+
+const config = {
+  appThemes: ['cupcake', 'dark', 'business', 'night', 'sunset'],
+  appDefaultTheme: 'sunset',
+  cookieTag: '__helios_session',
+  defaultWeatherOptions: {
+    alerts: 'yes',
+    days: 4,
+    q: '21076'
+  },
+  navMenu: []
+} satisfies AppConfig;
+
+interface NavItem {
+  href: string;
+  title: string;
+  description: string;
+  hasSidebar: boolean;
+  icon?: ReactNode;
+}
+
+export { config as appConfig, type AppConfig };

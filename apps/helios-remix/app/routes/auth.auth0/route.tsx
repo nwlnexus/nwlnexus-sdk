@@ -1,5 +1,5 @@
 import { redirect } from '@remix-run/cloudflare';
-import { config as appConfig } from '~/config/app.config';
+import { appConfig } from '~/config/app.config';
 import { getAuthenticator } from '~/services/auth.server';
 import { appSessionStorage } from '~/services/session.server';
 import type { ActionFunctionArgs } from '@remix-run/cloudflare';

@@ -1,4 +1,4 @@
-import { config } from '~/config/app.config';
+import { appConfig } from '~/config/app.config';
 import { ThemeProvider } from 'next-themes';
 import type { ReactNode } from 'react';
 
@@ -7,7 +7,7 @@ export function AppThemeProvider({ children }: { children: ReactNode }) {
     <ThemeProvider
       enableColorScheme={true}
       defaultTheme={'sunset'}
-      themes={config.appThemes}
+      themes={appConfig.appThemes}
       disableTransitionOnChange={true}
       storageKey={'olympus-theme'}
     >
