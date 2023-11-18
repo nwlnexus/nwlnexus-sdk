@@ -1,3 +1,16 @@
+export type WeatherDataProps = {
+  apiKey: string;
+  options?: {
+    alerts?: string;
+    days?: number;
+    q?: string;
+  };
+};
+
+export type WeatherIconProp = { code: number; size: 'lg' | 'sm'; is_day: boolean };
+
+export type WeatherProps = WeatherDataProps & { size?: 'lg' | 'sm'; className?: string; data: WeatherData };
+
 export interface WeatherCardData {
   w: WeatherData;
   h: HourElement[] | [];

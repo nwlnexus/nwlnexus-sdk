@@ -1,13 +1,20 @@
 import { Outlet, useLoaderData } from '@remix-run/react';
 import { useCallback, useState } from 'react';
 import { Drawer } from 'react-daisyui';
-import { json } from '@remix-run/cloudflare';
+import { defer } from '@remix-run/cloudflare';
 import NavBar from '~/components/ui/NavBar';
 import { appConfig } from '~/config/app.config';
 import { getAuthenticator } from '~/services/auth.server';
 import { appSessionStorage } from '~/services/session.server';
 import type { LoaderFunctionArgs } from '@remix-run/cloudflare';
+import type { WeatherData } from '~/components/WeatherData';
 import type { SessionConfig } from '~/services/session.server';
+
+const DEFAULTOPTIONS = {
+  alerts: 'no',
+  days: 3,
+  q: '10001'
+};
 
 export const loader = async ({ context }: LoaderFunctionArgs) => {
   const sessionConfig: SessionConfig = {
@@ -16,17 +23,23 @@ export const loader = async ({ context }: LoaderFunctionArgs) => {
     secrets: context.env.AUTH_SECRET.split(','),
     tag: appConfig.cookieTag
   };
+  const apiKey = context.env.WEATHERAPI_KEY;
+  const { q, days, alerts } = Object.assign(DEFAULTOPTIONS, {});
+  const weatherDataPromise = fetch(
+    `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${q}&days=${days}&aqi=no&alerts=${alerts}`
+  );
   const sessionStorage = await appSessionStorage(sessionConfig);
   const authenticator = await getAuthenticator(context, sessionStorage);
-  const version = context.env.APP_VERSION;
 
-  return json({
-    version
+  return defer({
+    version: context.env.APP_VERSION,
+    apiKey,
+    weatherData: weatherDataPromise.then((res) => res.json<WeatherData>())
   });
 };
 
 export default function AppLayout() {
-  const { version } = useLoaderData<typeof loader>();
+  const { version, apiKey, weatherData } = useLoaderData<typeof loader>();
   const [visible, setVisible] = useState(false);
   const toggleVisible = useCallback(() => {
     setVisible((visible) => !visible);
@@ -34,7 +47,7 @@ export default function AppLayout() {
   return (
     <>
       <Drawer open={visible} onClickOverlay={toggleVisible} className="bg-base-100" aria-label="Menu" side={<></>}>
-        <NavBar toggleVisible={toggleVisible} version={version} />
+        <NavBar toggleVisible={toggleVisible} version={version} apiKey={apiKey} weatherData={weatherData} />
         <Outlet />
       </Drawer>
     </>

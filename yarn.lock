@@ -1499,7 +1499,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.16.3, @babel/runtime@npm:^7.23.2, @babel/runtime@npm:^7.8.4":
+"@babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.16.3, @babel/runtime@npm:^7.23.1, @babel/runtime@npm:^7.23.2, @babel/runtime@npm:^7.8.4":
   version: 7.23.2
   resolution: "@babel/runtime@npm:7.23.2"
   dependencies:
@@ -1599,9 +1599,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@cloudflare/workerd-darwin-64@npm:1.20231030.0":
+  version: 1.20231030.0
+  resolution: "@cloudflare/workerd-darwin-64@npm:1.20231030.0"
+  conditions: os=darwin & cpu=x64
+  languageName: node
+  linkType: hard
+
 "@cloudflare/workerd-darwin-arm64@npm:1.20231025.0":
   version: 1.20231025.0
   resolution: "@cloudflare/workerd-darwin-arm64@npm:1.20231025.0"
+  conditions: os=darwin & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"@cloudflare/workerd-darwin-arm64@npm:1.20231030.0":
+  version: 1.20231030.0
+  resolution: "@cloudflare/workerd-darwin-arm64@npm:1.20231030.0"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
@@ -1613,6 +1627,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@cloudflare/workerd-linux-64@npm:1.20231030.0":
+  version: 1.20231030.0
+  resolution: "@cloudflare/workerd-linux-64@npm:1.20231030.0"
+  conditions: os=linux & cpu=x64
+  languageName: node
+  linkType: hard
+
 "@cloudflare/workerd-linux-arm64@npm:1.20231025.0":
   version: 1.20231025.0
   resolution: "@cloudflare/workerd-linux-arm64@npm:1.20231025.0"
@@ -1620,9 +1641,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@cloudflare/workerd-linux-arm64@npm:1.20231030.0":
+  version: 1.20231030.0
+  resolution: "@cloudflare/workerd-linux-arm64@npm:1.20231030.0"
+  conditions: os=linux & cpu=arm64
+  languageName: node
+  linkType: hard
+
 "@cloudflare/workerd-windows-64@npm:1.20231025.0":
   version: 1.20231025.0
   resolution: "@cloudflare/workerd-windows-64@npm:1.20231025.0"
+  conditions: os=win32 & cpu=x64
+  languageName: node
+  linkType: hard
+
+"@cloudflare/workerd-windows-64@npm:1.20231030.0":
+  version: 1.20231030.0
+  resolution: "@cloudflare/workerd-windows-64@npm:1.20231030.0"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
@@ -2458,6 +2493,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@eslint/js@npm:8.54.0":
+  version: 8.54.0
+  resolution: "@eslint/js@npm:8.54.0"
+  checksum: d61fb4a0be6af2d8cb290121c329697664a75d6255a29926d5454fb02aeb02b87112f67fdf218d10abac42f90c570ac366126751baefc5405d0e017ed0c946c5
+  languageName: node
+  linkType: hard
+
 "@fastify/busboy@npm:^2.0.0":
   version: 2.1.0
   resolution: "@fastify/busboy@npm:2.1.0"
@@ -2869,47 +2911,47 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@remix-run/cloudflare-pages@npm:^2.2.0":
-  version: 2.2.0
-  resolution: "@remix-run/cloudflare-pages@npm:2.2.0"
+"@remix-run/cloudflare-pages@npm:^2.3.0":
+  version: 2.3.0
+  resolution: "@remix-run/cloudflare-pages@npm:2.3.0"
   dependencies:
-    "@remix-run/cloudflare": "npm:2.2.0"
+    "@remix-run/cloudflare": "npm:2.3.0"
   peerDependencies:
     "@cloudflare/workers-types": ^4.0.0
     typescript: ^5.1.0
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 53ebe9999c5b9e44df486f30332b2a87a0e7a8ac77c3939b2f730537a499356be983cbf86b50a51085729da4dac01396bd879ddfca7d1a5da20eb94e62d2358b
+  checksum: 8ca91fc81584773b0ffac90746a1dc683b0c767203c75da3811396bb96b7c6917419f748dc97ceb561a7954493e106077fd4b6cc84ce5868dfcdfd287b1ef6ab
   languageName: node
   linkType: hard
 
-"@remix-run/cloudflare@npm:2.2.0, @remix-run/cloudflare@npm:^2.2.0":
-  version: 2.2.0
-  resolution: "@remix-run/cloudflare@npm:2.2.0"
+"@remix-run/cloudflare@npm:2.3.0, @remix-run/cloudflare@npm:^2.3.0":
+  version: 2.3.0
+  resolution: "@remix-run/cloudflare@npm:2.3.0"
   dependencies:
     "@cloudflare/kv-asset-handler": "npm:^0.1.3"
-    "@remix-run/server-runtime": "npm:2.2.0"
+    "@remix-run/server-runtime": "npm:2.3.0"
   peerDependencies:
     "@cloudflare/workers-types": ^4.0.0
     typescript: ^5.1.0
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 957622f313df417b9a7d1fd815e043c7bec8988edbcd516d0368409332e0129dd2df7dc36e206c888491582ed68146445e3d460b8de583aa2ee809c2bd3c6ef7
+  checksum: 53d61ea8e27e7b980794992d8e8025ffdb260851cff7c8d61e217c224193f6d23cccfae42decd2e43475f7e4ee31e82f6c65da348c6c57a2f1cc930d45874774
   languageName: node
   linkType: hard
 
-"@remix-run/css-bundle@npm:^2.2.0":
-  version: 2.2.0
-  resolution: "@remix-run/css-bundle@npm:2.2.0"
-  checksum: d8cfc3d8454c0b0fb5adb1850a91826e4e60750d15fa1e057a792965bf467009de9fc444b6e13ad0e1b5a66e768fb1e4080bbdb99b366355dcd87d83af9ee65d
+"@remix-run/css-bundle@npm:^2.3.0":
+  version: 2.3.0
+  resolution: "@remix-run/css-bundle@npm:2.3.0"
+  checksum: 169c74361d8c4922f0327ec2f6f35c3329890f68a7a116178d84e4dc65c6ae828e3418a92c01c48554b058e2c04776f0076e6d06f9d238ff35067966ddce3b66
   languageName: node
   linkType: hard
 
-"@remix-run/dev@npm:^2.2.0":
-  version: 2.2.0
-  resolution: "@remix-run/dev@npm:2.2.0"
+"@remix-run/dev@npm:^2.3.0":
+  version: 2.3.0
+  resolution: "@remix-run/dev@npm:2.3.0"
   dependencies:
     "@babel/core": "npm:^7.21.8"
     "@babel/generator": "npm:^7.21.5"
@@ -2921,9 +2963,9 @@ __metadata:
     "@babel/types": "npm:^7.22.5"
     "@mdx-js/mdx": "npm:^2.3.0"
     "@npmcli/package-json": "npm:^4.0.1"
-    "@remix-run/node": "npm:2.2.0"
-    "@remix-run/router": "npm:1.11.0"
-    "@remix-run/server-runtime": "npm:2.2.0"
+    "@remix-run/node": "npm:2.3.0"
+    "@remix-run/router": "npm:1.12.0-pre.0"
+    "@remix-run/server-runtime": "npm:2.3.0"
     "@types/mdx": "npm:^2.0.5"
     "@vanilla-extract/integration": "npm:^6.2.0"
     arg: "npm:^5.0.1"
@@ -2968,9 +3010,9 @@ __metadata:
     undici: "npm:^5.22.1"
     ws: "npm:^7.4.5"
   peerDependencies:
-    "@remix-run/serve": ^2.2.0
+    "@remix-run/serve": ^2.3.0
     typescript: ^5.1.0
-    vite: ^4.4.9
+    vite: ^4.4.9 || ^5.0.0
   peerDependenciesMeta:
     "@remix-run/serve":
       optional: true
@@ -2980,13 +3022,13 @@ __metadata:
       optional: true
   bin:
     remix: dist/cli.js
-  checksum: 42422b79cf7bd68fadef64ae870e81730433385d7f33e217366d366660562eadcdbc61ead66c7453bee0eff5b45cac4e3b341077685177bd89fc67008c479751
+  checksum: 81280ecbbdaa8b39ccf843156341b040731ef51927792726f9a4a16851bdb14052adb8a21c3d284d39c502855b9f9ec3389cfaeeb9e3d5e7361cf65e93a7f6ed
   languageName: node
   linkType: hard
 
-"@remix-run/eslint-config@npm:^2.2.0":
-  version: 2.2.0
-  resolution: "@remix-run/eslint-config@npm:2.2.0"
+"@remix-run/eslint-config@npm:^2.3.0":
+  version: 2.3.0
+  resolution: "@remix-run/eslint-config@npm:2.3.0"
   dependencies:
     "@babel/core": "npm:^7.21.8"
     "@babel/eslint-parser": "npm:^7.21.8"
@@ -3011,15 +3053,15 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 83a3a5774d5b3d0a56290b15cd6e9ace9180f2eb562d1de3fdeb9afbc9484e4ce72133e75b09766e6dd25ba946315d712192a86598a738838abb7fb62c03f0ae
+  checksum: 571bbe5b984329e4b3c927a4498fd47fba2d67bc939a58f562a69f43339dd3e5ded7329e1f9b82dac0d0d8096295b207b4c53b08ad7101cec8696452a845d101
   languageName: node
   linkType: hard
 
-"@remix-run/node@npm:2.2.0":
-  version: 2.2.0
-  resolution: "@remix-run/node@npm:2.2.0"
+"@remix-run/node@npm:2.3.0":
+  version: 2.3.0
+  resolution: "@remix-run/node@npm:2.3.0"
   dependencies:
-    "@remix-run/server-runtime": "npm:2.2.0"
+    "@remix-run/server-runtime": "npm:2.3.0"
     "@remix-run/web-fetch": "npm:^4.4.1"
     "@remix-run/web-file": "npm:^3.1.0"
     "@remix-run/web-stream": "npm:^1.1.0"
@@ -3032,17 +3074,17 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 8ac4f343d25d3c7a1db603872394e53449d181fb1b50a668296a28b4021f4ef2aded5623b4e76ff75ebb55a3c0ac53c93aa4ee66ce2c781d6be09766f2e649bc
+  checksum: 0480e162acf16095a990aca8c1d4754377ab4fcd83bb95f67567c482110d8d8eaa39a257d55c8eccf575da1dcd389d11451e91c0aa4403cc4cfd15d0b0754127
   languageName: node
   linkType: hard
 
-"@remix-run/react@npm:^2.2.0":
-  version: 2.2.0
-  resolution: "@remix-run/react@npm:2.2.0"
+"@remix-run/react@npm:^2.3.0":
+  version: 2.3.0
+  resolution: "@remix-run/react@npm:2.3.0"
   dependencies:
-    "@remix-run/router": "npm:1.11.0"
-    "@remix-run/server-runtime": "npm:2.2.0"
-    react-router-dom: "npm:6.18.0"
+    "@remix-run/router": "npm:1.12.0"
+    "@remix-run/server-runtime": "npm:2.3.0"
+    react-router-dom: "npm:6.19.0"
   peerDependencies:
     react: ^18.0.0
     react-dom: ^18.0.0
@@ -3050,25 +3092,32 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 051150b1c5432c4d33f8da3f9eb601db59442c581e767c084423f3b57cd63a776ba369bc6231cb2f8931812159958627e0dc9f37d55ba28f053f5c1f1c94c547
+  checksum: eeaeb0514fb54642c8e23a4fe42bdb3eb637b45105a7b69c6d06398c26aeab33362f4a52b65f0464994f191cf686ec92269e83e7cc6a13e9d69e206b18668c36
   languageName: node
   linkType: hard
 
-"@remix-run/router@npm:1.11.0":
-  version: 1.11.0
-  resolution: "@remix-run/router@npm:1.11.0"
-  checksum: 046b382e149e198f4aac02355545ef83c4c97b203d08008dcdb9b25d0f2193e21c3ba2332aba572d4f1450b68aabc77cbc278cb5a7b252cc6e1d239d81a6f7e2
+"@remix-run/router@npm:1.12.0":
+  version: 1.12.0
+  resolution: "@remix-run/router@npm:1.12.0"
+  checksum: d6d9dc49295ed27297a722e96b0c3177068acf85324c3eda631dc36af67b115f39e8d6829bb575a6cbef43cc816b28a35b79f0af8817db80baeaa367dc2d05e4
   languageName: node
   linkType: hard
 
-"@remix-run/server-runtime@npm:2.2.0":
-  version: 2.2.0
-  resolution: "@remix-run/server-runtime@npm:2.2.0"
+"@remix-run/router@npm:1.12.0-pre.0":
+  version: 1.12.0-pre.0
+  resolution: "@remix-run/router@npm:1.12.0-pre.0"
+  checksum: 03a6df9e5140ed0ad80361192f02b18031bf5fe9091a21ce2ae4ae9ae8ab4934278f317c29f675e47b89fd7212dba32de8512582aec80898cdc61f8dec66c8a5
+  languageName: node
+  linkType: hard
+
+"@remix-run/server-runtime@npm:2.3.0":
+  version: 2.3.0
+  resolution: "@remix-run/server-runtime@npm:2.3.0"
   dependencies:
-    "@remix-run/router": "npm:1.11.0"
-    "@types/cookie": "npm:^0.4.1"
+    "@remix-run/router": "npm:1.12.0"
+    "@types/cookie": "npm:^0.5.3"
     "@web3-storage/multipart-parser": "npm:^1.0.0"
-    cookie: "npm:^0.4.1"
+    cookie: "npm:^0.5.0"
     set-cookie-parser: "npm:^2.4.8"
     source-map: "npm:^0.7.3"
   peerDependencies:
@@ -3076,7 +3125,7 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 3af8312fc35de2ebc4a8d0a312d6c8793738e4ef6da86249d4acabc53a338228b7751c035dfac16e93541f482e4e40621451e8ef1856985efb05bd75b3419c5b
+  checksum: 07e2844f45cb14ec207884449d5ad94fd04a4eb6fec80f23ac1eb9e643b61eca560452ae112845ad322fc7acd09efa9d585e63728ba0c997b01f8b2cee50ec66
   languageName: node
   linkType: hard
 
@@ -3305,10 +3354,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/cookie@npm:^0.4.1":
-  version: 0.4.1
-  resolution: "@types/cookie@npm:0.4.1"
-  checksum: f96afe12bd51be1ec61410b0641243d93fa3a494702407c787a4c872b5c8bcd39b224471452055e44a9ce42af1a636e87d161994226eaf4c2be9c30f60418409
+"@types/cookie@npm:^0.5.3":
+  version: 0.5.4
+  resolution: "@types/cookie@npm:0.5.4"
+  checksum: c5111f8c71fedabf0ccdfdf183676fc3aa89e146653e9ed87e5ea3780f33a46dde1ace06bf04374dcc363a0ef8db91e41060e9861199226c9a4deaa27fde03ba
   languageName: node
   linkType: hard
 
@@ -5389,13 +5438,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cookie@npm:^0.4.1":
-  version: 0.4.2
-  resolution: "cookie@npm:0.4.2"
-  checksum: beab41fbd7c20175e3a2799ba948c1dcc71ef69f23fe14eeeff59fc09f50c517b0f77098db87dbb4c55da802f9d86ee86cdc1cd3efd87760341551838d53fca2
-  languageName: node
-  linkType: hard
-
 "core-js-compat@npm:^3.31.0, core-js-compat@npm:^3.33.1":
   version: 3.33.2
   resolution: "core-js-compat@npm:3.33.2"
@@ -5628,15 +5670,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"daisyui@npm:^4.0.7":
-  version: 4.0.7
-  resolution: "daisyui@npm:4.0.7"
+"daisyui@npm:^4.4.0":
+  version: 4.4.0
+  resolution: "daisyui@npm:4.4.0"
   dependencies:
     css-selector-tokenizer: "npm:^0.8"
     culori: "npm:^3"
     picocolors: "npm:^1"
     postcss-js: "npm:^4"
-  checksum: 4f34935a69d460822275bce95cfb2ef43770e198efcb1b40f9a37e07d8bb2b5bf1391c92b78e9bed19c357beacb9283e58dd2f51b3c596752e2ce25643b44e62
+  checksum: 6e35aaa06f5696f22b4810e82a59606de0d5c568c58afaba8e6f1dfa4d4ea7287d158e409cc2d698569156e7420ae3f7ccde981bcdfc27c75494fb2d1e66ada7
   languageName: node
   linkType: hard
 
@@ -7614,7 +7656,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:^8.38.0, eslint@npm:^8.53.0":
+"eslint@npm:^8.53.0":
   version: 8.53.0
   resolution: "eslint@npm:8.53.0"
   dependencies:
@@ -7659,6 +7701,54 @@ __metadata:
   bin:
     eslint: bin/eslint.js
   checksum: c5cd0049488c0463dab7d97466767ca5a1d0b3b59d0a223122683dc8039ecea30b27867fb9e38906b4c1ab9d09ece8a802a6c540d8905016f1cc4b4bb27329af
+  languageName: node
+  linkType: hard
+
+"eslint@npm:^8.54.0":
+  version: 8.54.0
+  resolution: "eslint@npm:8.54.0"
+  dependencies:
+    "@eslint-community/eslint-utils": "npm:^4.2.0"
+    "@eslint-community/regexpp": "npm:^4.6.1"
+    "@eslint/eslintrc": "npm:^2.1.3"
+    "@eslint/js": "npm:8.54.0"
+    "@humanwhocodes/config-array": "npm:^0.11.13"
+    "@humanwhocodes/module-importer": "npm:^1.0.1"
+    "@nodelib/fs.walk": "npm:^1.2.8"
+    "@ungap/structured-clone": "npm:^1.2.0"
+    ajv: "npm:^6.12.4"
+    chalk: "npm:^4.0.0"
+    cross-spawn: "npm:^7.0.2"
+    debug: "npm:^4.3.2"
+    doctrine: "npm:^3.0.0"
+    escape-string-regexp: "npm:^4.0.0"
+    eslint-scope: "npm:^7.2.2"
+    eslint-visitor-keys: "npm:^3.4.3"
+    espree: "npm:^9.6.1"
+    esquery: "npm:^1.4.2"
+    esutils: "npm:^2.0.2"
+    fast-deep-equal: "npm:^3.1.3"
+    file-entry-cache: "npm:^6.0.1"
+    find-up: "npm:^5.0.0"
+    glob-parent: "npm:^6.0.2"
+    globals: "npm:^13.19.0"
+    graphemer: "npm:^1.4.0"
+    ignore: "npm:^5.2.0"
+    imurmurhash: "npm:^0.1.4"
+    is-glob: "npm:^4.0.0"
+    is-path-inside: "npm:^3.0.3"
+    js-yaml: "npm:^4.1.0"
+    json-stable-stringify-without-jsonify: "npm:^1.0.1"
+    levn: "npm:^0.4.1"
+    lodash.merge: "npm:^4.6.2"
+    minimatch: "npm:^3.1.2"
+    natural-compare: "npm:^1.4.0"
+    optionator: "npm:^0.9.3"
+    strip-ansi: "npm:^6.0.1"
+    text-table: "npm:^0.2.0"
+  bin:
+    eslint: bin/eslint.js
+  checksum: 4f205f832bdbd0218cde374b067791f4f76d7abe8de86b2dc849c273899051126d912ebf71531ee49b8eeaa22cad77febdc8f2876698dc2a76e84a8cb976af22
   languageName: node
   linkType: hard
 
@@ -8876,12 +8966,12 @@ __metadata:
   resolution: "helios-remix@workspace:apps/helios-remix"
   dependencies:
     "@cloudflare/workers-types": "npm:^4.20230518.0"
-    "@remix-run/cloudflare": "npm:^2.2.0"
-    "@remix-run/cloudflare-pages": "npm:^2.2.0"
-    "@remix-run/css-bundle": "npm:^2.2.0"
-    "@remix-run/dev": "npm:^2.2.0"
-    "@remix-run/eslint-config": "npm:^2.2.0"
-    "@remix-run/react": "npm:^2.2.0"
+    "@remix-run/cloudflare": "npm:^2.3.0"
+    "@remix-run/cloudflare-pages": "npm:^2.3.0"
+    "@remix-run/css-bundle": "npm:^2.3.0"
+    "@remix-run/dev": "npm:^2.3.0"
+    "@remix-run/eslint-config": "npm:^2.3.0"
+    "@remix-run/react": "npm:^2.3.0"
     "@tailwindcss/forms": "npm:^0.5.7"
     "@tailwindcss/typography": "npm:^0.5.10"
     "@types/react": "npm:^18.2.20"
@@ -8889,10 +8979,10 @@ __metadata:
     autoprefixer: "npm:^10.4.16"
     cf-setup: "npm:*"
     clsx: "npm:^2.0.0"
-    daisyui: "npm:^4.0.7"
-    eslint: "npm:^8.38.0"
+    daisyui: "npm:^4.4.0"
+    eslint: "npm:^8.54.0"
     eslint-config-prettier: "npm:^9.0.0"
-    isbot: "npm:^3.6.8"
+    isbot: "npm:^3.7.1"
     next-themes: "npm:^0.2.1"
     postcss: "npm:^8.4.31"
     prettier: "npm:^3.1.0"
@@ -8901,9 +8991,10 @@ __metadata:
     react-dom: "npm:^18.2.0"
     remix-auth: "npm:^3.6.0"
     remix-auth-auth0: "npm:^1.9.0"
+    tailwind-merge: "npm:^2.0.0"
     tailwindcss: "npm:^3.3.5"
-    typescript: "npm:^5.1.0"
-    wrangler: "npm:^3.15.0"
+    typescript: "npm:^5.2.2"
+    wrangler: "npm:^3.16.0"
   languageName: unknown
   linkType: soft
 
@@ -9682,10 +9773,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"isbot@npm:^3.6.8":
-  version: 3.7.0
-  resolution: "isbot@npm:3.7.0"
-  checksum: e35be3f593928679ddddbbbf45ea130f737620405ea6cc13f7ffe03be0ad218774fca874c38a69572bb1e1242f08433a8354dad78071f84dcf3cdc9fbc636679
+"isbot@npm:^3.7.1":
+  version: 3.7.1
+  resolution: "isbot@npm:3.7.1"
+  checksum: 7c4733f6bf0cd98d6801ee24d4664edde0f0fabc329ff9858d41744dc0d6143701e8e7dfc7962bcdc46b7670911d716392cdd0a4a4bc9f5c98e03125d675f6c5
   languageName: node
   linkType: hard
 
@@ -11094,6 +11185,28 @@ __metadata:
     youch: "npm:^3.2.2"
     zod: "npm:^3.20.6"
   checksum: a66d72940d70a5119d3c6adc61784d21ac2b6e89f010f69669e53d8d1f7d56872fa46bef6dcdfaa5a827acf337dae4ab4873fde4b07c7c94f1d43c81102d06bd
+  languageName: node
+  linkType: hard
+
+"miniflare@npm:3.20231030.0":
+  version: 3.20231030.0
+  resolution: "miniflare@npm:3.20231030.0"
+  dependencies:
+    acorn: "npm:^8.8.0"
+    acorn-walk: "npm:^8.2.0"
+    capnp-ts: "npm:^0.7.0"
+    exit-hook: "npm:^2.2.1"
+    glob-to-regexp: "npm:^0.4.1"
+    source-map-support: "npm:0.5.21"
+    stoppable: "npm:^1.1.0"
+    undici: "npm:^5.22.1"
+    workerd: "npm:1.20231030.0"
+    ws: "npm:^8.11.0"
+    youch: "npm:^3.2.2"
+    zod: "npm:^3.20.6"
+  bin:
+    miniflare: bootstrap.js
+  checksum: 083b6d872b5d4e4cf2ce9c3b97eb31a9d2d76d9e6a9010a3bd54938e04c2d0ededc03ad07bb6201bb5384403e2df998872751d6b6e345699f7a2d742e783f9cb
   languageName: node
   linkType: hard
 
@@ -13214,27 +13327,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-router-dom@npm:6.18.0":
-  version: 6.18.0
-  resolution: "react-router-dom@npm:6.18.0"
+"react-router-dom@npm:6.19.0":
+  version: 6.19.0
+  resolution: "react-router-dom@npm:6.19.0"
   dependencies:
-    "@remix-run/router": "npm:1.11.0"
-    react-router: "npm:6.18.0"
+    "@remix-run/router": "npm:1.12.0"
+    react-router: "npm:6.19.0"
   peerDependencies:
     react: ">=16.8"
     react-dom: ">=16.8"
-  checksum: 9c2893f6b95ca2f25e0ee816d9467fcd18bf1e854d53cde6edf93efbb49972693a898dde6bb8e9ce3c9a2a26f27291b904740e84da9b92a1e560740d5677ce0c
+  checksum: 1329d7e44a10ffa5ad9a3b1ca7ac33e16ac3de0cd14d21e9cdd44a7b8e13f8064e25211687885b5934eba781ad01cd7d14ef4bc140e02b1cfd67c7c64d05404a
   languageName: node
   linkType: hard
 
-"react-router@npm:6.18.0":
-  version: 6.18.0
-  resolution: "react-router@npm:6.18.0"
+"react-router@npm:6.19.0":
+  version: 6.19.0
+  resolution: "react-router@npm:6.19.0"
   dependencies:
-    "@remix-run/router": "npm:1.11.0"
+    "@remix-run/router": "npm:1.12.0"
   peerDependencies:
     react: ">=16.8"
-  checksum: 185d240cb8c6119eefcb16e6df0fb0a75fb736eb1a1f24e7569783286295da48cf66e922c1eee43aa497e464cf2d455b89d1d552e288889ae0c355790b1eac0d
+  checksum: aff8d46dbb9d3214d57dd8e3e1a4033dc72ff56e3d294a3add45cc31589c49695fe0c01af24f235b60a8b70c06b734a5322eec0e1fb27935aa758e61359e37c2
   languageName: node
   linkType: hard
 
@@ -14701,6 +14814,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"tailwind-merge@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "tailwind-merge@npm:2.0.0"
+  dependencies:
+    "@babel/runtime": "npm:^7.23.1"
+  checksum: 3fa9a5c9b49be23782323961f1e0cccfddce5e75eab5d8c6b3beeeac42ebd3caefe83f6074e93f32d26758b310b75db9aa3de333220e6242c7623b9c0d96ff89
+  languageName: node
+  linkType: hard
+
 "tailwindcss@npm:^3.1, tailwindcss@npm:^3.3.5":
   version: 3.3.5
   resolution: "tailwindcss@npm:3.3.5"
@@ -15182,7 +15304,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^5.1.0, typescript@npm:^5.2.2":
+"typescript@npm:^5.2.2":
   version: 5.2.2
   resolution: "typescript@npm:5.2.2"
   bin:
@@ -15202,7 +15324,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A^5.1.0#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.2.2#optional!builtin<compat/typescript>":
+"typescript@patch:typescript@npm%3A^5.2.2#optional!builtin<compat/typescript>":
   version: 5.2.2
   resolution: "typescript@patch:typescript@npm%3A5.2.2#optional!builtin<compat/typescript>::version=5.2.2&hash=f3b441"
   bin:
@@ -15880,6 +16002,32 @@ __metadata:
   languageName: node
   linkType: hard
 
+"workerd@npm:1.20231030.0":
+  version: 1.20231030.0
+  resolution: "workerd@npm:1.20231030.0"
+  dependencies:
+    "@cloudflare/workerd-darwin-64": "npm:1.20231030.0"
+    "@cloudflare/workerd-darwin-arm64": "npm:1.20231030.0"
+    "@cloudflare/workerd-linux-64": "npm:1.20231030.0"
+    "@cloudflare/workerd-linux-arm64": "npm:1.20231030.0"
+    "@cloudflare/workerd-windows-64": "npm:1.20231030.0"
+  dependenciesMeta:
+    "@cloudflare/workerd-darwin-64":
+      optional: true
+    "@cloudflare/workerd-darwin-arm64":
+      optional: true
+    "@cloudflare/workerd-linux-64":
+      optional: true
+    "@cloudflare/workerd-linux-arm64":
+      optional: true
+    "@cloudflare/workerd-windows-64":
+      optional: true
+  bin:
+    workerd: bin/workerd
+  checksum: ed2b7fa79e022bee0d7ee4ec6dafb521b7f755e34d30233cce18a394b0718e7793a22d06f5bc863e41002121e099d412f16fac0b1c92d666dedde14166d31ebc
+  languageName: node
+  linkType: hard
+
 "wrangler@npm:^3.15.0, wrangler@npm:^3.7.0":
   version: 3.15.0
   resolution: "wrangler@npm:3.15.0"
@@ -15906,6 +16054,35 @@ __metadata:
     wrangler: bin/wrangler.js
     wrangler2: bin/wrangler.js
   checksum: c37d10719f2a21d557cf1cabb362ef8b0d9cc5fd2c9baf93dcc8342231595b72b7d9d8304e7f5959ca97598d4932397023cf48215a506a3bc571637180b9e7a5
+  languageName: node
+  linkType: hard
+
+"wrangler@npm:^3.16.0":
+  version: 3.16.0
+  resolution: "wrangler@npm:3.16.0"
+  dependencies:
+    "@cloudflare/kv-asset-handler": "npm:^0.2.0"
+    "@esbuild-plugins/node-globals-polyfill": "npm:^0.2.3"
+    "@esbuild-plugins/node-modules-polyfill": "npm:^0.2.2"
+    blake3-wasm: "npm:^2.1.5"
+    chokidar: "npm:^3.5.3"
+    esbuild: "npm:0.17.19"
+    fsevents: "npm:~2.3.2"
+    miniflare: "npm:3.20231030.0"
+    nanoid: "npm:^3.3.3"
+    path-to-regexp: "npm:^6.2.0"
+    resolve.exports: "npm:^2.0.2"
+    selfsigned: "npm:^2.0.1"
+    source-map: "npm:0.6.1"
+    source-map-support: "npm:0.5.21"
+    xxhash-wasm: "npm:^1.0.1"
+  dependenciesMeta:
+    fsevents:
+      optional: true
+  bin:
+    wrangler: bin/wrangler.js
+    wrangler2: bin/wrangler.js
+  checksum: 76039c1155ae7ac5e2459d1fe948d5feb2615a23ca49c299b6c03e4a234c3f2d1cf7fad59a7ebb598c158e31b4ed2cde424dd3f59d6b722b3c089cd68f811ad6
   languageName: node
   linkType: hard
 
