@@ -21,7 +21,7 @@ import {
 import { formatDate, getNextHours } from '~/components/WeatherData/weather-funcs';
 import { twMerge } from 'tailwind-merge';
 import type { ReactNode } from 'react';
-import type { WeatherData, WeatherIconProp, WeatherProps } from './types';
+import type { WeatherIconProp, WeatherProps } from './types';
 
 const weatherIcon = ({ code, size = 'lg', is_day }: WeatherIconProp) => {
   const iSize = size == 'lg' ? '108' : '56';

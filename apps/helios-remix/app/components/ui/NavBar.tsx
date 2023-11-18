@@ -10,8 +10,8 @@ import { useTheme } from 'next-themes';
 import type { WeatherData } from 'app/components/WeatherData';
 
 type NavBarProps = {
-  toggleVisible: () => void;
   apiKey: string;
+  toggleVisible: () => void;
   version: string;
   weatherData: Promise<WeatherData>;
 };
