@@ -10,6 +10,7 @@ type AppConfig = {
     alerts: 'yes' | 'no';
   };
   navMenu: Array<NavItem> | [];
+  publicPages: string[];
 };
 
 const config = {
@@ -21,7 +22,8 @@ const config = {
     days: 4,
     q: '21076'
   },
-  navMenu: []
+  navMenu: [],
+  publicPages: ['/', '/about']
 } satisfies AppConfig;
 
 interface NavItem {

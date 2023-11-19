@@ -1,7 +1,7 @@
 import { Outlet, useLoaderData } from '@remix-run/react';
 import { useCallback, useState } from 'react';
 import { Drawer } from 'react-daisyui';
-import { defer } from '@remix-run/cloudflare';
+import { defer, redirect } from '@remix-run/cloudflare';
 import NavBar from '~/components/ui/NavBar';
 import { appConfig } from '~/config/app.config';
 import { getAuthenticator } from '~/services/auth.server';
@@ -16,7 +16,9 @@ const DEFAULTOPTIONS = {
   q: '10001'
 };
 
-export const loader = async ({ context }: LoaderFunctionArgs) => {
+export const loader = async ({ request, context }: LoaderFunctionArgs) => {
+  const req = request.clone();
+  const { pathname } = new URL(req.url);
   const sessionConfig: SessionConfig = {
     kv: context.env.KV,
     node_env: context.env.NODE_ENV,
@@ -30,16 +32,21 @@ export const loader = async ({ context }: LoaderFunctionArgs) => {
   );
   const sessionStorage = await appSessionStorage(sessionConfig);
   const authenticator = await getAuthenticator(context, sessionStorage);
+  const user = await authenticator.isAuthenticated(req);
+  if (!user && !appConfig.publicPages.includes(pathname)) {
+    redirect('/auth/login');
+  }
 
   return defer({
     version: context.env.APP_VERSION,
     apiKey,
+    user: user,
     weatherData: weatherDataPromise.then((res) => res.json<WeatherData>())
   });
 };
 
 export default function AppLayout() {
-  const { version, apiKey, weatherData } = useLoaderData<typeof loader>();
+  const { version, apiKey, weatherData, user } = useLoaderData<typeof loader>();
   const [visible, setVisible] = useState(false);
   const toggleVisible = useCallback(() => {
     setVisible((visible) => !visible);
@@ -47,7 +54,7 @@ export default function AppLayout() {
   return (
     <>
       <Drawer open={visible} onClickOverlay={toggleVisible} className="bg-base-100" aria-label="Menu" side={<></>}>
-        <NavBar toggleVisible={toggleVisible} version={version} apiKey={apiKey} weatherData={weatherData} />
+        <NavBar toggleVisible={toggleVisible} version={version} apiKey={apiKey} weatherData={weatherData} user={user} />
         <Outlet />
       </Drawer>
     </>

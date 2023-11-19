@@ -2,21 +2,24 @@ import { Await } from '@remix-run/react';
 import { Suspense, useCallback, useState } from 'react';
 import { Button, Input, Join, Loading, Menu, Navbar, Tooltip } from 'react-daisyui';
 import ThemeToggle from '~/components/ui/ThemeToggle';
+import UserMenu from '~/components/ui/UserMenu';
 import { appConfig } from '~/config/app.config';
 import useScroll from '~/hooks/useScroll';
 import Weather from 'app/components/WeatherData';
 import clsx from 'clsx';
 import { useTheme } from 'next-themes';
+import type { UserProfile } from '~/services/auth.server';
 import type { WeatherData } from 'app/components/WeatherData';
 
 type NavBarProps = {
   apiKey: string;
   toggleVisible: () => void;
+  user: UserProfile | null;
   version: string;
   weatherData: Promise<WeatherData>;
 };
 
-export default function NavBar({ toggleVisible, apiKey, version, weatherData }: NavBarProps) {
+export default function NavBar({ toggleVisible, apiKey, version, weatherData, user = null }: NavBarProps) {
   const scrolled = useScroll(50);
   const { resolvedTheme, setTheme } = useTheme();
 
@@ -72,9 +75,13 @@ export default function NavBar({ toggleVisible, apiKey, version, weatherData }: 
         <DesktopMenu c="hidden lg:flex mr-2"></DesktopMenu>
         <Join className="flex-none gap-x-2">
           <ThemeToggle resolvedTheme={resolvedTheme!} setTheme={setTheme} themes={appConfig.appThemes} />
-          <Button size="md" color="accent" variant="outline" aria-label="sign in" tag="a" href="/auth/login">
-            Sign In
-          </Button>
+          {user !== null ? (
+            <UserMenu user={user} />
+          ) : (
+            <Button size="md" color="accent" variant="outline" aria-label="sign in" tag="a" href="/auth/login">
+              Sign In
+            </Button>
+          )}
         </Join>
       </Navbar>
     </>
