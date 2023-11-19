@@ -1,6 +1,8 @@
-import { Await } from '@remix-run/react';
-import { Suspense, useCallback, useState } from 'react';
-import { Button, Input, Join, Loading, Menu, Navbar, Tooltip } from 'react-daisyui';
+import { Await, NavLink } from '@remix-run/react';
+import { Suspense } from 'react';
+import { Button, Join, Loading, Navbar, Tooltip } from 'react-daisyui';
+import Search from '~/components/Search';
+import AppMenu from '~/components/ui/AppMenu';
 import ThemeToggle from '~/components/ui/ThemeToggle';
 import UserMenu from '~/components/ui/UserMenu';
 import { appConfig } from '~/config/app.config';
@@ -13,13 +15,25 @@ import type { WeatherData } from 'app/components/WeatherData';
 
 type NavBarProps = {
   apiKey: string;
+  hideLogoOnLargeScreen?: boolean;
+  showSearch?: boolean;
+  showVersion?: boolean;
   toggleVisible: () => void;
   user: UserProfile | null;
   version: string;
   weatherData: Promise<WeatherData>;
 };
 
-export default function NavBar({ toggleVisible, apiKey, version, weatherData, user = null }: NavBarProps) {
+export default function NavBar({
+  toggleVisible,
+  apiKey,
+  version,
+  weatherData,
+  user = null,
+  showVersion = true,
+  showSearch = true,
+  hideLogoOnLargeScreen = false
+}: NavBarProps) {
   const scrolled = useScroll(50);
   const { resolvedTheme, setTheme } = useTheme();
 
@@ -47,63 +61,50 @@ export default function NavBar({ toggleVisible, apiKey, version, weatherData, us
         </div>
         <div className="flex flex-1 md:gap-1 lg:gap-2">
           <div className="flex items-center gap-2">
-            <Button tag="a" color="ghost" aria-label="Homepage" href="/" className="flex-0 gap-1 px-2 md:gap-2">
+            <NavLink
+              className={clsx('flex-0 btn btn-ghost gap-1 px-2 md:gap-2', { hideLogoOnLargeScreen: 'lg:hidden' })}
+              to={'/'}
+              aria-label="heliosUI"
+              aria-current="page"
+            >
               <div className="font-title inline-flex text-lg md:text-2xl">
                 <span className="lowercase">helios</span>
                 <span className="uppercase text-accent">UI</span>
               </div>
-            </Button>
-            <div className="font-mono text-xs">{version}</div>
+            </NavLink>
+            {showVersion && <div className="font-mono text-xs">{version}</div>}
           </div>
-          <div className="hidden w-full max-w-sm lg:flex">
-            <Input
-              className="searchbox relative mx-3 w-full"
-              placeholder="Search..."
-              size="md"
-              color="neutral"
-              bordered={false}
-            />
-          </div>
+          {showSearch && <Search />}
         </div>
-        <Suspense fallback={<Loading variant="bars" size="md" />}>
-          <Await resolve={weatherData}>
-            {(data) => (
-              <Weather data={data} apiKey={apiKey} size={'sm'} className="mr-2 hidden md:flex" aria-label="Weather" />
-            )}
-          </Await>
-        </Suspense>
-        <DesktopMenu c="hidden lg:flex mr-2"></DesktopMenu>
-        <Join className="flex-none gap-x-2">
+        {user && (
+          <Suspense fallback={<Loading variant="bars" size="md" />}>
+            <Await resolve={weatherData}>
+              {(data) => (
+                <Weather data={data} apiKey={apiKey} size={'sm'} className="mr-2 hidden md:flex" aria-label="Weather" />
+              )}
+            </Await>
+          </Suspense>
+        )}
+        {user && <AppMenu className="mr-2 hidden lg:flex" />}
+        <Join className="flex-none items-center justify-center gap-x-2">
           <ThemeToggle resolvedTheme={resolvedTheme!} setTheme={setTheme} themes={appConfig.appThemes} />
           {user !== null ? (
             <UserMenu user={user} />
           ) : (
-            <Button size="md" color="accent" variant="outline" aria-label="sign in" tag="a" href="/auth/login">
+            <Button
+              className="ml-4"
+              size="md"
+              color="accent"
+              variant="outline"
+              aria-label="sign in"
+              tag="a"
+              href="/auth/login"
+            >
               Sign In
             </Button>
           )}
         </Join>
       </Navbar>
     </>
-  );
-}
-
-type DesktopMenuProps = {
-  c?: string;
-};
-
-function DesktopMenu({ c }: DesktopMenuProps) {
-  const [open, setOpen] = useState(false);
-  const toggleOpen = useCallback(() => {
-    setOpen((val) => !val);
-  }, [setOpen]);
-  return (
-    <div className={typeof c == 'undefined' ? undefined : c}>
-      <Menu className="rounded-box bg-base-200 lg:min-w-max " responsive={true}>
-        <Menu.Item>
-          <Menu.Dropdown label="Menu" onClick={() => toggleOpen} open={open}></Menu.Dropdown>
-        </Menu.Item>
-      </Menu>
-    </div>
   );
 }

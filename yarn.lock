@@ -5246,6 +5246,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"clone-regexp@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "clone-regexp@npm:3.0.0"
+  dependencies:
+    is-regexp: "npm:^3.0.0"
+  checksum: 892b6103ae9319d0283f9bb125e07cba7c043cbcc516ecc135be817769257c659eae42749d450ed3041af63fb79505e4c5b90105cf9c97cadbff712e2f72726b
+  languageName: node
+  linkType: hard
+
 "clone-response@npm:^1.0.2":
   version: 1.0.3
   resolution: "clone-response@npm:1.0.3"
@@ -5407,6 +5416,13 @@ __metadata:
   version: 3.0.0
   resolution: "convert-hrtime@npm:3.0.0"
   checksum: 3db1f27ecd8052f5b5eeb38c7180d3ee8f45705edad67eb6c89dd1ddfaf683d378169ace0ea147e7b61c5b038ff1bf59a0c0453d2812300e86977e03584df929
+  languageName: node
+  linkType: hard
+
+"convert-hrtime@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "convert-hrtime@npm:5.0.0"
+  checksum: 2092e51aab205e1141440e84e2a89f8881e68e47c1f8bc168dfd7c67047d8f1db43bac28044bc05749205651fead4e7910f52c7bb6066213480df99e333e9f47
   languageName: node
   linkType: hard
 
@@ -8417,6 +8433,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"function-timeout@npm:^0.1.0":
+  version: 0.1.1
+  resolution: "function-timeout@npm:0.1.1"
+  checksum: 45f0517907e541b7ea8238500429ac9ace50e596295c01931cbe61e176150aa2ad50d05dcfeeee9377ae48eb99a6fd0759e4ebc97cde8f4c38492d1c99db8f14
+  languageName: node
+  linkType: hard
+
 "function.prototype.name@npm:^1.1.5, function.prototype.name@npm:^1.1.6":
   version: 1.1.6
   resolution: "function.prototype.name@npm:1.1.6"
@@ -8961,9 +8984,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"helios-remix@workspace:apps/helios-remix":
+"helios-remix@workspace:apps/helios":
   version: 0.0.0-use.local
-  resolution: "helios-remix@workspace:apps/helios-remix"
+  resolution: "helios-remix@workspace:apps/helios"
   dependencies:
     "@cloudflare/workers-types": "npm:^4.20230518.0"
     "@remix-run/cloudflare": "npm:^2.3.0"
@@ -8982,6 +9005,7 @@ __metadata:
     daisyui: "npm:^4.4.0"
     eslint: "npm:^8.54.0"
     eslint-config-prettier: "npm:^9.0.0"
+    is-ip: "npm:^5.0.1"
     isbot: "npm:^3.7.1"
     next-themes: "npm:^0.2.1"
     postcss: "npm:^8.4.31"
@@ -8991,6 +9015,7 @@ __metadata:
     react-dom: "npm:^18.2.0"
     remix-auth: "npm:^3.6.0"
     remix-auth-auth0: "npm:^1.9.0"
+    remix-utils: "npm:^7.1.0"
     tailwind-merge: "npm:^2.0.0"
     tailwindcss: "npm:^3.3.5"
     typescript: "npm:^5.2.2"
@@ -9339,6 +9364,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"ip-regex@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "ip-regex@npm:5.0.0"
+  checksum: 23f07cf393436627b3a91f7121eee5bc831522d07c95ddd13f5a6f7757698b08551480f12e5dbb3bf248724da135d54405c9687733dba7314f74efae593bdf06
+  languageName: node
+  linkType: hard
+
 "ip@npm:^2.0.0":
   version: 2.0.0
   resolution: "ip@npm:2.0.0"
@@ -9543,6 +9575,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"is-ip@npm:^5.0.1":
+  version: 5.0.1
+  resolution: "is-ip@npm:5.0.1"
+  dependencies:
+    ip-regex: "npm:^5.0.0"
+    super-regex: "npm:^0.2.0"
+  checksum: ec7d833acaca68b5a11b7ee1d605ff26e6864f83cae6c1413aaf5be19975c4c8a9d0c2d4b339f3b9dd94f26851fc80c6942e4b02c2b42f5e42b40ecd900b7a5c
+  languageName: node
+  linkType: hard
+
 "is-lambda@npm:^1.0.1":
   version: 1.0.1
   resolution: "is-lambda@npm:1.0.1"
@@ -9659,6 +9701,13 @@ __metadata:
     call-bind: "npm:^1.0.2"
     has-tostringtag: "npm:^1.0.0"
   checksum: bb72aae604a69eafd4a82a93002058c416ace8cde95873589a97fc5dac96a6c6c78a9977d487b7b95426a8f5073969124dd228f043f9f604f041f32fcc465fc1
+  languageName: node
+  linkType: hard
+
+"is-regexp@npm:^3.0.0":
+  version: 3.1.0
+  resolution: "is-regexp@npm:3.1.0"
+  checksum: 99dbaea41bddee2205db468c0946f5fee25cc4ae486333cb4d2b8095ab4b0a500e74ba61afd9e6e4f63ececcd55b4df5ae2a555b1c3e26308e516ff53c9533cd
   languageName: node
   linkType: hard
 
@@ -13644,6 +13693,47 @@ __metadata:
   languageName: node
   linkType: hard
 
+"remix-utils@npm:^7.1.0":
+  version: 7.1.0
+  resolution: "remix-utils@npm:7.1.0"
+  dependencies:
+    type-fest: "npm:^4.3.3"
+  peerDependencies:
+    "@remix-run/cloudflare": ^2.0.0
+    "@remix-run/deno": ^2.0.0
+    "@remix-run/node": ^2.0.0
+    "@remix-run/react": ^2.0.0
+    "@remix-run/router": ^1.7.2
+    crypto-js: ^4.1.1
+    intl-parse-accept-language: ^1.0.0
+    is-ip: ^5.0.1
+    react: ^18.0.0
+    zod: ^3.22.4
+  peerDependenciesMeta:
+    "@remix-run/cloudflare":
+      optional: true
+    "@remix-run/deno":
+      optional: true
+    "@remix-run/node":
+      optional: true
+    "@remix-run/react":
+      optional: true
+    "@remix-run/router":
+      optional: true
+    crypto-js:
+      optional: true
+    intl-parse-accept-language:
+      optional: true
+    is-ip:
+      optional: true
+    react:
+      optional: true
+    zod:
+      optional: true
+  checksum: 4ec28357b34bc5509c76821c5739b26c457477f215a9111cee93daffb4fde48aa70208ac08db2ee0d333019ade48e1b2a2c10bc46909e593a285ec767b5de7e7
+  languageName: node
+  linkType: hard
+
 "require-directory@npm:^2.1.1":
   version: 2.1.1
   resolution: "require-directory@npm:2.1.1"
@@ -14743,6 +14833,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"super-regex@npm:^0.2.0":
+  version: 0.2.0
+  resolution: "super-regex@npm:0.2.0"
+  dependencies:
+    clone-regexp: "npm:^3.0.0"
+    function-timeout: "npm:^0.1.0"
+    time-span: "npm:^5.1.0"
+  checksum: a8ff56aa521530df098433692c0a4c92353dd2fa3f7187785d654268031cc2876c8acc91e90bbd7b6b1ebabd68fb306f4fa61fc46f9fe0db04ed5f960fc2afc8
+  languageName: node
+  linkType: hard
+
 "supports-color@npm:^5.3.0":
   version: 5.5.0
   resolution: "supports-color@npm:5.5.0"
@@ -14990,6 +15091,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"time-span@npm:^5.1.0":
+  version: 5.1.0
+  resolution: "time-span@npm:5.1.0"
+  dependencies:
+    convert-hrtime: "npm:^5.0.0"
+  checksum: 37b8284c53f4ee320377512ac19e3a034f2b025f5abd6959b8c1d0f69e0f06ab03681df209f2e452d30129e7b1f25bf573fb0f29d57e71f9b4a6b5b99f4c4b9e
+  languageName: node
+  linkType: hard
+
 "timers-ext@npm:^0.1.7":
   version: 0.1.7
   resolution: "timers-ext@npm:0.1.7"
@@ -15220,6 +15330,13 @@ __metadata:
   version: 1.4.0
   resolution: "type-fest@npm:1.4.0"
   checksum: a3c0f4ee28ff6ddf800d769eafafcdeab32efa38763c1a1b8daeae681920f6e345d7920bf277245235561d8117dab765cb5f829c76b713b4c9de0998a5397141
+  languageName: node
+  linkType: hard
+
+"type-fest@npm:^4.3.3":
+  version: 4.8.1
+  resolution: "type-fest@npm:4.8.1"
+  checksum: 0dd59811e6b2ddcab34a52d27b9d346d04d8ccd9f433b1ae59d86cb497fe9b5a9b7b081888be92e8d9b3cf9e757d7eea9876a7c3deca6ae7f5a06c2863058d69
   languageName: node
   linkType: hard
 

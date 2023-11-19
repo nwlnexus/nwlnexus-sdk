@@ -22,7 +22,26 @@ const config = {
     days: 4,
     q: '21076'
   },
-  navMenu: [],
+  navMenu: [
+    {
+      href: '/dashboard',
+      title: 'Dashboard',
+      description: '',
+      hasSidebar: false
+    },
+    {
+      href: '/nodes',
+      title: 'Nodes',
+      description: '',
+      hasSidebar: false
+    },
+    {
+      href: '/media',
+      title: 'Media',
+      description: '',
+      hasSidebar: false
+    }
+  ],
   publicPages: ['/', '/about']
 } satisfies AppConfig;
 

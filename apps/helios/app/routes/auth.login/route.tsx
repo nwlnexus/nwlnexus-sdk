@@ -1,6 +1,7 @@
 // noinspection HtmlUnknownTarget
 
-import { Button, Form } from 'react-daisyui';
+import { Form } from '@remix-run/react';
+import { Button } from 'react-daisyui';
 
 export default function LoginView() {
   return (
@@ -10,7 +11,7 @@ export default function LoginView() {
           <div className="flex justify-center">
             <div className="inline-flex text-lg font-bold md:text-2xl">
               <span className="lowercase">helios</span>
-              <span className="text-accent uppercase">UI</span>
+              <span className="uppercase text-accent">UI</span>
             </div>
           </div>
           <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight">Sign in to your account</h2>
@@ -20,6 +21,7 @@ export default function LoginView() {
             <Form className="space-y-6" action="/auth/auth0" method="POST">
               <Button
                 type="submit"
+                fullWidth={true}
                 startIcon={
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

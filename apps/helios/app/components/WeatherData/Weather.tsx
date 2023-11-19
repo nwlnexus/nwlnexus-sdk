@@ -80,9 +80,7 @@ const Weather = ({ apiKey, size = 'lg', className, data, ...props }: WeatherProp
           </div>
           <div className="grid grid-rows-2 items-center justify-end">
             <div className="row-span-1 flex flex-col items-end text-xs font-thin">
-              <span>
-                {wData.w.location.name}, {wData.w.location.region}
-              </span>
+              <span>{wData.w.location.name}</span>
             </div>
             <div className="row-span-1 flex flex-col items-end text-xs font-thin">
               <div className="flex flex-row space-x-2">

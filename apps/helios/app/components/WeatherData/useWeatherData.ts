@@ -24,4 +24,4 @@ const useWeatherData = ({ apiKey, options = DEFAULTOPTIONS }: WeatherDataProps) 
   return wData;
 };
 
-export { useWeatherData, DEFAULTOPTIONS };
+export { useWeatherData };

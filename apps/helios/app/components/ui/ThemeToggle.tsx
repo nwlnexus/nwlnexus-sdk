@@ -10,7 +10,7 @@ export default function ThemeToggle({ resolvedTheme, setTheme, themes }: ThemeTo
   return (
     <>
       <Dropdown end={true} title="Change Theme">
-        <Dropdown.Toggle button={false} className="btn btn-ghost normal-case">
+        <Dropdown.Toggle button={false} className="inline-flex items-center justify-center space-x-1.5 normal-case">
           <svg
             width="20"
             height="20"
