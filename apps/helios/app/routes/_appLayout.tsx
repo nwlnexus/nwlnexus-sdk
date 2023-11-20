@@ -1,6 +1,13 @@
-import { isRouteErrorResponse, Link, NavLink, Outlet, useLoaderData, useRouteError } from '@remix-run/react';
+import {
+  isRouteErrorResponse,
+  Link,
+  NavLink,
+  Outlet,
+  useLoaderData,
+  useNavigation,
+  useRouteError
+} from '@remix-run/react';
 import { useCallback, useState } from 'react';
-import { Drawer } from 'react-daisyui';
 import { defer, redirect } from '@remix-run/cloudflare';
 import AppMenu from '~/components/ui/AppMenu';
 import NavBar from '~/components/ui/NavBar';
@@ -9,6 +16,7 @@ import { appConfig } from '~/config/app.config';
 import { getAuthenticator } from '~/services/auth.server';
 import { appSessionStorage } from '~/services/session.server';
 import { getIPAddress } from '~/utils';
+import clsx from 'clsx';
 import type { LoaderFunctionArgs } from '@remix-run/cloudflare';
 import type { WeatherData } from '~/components/WeatherData';
 import type { SessionConfig } from '~/services/session.server';
@@ -50,22 +58,20 @@ export default function AppLayout() {
   const toggleVisible = useCallback(() => {
     setVisible((visible) => !visible);
   }, []);
+
+  const navigation = useNavigation();
+
   return (
     <>
-      <Drawer
-        open={visible}
-        onClickOverlay={toggleVisible}
-        className="bg-base-100"
-        aria-label="Menu"
-        side={
-          <>
-            <AppMenu />
-          </>
-        }
-      >
+      <div className={clsx('hidden lg:fixed lg:inset-y-0 lg:z-50 lg:w-72 lg:flex-col')}>
+        <div className="flex grow flex-col gap-y-5 overflow-y-auto px-6 pb-4">
+          <AppMenu responsive={false} vertical={true} />
+        </div>
+      </div>
+      <div className="lg:pl-72">
         <NavBar toggleVisible={toggleVisible} version={version} apiKey={apiKey} weatherData={weatherData} user={user} />
         <Outlet />
-      </Drawer>
+      </div>
     </>
   );
 }

@@ -2,7 +2,6 @@ import { Await, NavLink } from '@remix-run/react';
 import { Suspense } from 'react';
 import { Button, Join, Loading, Navbar, Tooltip } from 'react-daisyui';
 import Search from '~/components/Search';
-import AppMenu from '~/components/ui/AppMenu';
 import ThemeToggle from '~/components/ui/ThemeToggle';
 import UserMenu from '~/components/ui/UserMenu';
 import { appConfig } from '~/config/app.config';
@@ -41,7 +40,7 @@ export default function NavBar({
     <>
       <Navbar
         className={clsx(
-          'sticky top-0 z-30 h-16 justify-center bg-base-100 bg-opacity-90 text-base-content backdrop-blur transition-all duration-100 [transform:translate3d(0,0,0)]',
+          'sticky top-0 z-40 h-16 justify-center bg-base-100 bg-opacity-90 text-base-content backdrop-blur transition-all duration-100 [transform:translate3d(0,0,0)]',
           { 'shadow-sm': scrolled }
         )}
       >
@@ -85,7 +84,6 @@ export default function NavBar({
             </Await>
           </Suspense>
         )}
-        {user && <AppMenu className="mr-2 hidden lg:flex" />}
         <Join className="flex-none items-center justify-center gap-x-2">
           <ThemeToggle resolvedTheme={resolvedTheme!} setTheme={setTheme} themes={appConfig.appThemes} />
           {user !== null ? (

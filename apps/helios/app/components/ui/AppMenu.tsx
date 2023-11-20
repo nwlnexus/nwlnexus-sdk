@@ -9,9 +9,18 @@ type AppMenuProps = {
   innerProps?: any[];
   className?: string;
   responsive?: boolean;
+  vertical?: boolean;
+  horizontal?: boolean;
 };
 
-export default function AppMenu({ className, innerClassName, responsive = true, ...props }: AppMenuProps) {
+export default function AppMenu({
+  className,
+  innerClassName,
+  responsive = true,
+  vertical = true,
+  horizontal = false,
+  ...props
+}: AppMenuProps) {
   const { pathname } = useLocation();
   const nav = appConfig.navMenu;
   // const [open, setOpen] = useState(false);
@@ -20,7 +29,13 @@ export default function AppMenu({ className, innerClassName, responsive = true, 
   // }, [setOpen]);
   return (
     <div className={twMerge(className, '')}>
-      <Menu className={twMerge('text-secondary lg:min-w-max', innerClassName)} responsive={responsive} {...props}>
+      <Menu
+        className={twMerge('text-secondary', innerClassName)}
+        responsive={responsive}
+        vertical={vertical}
+        horizontal={horizontal}
+        {...props}
+      >
         {nav.map((i, t) => (
           <Menu.Item
             key={t}
