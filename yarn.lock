@@ -2911,6 +2911,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@preact/signals-core@npm:^1.4.0":
+  version: 1.5.0
+  resolution: "@preact/signals-core@npm:1.5.0"
+  checksum: bbeb3c1e9be4996b57c3e26ff5584d8a340fcf76906f739ea79c0e5190a427ab0c3293fd8d1e53bf18f68ec2a87ea085d8973420bc2de6be6aca88a3057362a8
+  languageName: node
+  linkType: hard
+
+"@preact/signals-react@npm:^1.3.6":
+  version: 1.3.6
+  resolution: "@preact/signals-react@npm:1.3.6"
+  dependencies:
+    "@preact/signals-core": "npm:^1.4.0"
+    use-sync-external-store: "npm:^1.2.0"
+  peerDependencies:
+    react: ^16.14.0 || 17.x || 18.x
+  checksum: b458548905afd1a122fda263f31028e6b4db58e10233cb87c5c61ac9dbcd7333fc6d09975bb758bcb3fa8821a82ece4fc9195171fa9f352b3866281134034cbe
+  languageName: node
+  linkType: hard
+
 "@remix-run/cloudflare-pages@npm:^2.3.0":
   version: 2.3.0
   resolution: "@remix-run/cloudflare-pages@npm:2.3.0"
@@ -8989,6 +9008,7 @@ __metadata:
   resolution: "helios-remix@workspace:apps/helios"
   dependencies:
     "@cloudflare/workers-types": "npm:^4.20230518.0"
+    "@preact/signals-react": "npm:^1.3.6"
     "@remix-run/cloudflare": "npm:^2.3.0"
     "@remix-run/cloudflare-pages": "npm:^2.3.0"
     "@remix-run/css-bundle": "npm:^2.3.0"
@@ -15707,6 +15727,15 @@ __metadata:
   dependencies:
     punycode: "npm:^2.1.0"
   checksum: 4ef57b45aa820d7ac6496e9208559986c665e49447cb072744c13b66925a362d96dd5a46c4530a6b8e203e5db5fe849369444440cb22ecfc26c679359e5dfa3c
+  languageName: node
+  linkType: hard
+
+"use-sync-external-store@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "use-sync-external-store@npm:1.2.0"
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+  checksum: ac4814e5592524f242921157e791b022efe36e451fe0d4fd4d204322d5433a4fc300d63b0ade5185f8e0735ded044c70bcf6d2352db0f74d097a238cebd2da02
   languageName: node
   linkType: hard
 

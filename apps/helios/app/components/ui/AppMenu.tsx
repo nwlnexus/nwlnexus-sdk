@@ -1,16 +1,21 @@
 import { NavLink, useLocation } from '@remix-run/react';
 import { Menu } from 'react-daisyui';
+import { Logo } from '~/components/ui/Logo';
 import { appConfig } from '~/config/app.config';
 import clsx from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
 type AppMenuProps = {
+  className?: string;
+  horizontal?: boolean;
   innerClassName?: string;
   innerProps?: any[];
-  className?: string;
   responsive?: boolean;
+  toggleVisible: () => void;
   vertical?: boolean;
-  horizontal?: boolean;
+  hideLogoOnLargeScreen?: boolean;
+  showVersion?: boolean;
+  version: string;
 };
 
 export default function AppMenu({
@@ -19,6 +24,10 @@ export default function AppMenu({
   responsive = true,
   vertical = true,
   horizontal = false,
+  toggleVisible,
+  hideLogoOnLargeScreen = false,
+  showVersion = true,
+  version,
   ...props
 }: AppMenuProps) {
   const { pathname } = useLocation();
@@ -29,6 +38,7 @@ export default function AppMenu({
   // }, [setOpen]);
   return (
     <div className={twMerge(className, '')}>
+      <Logo hideLogoOnLargeScreen={hideLogoOnLargeScreen} showVersion={showVersion} version={version} />
       <Menu
         className={twMerge('text-secondary', innerClassName)}
         responsive={responsive}
@@ -42,6 +52,7 @@ export default function AppMenu({
             className={clsx(i.href == pathname ? 'active' : '')}
             aria-current={i.href == pathname}
             aria-label={i.title}
+            onClick={toggleVisible}
           >
             <NavLink to={i.href} className={clsx(i.href == pathname ? '!text-primary' : '')}>
               {i.title}

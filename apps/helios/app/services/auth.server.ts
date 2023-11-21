@@ -4,8 +4,6 @@ import type { AppLoadContext, SessionStorage } from '@remix-run/cloudflare';
 import type { Auth0ExtraParams, Auth0Profile } from 'remix-auth-auth0';
 
 type UserProfile = {
-  accessToken: string;
-  extraParams: Auth0ExtraParams;
   profile: Auth0Profile;
 };
 
@@ -18,9 +16,9 @@ const getAuthenticator = async (context: AppLoadContext, sessionStorage: Session
   };
 
   const auth0Strategy = new Auth0Strategy(authConfig, async ({ accessToken, extraParams, profile }) => {
-    return { accessToken, extraParams, profile };
+    return { profile };
   });
-  const authenticator = new Authenticator<UserProfile>(sessionStorage);
+  const authenticator = new Authenticator<UserProfile>(sessionStorage, { throwOnError: true });
   authenticator.use(auth0Strategy);
   return authenticator;
 };

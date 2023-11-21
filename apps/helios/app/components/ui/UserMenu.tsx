@@ -26,7 +26,7 @@ export default function UserMenu({ user }: { user: UserProfile }) {
         <Dropdown.Menu className="w-52">
           <Dropdown.Item>
             <Form action="/auth/logout" method="POST">
-              <Button type="submit" startIcon={<></>} fullWidth={true} color="neutral">
+              <Button type="submit" fullWidth={true} color="neutral" variant="outline">
                 Logout
               </Button>
             </Form>

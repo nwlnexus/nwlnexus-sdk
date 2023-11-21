@@ -1,4 +1,4 @@
-import { WindowMockup } from 'react-daisyui';
+import { Checkbox, Radio, Tabs, Toggle, WindowMockup } from 'react-daisyui';
 import type { MetaFunction } from '@remix-run/cloudflare';
 
 export const meta: MetaFunction = () => {
@@ -46,47 +46,47 @@ export default function LandingView() {
                       className="relative z-[1] w-80 will-change-auto motion-reduce:!transform-none max-[1280px]:![transform:translate3d(0,0,0)] xl:-left-6 xl:w-auto xl:[filter:drop-shadow(-1rem_3rem_1rem_#00000012)]"
                       style={{ transform: 'translate(0px,0px)' }}
                     >
-                      <div className="tabs">
-                        <button className="tab-lifted tab tab-active tab-border-none w-1/3 grow whitespace-nowrap text-xs">
+                      <Tabs size="xs" variant="lifted" value={0}>
+                        <Tabs.Tab value={0} className="text-xs">
                           Features
-                        </button>
-                        <button className="tab-lifted tab tab-border-none w-1/3 grow whitespace-nowrap text-xs">
+                        </Tabs.Tab>
+                        <Tabs.Tab value={1} className="text-xs">
                           Links
-                        </button>
-                        <button className="tab-lifted tab tab-border-none w-1/3 grow whitespace-nowrap text-xs">
+                        </Tabs.Tab>
+                        <Tabs.Tab value={2} className="text-xs">
                           Message
-                        </button>
-                      </div>
+                        </Tabs.Tab>
+                      </Tabs>
                       <div className="h-60 shrink-0 rounded-b-box rounded-tr-box bg-base-100">
                         <div className="flex flex-col items-stretch p-6">
                           <div className="form-control">
                             <label className="label cursor-pointer">
                               <span className="label-text text-xs">Faster development</span>
-                              <input type="checkbox" className="toggle toggle-primary toggle-sm" name="toggle" />
+                              <Toggle name="toggle" color="primary" size="sm" defaultChecked={true} />
                             </label>
                           </div>
                           <div className="form-control">
                             <label className="label cursor-pointer">
                               <span className="label-text text-xs">Cleaner HTML</span>
-                              <input type="checkbox" className="toggle toggle-secondary toggle-sm" name="toggle" />
+                              <Toggle name="toggle" color="secondary" size="sm" defaultChecked={true} />
                             </label>
                           </div>
                           <div className="form-control">
                             <label className="label cursor-pointer">
                               <span className="label-text text-xs">Customizable</span>
-                              <input type="checkbox" className="toggle toggle-accent toggle-sm" name="toggle" />
+                              <Toggle name="toggle" color="accent" size="sm" defaultChecked={true} />
                             </label>
                           </div>
                           <div className="form-control">
                             <label className="label cursor-pointer">
                               <span className="label-text text-xs">Themeable</span>
-                              <input type="checkbox" className="toggle toggle-success toggle-sm" name="toggle" />
+                              <Toggle name="toggle" color="success" size="sm" defaultChecked={true} />
                             </label>
                           </div>
                           <div className="form-control">
                             <label className="label cursor-pointer">
                               <span className="label-text text-xs">Pure CSS</span>
-                              <input type="checkbox" className="toggle toggle-sm" name="toggle" />
+                              <Toggle name="toggle" size="sm" defaultChecked={true} />
                             </label>
                           </div>
                         </div>
@@ -140,39 +140,39 @@ export default function LandingView() {
                     >
                       <div className="card-body">
                         <h2 className="card-title mb-4 text-sm">Design system</h2>
-                        <div className="grid grid-cols-4 items-end gap-4" data-svelte-h="svelte-xsb8cb">
+                        <div className="grid grid-cols-4 items-end gap-4">
                           <label className="flex cursor-pointer flex-col items-center gap-1">
-                            <input name="checkbox" type="checkbox" className="checkbox checkbox-xs" tabIndex={-1} />
+                            <Checkbox size="xs" tabIndex={-1} />
                             <span className="text-[.6rem] text-base-content/60">checkbox-xs</span>
                           </label>
                           <label className="flex cursor-pointer flex-col items-center gap-1">
-                            <input name="checkbox" type="checkbox" className="checkbox checkbox-sm" tabIndex={-1} />
+                            <Checkbox size="sm" />
                             <span className="text-[.6rem] text-base-content/60">checkbox-sm</span>
                           </label>
                           <label className="flex cursor-pointer flex-col items-center gap-1">
-                            <input name="checkbox" type="checkbox" className="checkbox checkbox-md" tabIndex={-1} />
+                            <Checkbox size="md" />
                             <span className="text-[.6rem] text-base-content/60">checkbox-md</span>
                           </label>
                           <label className="flex cursor-pointer flex-col items-center gap-1">
-                            <input name="checkbox" type="checkbox" className="checkbox checkbox-lg" tabIndex={-1} />
+                            <Checkbox size="lg" />
                             <span className="text-[.6rem] text-base-content/60">checkbox-lg</span>
                           </label>
                         </div>
-                        <div className="grid grid-cols-4 items-end gap-4" data-svelte-h="svelte-1a9bjat">
+                        <div className="grid grid-cols-4 items-end gap-4">
                           <label className="flex cursor-pointer flex-col items-center gap-1">
-                            <input name="radio" type="radio" className="radio radio-xs" tabIndex={-1} />
+                            <Radio size="xs" tabIndex={-1} />
                             <span className="text-[.6rem] text-base-content/60">radio-xs</span>
                           </label>
                           <label className="flex cursor-pointer flex-col items-center gap-1">
-                            <input name="radio" type="radio" className="radio radio-sm" tabIndex={-1} />
+                            <Radio size="sm" tabIndex={-1} />
                             <span className="text-[.6rem] text-base-content/60">radio-sm</span>
                           </label>
                           <label className="flex cursor-pointer flex-col items-center gap-1">
-                            <input name="radio" type="radio" className="radio radio-md" tabIndex={-1} />
+                            <Radio size="md" tabIndex={-1} />
                             <span className="text-[.6rem] text-base-content/60">radio-md</span>
                           </label>
                           <label className="flex cursor-pointer flex-col items-center gap-1">
-                            <input name="radio" type="radio" className="radio radio-lg" tabIndex={-1} />
+                            <Radio size="lg" tabIndex={-1} />
                             <span className="text-[.6rem] text-base-content/60">radio-lg</span>
                           </label>
                         </div>
@@ -185,7 +185,7 @@ export default function LandingView() {
                         transform: 'translate(0px,0px)'
                       }}
                     >
-                      <div className="card-body" data-svelte-h="svelte-1vywksf">
+                      <div className="card-body">
                         <h2 className="card-title mb-4 text-sm">Semantic colors</h2>
                         <div className="grid grid-cols-4 gap-4">
                           <div className="flex flex-col items-center gap-1">

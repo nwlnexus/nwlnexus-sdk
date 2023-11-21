@@ -10,6 +10,7 @@ type AppConfig = {
     alerts: 'yes' | 'no';
   };
   navMenu: Array<NavItem> | [];
+  pagesThatDontNeedSidebar: string[];
   publicPages: string[];
 };
 
@@ -26,22 +27,20 @@ const config = {
     {
       href: '/dashboard',
       title: 'Dashboard',
-      description: '',
-      hasSidebar: false
+      description: ''
     },
     {
       href: '/nodes',
       title: 'Nodes',
-      description: '',
-      hasSidebar: false
+      description: ''
     },
     {
       href: '/media',
       title: 'Media',
-      description: '',
-      hasSidebar: false
+      description: ''
     }
   ],
+  pagesThatDontNeedSidebar: ['/', '/about'],
   publicPages: ['/', '/about']
 } satisfies AppConfig;
 
@@ -49,7 +48,8 @@ interface NavItem {
   href: string;
   title: string;
   description: string;
-  hasSidebar: boolean;
+  hasSidebar?: boolean;
+  subMenu?: NavItem[];
   icon?: ReactNode;
 }
 

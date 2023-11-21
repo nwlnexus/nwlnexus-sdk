@@ -15,7 +15,6 @@ export const loader = async ({ context, request }: LoaderFunctionArgs) => {
   const authenticator = await getAuthenticator(context, sessionStorage);
 
   return authenticator.authenticate('auth0', request, {
-    successRedirect: '/dashboard',
-    failureRedirect: '/auth/login'
+    successRedirect: '/dashboard'
   });
 };

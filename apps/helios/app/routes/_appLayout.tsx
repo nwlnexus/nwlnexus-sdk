@@ -1,22 +1,22 @@
 import {
   isRouteErrorResponse,
-  Link,
-  NavLink,
   Outlet,
   useLoaderData,
+  useLocation,
   useNavigation,
   useRouteError
 } from '@remix-run/react';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import { Button, Drawer, Hero } from 'react-daisyui';
 import { defer, redirect } from '@remix-run/cloudflare';
 import AppMenu from '~/components/ui/AppMenu';
 import NavBar from '~/components/ui/NavBar';
 import { DEFAULTOPTIONS } from '~/components/WeatherData/weather-funcs';
 import { appConfig } from '~/config/app.config';
+import { AppState, createAppState } from '~/providers/AppState';
 import { getAuthenticator } from '~/services/auth.server';
 import { appSessionStorage } from '~/services/session.server';
 import { getIPAddress } from '~/utils';
-import clsx from 'clsx';
 import type { LoaderFunctionArgs } from '@remix-run/cloudflare';
 import type { WeatherData } from '~/components/WeatherData';
 import type { SessionConfig } from '~/services/session.server';
@@ -53,6 +53,7 @@ export const loader = async ({ request, context }: LoaderFunctionArgs) => {
 };
 
 export default function AppLayout() {
+  const { pathname } = useLocation();
   const { version, apiKey, weatherData, user } = useLoaderData<typeof loader>();
   const [visible, setVisible] = useState(false);
   const toggleVisible = useCallback(() => {
@@ -61,17 +62,41 @@ export default function AppLayout() {
 
   const navigation = useNavigation();
 
+  useEffect(() => {
+    document.documentElement.style.scrollPaddingTop = '5rem';
+    document.documentElement.style.scrollBehavior = 'smooth';
+  }, []);
+
   return (
     <>
-      <div className={clsx('hidden lg:fixed lg:inset-y-0 lg:z-50 lg:w-72 lg:flex-col')}>
-        <div className="flex grow flex-col gap-y-5 overflow-y-auto px-6 pb-4">
-          <AppMenu responsive={false} vertical={true} />
-        </div>
-      </div>
-      <div className="lg:pl-72">
-        <NavBar toggleVisible={toggleVisible} version={version} apiKey={apiKey} weatherData={weatherData} user={user} />
-        <Outlet />
-      </div>
+      <AppState.Provider value={createAppState()}>
+        <Drawer
+          className="bg-base-100"
+          open={visible}
+          onClickOverlay={toggleVisible}
+          sideClassName="z-40"
+          side={
+            <AppMenu
+              responsive={false}
+              vertical={true}
+              className="h-full w-56 bg-base-200 p-4"
+              toggleVisible={toggleVisible}
+              version={version}
+            />
+          }
+        >
+          <div>
+            <NavBar
+              toggleVisible={toggleVisible}
+              version={version}
+              apiKey={apiKey}
+              weatherData={weatherData}
+              user={user}
+            />
+            <Outlet />
+          </div>
+        </Drawer>
+      </AppState.Provider>
     </>
   );
 }
@@ -89,21 +114,18 @@ export function ErrorBoundary() {
   }
   return (
     <>
-      <main className="grid min-h-full place-items-center px-6 py-24 sm:py-32 lg:px-8">
-        <div className="text-center">
-          <p className="text-base font-semibold">{status_code}</p>
-          <h1 className="mt-4 text-3xl font-bold tracking-tight sm:text-5xl">{status_msg}</h1>
-          <p className="mt-6 text-base leading-7">{msg}</p>
-          <div className="mt-10 flex items-center justify-center gap-x-6">
-            <NavLink to="/" className="btn btn-accent px-3.5 py-2.5 text-sm font-semibold shadow-sm">
-              Go back home
-            </NavLink>
-            <Link to="/support" className="btn btn-neutral text-sm font-semibold">
-              Contact support <span aria-hidden="true">&rarr;</span>
-            </Link>
+      <Hero className="not-prose min-h-screen">
+        <Hero.Content>
+          <div className="max-w-md">
+            <h1 className="mb-5 text-5xl font-bold opacity-10 lg:text-7xl xl:text-9xl">{status_code} Error!</h1>
+            <p className="mb-5"> {status_msg}</p>
+            <p className="mb-5">{msg}</p>
           </div>
-        </div>
-      </main>
+          <Button tag="a" href={'/'}>
+            Go Back
+          </Button>
+        </Hero.Content>
+      </Hero>
     </>
   );
 }
