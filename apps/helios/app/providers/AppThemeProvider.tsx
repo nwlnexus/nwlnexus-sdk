@@ -6,7 +6,7 @@ export function AppThemeProvider({ children }: { children: ReactNode }) {
   return (
     <ThemeProvider
       enableColorScheme={true}
-      defaultTheme={'sunset'}
+      defaultTheme={'dark'}
       themes={appConfig.appThemes}
       disableTransitionOnChange={true}
       storageKey={'olympus-theme'}

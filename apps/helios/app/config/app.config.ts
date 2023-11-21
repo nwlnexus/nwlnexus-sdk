@@ -15,7 +15,7 @@ type AppConfig = {
 };
 
 const config = {
-  appThemes: ['cupcake', 'dark', 'business', 'night', 'sunset'],
+  appThemes: ['cupcake', 'sunset', 'business', 'night'],
   appDefaultTheme: 'sunset',
   cookieTag: '__helios_session',
   defaultWeatherOptions: {

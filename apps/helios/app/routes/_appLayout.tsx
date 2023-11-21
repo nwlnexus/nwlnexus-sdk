@@ -1,11 +1,4 @@
-import {
-  isRouteErrorResponse,
-  Outlet,
-  useLoaderData,
-  useLocation,
-  useNavigation,
-  useRouteError
-} from '@remix-run/react';
+import { isRouteErrorResponse, Outlet, useLoaderData, useLocation, useRouteError } from '@remix-run/react';
 import { useCallback, useEffect, useState } from 'react';
 import { Button, Drawer, Hero } from 'react-daisyui';
 import { defer, redirect } from '@remix-run/cloudflare';
@@ -60,7 +53,7 @@ export default function AppLayout() {
     setVisible((visible) => !visible);
   }, []);
 
-  const navigation = useNavigation();
+  const navbarScrollPadding = '5rem';
 
   useEffect(() => {
     document.documentElement.style.scrollPaddingTop = '5rem';
@@ -76,13 +69,10 @@ export default function AppLayout() {
           onClickOverlay={toggleVisible}
           sideClassName="z-40"
           side={
-            <AppMenu
-              responsive={false}
-              vertical={true}
-              className="h-full w-56 bg-base-200 p-4"
-              toggleVisible={toggleVisible}
-              version={version}
-            />
+            <aside className="min-h-screen w-56 bg-base-100 p-4">
+              <AppMenu responsive={false} vertical={true} toggleVisible={toggleVisible} version={version} />
+              <div className="pointer-events-none sticky bottom-0 flex h-40 bg-base-100 [mask-image:linear-gradient(transparent,#000000)]" />
+            </aside>
           }
         >
           <div>

@@ -1,7 +1,7 @@
 import { getClientIPAddress } from 'remix-utils/get-client-ip-address';
 import type { AppLoadContext } from '@remix-run/cloudflare';
 
-export const getOS = () => {
+const getOS = () => {
   let userAgent = window.navigator.userAgent.toLowerCase(),
     macosPlatforms = /(macintosh|macintel|macppc|mac68k|macos)/i,
     windowsPlatforms = /(win32|win64|windows|wince)/i,
@@ -23,7 +23,7 @@ export const getOS = () => {
   return os;
 };
 
-export const slugify = (str: string) => {
+const slugify = (str: string) => {
   return String(str)
     .normalize('NFKD') // split accented characters into their base characters and diacritical marks
     .replace(/[\u0300-\u036f]/g, '') // remove all the accents, which happen to be all in the \u03xx UNICODE block.
@@ -35,7 +35,7 @@ export const slugify = (str: string) => {
     .replace(/^-+|-+$/g, ''); // remove leading and trailing hyphens
 };
 
-export const getIPAddress = async (req: Request, ctx: AppLoadContext): Promise<string> => {
+const getIPAddress = async (req: Request, ctx: AppLoadContext): Promise<string> => {
   let cIP = getClientIPAddress(req.headers);
   if (!cIP) {
     const q = await fetch('https://api.ipify.org?format=json');
@@ -44,3 +44,5 @@ export const getIPAddress = async (req: Request, ctx: AppLoadContext): Promise<s
   }
   return cIP;
 };
+
+export { getIPAddress };
