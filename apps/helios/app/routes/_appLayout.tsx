@@ -46,14 +46,11 @@ export const loader = async ({ request, context }: LoaderFunctionArgs) => {
 };
 
 export default function AppLayout() {
-  const { pathname } = useLocation();
   const { version, apiKey, weatherData, user } = useLoaderData<typeof loader>();
   const [visible, setVisible] = useState(false);
   const toggleVisible = useCallback(() => {
     setVisible((visible) => !visible);
   }, []);
-
-  const navbarScrollPadding = '5rem';
 
   useEffect(() => {
     document.documentElement.style.scrollPaddingTop = '5rem';

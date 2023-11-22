@@ -10,9 +10,10 @@ import yargs from 'yargs/yargs';
 
 const setupDB = async (binding: string, schemaDir: string, migrationsDir: string, persistTo: string) => {
   console.info(chalk.blue(`Preparing to setup D1 Database: ${binding}`));
-  const schema = path.normalize(schemaDir + '/' + binding.toLowerCase() + '.ts');
-  const outDir = path.normalize(`${migrationsDir}`);
-  const cmd = `drizzle-kit generate:sqlite --schema=${schema} --out=${outDir}`;
+  // const schema = path.normalize(schemaDir);
+  console.log(schemaDir);
+  // const outDir = path.normalize(`${migrationsDir}`);
+  const cmd = `drizzle-kit generate:sqlite --schema=${schemaDir} --out=${migrationsDir}`;
   child_process.execSync(cmd, {
     stdio: 'inherit',
     encoding: 'utf8'
@@ -60,7 +61,7 @@ const argv = yargs(hideBin(process.argv))
         },
         persistTo: {
           description: 'Directory for wrangler state.',
-          default: path.join(process.cwd(), './.wrangler/'),
+          default: path.join(process.cwd(), '.wrangler/'),
           requiresArg: true,
           type: 'string',
           normalize: true
@@ -71,10 +72,7 @@ const argv = yargs(hideBin(process.argv))
       const wranglerCfg = toml.parse(fs.readFileSync(argv.wranglerFile, 'utf-8'));
       if ('d1_databases' in wranglerCfg) {
         for (const database of wranglerCfg['d1_databases']) {
-          const mDir =
-            typeof database['migrations_dir'] == 'undefined'
-              ? path.join(process.cwd(), './migrations/')
-              : database['migrations_dir'];
+          const mDir = typeof database['migrations_dir'] == 'undefined' ? 'migrations/' : database['migrations_dir'];
           await setupDB(database['binding'], argv.schemaDir, mDir, argv.persistTo);
         }
       }

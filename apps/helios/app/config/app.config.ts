@@ -1,7 +1,40 @@
 import type { ReactNode } from 'react';
 
 type AppConfig = {
-  appThemes: Array<string>;
+  appThemes: (
+    | 'light'
+    | 'dark'
+    | 'cupcake'
+    | 'bumblebee'
+    | 'emerald'
+    | 'corporate'
+    | 'synthwave'
+    | 'retro'
+    | 'cyberpunk'
+    | 'valentine'
+    | 'halloween'
+    | 'garden'
+    | 'forest'
+    | 'aqua'
+    | 'lofi'
+    | 'pastel'
+    | 'fantasy'
+    | 'wireframe'
+    | 'black'
+    | 'luxury'
+    | 'dracula'
+    | 'cmyk'
+    | 'autumn'
+    | 'business'
+    | 'acid'
+    | 'lemonade'
+    | 'night'
+    | 'coffee'
+    | 'winter'
+    | 'dim'
+    | 'nord'
+    | 'sunset'
+  )[];
   appDefaultTheme: string;
   cookieTag: string;
   defaultWeatherOptions: {
