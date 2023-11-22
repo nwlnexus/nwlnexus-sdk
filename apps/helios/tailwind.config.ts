@@ -22,6 +22,15 @@ const config = {
     utils: true,
     log: false
   },
-  plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography'), require('daisyui')]
+  plugins: [
+    require('@tailwindcss/forms')({
+      strategy: 'class'
+    }),
+    require('@tailwindcss/typography'),
+    require('@tailwindcss/container-queries'),
+    require('tailwindcss-animate'),
+    require('tailwindcss-3d'),
+    require('daisyui')
+  ]
 } satisfies Config;
 export default config;

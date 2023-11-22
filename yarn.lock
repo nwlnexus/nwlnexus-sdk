@@ -3199,12 +3199,30 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@swc/helpers@npm:0.5.3":
+  version: 0.5.3
+  resolution: "@swc/helpers@npm:0.5.3"
+  dependencies:
+    tslib: "npm:^2.4.0"
+  checksum: 7003b9dafad38e27a4474a3dcf78d2aee85ce4bb7ee171ecc2d5b533768fb4f8fc9dbd6a1c3a9df5f8001e61ff416b93681e0a7dcbdc0df109b3e09c50cd4615
+  languageName: node
+  linkType: hard
+
 "@szmarczak/http-timer@npm:^5.0.1":
   version: 5.0.1
   resolution: "@szmarczak/http-timer@npm:5.0.1"
   dependencies:
     defer-to-connect: "npm:^2.0.1"
   checksum: 4629d2fbb2ea67c2e9dc03af235c0991c79ebdddcbc19aed5d5732fb29ce01c13331e9b1a491584b9069bd6ecde6581dcbf871f11b7eefdebbab34de6cf2197e
+  languageName: node
+  linkType: hard
+
+"@tailwindcss/container-queries@npm:^0.1.1":
+  version: 0.1.1
+  resolution: "@tailwindcss/container-queries@npm:0.1.1"
+  peerDependencies:
+    tailwindcss: ">=3.2.0"
+  checksum: 336546ddcc60280723f2a92e311cac0acb8b05624c6519675d4b11ae13ed01dba5e622705a9be69cd66ca2c8019032551176546e6920d9634750165ac4c15d8e
   languageName: node
   linkType: hard
 
@@ -8936,6 +8954,7 @@ __metadata:
     "@remix-run/eslint-config": "npm:^2.3.0"
     "@remix-run/react": "npm:^2.3.0"
     "@remix-run/server-runtime": "npm:^2.3.0"
+    "@tailwindcss/container-queries": "npm:^0.1.1"
     "@tailwindcss/forms": "npm:^0.5.7"
     "@tailwindcss/typography": "npm:^0.5.10"
     "@types/react": "npm:^18.2.20"
@@ -8962,6 +8981,8 @@ __metadata:
     remix-utils: "npm:^7.1.0"
     tailwind-merge: "npm:^2.0.0"
     tailwindcss: "npm:^3.3.5"
+    tailwindcss-3d: "npm:^1.0.2"
+    tailwindcss-animate: "npm:^1.0.7"
     typescript: "npm:^5.2.2"
     wrangler: "npm:^3.16.0"
     zod: "npm:^3.22.4"
@@ -10206,7 +10227,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash@npm:^4.17.21, lodash@npm:^4.17.4":
+"lodash@npm:4.17.21, lodash@npm:^4.17.21, lodash@npm:^4.17.4":
   version: 4.17.21
   resolution: "lodash@npm:4.17.21"
   checksum: d8cbea072bb08655bb4c989da418994b073a608dffa608b09ac04b43a791b12aeae7cd7ad919aa4c925f33b48490b5cfe6c1f71d827956071dae2e7bb3a6b74c
@@ -14832,6 +14853,27 @@ __metadata:
   dependencies:
     "@babel/runtime": "npm:^7.23.1"
   checksum: 3fa9a5c9b49be23782323961f1e0cccfddce5e75eab5d8c6b3beeeac42ebd3caefe83f6074e93f32d26758b310b75db9aa3de333220e6242c7623b9c0d96ff89
+  languageName: node
+  linkType: hard
+
+"tailwindcss-3d@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "tailwindcss-3d@npm:1.0.2"
+  dependencies:
+    "@swc/helpers": "npm:0.5.3"
+    lodash: "npm:4.17.21"
+  peerDependencies:
+    tailwindcss: ">=3.2.0"
+  checksum: f9f75a8ad0bda9291e5ba063a6b508ce7ee838af9710716616be6e7bdacff70cfbf07065920db036dce8809d4209a590fbd3dfd0dbd5a9ba24786156c67c30c0
+  languageName: node
+  linkType: hard
+
+"tailwindcss-animate@npm:^1.0.7":
+  version: 1.0.7
+  resolution: "tailwindcss-animate@npm:1.0.7"
+  peerDependencies:
+    tailwindcss: "*"
+  checksum: ec7dbd1631076b97d66a1fbaaa06e0725fccfa63119221e8d87a997b02dcede98ad88bb1ef6665b968f5d260fcefb10592e0299ca70208d365b37761edf5e19a
   languageName: node
   linkType: hard
 
