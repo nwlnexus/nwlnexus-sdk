@@ -8984,6 +8984,7 @@ __metadata:
     tailwindcss-3d: "npm:^1.0.2"
     tailwindcss-animate: "npm:^1.0.7"
     typescript: "npm:^5.2.2"
+    ulid-workers: "npm:^2.1.0"
     wrangler: "npm:^3.16.0"
     zod: "npm:^3.22.4"
   languageName: unknown
@@ -15431,6 +15432,13 @@ __metadata:
   version: 1.0.0
   resolution: "uid-promise@npm:1.0.0"
   checksum: 3300c98b59144f3cf4d497b8ff1cd6bcf8d74f8451533b9b4772b2919cd7d003aa08c36ed38b61528bbc71e8a9ee953e845b4b44fb113d9848ce4bf84bb8e228
+  languageName: node
+  linkType: hard
+
+"ulid-workers@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "ulid-workers@npm:2.1.0"
+  checksum: 14b36a6cd88f0fce073dfe1d4b9a10f6036ebd57a8820799722b8d869727c8a6046007ffb000cc70f916f0fb6796d62b38a0fef4ece4d3bbea8ed1158811ce46
   languageName: node
   linkType: hard
 

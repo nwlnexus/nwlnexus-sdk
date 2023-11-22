@@ -10,7 +10,7 @@ type UserPrefs = {
 export const users = sqliteTable('users', {
   id: text('id').notNull().primaryKey(),
   name: text('name'),
-  email: text('email').notNull(),
+  email: text('email').notNull().unique(),
   emailVerified: integer('email_verified', { mode: 'boolean' }),
   photo: text('photo'),
   preferences: text('preferences', { mode: 'json' }).$type<UserPrefs>()
