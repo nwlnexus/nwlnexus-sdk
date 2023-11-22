@@ -9,7 +9,6 @@ type LogoProps = {
 export function Logo({ hideLogoOnLargeScreen = false, showVersion = true, version }: LogoProps) {
   return (
     <>
-      {' '}
       <div className="flex items-center gap-2">
         <NavLink
           className={clsx('flex-0 btn btn-ghost gap-1 px-2 md:gap-2', { 'lg:hidden': hideLogoOnLargeScreen })}

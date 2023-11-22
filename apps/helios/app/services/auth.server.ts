@@ -1,7 +1,8 @@
+import { findOrCreateUser } from '~/db/users.server';
 import { Authenticator } from 'remix-auth';
 import { Auth0Strategy } from 'remix-auth-auth0';
 import type { AppLoadContext, SessionStorage } from '@remix-run/cloudflare';
-import type { Auth0ExtraParams, Auth0Profile } from 'remix-auth-auth0';
+import type { Auth0Profile } from 'remix-auth-auth0';
 
 type UserProfile = {
   profile: Auth0Profile;
@@ -16,6 +17,7 @@ const getAuthenticator = async (context: AppLoadContext, sessionStorage: Session
   };
 
   const auth0Strategy = new Auth0Strategy(authConfig, async ({ accessToken, extraParams, profile }) => {
+    await findOrCreateUser({ db: context.env.DB, profile });
     return { profile };
   });
   const authenticator = new Authenticator<UserProfile>(sessionStorage, { throwOnError: true });
