@@ -58,8 +58,8 @@ jobs:
           wranglerVersion: '3.17.0'
           workingDirectory: 'apps/helios'
           packageManager: yarn
-          preCommands: |
-            wrangler d1 migrations apply olympus
+#          preCommands: |
+#            wrangler d1 migrations apply olympus
           command: pages deploy --project-name=helios
           secrets: |
             WEATHERAPI_KEY
