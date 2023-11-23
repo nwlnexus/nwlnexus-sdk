@@ -60,7 +60,7 @@ jobs:
           packageManager: yarn
 #          preCommands: |
 #            wrangler d1 migrations apply olympus
-          command: pages deploy --project-name=helios
+          command: pages deploy --project-name=helios ./public
 #          secrets: |
 #            WEATHERAPI_KEY
 #            AUTH_AUTH0_ID
