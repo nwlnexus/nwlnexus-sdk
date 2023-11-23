@@ -40,7 +40,7 @@ jobs:
           cache-dependency-path: 'yarn.lock'
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn install --immutable-cache
 
 #      - name: Lint code
 #        run: |
@@ -57,6 +57,7 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           wranglerVersion: '3.17.0'
           workingDirectory: 'apps/helios'
+          packageManager: yarn
           preCommands: |
             wrangler d1 migrations apply olympus
           command: pages deploy --project-name=helios
