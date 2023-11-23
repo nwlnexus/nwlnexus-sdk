@@ -7,7 +7,7 @@
     "build": "remix build",
     "dev": "remix dev --manual -c \"npm run start\"",
     "app:prepare": "cf-setup prepare --schemaDir=\"./app/db/schema\" --migrationsDir=\"./migrations\" --persistTo=\"../../.wrangler\"",
-    "pages:deploy": "yarn run build && wrangler pages deploy ./public",
+    "pages:deploy": "yarn run build && wrangler pages deploy ./public --commit-dirty=true",
     "start": "yarn app:prepare && wrangler pages dev --compatibility-date=${COMPAT_DATE} --compatibility-flag=nodejs_compat --persist-to=\"../../.wrangler\" ./public",
     "typecheck": "tsc",
     "test": "vitest related --no-tests --run",
