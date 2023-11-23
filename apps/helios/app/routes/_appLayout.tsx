@@ -1,16 +1,18 @@
-import { isRouteErrorResponse, Outlet, useLoaderData, useRouteError } from '@remix-run/react';
+import { isRouteErrorResponse, Outlet, useLoaderData, useLocation, useRouteError } from '@remix-run/react';
 import { useCallback, useEffect, useState } from 'react';
 import { Button, Drawer, Hero } from 'react-daisyui';
 import { defer, redirect } from '@remix-run/cloudflare';
-import AppMenu from '~/components/ui/AppMenu';
 import NavBar from '~/components/ui/NavBar';
+import SideBar from '~/components/ui/SideBar';
 import { DEFAULTOPTIONS } from '~/components/WeatherData/weather-funcs';
 import { appConfig } from '~/config/app.config';
+import useMediaQuery from '~/hooks/useMediaQuery';
 import { AppState, createAppState } from '~/providers/AppState';
 import { AppThemeProvider } from '~/providers/AppThemeProvider';
 import { getAuthenticator } from '~/services/auth.server';
 import { appSessionStorage } from '~/services/session.server';
 import { getIPAddress } from '~/utils';
+import clsx from 'clsx';
 import type { LoaderFunctionArgs } from '@remix-run/cloudflare';
 import type { WeatherData } from '~/components/WeatherData';
 import type { SessionConfig } from '~/services/session.server';
@@ -47,43 +49,62 @@ export const loader = async ({ request, context }: LoaderFunctionArgs) => {
 };
 
 export default function AppLayout() {
+  const { pathname } = useLocation();
   const { version, apiKey, weatherData, user } = useLoaderData<typeof loader>();
   const [visible, setVisible] = useState(false);
   const toggleVisible = useCallback(() => {
     setVisible((visible) => !visible);
   }, []);
 
+  const { device } = useMediaQuery();
+
   useEffect(() => {
     document.documentElement.style.scrollPaddingTop = '5rem';
     document.documentElement.style.scrollBehavior = 'smooth';
-  }, []);
+  }, [pathname]);
 
   return (
     <>
       <AppThemeProvider>
         <AppState.Provider value={createAppState()}>
           <Drawer
-            className="bg-base-100"
+            className={clsx('bg-base-100', {
+              'lg:drawer-open': !appConfig.pagesThatDontNeedSidebar.includes(pathname)
+            })}
             open={visible}
             onClickOverlay={toggleVisible}
             sideClassName="z-40"
             side={
-              <aside className="min-h-screen w-56 bg-base-100 p-4">
-                <AppMenu responsive={false} vertical={true} toggleVisible={toggleVisible} version={version} />
+              <aside className="min-h-screen w-80 bg-base-100">
+                <SideBar
+                  responsive={false}
+                  version={version}
+                  toggleVisible={toggleVisible}
+                  vertical={true}
+                  user={user}
+                  showUserSection={true}
+                  visible={device !== 'desktop' || !appConfig.pagesThatDontNeedSidebar.includes(pathname)}
+                />
                 <div className="pointer-events-none sticky bottom-0 flex h-40 bg-base-100 [mask-image:linear-gradient(transparent,#000000)]" />
               </aside>
             }
           >
-            <div>
+            <>
               <NavBar
+                showToggle={device !== 'desktop'}
+                showSearch={true}
+                showVersion={true}
+                hideLogoOnLargeScreen={false}
                 toggleVisible={toggleVisible}
                 version={version}
                 apiKey={apiKey}
                 weatherData={weatherData}
                 user={user}
               />
-              <Outlet />
-            </div>
+              <div>
+                <Outlet />
+              </div>
+            </>
           </Drawer>
         </AppState.Provider>
       </AppThemeProvider>

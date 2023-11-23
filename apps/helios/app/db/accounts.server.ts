@@ -15,24 +15,20 @@ const findOrCreateAccount = async ({
   profile: Auth0Profile;
 }): Promise<typeof accounts.$inferInsert> => {
   const DB = drizzle(db);
-  const account = await DB.select().from(accounts).where(eq(accounts.userId, userId)).get();
+  let account = await DB.select().from(accounts).where(eq(accounts.userId, userId)).all();
 
   const acct: typeof accounts.$inferInsert = {
     access_token: accessToken,
     provider: profile.provider,
     providerAccountId: profile.id!.split('|')[1],
-    userId: typeof account == 'undefined' ? userId : account.userId
+    userId: account.length <= 0 ? userId : account[0].userId
   };
 
-  await DB.insert(accounts)
-    .values(acct)
-    .onConflictDoUpdate({
-      target: accounts.userId,
-      set: acct
-    })
-    .returning();
+  if (!account) {
+    account = await DB.insert(accounts).values(acct).returning();
+  }
 
-  return acct;
+  return account[0];
 };
 
 export { findOrCreateAccount };

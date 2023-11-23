@@ -18,6 +18,8 @@ type NavBarProps = {
   hideLogoOnLargeScreen?: boolean;
   showSearch?: boolean;
   showVersion?: boolean;
+  showUserMenu?: boolean;
+  showToggle?: boolean;
   toggleVisible: () => void;
   user: UserProfile | null;
   version: string;
@@ -30,8 +32,10 @@ export default function NavBar({
   version,
   weatherData,
   user = null,
-  showVersion = true,
-  showSearch = true,
+  showToggle = false,
+  showVersion = false,
+  showSearch = false,
+  showUserMenu = false,
   hideLogoOnLargeScreen = false
 }: NavBarProps) {
   const scrolled = useScroll(50);
@@ -45,24 +49,30 @@ export default function NavBar({
           { 'shadow-sm': scrolled }
         )}
       >
-        {user && (
-          <div className="flex-none">
-            <Tooltip message="Menu" position="bottom">
-              <Button shape="square" color="ghost" onClick={toggleVisible} className="drawer-button">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  className="inline-block h-6 w-6 stroke-current"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                </svg>
-              </Button>
-            </Tooltip>
-          </div>
-        )}
+        <Tooltip message="Menu" position="bottom" className="before:text-xs before:content-[attr(data-tip)]">
+          <Button
+            tag={'label'}
+            shape="square"
+            color="ghost"
+            onClick={toggleVisible}
+            aria-label={'Open Menu'}
+            htmlFor={'drawer'}
+            className={`drawer-button ${showToggle ? '' : 'lg:hidden'}`}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              className="inline-block h-5 w-5 stroke-current md:h-6 md:w-6"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </Button>
+        </Tooltip>
+
         <div className="flex flex-1 md:gap-1 lg:gap-2">
           <Logo hideLogoOnLargeScreen={hideLogoOnLargeScreen} showVersion={showVersion} version={version} />
+
           {showSearch && <Search />}
         </div>
         {user && (
@@ -77,7 +87,7 @@ export default function NavBar({
         <Join className="flex-none items-center justify-center gap-x-2">
           <ThemeToggle resolvedTheme={resolvedTheme!} setTheme={setTheme} themes={appConfig.appThemes} />
           {user !== null ? (
-            <UserMenu user={user} />
+            showUserMenu && <UserMenu user={user} />
           ) : (
             <Button
               className="ml-4"

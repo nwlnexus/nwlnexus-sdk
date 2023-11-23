@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="SqlDialectMappings">
-    <file url="file://$PROJECT_DIR$/apps/helios/migrations/0000_solid_diamondback.sql" dialect="SQLite" />
-    <file url="file://$PROJECT_DIR$/apps/helios/migrations/0001_volatile_sue_storm.sql" dialect="SQLite" />
-    <file url="file://$PROJECT_DIR$/apps/helios/migrations/0004_lonely_giant_man.sql" dialect="SQLite" />
-  </component>
-</project>

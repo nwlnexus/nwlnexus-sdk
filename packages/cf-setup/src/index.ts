@@ -50,23 +50,25 @@ const argv = yargs(hideBin(process.argv))
     'prepare',
     'Prepare local Cloudflare assets.',
     (yargs) => {
-      return yargs.options({
-        schemaDir: {
-          alias: 's',
-          description: 'Directory to source schemas from.',
-          demandOption: true,
-          requiresArg: true,
-          type: 'string',
-          normalize: true
-        },
-        persistTo: {
-          description: 'Directory for wrangler state.',
-          default: path.join(process.cwd(), '.wrangler/'),
-          requiresArg: true,
-          type: 'string',
-          normalize: true
-        }
-      });
+      return yargs
+        .options({
+          persistTo: {
+            description: 'Directory for wrangler state.',
+            default: path.join(process.cwd(), '.wrangler/'),
+            requiresArg: true,
+            type: 'string',
+            normalize: true
+          },
+          schemaDir: {
+            alias: 's',
+            description: 'Directory to source schemas from.',
+            demandOption: true,
+            requiresArg: true,
+            type: 'string',
+            normalize: true
+          }
+        })
+        .boolean('reset');
     },
     async (argv) => {
       const wranglerCfg = toml.parse(fs.readFileSync(argv.wranglerFile, 'utf-8'));

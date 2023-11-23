@@ -1,6 +1,5 @@
 import { NavLink, useLocation } from '@remix-run/react';
 import { Menu } from 'react-daisyui';
-import { Logo } from '~/components/ui/Logo';
 import { appConfig } from '~/config/app.config';
 import clsx from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -11,11 +10,8 @@ type AppMenuProps = {
   innerClassName?: string;
   innerProps?: any[];
   responsive?: boolean;
-  toggleVisible: () => void;
+  toggleVisible?: () => void;
   vertical?: boolean;
-  hideLogoOnLargeScreen?: boolean;
-  showVersion?: boolean;
-  version: string;
 };
 
 export default function AppMenu({
@@ -25,9 +21,6 @@ export default function AppMenu({
   vertical = true,
   horizontal = false,
   toggleVisible,
-  hideLogoOnLargeScreen = false,
-  showVersion = true,
-  version,
   ...props
 }: AppMenuProps) {
   const { pathname } = useLocation();
@@ -38,7 +31,6 @@ export default function AppMenu({
   // }, [setOpen]);
   return (
     <div className={twMerge(className, '')}>
-      <Logo hideLogoOnLargeScreen={hideLogoOnLargeScreen} showVersion={showVersion} version={version} />
       <Menu
         className={twMerge('text-secondary', innerClassName)}
         responsive={responsive}

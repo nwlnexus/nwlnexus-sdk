@@ -2,6 +2,9 @@ import { getClientIPAddress } from 'remix-utils/get-client-ip-address';
 import { ulidFactory } from 'ulid-workers';
 import type { AppLoadContext } from '@remix-run/cloudflare';
 
+function isBrowser(): boolean {
+  return typeof window !== 'undefined';
+}
 const getOS = () => {
   let userAgent = window.navigator.userAgent.toLowerCase(),
     macosPlatforms = /(macintosh|macintel|macppc|mac68k|macos)/i,
@@ -47,4 +50,4 @@ const getIPAddress = async (req: Request, ctx: AppLoadContext): Promise<string> 
 };
 const ulid = ulidFactory();
 
-export { getOS, getIPAddress, slugify, ulid };
+export { isBrowser, getOS, getIPAddress, slugify, ulid };
