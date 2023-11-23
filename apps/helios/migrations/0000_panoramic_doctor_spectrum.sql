@@ -15,10 +15,10 @@ CREATE TABLE `accounts` (
 --> statement-breakpoint
 CREATE TABLE `users` (
 	`id` text PRIMARY KEY NOT NULL,
-	`name` text,
+	`name` text NOT NULL,
 	`email` text NOT NULL,
-	`emailVerified` integer,
-	`image` text,
+	`email_verified` integer NOT NULL,
+	`photo` text,
 	`preferences` text
 );
 --> statement-breakpoint
@@ -28,3 +28,5 @@ CREATE TABLE `verificationTokens` (
 	`expires` integer NOT NULL,
 	PRIMARY KEY(`identifier`, `token`)
 );
+--> statement-breakpoint
+CREATE UNIQUE INDEX `users_email_unique` ON `users` (`email`);

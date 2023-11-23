@@ -1,4 +1,4 @@
-import { isRouteErrorResponse, Outlet, useLoaderData, useLocation, useRouteError } from '@remix-run/react';
+import { isRouteErrorResponse, Outlet, useLoaderData, useRouteError } from '@remix-run/react';
 import { useCallback, useEffect, useState } from 'react';
 import { Button, Drawer, Hero } from 'react-daisyui';
 import { defer, redirect } from '@remix-run/cloudflare';
@@ -7,6 +7,7 @@ import NavBar from '~/components/ui/NavBar';
 import { DEFAULTOPTIONS } from '~/components/WeatherData/weather-funcs';
 import { appConfig } from '~/config/app.config';
 import { AppState, createAppState } from '~/providers/AppState';
+import { AppThemeProvider } from '~/providers/AppThemeProvider';
 import { getAuthenticator } from '~/services/auth.server';
 import { appSessionStorage } from '~/services/session.server';
 import { getIPAddress } from '~/utils';
@@ -59,31 +60,33 @@ export default function AppLayout() {
 
   return (
     <>
-      <AppState.Provider value={createAppState()}>
-        <Drawer
-          className="bg-base-100"
-          open={visible}
-          onClickOverlay={toggleVisible}
-          sideClassName="z-40"
-          side={
-            <aside className="min-h-screen w-56 bg-base-100 p-4">
-              <AppMenu responsive={false} vertical={true} toggleVisible={toggleVisible} version={version} />
-              <div className="pointer-events-none sticky bottom-0 flex h-40 bg-base-100 [mask-image:linear-gradient(transparent,#000000)]" />
-            </aside>
-          }
-        >
-          <div>
-            <NavBar
-              toggleVisible={toggleVisible}
-              version={version}
-              apiKey={apiKey}
-              weatherData={weatherData}
-              user={user}
-            />
-            <Outlet />
-          </div>
-        </Drawer>
-      </AppState.Provider>
+      <AppThemeProvider>
+        <AppState.Provider value={createAppState()}>
+          <Drawer
+            className="bg-base-100"
+            open={visible}
+            onClickOverlay={toggleVisible}
+            sideClassName="z-40"
+            side={
+              <aside className="min-h-screen w-56 bg-base-100 p-4">
+                <AppMenu responsive={false} vertical={true} toggleVisible={toggleVisible} version={version} />
+                <div className="pointer-events-none sticky bottom-0 flex h-40 bg-base-100 [mask-image:linear-gradient(transparent,#000000)]" />
+              </aside>
+            }
+          >
+            <div>
+              <NavBar
+                toggleVisible={toggleVisible}
+                version={version}
+                apiKey={apiKey}
+                weatherData={weatherData}
+                user={user}
+              />
+              <Outlet />
+            </div>
+          </Drawer>
+        </AppState.Provider>
+      </AppThemeProvider>
     </>
   );
 }

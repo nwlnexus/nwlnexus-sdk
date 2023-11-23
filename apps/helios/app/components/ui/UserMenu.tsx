@@ -1,14 +1,13 @@
 // noinspection HtmlUnknownTarget
 
-import { Form } from '@remix-run/react';
-import { Avatar, Button, Dropdown } from 'react-daisyui';
+import { Avatar, Dropdown } from 'react-daisyui';
 import type { UserProfile } from '~/services/auth.server';
 
 export default function UserMenu({ user }: { user: UserProfile }) {
   const letters =
-    typeof user.profile.displayName == 'undefined'
+    typeof user.name == 'undefined' || user.name == ''
       ? 'HU'
-      : user.profile.displayName.split(' ')[0].substring(0, 1) + user.profile.displayName.split(' ')[1].substring(0, 1);
+      : user.name.split(' ')[0].substring(0, 1) + user.name.split(' ')[1].substring(0, 1);
 
   return (
     <>
@@ -23,15 +22,7 @@ export default function UserMenu({ user }: { user: UserProfile }) {
             borderColor="accent"
           />
         </Dropdown.Toggle>
-        <Dropdown.Menu className="w-52">
-          <Dropdown.Item>
-            <Form action="/auth/logout" method="POST">
-              <Button type="submit" fullWidth={true} color="neutral" variant="outline">
-                Logout
-              </Button>
-            </Form>
-          </Dropdown.Item>
-        </Dropdown.Menu>
+        <Dropdown.Menu className="mt-4 w-52"></Dropdown.Menu>
       </Dropdown>
     </>
   );

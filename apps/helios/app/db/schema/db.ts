@@ -1,5 +1,5 @@
 import { integer, primaryKey, sqliteTable, text } from 'drizzle-orm/sqlite-core';
-import { createInsertSchema } from 'drizzle-zod';
+import { createInsertSchema, createSelectSchema } from 'drizzle-zod';
 import type { AppConfig } from '~/config/app.config';
 
 type UserPrefs = {
@@ -9,14 +9,14 @@ type UserPrefs = {
 
 export const users = sqliteTable('users', {
   id: text('id').notNull().primaryKey(),
-  name: text('name'),
+  name: text('name').notNull(),
   email: text('email').notNull().unique(),
-  emailVerified: integer('email_verified', { mode: 'boolean' }),
+  emailVerified: integer('email_verified', { mode: 'boolean' }).notNull(),
   photo: text('photo'),
-  preferences: text('preferences', { mode: 'json' }).$type<UserPrefs>()
+  preferences: text('preferences', { mode: 'json' }).$type<UserPrefs | {}>()
 });
-
 export const usersInsertSchema = createInsertSchema(users);
+export const selectUserSchema = createSelectSchema(users);
 
 export const accounts = sqliteTable(
   'accounts',

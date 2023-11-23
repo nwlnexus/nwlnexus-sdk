@@ -5,29 +5,8 @@
     {
       "idx": 0,
       "version": "5",
-      "when": 1700619413162,
-      "tag": "0000_solid_diamondback",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "5",
-      "when": 1700621003123,
-      "tag": "0001_volatile_sue_storm",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "5",
-      "when": 1700621061957,
-      "tag": "0002_safe_pet_avengers",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "5",
-      "when": 1700677989753,
-      "tag": "0003_open_scorpion",
+      "when": 1700697827780,
+      "tag": "0000_panoramic_doctor_spectrum",
       "breakpoints": true
     }
   ]

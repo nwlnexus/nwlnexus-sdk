@@ -1,4 +1,5 @@
 import { getClientIPAddress } from 'remix-utils/get-client-ip-address';
+import { ulidFactory } from 'ulid-workers';
 import type { AppLoadContext } from '@remix-run/cloudflare';
 
 const getOS = () => {
@@ -44,5 +45,6 @@ const getIPAddress = async (req: Request, ctx: AppLoadContext): Promise<string> 
   }
   return cIP;
 };
+const ulid = ulidFactory();
 
-export { getIPAddress };
+export { getOS, getIPAddress, slugify, ulid };

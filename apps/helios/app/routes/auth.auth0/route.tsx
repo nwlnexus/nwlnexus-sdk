@@ -5,7 +5,7 @@ import { appSessionStorage } from '~/services/session.server';
 import type { ActionFunctionArgs } from '@remix-run/cloudflare';
 import type { SessionConfig } from '~/services/session.server';
 
-export const loader = () => redirect('/login');
+export const loader = () => redirect('/auth/login');
 
 export const action = async ({ context, request }: ActionFunctionArgs) => {
   const sessionConfig: SessionConfig = {
