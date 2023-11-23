@@ -7,9 +7,11 @@
     "build": "remix build",
     "dev": "remix dev --manual -c \"npm run start\"",
     "app:prepare": "cf-setup prepare --schemaDir=\"./app/db/schema\" --migrationsDir=\"./migrations\" --persistTo=\"../../.wrangler\"",
+    "pages:deploy": "yarn run build && wrangler pages deploy ./public",
     "start": "yarn app:prepare && wrangler pages dev --compatibility-date=${COMPAT_DATE} --compatibility-flag=nodejs_compat --persist-to=\"../../.wrangler\" ./public",
     "typecheck": "tsc",
-    "pages:deploy": "yarn run build && wrangler pages deploy ./public"
+    "test": "vitest related --no-tests --run",
+    "test:watch": "vitest --no-tests watch"
   },
   "dependencies": {
     "@preact/signals-react": "^1.3.6",
@@ -56,6 +58,7 @@
     "tailwindcss-3d": "^1.0.2",
     "tailwindcss-animate": "^1.0.7",
     "typescript": "^5.2.2",
+    "vitest": "^0.34.6",
     "wrangler": "^3.16.0"
   },
   "engines": {

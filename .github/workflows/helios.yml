@@ -1,0 +1,82 @@
+name: 'Deploy Helios'
+on:
+  push:
+    paths:
+      - 'apps/helios/**'
+      - '.github/workflows/helios.yml'
+
+defaults:
+  run:
+    shell: bash
+    working-directory: apps/helios
+
+env:
+  CI: true
+  HUSKY: 0
+  BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
+
+jobs:
+  helios-test-build-app:
+    name: 'Helios: Setup Git, Node and dependencies'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Get yarn cache
+        id: yarn-cache
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - uses: actions/cache@v3
+        with:
+          path: ${{ steps.yarn-cache.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'yarn'
+          cache-dependency-path: 'yarn.lock'
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+#      - name: Lint code
+#        run: |
+#          pnpm lint
+#          pnpm test
+
+      - name: Build app
+        run: yarn build
+
+      - name: Deploy Helios
+        uses: cloudflare/wrangler-action@2.0.0
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          wranglerVersion: '3.17.0'
+          workingDirectory: 'apps/helios'
+          preCommands: |
+            wrangler d1 migrations apply olympus
+          secrets: |
+            WEATHERAPI_KEY
+            AUTH_AUTH0_ID
+            AUTH_AUTH0_SECRET
+            AUTH_AUTH0_DOMAIN
+            AUTH_AUTH0_CALLBACK_URL
+            AUTH_AUTH0_RETURN_TO_URL
+            AUTH_SECRET
+            NODE_ENV
+            APP_VERSION
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          WEATHERAPI_KEY: ${{ secrets.WEATHERAPI_KEY }}
+          AUTH_AUTH0_ID: ${{ secrets.AUTH_AUTH0_ID }}
+          AUTH_AUTH0_DOMAIN: ${{ secrets.AUTH_AUTH0_DOMAIN }}
+          AUTH_AUTH0_CALLBACK_URL: ${{ secrets.AUTH_AUTH0_CALLBACK_URL }}
+          AUTH_AUTH0_RETURN_TO_URL: ${{ secrets.AUTH_AUTH0_RETURN_TO_URL }}
+          AUTH_SECRET: ${{ secrets.AUTH_SECRET }}
+          NODE_ENV: ${{ secrets.NODE_ENV }}
+          APP_VERSION: ${{ secrets.APP_VERSION }}
