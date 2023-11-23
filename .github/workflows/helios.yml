@@ -51,7 +51,7 @@ jobs:
         run: yarn build
 
       - name: Deploy Helios
-        uses: cloudflare/wrangler-action@2.0.0
+        uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
@@ -59,6 +59,7 @@ jobs:
           workingDirectory: 'apps/helios'
           preCommands: |
             wrangler d1 migrations apply olympus
+          command: pages deploy --project-name=helios
           secrets: |
             WEATHERAPI_KEY
             AUTH_AUTH0_ID
@@ -80,3 +81,9 @@ jobs:
           AUTH_SECRET: ${{ secrets.AUTH_SECRET }}
           NODE_ENV: ${{ secrets.NODE_ENV }}
           APP_VERSION: ${{ secrets.APP_VERSION }}
+
+      - name: Print Wrangler Logs
+        if: failure()
+        run: |
+          ls -l apps/helios/.wrangler/logs
+          cat apps/helios/.wrangler/logs/*
