@@ -1,17 +1,19 @@
 import { Await } from '@remix-run/react';
 import { Suspense } from 'react';
 import { Button, Join, Loading, Navbar, Tooltip } from 'react-daisyui';
+import { IconContext } from 'react-icons';
+import { RiLoginBoxLine } from 'react-icons/ri';
 import Search from '~/components/Search';
 import { Logo } from '~/components/ui/Logo';
 import ThemeToggle from '~/components/ui/ThemeToggle';
 import UserMenu from '~/components/ui/UserMenu';
+import Weather from '~/components/WeatherData';
 import { appConfig } from '~/config/app.config';
 import useScroll from '~/hooks/useScroll';
-import Weather from 'app/components/WeatherData';
 import clsx from 'clsx';
 import { useTheme } from 'next-themes';
+import type { WeatherData } from '~/components/WeatherData';
 import type { UserProfile } from '~/services/auth.server';
-import type { WeatherData } from 'app/components/WeatherData';
 
 type NavBarProps = {
   apiKey: string;
@@ -97,6 +99,11 @@ export default function NavBar({
               aria-label="sign in"
               tag="a"
               href="/auth/login"
+              endIcon={
+                <IconContext.Provider value={{ size: '1.5em' }}>
+                  <RiLoginBoxLine />
+                </IconContext.Provider>
+              }
             >
               Sign In
             </Button>

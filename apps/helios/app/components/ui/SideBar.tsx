@@ -1,5 +1,7 @@
-import { Form, useLocation } from '@remix-run/react';
-import { Avatar, Button, Divider } from 'react-daisyui';
+import { Form } from '@remix-run/react';
+import { Avatar, Button, Divider, Menu, Tooltip } from 'react-daisyui';
+import { IconContext } from 'react-icons';
+import { RiLogoutBoxLine, RiSettings4Line } from 'react-icons/ri';
 import AppMenu from '~/components/ui/AppMenu';
 import { Logo } from '~/components/ui/Logo';
 import clsx from 'clsx';
@@ -30,7 +32,6 @@ export default function SideBar({
   version,
   visible = false
 }: SideBarProps) {
-  const { pathname } = useLocation();
   const letters =
     !user || typeof user.name == 'undefined' || user.name == ''
       ? 'HU'
@@ -40,33 +41,53 @@ export default function SideBar({
     <>
       <div
         className={twMerge(
-          'sticky top-0 z-20 items-center gap-2 bg-base-100 bg-opacity-90 px-4 py-2 backdrop-blur',
+          'sticky top-0 z-20 items-center gap-2 bg-base-100 bg-opacity-90 px-4 pb-2 pt-0 backdrop-blur',
           className,
           clsx({ hidden: !visible })
         )}
       >
-        <div className="flex h-16 items-center justify-center p-8">
+        <div className="flex h-16 items-center justify-center">
           <Logo hideLogoOnLargeScreen={hideLogoOnLargeScreen} showVersion={showVersion} version={version} />
         </div>
         {showUserSection && user && (
           <>
-            <div className="flex w-full flex-col items-center justify-center">
+            <div className="flex w-full flex-col items-center justify-center pb-0">
               <Avatar
                 innerClassName="rounded"
                 size="sm"
                 shape="circle"
                 letters={letters}
-                border={true}
+                border={false}
                 borderColor="accent"
               />
               <span className="mt-4 font-semibold">{user.name}</span>
               <span className="text-xs font-light">{user.email}</span>
 
               <Form method="POST" name="userMenu" action={'/auth/logout'} className="mt-4 w-full px-2">
-                <Button type="submit" color="accent" size={'sm'} fullWidth={true}>
+                <Button
+                  type="submit"
+                  color="accent"
+                  size={'sm'}
+                  fullWidth={true}
+                  startIcon={
+                    <IconContext.Provider value={{ size: '1.5em' }}>
+                      <RiLogoutBoxLine />
+                    </IconContext.Provider>
+                  }
+                >
                   Logout
                 </Button>
               </Form>
+
+              <Menu className="mt-6" horizontal={true}>
+                <Menu.Item>
+                  <Tooltip message="User settings">
+                    <IconContext.Provider value={{ size: '1.5em' }}>
+                      <RiSettings4Line />
+                    </IconContext.Provider>
+                  </Tooltip>
+                </Menu.Item>
+              </Menu>
             </div>
             <Divider />
           </>

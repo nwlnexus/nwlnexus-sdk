@@ -23,7 +23,8 @@ export const accounts = sqliteTable(
   {
     userId: text('userId')
       .notNull()
-      .references(() => users.id, { onDelete: 'cascade' }),
+      .references(() => users.id, { onDelete: 'cascade' })
+      .unique(),
     provider: text('provider').notNull(),
     providerAccountId: text('providerAccountId').notNull(),
     refresh_token: text('refresh_token'),
@@ -35,7 +36,7 @@ export const accounts = sqliteTable(
     session_state: text('session_state')
   },
   (account) => ({
-    compoundKey: primaryKey({ columns: [account.provider, account.providerAccountId] })
+    compoundKey: primaryKey({ name: 'id', columns: [account.provider, account.providerAccountId] })
   })
 );
 

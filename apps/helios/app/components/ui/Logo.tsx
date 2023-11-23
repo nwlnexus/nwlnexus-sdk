@@ -11,10 +11,11 @@ export function Logo({ hideLogoOnLargeScreen = false, showVersion = true, versio
     <>
       <div className="flex items-center gap-2">
         <NavLink
-          className={clsx('flex-0 btn btn-ghost gap-1 px-2 md:gap-2', { 'lg:hidden': hideLogoOnLargeScreen })}
+          className={clsx('flex-0 btn btn-ghost gap-1 px-2 md:gap-2', { 'lg:hidden': !hideLogoOnLargeScreen })}
           to={'/'}
           aria-label="heliosUI"
           aria-current="page"
+          end={true}
         >
           <div className="font-title inline-flex text-lg md:text-2xl">
             <span className="lowercase">helios</span>

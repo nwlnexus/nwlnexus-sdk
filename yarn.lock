@@ -8976,6 +8976,7 @@ __metadata:
     react: "npm:^18.2.0"
     react-daisyui: "npm:^4.1.2"
     react-dom: "npm:^18.2.0"
+    react-icons: "npm:^4.12.0"
     remix-auth: "npm:^3.6.0"
     remix-auth-auth0: "npm:^1.9.0"
     remix-utils: "npm:^7.1.0"
@@ -13278,7 +13279,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-icons@npm:^4.11.0":
+"react-icons@npm:^4.11.0, react-icons@npm:^4.12.0":
   version: 4.12.0
   resolution: "react-icons@npm:4.12.0"
   peerDependencies:

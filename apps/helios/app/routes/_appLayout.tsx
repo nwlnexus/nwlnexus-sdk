@@ -1,6 +1,6 @@
 import { isRouteErrorResponse, Outlet, useLoaderData, useLocation, useRouteError } from '@remix-run/react';
 import { useCallback, useEffect, useState } from 'react';
-import { Button, Drawer, Hero } from 'react-daisyui';
+import { Button, Drawer, Hero, Toast } from 'react-daisyui';
 import { defer, redirect } from '@remix-run/cloudflare';
 import NavBar from '~/components/ui/NavBar';
 import SideBar from '~/components/ui/SideBar';
@@ -16,6 +16,12 @@ import clsx from 'clsx';
 import type { LoaderFunctionArgs } from '@remix-run/cloudflare';
 import type { WeatherData } from '~/components/WeatherData';
 import type { SessionConfig } from '~/services/session.server';
+
+declare global {
+  interface Array<T> {
+    matchPattern(inputString: T): boolean;
+  }
+}
 
 export const loader = async ({ request, context }: LoaderFunctionArgs) => {
   const req = request.clone();
@@ -63,13 +69,27 @@ export default function AppLayout() {
     document.documentElement.style.scrollBehavior = 'smooth';
   }, [pathname]);
 
+  // eslint-disable-next-line no-extend-native
+  Array.prototype.matchPattern = function (inputString) {
+    for (const pattern of this) {
+      const regexPattern = pattern.replace(/\*/g, '.*');
+      const regex = new RegExp(`^${regexPattern}$`);
+
+      if (regex.test(inputString)) {
+        return true;
+      }
+    }
+
+    return false;
+  };
+
   return (
     <>
       <AppThemeProvider>
         <AppState.Provider value={createAppState()}>
           <Drawer
             className={clsx('bg-base-100', {
-              'lg:drawer-open': !appConfig.pagesThatDontNeedSidebar.includes(pathname)
+              'lg:drawer-open': !appConfig.pagesThatDontNeedSidebar.matchPattern(pathname)
             })}
             open={visible}
             onClickOverlay={toggleVisible}
@@ -80,10 +100,11 @@ export default function AppLayout() {
                   responsive={false}
                   version={version}
                   toggleVisible={toggleVisible}
+                  hideLogoOnLargeScreen={true}
                   vertical={true}
                   user={user}
                   showUserSection={true}
-                  visible={device !== 'desktop' || !appConfig.pagesThatDontNeedSidebar.includes(pathname)}
+                  visible={device !== 'desktop' || !appConfig.pagesThatDontNeedSidebar.matchPattern(pathname)}
                 />
                 <div className="pointer-events-none sticky bottom-0 flex h-40 bg-base-100 [mask-image:linear-gradient(transparent,#000000)]" />
               </aside>
@@ -93,17 +114,22 @@ export default function AppLayout() {
               <NavBar
                 showToggle={device !== 'desktop'}
                 showSearch={true}
-                showVersion={true}
-                hideLogoOnLargeScreen={false}
+                showVersion={device !== 'desktop' || appConfig.pagesThatDontNeedSidebar.matchPattern(pathname)}
+                hideLogoOnLargeScreen={device == 'desktop' && appConfig.pagesThatDontNeedSidebar.matchPattern(pathname)}
                 toggleVisible={toggleVisible}
                 version={version}
                 apiKey={apiKey}
                 weatherData={weatherData}
                 user={user}
               />
-              <div>
+              <div
+                className={`${
+                  appConfig.pagesThatDontNeedSidebar.matchPattern(pathname) ? '' : 'max-w-[100vw] px-6 pb-16 xl:pr-2'
+                }`}
+              >
                 <Outlet />
               </div>
+              <Toast></Toast>
             </>
           </Drawer>
         </AppState.Provider>

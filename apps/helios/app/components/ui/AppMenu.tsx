@@ -1,7 +1,6 @@
-import { NavLink, useLocation } from '@remix-run/react';
+import { NavLink } from '@remix-run/react';
 import { Menu } from 'react-daisyui';
 import { appConfig } from '~/config/app.config';
-import clsx from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
 type AppMenuProps = {
@@ -23,7 +22,6 @@ export default function AppMenu({
   toggleVisible,
   ...props
 }: AppMenuProps) {
-  const { pathname } = useLocation();
   const nav = appConfig.navMenu;
   // const [open, setOpen] = useState(false);
   // const toggleOpen = useCallback(() => {
@@ -39,14 +37,8 @@ export default function AppMenu({
         {...props}
       >
         {nav.map((i, t) => (
-          <Menu.Item
-            key={t}
-            className={clsx(i.href == pathname ? 'active' : '')}
-            aria-current={i.href == pathname}
-            aria-label={i.title}
-            onClick={toggleVisible}
-          >
-            <NavLink to={i.href} className={clsx(i.href == pathname ? '!text-primary' : '')}>
+          <Menu.Item key={t} aria-label={i.title} onClick={toggleVisible}>
+            <NavLink to={i.href} className={({ isActive }) => (isActive ? 'text-primary' : undefined)}>
               {i.title}
             </NavLink>
           </Menu.Item>
