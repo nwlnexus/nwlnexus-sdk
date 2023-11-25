@@ -1,4 +1,4 @@
-import { Form } from '@remix-run/react';
+import { Form, NavLink } from '@remix-run/react';
 import { Avatar, Button, Divider, Menu, Tooltip } from 'react-daisyui';
 import { IconContext } from 'react-icons';
 import { RiLogoutBoxLine, RiSettings4Line } from 'react-icons/ri';
@@ -66,7 +66,7 @@ export default function SideBar({
               <Form method="POST" name="userMenu" action={'/auth/logout'} className="mt-4 w-full px-2">
                 <Button
                   type="submit"
-                  color="accent"
+                  color="secondary"
                   size={'sm'}
                   fullWidth={true}
                   startIcon={
@@ -82,9 +82,11 @@ export default function SideBar({
               <Menu className="mt-6" horizontal={true}>
                 <Menu.Item>
                   <Tooltip message="User settings">
-                    <IconContext.Provider value={{ size: '1.5em' }}>
-                      <RiSettings4Line />
-                    </IconContext.Provider>
+                    <NavLink to={'/user/settings'}>
+                      <IconContext.Provider value={{ size: '1.5em' }}>
+                        <RiSettings4Line />
+                      </IconContext.Provider>
+                    </NavLink>
                   </Tooltip>
                 </Menu.Item>
               </Menu>

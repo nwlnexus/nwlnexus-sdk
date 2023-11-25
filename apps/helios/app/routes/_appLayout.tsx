@@ -1,6 +1,6 @@
 import { isRouteErrorResponse, Outlet, useLoaderData, useLocation, useRouteError } from '@remix-run/react';
 import { useCallback, useEffect, useState } from 'react';
-import { Button, Drawer, Hero, Toast } from 'react-daisyui';
+import { Button, Drawer, Hero, Modal, Toast } from 'react-daisyui';
 import { defer, redirect } from '@remix-run/cloudflare';
 import NavBar from '~/components/ui/NavBar';
 import SideBar from '~/components/ui/SideBar';
@@ -82,6 +82,7 @@ export default function AppLayout() {
 
     return false;
   };
+  const { Dialog, handleShow } = Modal.useDialog();
 
   return (
     <>
@@ -101,6 +102,7 @@ export default function AppLayout() {
                   version={version}
                   toggleVisible={toggleVisible}
                   hideLogoOnLargeScreen={true}
+                  showUserSettingsModal={handleShow}
                   vertical={true}
                   user={user}
                   showUserSection={true}
@@ -130,6 +132,11 @@ export default function AppLayout() {
                 <Outlet />
               </div>
               <Toast></Toast>
+              {/* User settings modal*/}
+              <Dialog backdrop={true}>
+                <Modal.Header>User Settings</Modal.Header>
+                <Modal.Body>User Settings</Modal.Body>
+              </Dialog>
             </>
           </Drawer>
         </AppState.Provider>
