@@ -1,7 +1,7 @@
 {
   "version": "5",
   "dialect": "sqlite",
-  "id": "dac1f2fa-1f87-4fc4-87b1-c81cffe4455f",
+  "id": "4680e045-3bd6-41aa-a0af-5d7ae7e331d0",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "accounts": {
@@ -78,7 +78,15 @@
           "autoincrement": false
         }
       },
-      "indexes": {},
+      "indexes": {
+        "accounts_userId_unique": {
+          "name": "accounts_userId_unique",
+          "columns": [
+            "userId"
+          ],
+          "isUnique": true
+        }
+      },
       "foreignKeys": {
         "accounts_userId_users_id_fk": {
           "name": "accounts_userId_users_id_fk",
@@ -95,12 +103,12 @@
         }
       },
       "compositePrimaryKeys": {
-        "accounts_provider_providerAccountId_pk": {
+        "id": {
           "columns": [
             "provider",
             "providerAccountId"
           ],
-          "name": "accounts_provider_providerAccountId_pk"
+          "name": "id"
         }
       },
       "uniqueConstraints": {}

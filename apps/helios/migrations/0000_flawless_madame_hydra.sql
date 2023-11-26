@@ -29,4 +29,5 @@ CREATE TABLE `verificationTokens` (
 	PRIMARY KEY(`identifier`, `token`)
 );
 --> statement-breakpoint
+CREATE UNIQUE INDEX `accounts_userId_unique` ON `accounts` (`userId`);--> statement-breakpoint
 CREATE UNIQUE INDEX `users_email_unique` ON `users` (`email`);

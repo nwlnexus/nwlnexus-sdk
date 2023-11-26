@@ -1,101 +1,23 @@
 #!/usr/bin/env node
-import child_process from 'node:child_process';
-import fs from 'node:fs';
-import path from 'node:path';
 import process from 'node:process';
 import chalk from 'chalk';
-import toml from 'toml';
 import { hideBin } from 'yargs/helpers';
 import yargs from 'yargs/yargs';
-
-const setupDB = async (binding: string, schemaDir: string, migrationsDir: string, persistTo: string) => {
-  console.info(chalk.blue(`Preparing to setup D1 Database: ${binding}`));
-  // const schema = path.normalize(schemaDir);
-  console.log(schemaDir);
-  // const outDir = path.normalize(`${migrationsDir}`);
-  const cmd = `drizzle-kit generate:sqlite --schema=${schemaDir} --out=${migrationsDir}`;
-  child_process.execSync(cmd, {
-    stdio: 'inherit',
-    encoding: 'utf8'
-  });
-  const wranglerCmd = `NO_D1_WARNING=true wrangler d1 migrations apply ${binding} --local --persist-to=${persistTo}`;
-  child_process.execSync(wranglerCmd, {
-    stdio: 'inherit',
-    encoding: 'utf8'
-  });
-  console.info(chalk.blue(`Completed setup of D1 Database: ${binding}`));
-};
-
-const setupKV = async (b: string) => {
-  console.info(chalk.blue(`Preparing to setup KV: ${b}`));
-};
-
-const setupR2 = async (b: string) => {
-  console.info(chalk.blue(`Preparing to setup R2: ${b}`));
-};
+import * as packageFile from '../package.json';
+import { commands } from './commands/index.js';
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-const argv = yargs(hideBin(process.argv))
+const parser = yargs(hideBin(process.argv))
   .scriptName('cf-setup')
-  .options({
-    'wrangler-file': {
-      description: 'Path to custom wrangler TOML file.',
-      alias: ['w'],
-      default: path.join(process.cwd(), 'wrangler.toml'),
-      demandOption: true,
-      type: 'string'
-    }
-  })
-  .command(
-    'prepare',
-    'Prepare local Cloudflare assets.',
-    (yargs) => {
-      return yargs
-        .options({
-          persistTo: {
-            description: 'Directory for wrangler state.',
-            default: path.join(process.cwd(), '.wrangler/'),
-            requiresArg: true,
-            type: 'string',
-            normalize: true
-          },
-          schemaDir: {
-            alias: 's',
-            description: 'Directory to source schemas from.',
-            demandOption: true,
-            requiresArg: true,
-            type: 'string',
-            normalize: true
-          }
-        })
-        .boolean('reset');
-    },
-    async (argv) => {
-      const wranglerCfg = toml.parse(fs.readFileSync(argv.wranglerFile, 'utf-8'));
-      if ('d1_databases' in wranglerCfg) {
-        for (const database of wranglerCfg['d1_databases']) {
-          const mDir = typeof database['migrations_dir'] == 'undefined' ? 'migrations/' : database['migrations_dir'];
-          await setupDB(database['binding'], argv.schemaDir, mDir, argv.persistTo);
-        }
-      }
-      if ('kv_namespaces' in wranglerCfg) {
-        for (const kv of wranglerCfg['kv_namespaces']) {
-          await setupKV(kv['binding']);
-        }
-      }
-      if ('r2_namespaces' in wranglerCfg) {
-        for (const r2 of wranglerCfg['r2_namespaces']) {
-          await setupR2(r2['binding']);
-        }
-      }
-    }
-  )
-  .wrap(120)
-  .version('1.0.0')
-  .showHelpOnFail(false)
-  .help();
+  .command(commands)
+  .wrap(null)
+  .version(packageFile.default.version)
+  .alias('v', 'version')
+  .help()
+  .alias('h', 'help')
+  .showHelpOnFail(false, 'Specify --help or help for available options');
 
 (async () => {
   console.info(chalk.yellow(`Running from: ${process.cwd()}`));
-  await argv.parse();
+  await parser.parse();
 })();
