@@ -1,11 +1,42 @@
 {
   "version": "5",
   "dialect": "sqlite",
-  "id": "4680e045-3bd6-41aa-a0af-5d7ae7e331d0",
+  "id": "7fc60408-88fb-4556-8053-beab1f6d2f0d",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "accounts": {
       "name": "accounts",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "accounts_name_unique": {
+          "name": "accounts_name_unique",
+          "columns": [
+            "name"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "auth_accounts": {
+      "name": "auth_accounts",
       "columns": {
         "userId": {
           "name": "userId",
@@ -79,8 +110,8 @@
         }
       },
       "indexes": {
-        "accounts_userId_unique": {
-          "name": "accounts_userId_unique",
+        "auth_accounts_userId_unique": {
+          "name": "auth_accounts_userId_unique",
           "columns": [
             "userId"
           ],
@@ -88,9 +119,9 @@
         }
       },
       "foreignKeys": {
-        "accounts_userId_users_id_fk": {
-          "name": "accounts_userId_users_id_fk",
-          "tableFrom": "accounts",
+        "auth_accounts_userId_users_id_fk": {
+          "name": "auth_accounts_userId_users_id_fk",
+          "tableFrom": "auth_accounts",
           "tableTo": "users",
           "columnsFrom": [
             "userId"
@@ -157,6 +188,13 @@
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
+        },
+        "accountId": {
+          "name": "accountId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
         }
       },
       "indexes": {
@@ -168,7 +206,21 @@
           "isUnique": true
         }
       },
-      "foreignKeys": {},
+      "foreignKeys": {
+        "users_accountId_accounts_id_fk": {
+          "name": "users_accountId_accounts_id_fk",
+          "tableFrom": "users",
+          "tableTo": "accounts",
+          "columnsFrom": [
+            "accountId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },

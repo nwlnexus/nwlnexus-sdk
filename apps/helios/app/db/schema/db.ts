@@ -7,19 +7,27 @@ type UserPrefs = {
   loc?: string;
 };
 
+export const accounts = sqliteTable('accounts', {
+  id: text('id').notNull().primaryKey(),
+  name: text('name').notNull().unique()
+});
+
 export const users = sqliteTable('users', {
   id: text('id').notNull().primaryKey(),
   name: text('name').notNull(),
   email: text('email').notNull().unique(),
   emailVerified: integer('email_verified', { mode: 'boolean' }).notNull(),
   photo: text('photo'),
-  preferences: text('preferences', { mode: 'json' }).$type<UserPrefs | {}>()
+  preferences: text('preferences', { mode: 'json' }).$type<UserPrefs | {}>(),
+  accountId: text('accountId')
+    .notNull()
+    .references(() => accounts.id)
 });
 export const usersInsertSchema = createInsertSchema(users);
 export const selectUserSchema = createSelectSchema(users);
 
-export const accounts = sqliteTable(
-  'accounts',
+export const authAccounts = sqliteTable(
+  'auth_accounts',
   {
     userId: text('userId')
       .notNull()
@@ -35,8 +43,8 @@ export const accounts = sqliteTable(
     id_token: text('id_token'),
     session_state: text('session_state')
   },
-  (account) => ({
-    compoundKey: primaryKey({ name: 'id', columns: [account.provider, account.providerAccountId] })
+  (authAccount) => ({
+    compoundKey: primaryKey({ name: 'id', columns: [authAccount.provider, authAccount.providerAccountId] })
   })
 );
 
