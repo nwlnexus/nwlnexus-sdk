@@ -61,7 +61,6 @@ jobs:
           preCommands: |
             wrangler d1 migrations apply olympus
           command: pages deploy --project-name=helios ./public --commit-dirty=true
-          environment: production
           secrets: |
             WEATHERAPI_KEY
             AUTH_AUTH0_ID
@@ -83,9 +82,3 @@ jobs:
           AUTH_SECRET: ${{ secrets.AUTH_SECRET }}
           NODE_ENV: ${{ secrets.NODE_ENV }}
           APP_VERSION: ${{ secrets.APP_VERSION }}
-
-      - name: Print Wrangler Logs
-        if: failure()
-        run: |
-          ls -l apps/helios/.wrangler/logs
-          cat apps/helios/.wrangler/logs/*
