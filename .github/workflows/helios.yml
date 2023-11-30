@@ -58,7 +58,7 @@ jobs:
           wranglerVersion: '3.17.0'
           workingDirectory: 'apps/helios'
           packageManager: yarn
-          command: pages deploy --name=helios --project-name=helios ./public --commit-dirty=true
+          command: pages deploy ./public --commit-dirty=true --name=helios --project-name=helios
           secrets: |
             WEATHERAPI_KEY
             AUTH_AUTH0_ID
