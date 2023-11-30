@@ -58,9 +58,7 @@ jobs:
           wranglerVersion: '3.17.0'
           workingDirectory: 'apps/helios'
           packageManager: yarn
-          preCommands: |
-            wrangler d1 migrations apply olympus
-          command: pages deploy --project-name=helios ./public --commit-dirty=true
+          command: pages deploy --name=helios --project-name=helios ./public --commit-dirty=true
           secrets: |
             WEATHERAPI_KEY
             AUTH_AUTH0_ID
