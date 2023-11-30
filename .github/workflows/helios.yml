@@ -59,7 +59,7 @@ jobs:
           workingDirectory: 'apps/helios'
           packageManager: yarn
           preCommands: |
-            wrangler --remote d1 migrations apply olympus
+            wrangler d1 migrations apply olympus
           command: pages deploy --project-name=helios ./public --commit-dirty=true
           secrets: |
             WEATHERAPI_KEY
