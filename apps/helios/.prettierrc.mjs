@@ -10,9 +10,12 @@ const config = {
     'react',
     '@remix-run/react',
     '@remix-run/.*',
+    'clsx',
+    '',
     '<THIRD_PARTY_MODULES>',
     '<TYPES>',
     '<TYPES>^[.]',
+    '',
     '^[.]',
     '^(?!.*[.]css$)[./].*$',
     '.css$'

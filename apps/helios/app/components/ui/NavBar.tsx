@@ -1,5 +1,5 @@
 import { Await } from '@remix-run/react';
-import { Suspense } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { Button, Join, Loading, Navbar, Tooltip } from 'react-daisyui';
 import { IconContext } from 'react-icons';
 import { RiLoginBoxLine } from 'react-icons/ri';
@@ -42,6 +42,11 @@ export default function NavBar({
 }: NavBarProps) {
   const scrolled = useScroll(50);
   const { resolvedTheme, setTheme } = useTheme();
+  const [isLoggedIn, setIsLoggedIn] = useState(!!user);
+
+  useEffect(() => {
+    setIsLoggedIn(!!user);
+  }, [user]);
 
   return (
     <>
@@ -88,9 +93,8 @@ export default function NavBar({
         )}
         <Join className="flex-none items-center justify-center gap-x-2">
           <ThemeToggle resolvedTheme={resolvedTheme!} setTheme={setTheme} themes={appConfig.appThemes} />
-          {user !== null ? (
-            showUserMenu && <UserMenu user={user} />
-          ) : (
+          {isLoggedIn && showUserMenu && <UserMenu user={user!} />}
+          {!isLoggedIn && (
             <Button
               className="ml-4"
               size="md"
