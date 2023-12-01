@@ -14,7 +14,7 @@
     "prettier": "^3.0.3",
     "semver": "^7.5.2"
   },
-  "packageManager": "yarn@4.0.2",
+  "packageManager": "npm@8.0.0",
   "resolutions": {
     "debug": "^4.3.4",
     "semver": "^7.5.4"
