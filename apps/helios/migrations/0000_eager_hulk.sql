@@ -25,7 +25,7 @@ CREATE TABLE `users` (
 	`email_verified` integer NOT NULL,
 	`photo` text,
 	`preferences` text,
-	`accountId` text,
+	`accountId` text NOT NULL,
 	FOREIGN KEY (`accountId`) REFERENCES `accounts`(`id`) ON UPDATE no action ON DELETE no action
 );
 --> statement-breakpoint
