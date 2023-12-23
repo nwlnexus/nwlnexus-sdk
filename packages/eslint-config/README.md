@@ -1,3 +1,3 @@
-# `@olympus/eslint-config`
+# `@nwlnexus/eslint-config`
 
 Collection of internal eslint configurations.

@@ -1,5 +1,5 @@
 {
-  "name": "@olympus/eslint-config",
+  "name": "@nwlnexus/eslint-config",
   "version": "1.0.0",
   "private": true,
   "description": "ESLint config for olympus",

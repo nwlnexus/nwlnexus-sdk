@@ -1,32 +1,28 @@
 {
-  "name": "olympus-net",
-  "version": "1.0.0",
-  "description": "Suite of apps for local hosting",
-  "homepage": "https://github.com/nwlnexus/olympus-net#readme",
-  "repository": "git@github.com:nwlnexus/olympus-net.git",
+  "name": "nwlnexus-sdk",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Monorepo with suite of apps and packages",
+  "homepage": "https://github.com/nwlnexus/nwlnexus-sdk#readme",
   "bugs": {
-    "url": "https://github.com/nwlnexus/olympus-net/issues"
+    "url": "https://github.com/nwlnexus/nwlnexus-sdk/issues"
   },
   "author": "Nigel Williams-Lucas <nigel.williamslucas@gmail.com>",
   "license": "MIT OR Apache-2.0",
-  "private": true,
-  "devDependencies": {
-    "@olympus/eslint-config": "workspace:*",
-    "@olympus/typescript-config": "workspace:*",
-    "prettier": "^3.1.1",
-    "semver": "^7.5.2",
-    "turbo": "latest"
-  },
-  "packageManager": "pnpm@8.9.0",
-  "pnpm": {
-    "overrides": {
-      "remix-auth>@remix-run/react": "^2.0.1",
-      "remix-utils>@remix-run/react": "^2.0.1",
-      "react-daisyui>daisyui": "^4.4.14"
-    }
-  },
-  "engines": {
-    "node": ">=18"
+  "scripts": {
+    "build": "turbo build",
+    "check": "turbo check:lint check:type check:format type:tests",
+    "check:format": "prettier . --check --ignore-unknown",
+    "check:lint": "node ensure-turbo-build-output.mjs && dotenv -- turbo check:lint",
+    "check:type": "dotenv -- turbo check:type type:tests",
+    "dev": "turbo dev",
+    "fix": "pnpm run prettify && turbo check:lint -- --fix",
+    "prettify": "prettier . --write --ignore-unknown",
+    "test": "turbo test",
+    "test:ci": "vitest run && dotenv -- turbo test:ci --filter=cfsetup",
+    "test:watch": "turbo test:watch",
+    "type:tests": "dotenv -- turbo type:tests",
+    "gen:package": "turbo gen package"
   },
   "dependencies": {
     "@changesets/changelog-github": "^0.5.0",
@@ -34,8 +30,8 @@
     "@cloudflare/workers-types": "^4.20230518.0",
     "@faker-js/faker": "^8.3.1",
     "@ianvs/prettier-plugin-sort-imports": "^4.1.1",
+    "@nwlnexus/cfsetup": "workspace:*",
     "@types/node": "^20.10.5",
-    "cfsetup": "git+https://git@github.com/nwlnexus/cfsetup.git",
     "drizzle-kit": "^0.20.6",
     "drizzle-orm": "^0.29.0",
     "drizzle-zod": "^0.5.1",
@@ -44,6 +40,34 @@
     "prettier-plugin-tailwindcss": "^0.5.9",
     "rimraf": "^5.0.5",
     "typescript": "^5.3.3",
+    "vite": "^5.0.10",
+    "vitest": "^0.34.6",
     "wrangler": "^3.22.0"
+  },
+  "devDependencies": {
+    "@nwlnexus/eslint-config": "workspace:*",
+    "@nwlnexus/typescript-config": "workspace:*",
+    "prettier": "^3.1.1",
+    "semver": "^7.5.2",
+    "turbo": "latest"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "packageManager": "pnpm@8.9.0",
+  "pnpm": {
+    "overrides": {
+      "remix-auth>@remix-run/react": "^2.0.1",
+      "remix-utils>@remix-run/react": "^2.0.1",
+      "react-daisyui>daisyui": "^4.4.14"
+    },
+    "peerDependencyRules": {
+      "allowedVersions": {
+        "react": "18",
+        "react-dom": "18",
+        "@types/react": "18",
+        "@types/react-dom": "18"
+      }
+    }
   }
 }

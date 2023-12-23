@@ -1,5 +1,5 @@
 {
-  "extends": "@olympus/typescript-config/remix.json",
+  "extends": "@nwlnexus/typescript-config/remix.json",
   "include": ["remix.env.d.ts", "**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules", "./node_modules", "./node_modules/*", "scripts/*"],
   "compilerOptions": {

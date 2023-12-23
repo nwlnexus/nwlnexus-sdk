@@ -1,32 +1,46 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "globalDependencies": ["**/.env.*local", "**/.env", "**/.dev.vars"],
-  "globalEnv": ["NODE_ENV"],
+  "globalEnv": ["NODE_ENV", "NODE_VERSION", "CI_OS"],
   "pipeline": {
+    "@nwlnexus/helios#dev": {
+      "cache": false,
+      "persistent": true,
+      "dependsOn": ["@nwlnexus/helios#db:prepare"]
+    },
+    "@nwlnexus/hermes#dev": {
+      "cache": false,
+      "persistent": true,
+      "dependsOn": ["@nwlnexus/helios#db:prepare"]
+    },
     "build": {
       "dependsOn": ["^build"],
       "outputs": [".build/**", "!.cache/**", ".svelte-kit/**", "public/build/**"]
     },
-    "@olympus/helios#dev": {
-      "cache": false,
-      "persistent": true,
-      "dependsOn": ["@olympus/helios#db:prepare"]
+    "test": {
+      "dependsOn": ["^build"],
+      "cache": false
     },
-    "@olympus/hermes#dev": {
-      "cache": false,
-      "persistent": true,
-      "dependsOn": ["@olympus/helios#db:prepare"]
+    "test:watch": {
+      "cache": false
     },
     "check:lint": {
-      "dependsOn": ["^check:lint"]
+      "dependsOn": ["^topological"]
     },
-    "check:format": {
-      "dependsOn": ["^check:lint"]
+    "check:type": {
+      "dependsOn": ["^topological"]
     },
-    "@olympus/helios#db:prepare": {
+    "topological": {
+      "dependsOn": ["^topological"]
+    },
+    "type:tests": {},
+    "test:ci": {
+      "cache": false
+    },
+    "@nwlnexus/helios#db:prepare": {
       "outputs": ["../../migrations/**/*"]
     },
-    "@olympus/hermes#db:prepare": {
+    "@nwlnexus/hermes#db:prepare": {
       "outputs": ["../../migrations/**/*"]
     }
   }

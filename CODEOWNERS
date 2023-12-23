@@ -1,0 +1,6 @@
+* @nwlnexus
+
+# Owners intentionally left blank on these shared directories
+# to avoid noisy review requests
+/.changeset/
+/fixtures/

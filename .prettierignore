@@ -1,11 +1,10 @@
 node_modules
 .cache/
 **/build/
-public/build/
-app/styles
+apps/**/styles
 **/*.ignore.*
 .DS_Store
-**/functions/**/*
+apps/**/functions/**/*
 /package
 .env
 .env.*
@@ -15,7 +14,22 @@ app/styles
 /.cache
 /.wrangler
 
-# Ignore files for PNPM, NPM and YARN
-pnpm-lock.yaml
-package-lock.json
-yarn.lock
+packages/cfsetup/dist/
+packages/cfsetup/emitted-types/
+packages/cfsetup/coverage/
+packages/cfsetup/CHANGELOG.md
+packages/format-errors/package.json
+packages/**/dist/**
+
+fixtures/**/dist/**
+**/vendor/**
+
+**/*.d.ts
+
+# Moved from /templates
+*-lock.*
+*.lock
+*.log
+
+# TurboRepo CodeGen .hbs files
+**/*.hbs

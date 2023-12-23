@@ -1,0 +1,27 @@
+name = "butler"
+main = "./src/index.ts"
+compatibility_date = "2023-05-18"
+compatibility_flags = [ "nodejs_compat" ]
+usage_model = "bundled"
+minify = true
+send_metrics = true
+workers_dev = false
+
+queues.producers = [
+  { queue = "butler-queue", binding = "BUTLER_QUEUE" }
+]
+
+queues.consumers = [
+  { queue = "butler-queue", max_batch_size = 5, max_batch_timeout = 5 }
+]
+
+kv_namespaces = [
+  { binding = "FULCRUM_KV", id = "<UUID>", preview_id = "FULCRUM_KV"}
+]
+
+d1_databases = [
+  { binding = "FULCRUM_DB", database_name = "fulcrum", database_id = "<UUID>", preview_database_id = "FULCRUM_DB", migrations_dir = "../../migrations" }
+]
+
+[triggers]
+crons = ["0 2 * * *"]
