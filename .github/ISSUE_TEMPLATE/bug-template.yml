@@ -1,0 +1,60 @@
+name: "\U0001F41B Bug Report"
+description: Report an issue or possible bug
+title: "\U0001F41B BUG:"
+labels: ["bug"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Quick Bug Form
+        Thank you for taking the time to file a bug report! Please fill out this form as completely as possible.
+  - type: dropdown
+    id: products
+    validations:
+      required: true
+    attributes:
+      label: Which app/packages does this pertain to?
+      multiple: true
+      options:
+        - Helios
+        - Hermes
+        - Cfsetup
+        - Other
+  - type: input
+    attributes:
+      label: What version(s) of the tool(s) are you using?
+      placeholder: 0.0.0 [Helios], 0.0.0 [cfsetup], etc.
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: What version of Node are you using?
+      placeholder: 0.0.0
+    validations:
+      required: false
+  - type: input
+    attributes:
+      label: What operating system are you using?
+      placeholder: Mac, Windows, Linux (or WSL)
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Describe the Bug
+      description: Include steps to reproduce, describe the behaviour you observe, and describe the behaviour you _expect_ to observe.
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Please provide a link to a minimal reproduction
+      description: Although not required, we often request a minimal reproduction to help troubleshoot the issue, so providing this up-front streamlines the process towards resolution.
+      placeholder: https://github.com/foobar-user/minimal-repro
+    validations:
+      required: false
+  - type: textarea
+    attributes:
+      label: Please provide any relevant error logs
+      description: Although not required, we often request logs to help troubleshoot the issue, so providing this up-front streamlines the process towards resolution. Please be careful to hide any sensitive information.
+    validations:
+      required: false

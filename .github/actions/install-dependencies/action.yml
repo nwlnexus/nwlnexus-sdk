@@ -8,10 +8,10 @@ runs:
       with:
         version: 8.12.0
 
-    - name: Install Node.js ${{ env.node-version }}
+    - name: Install Node.js ${{ env.NODE_VERSION }}
       uses: actions/setup-node@v3
       with:
-        node-version: ${{ env.node-version }}
+        node-version: ${{ env.NODE_VERSION }}
         cache: "pnpm"
 
     - name: Install NPM Dependencies
