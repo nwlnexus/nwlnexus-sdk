@@ -1,0 +1,70 @@
+name: Release
+on:
+  push:
+    branches:
+      - main
+
+defaults:
+  run:
+    shell: bash
+
+env:
+  CI: true
+  HUSKY: 0
+  BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
+
+jobs:
+  release:
+    timeout-minutes: 30
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: true
+
+    if: ${{ github.repository_owner == 'nwlnexus' }}
+    name: Release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    steps:
+      - name: Configure 1Password Service Account
+        uses: 1password/load-secrets-action/configure@v1
+        with:
+          service-account-token: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
+
+      - name: Load envrionment variables
+        id: load-1password-env
+        uses: 1password/load-secrets-action@v1
+        with:
+          export-env: false
+        env:
+          GH_ACCESS_TOKEN: op://Dev/3hwptanyvn7stnz63n5urtdwo4/personal_access_token
+          NPM_PUBLISH_TOKEN: op://Dev/gpwxrxcaff6ksvee6bgbmbqpca/publish_root_token
+
+      - uses: actions/checkout@v4
+        with:
+          # See https://github.com/changesets/action/issues/187
+          token: ${{ steps.load-1password-env.outputs.GH_ACCESS_TOKEN }}
+          fetch-depth: 0
+
+      - name: Install Dependencies
+        uses: ./.github/actions/install-dependencies
+
+      - name: Build app
+        run: pnpm run build
+
+      - name: Check for other errors
+        run: pnpm run check
+        env:
+          NODE_OPTIONS: "--max_old_space_size=8192"
+
+      - name: Create Version PR or Publish to NPM
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          version: node .github/version-script.js
+          publish: pnpm exec changeset publish
+        env:
+          GITHUB_TOKEN: ${{ steps.load-1password-env.outputs.GH_ACCESS_TOKEN }}
+          NPM_PUBLISH_TOKEN: ${{ steps.load-1password-env.outputs.NPM_PUBLISH_TOKEN }}
+          NODE_ENV: "production"
