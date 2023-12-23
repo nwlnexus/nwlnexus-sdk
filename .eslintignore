@@ -1,5 +1,5 @@
 /.cache
-/.github
+.github/**/*
 /build
 /public/build/
 node_modules
