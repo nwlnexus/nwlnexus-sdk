@@ -9,8 +9,6 @@
     "check:format": "prettier . --write --ignore-unknown",
     "check:lint": "prettier --check ./ && eslint ./",
     "dev": "remix dev --manual -c \"npm run start\"",
-    "db:prepare": "cfsetup prepare all --schema-dir=\"../../packages/db-schema/src\" --persist-to=\"../../.wrangler\"",
-    "db:prepare:reset": "cfsetup prepare --reset --schema-dir=\"./app/db/schema\" --persist-to=\"../../.wrangler\"",
     "pages:deploy": "npm run build && wrangler pages deploy ./public --commit-dirty=true",
     "start": "wrangler pages dev --compatibility-date=${COMPAT_DATE} --compatibility-flag=nodejs_compat --persist-to=\"../../.wrangler\" ./public",
     "typecheck": "tsc",

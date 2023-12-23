@@ -1,17 +1,7 @@
 d1_databases = [
-  { binding = "DB", database_name = "olympus", database_id = "5844cf92-fe90-46ad-9de7-b9ee36191b7b", preview_database_id = "DB" }
+  { binding = "OLYMPUS_DB", database_name = "olympus", database_id = "<UUID>", preview_database_id = "OLYMPUS_DB" }
 ]
 
 kv_namespaces = [
-  { binding = "KV", id = "4dbcd582a6504dc9bdbf0969181cc259", preview_id = "KV" }
-]
-
-[env.production]
-name = "helios"
-d1_databases = [
-  { binding = "DB", database_name = "olympus", database_id = "5844cf92-fe90-46ad-9de7-b9ee36191b7b", preview_database_id = "5844cf92-fe90-46ad-9de7-b9ee36191b7b" }
-]
-
-kv_namespaces = [
-  { binding = "KV", id = "4dbcd582a6504dc9bdbf0969181cc259", preview_id = "4dbcd582a6504dc9bdbf0969181cc259" }
+  { binding = "OLYMPUS_KV", id = "<UUID>", preview_id = "OLYMPUS_KV" }
 ]

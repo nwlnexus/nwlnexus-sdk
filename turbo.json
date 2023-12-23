@@ -6,12 +6,12 @@
     "@nwlnexus/helios#dev": {
       "cache": false,
       "persistent": true,
-      "dependsOn": ["@nwlnexus/helios#db:prepare"]
+      "dependsOn": ["//#db:prepare"]
     },
     "@nwlnexus/hermes#dev": {
       "cache": false,
       "persistent": true,
-      "dependsOn": ["@nwlnexus/helios#db:prepare"]
+      "dependsOn": ["//#db:prepare"]
     },
     "build": {
       "dependsOn": ["^build"],
@@ -37,11 +37,9 @@
     "test:ci": {
       "cache": false
     },
-    "@nwlnexus/helios#db:prepare": {
-      "outputs": ["../../migrations/**/*"]
-    },
-    "@nwlnexus/hermes#db:prepare": {
-      "outputs": ["../../migrations/**/*"]
+    "//#db:prepare": {
+      "outputs": ["./migrations/**/*"],
+      "dependsOn": ["@nwlnexus/cfsetup#build"]
     }
   }
 }
