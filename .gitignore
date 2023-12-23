@@ -1,14 +1,8 @@
-node_modules
-
 bazel-*
 /.cache
 /functions/\[\[path\]\].js
 /functions/\[\[path\]\].js.map
 /public/build
-.env
-.env.*
-!.env.sample
-.dev.vars
 
 /functions/_assets
 /app/styles/tailwind.css
@@ -19,9 +13,6 @@ wrangler-local-state
 /test-results/
 /playwright-report/
 /playwright/.cache/
-
-.DS_Store
-.turbo
 
 .idea/**/*.iml
 .idea/workspace.xml
@@ -38,3 +29,43 @@ wrangler-local-state
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# Dependencies
+node_modules
+.pnp
+.pnp.js
+
+# Local env files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Testing
+coverage
+
+# Turbo
+.turbo
+
+# Vercel
+.vercel
+
+# Build Outputs
+.next/
+out/
+build
+dist
+
+
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Misc
+.DS_Store
+*.pem
+/.wrangler/

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "globalDependencies": ["**/.env.*local", "**/.env", "**/.dev.vars"],
+  "globalEnv": ["NODE_ENV"],
+  "pipeline": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": [".build/**", "!.cache/**", ".svelte-kit/**", "public/build/**"]
+    },
+    "@olympus/helios#dev": {
+      "cache": false,
+      "persistent": true,
+      "dependsOn": ["@olympus/helios#db:prepare"]
+    },
+    "@olympus/hermes#dev": {
+      "cache": false,
+      "persistent": true,
+      "dependsOn": ["@olympus/helios#db:prepare"]
+    },
+    "check:lint": {
+      "dependsOn": ["^check:lint"]
+    },
+    "check:format": {
+      "dependsOn": ["^check:lint"]
+    },
+    "@olympus/helios#db:prepare": {
+      "outputs": ["../../migrations/**/*"]
+    },
+    "@olympus/hermes#db:prepare": {
+      "outputs": ["../../migrations/**/*"]
+    }
+  }
+}

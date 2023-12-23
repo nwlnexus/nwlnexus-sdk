@@ -1,6 +1,21 @@
 node_modules
 .cache/
-build/
+**/build/
 public/build/
 app/styles
 **/*.ignore.*
+.DS_Store
+**/functions/**/*
+/package
+.env
+.env.*
+!.env.example
+/.github
+/.idea
+/.cache
+/.wrangler
+
+# Ignore files for PNPM, NPM and YARN
+pnpm-lock.yaml
+package-lock.json
+yarn.lock

@@ -2,21 +2,48 @@
   "name": "olympus-net",
   "version": "1.0.0",
   "description": "Suite of apps for local hosting",
+  "homepage": "https://github.com/nwlnexus/olympus-net#readme",
   "repository": "git@github.com:nwlnexus/olympus-net.git",
-  "author": "Nigel Williams-Lucas <nigel.williamslucas@gmail.com>",
-  "license": "MIT",
-  "private": true,
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
-  "devDependencies": {
-    "prettier": "^3.0.3",
-    "semver": "^7.5.2"
+  "bugs": {
+    "url": "https://github.com/nwlnexus/olympus-net/issues"
   },
-  "packageManager": "npm@8.0.0",
-  "resolutions": {
-    "debug": "^4.3.4",
-    "semver": "^7.5.4"
+  "author": "Nigel Williams-Lucas <nigel.williamslucas@gmail.com>",
+  "license": "MIT OR Apache-2.0",
+  "private": true,
+  "devDependencies": {
+    "@olympus/eslint-config": "workspace:*",
+    "@olympus/typescript-config": "workspace:*",
+    "prettier": "^3.1.1",
+    "semver": "^7.5.2",
+    "turbo": "latest"
+  },
+  "packageManager": "pnpm@8.9.0",
+  "pnpm": {
+    "overrides": {
+      "remix-auth>@remix-run/react": "^2.0.1",
+      "remix-utils>@remix-run/react": "^2.0.1",
+      "react-daisyui>daisyui": "^4.4.14"
+    }
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@changesets/changelog-github": "^0.5.0",
+    "@changesets/cli": "^2.27.1",
+    "@cloudflare/workers-types": "^4.20230518.0",
+    "@faker-js/faker": "^8.3.1",
+    "@ianvs/prettier-plugin-sort-imports": "^4.1.1",
+    "@types/node": "^20.10.5",
+    "cfsetup": "git+https://git@github.com/nwlnexus/cfsetup.git",
+    "drizzle-kit": "^0.20.6",
+    "drizzle-orm": "^0.29.0",
+    "drizzle-zod": "^0.5.1",
+    "esbuild-register": "^3.5.0",
+    "prettier-plugin-packagejson": "^2.4.7",
+    "prettier-plugin-tailwindcss": "^0.5.9",
+    "rimraf": "^5.0.5",
+    "typescript": "^5.3.3",
+    "wrangler": "^3.22.0"
   }
 }

@@ -1,0 +1,16 @@
+{
+  "name": "@olympus/db-schema",
+  "version": "0.0.0",
+  "private": true,
+  "exports": {
+    "./schema": "./src/schema.ts"
+  },
+  "devDependencies": {
+    "@olympus/eslint-config": "workspace:*",
+    "@olympus/typescript-config": "workspace:*",
+    "eslint-plugin-drizzle": "^0.2.2"
+  },
+  "dependencies": {
+    "@paralleldrive/cuid2": "^2.2.2"
+  }
+}
