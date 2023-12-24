@@ -11,8 +11,13 @@ runs:
     - name: Load envrionment variables
       id: load-1password-env
       uses: 1password/load-secrets-action@v1
-      with:
-        export-env: false
       env:
-        GH_ACCESS_TOKEN: op://Dev/3hwptanyvn7stnz63n5urtdwo4/personal_access_token
+        GH_ACCESS_TOKEN: op://Dev/3hwptanyvn7stnz63n5urtdwo4/gh_pat_classic
         NPM_PUBLISH_TOKEN: op://Dev/gpwxrxcaff6ksvee6bgbmbqpca/publish_root_token
+        COMPAT_DATE: op://Dev/nztlf5np6ljbte7yhwi4xfsqjm/compat_date
+        WEATHERAPI_KEY: op://Dev/fsdgtvziuoqdeq36rqkhbwzcde/api_key
+        AUTH_SECRET: op://Dev/nztlf5np6ljbte7yhwi4xfsqjm/session_secret
+        AUTH_AUTH0_ID: op://Dev/nztlf5np6ljbte7yhwi4xfsqjm/auth0_client_id
+        AUTH_AUTH0_SECRET: op://Dev/nztlf5np6ljbte7yhwi4xfsqjm/auth0_client_secret
+        AUTH_AUTH0_DOMAIN: op://Dev/nztlf5np6ljbte7yhwi4xfsqjm/auth0_domain
+

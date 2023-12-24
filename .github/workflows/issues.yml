@@ -9,24 +9,44 @@ jobs:
     name: Add issue to project
     runs-on: ubuntu-latest
     steps:
+      - name: Configure 1Password Service Account
+        uses: 1password/load-secrets-action/configure@v1
+        with:
+          service-account-token: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
+
+      - name: Load envrionment variables
+        id: load-1password-env
+        uses: 1password/load-secrets-action@v1
+        with:
+          export-env: false
+        env:
+          GH_ACCESS_TOKEN: op://Dev/3hwptanyvn7stnz63n5urtdwo4/gh_pat_classic
+          NPM_PUBLISH_TOKEN: op://Dev/gpwxrxcaff6ksvee6bgbmbqpca/publish_root_token
+          COMPAT_DATE: op://Dev/nztlf5np6ljbte7yhwi4xfsqjm/compat_date
+          WEATHERAPI_KEY: op://Dev/fsdgtvziuoqdeq36rqkhbwzcde/api_key
+          AUTH_SECRET: op://Dev/nztlf5np6ljbte7yhwi4xfsqjm/session_secret
+          AUTH_AUTH0_ID: op://Dev/nztlf5np6ljbte7yhwi4xfsqjm/auth0_client_id
+          AUTH_AUTH0_SECRET: op://Dev/nztlf5np6ljbte7yhwi4xfsqjm/auth0_client_secret
+          AUTH_AUTH0_DOMAIN: op://Dev/nztlf5np6ljbte7yhwi4xfsqjm/auth0_domain
+
       - uses: actions/add-to-project@v0.5.0
         with:
           project-url: https://github.com/orgs/nwlnexus/projects/1
-          github-token: ${{ secrets.GH_ACCESS_TOKEN }}
+          github-token: ${{ steps.load-1password-env.outputs.GH_ACCESS_TOKEN }}
           labeled: bug, enhancement
           label-operator: OR
       - uses: actions/add-to-project@v0.5.0
         with:
           project-url: https://github.com/orgs/nwlnexus/projects/6
-          github-token: ${{ secrets.GH_ACCESS_TOKEN }}
+          github-token: ${{ steps.load-1password-env.outputs.GH_ACCESS_TOKEN }}
           labeled: cfsetup
       - uses: actions/add-to-project@v0.5.0
         with:
           project-url: https://github.com/orgs/nwlnexus/projects/3
-          github-token: ${{ secrets.GH_ACCESS_TOKEN }}
+          github-token: ${{ steps.load-1password-env.outputs.GH_ACCESS_TOKEN }}
           labeled: hermes
       - uses: actions/add-to-project@v0.5.0
         with:
           project-url: https://github.com/orgs/nwlnexus/projects/5
-          github-token: ${{ secrets.GH_ACCESS_TOKEN }}
+          github-token: ${{ steps.load-1password-env.outputs.GH_ACCESS_TOKEN }}
           labeled: helios
