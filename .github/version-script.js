@@ -7,14 +7,14 @@
  * node ./.github/version-script.js <package-name>
  * ```
  *
- * `<package-name>` defaults to `wrangler` if not provided.
+ * `<package-name>` defaults to `cfsetup` if not provided.
  */
 
 const { readFileSync, writeFileSync } = require("fs");
 const { execSync } = require("child_process");
 
 try {
-  const packageName = getArgs()[0] ?? "wrangler";
+  const packageName = getArgs()[0] ?? "cfsetup";
   const packageJsonPath = `./packages/${packageName}/package.json`;
   const package = JSON.parse(readFileSync(packageJsonPath));
   const stdout = execSync("git rev-parse --short HEAD", { encoding: "utf8" });
