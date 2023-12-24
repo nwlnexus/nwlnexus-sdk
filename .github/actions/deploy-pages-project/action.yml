@@ -1,0 +1,38 @@
+  name: "Deploy pages project"
+  description: "Deploy Pages project"
+  branding:
+    icon: 'upload-cloud'
+    color: 'green'
+  inputs:
+    package:
+      description: 'Name of app to upload'
+      required: true
+    CLOUDFLARE_ACCOUNT_ID:
+      description: 'CF account id'
+      required: true
+    CLOUDFLARE_API_TOKEN:
+      description: 'CF token for api access on the account'
+      required: true
+  runs:
+    using: "composite"
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install Dependencies
+        uses: ./.github/actions/install-dependencies
+
+      - name: Build
+        shell: bash
+        run: pnpm run build
+        env:
+          CI_OS: ${{ runner.os }}
+
+      - name: Deploy to Pages
+        shell: bash
+        run: pnpm --filter ${{ inputs.package }} run deploy
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ inputs.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ inputs.CLOUDFLARE_API_TOKEN }}
