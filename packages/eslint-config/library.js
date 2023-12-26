@@ -1,11 +1,13 @@
-const { resolve } = require('node:path');
-
-const project = resolve(process.cwd(), 'tsconfig.json');
-
 /** @type {import("eslint").Linter.Config} */
 module.exports = {
   extends: ['eslint:recommended', 'prettier', 'eslint-config-turbo'],
-  plugins: ['only-warn'],
+  plugins: ['@typescript-eslint', 'only-warn'],
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaVersion: 2022,
+    sourceType: 'module',
+    project: true
+  },
   globals: {
     React: true,
     JSX: true
@@ -13,22 +15,39 @@ module.exports = {
   env: {
     node: true
   },
-  settings: {
-    'import/resolver': {
-      typescript: {
-        project
-      }
-    }
-  },
   ignorePatterns: [
     // Ignore dotfiles
     '.*.js',
     'node_modules/',
-    'dist/'
+    'dist/',
+    '**/node_modules/**',
+    'vendor',
+    '.eslintrc.js',
+    '**/dist/**',
+    'pages/functions/template-worker.ts',
+    'templates',
+    'emitted-types'
   ],
-  overrides: [
-    {
-      files: ['*.js?(x)', '*.ts?(x)']
-    }
-  ]
+  rules: {
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      {
+        vars: 'all',
+        varsIgnorePattern: '^_',
+        args: 'after-used',
+        argsIgnorePattern: '^_'
+      }
+    ]
+    // 'no-restricted-globals': [
+    //   'error',
+    //   {
+    //     name: '__dirname',
+    //     message: 'Use `getBasePath()` instead.'
+    //   },
+    //   {
+    //     name: '__filename',
+    //     message: 'Use `getBasePath()` instead.'
+    //   }
+    // ]
+  }
 };
