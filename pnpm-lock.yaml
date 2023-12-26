@@ -84,121 +84,6 @@ importers:
         specifier: latest
         version: 1.11.2
 
-  apps/helios:
-    dependencies:
-      '@nwlnexus/db-schema':
-        specifier: workspace:^
-        version: link:../../packages/db-schema
-      '@preact/signals-react':
-        specifier: ^1.3.6
-        version: 1.3.8(react@18.2.0)
-      '@remix-run/cloudflare':
-        specifier: ^2.3.0
-        version: 2.4.1(@cloudflare/workers-types@4.20231218.0)(typescript@5.3.3)
-      '@remix-run/cloudflare-pages':
-        specifier: ^2.3.0
-        version: 2.4.1(@cloudflare/workers-types@4.20231218.0)(typescript@5.3.3)
-      '@remix-run/css-bundle':
-        specifier: ^2.3.0
-        version: 2.4.1
-      '@remix-run/react':
-        specifier: ^2.3.0
-        version: 2.4.1(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
-      '@remix-run/server-runtime':
-        specifier: ^2.3.0
-        version: 2.4.1(typescript@5.3.3)
-      clsx:
-        specifier: ^2.0.0
-        version: 2.0.0
-      daisyui:
-        specifier: ^4.4.0
-        version: 4.4.23(postcss@8.4.32)
-      is-ip:
-        specifier: ^5.0.1
-        version: 5.0.1
-      isbot:
-        specifier: ^3.7.1
-        version: 3.7.1
-      next-themes:
-        specifier: ^0.2.1
-        version: 0.2.1(next@14.0.4)(react-dom@18.2.0)(react@18.2.0)
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      react-daisyui:
-        specifier: ^4.1.2
-        version: 4.1.2(daisyui@4.4.23)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.0)
-      react-dom:
-        specifier: ^18.2.0
-        version: 18.2.0(react@18.2.0)
-      react-icons:
-        specifier: ^4.12.0
-        version: 4.12.0(react@18.2.0)
-      remix-auth:
-        specifier: ^3.6.0
-        version: 3.6.0(@remix-run/react@2.4.1)(@remix-run/server-runtime@2.4.1)
-      remix-auth-auth0:
-        specifier: ^1.9.0
-        version: 1.9.0(@remix-run/server-runtime@2.4.1)(remix-auth@3.6.0)
-      remix-utils:
-        specifier: ^7.1.0
-        version: 7.4.0(@remix-run/cloudflare@2.4.1)(@remix-run/react@2.4.1)(is-ip@5.0.1)(react@18.2.0)(zod@3.22.4)
-      tailwind-merge:
-        specifier: ^2.0.0
-        version: 2.2.0
-      ulid-workers:
-        specifier: ^2.1.0
-        version: 2.1.0
-      zod:
-        specifier: ^3.22.4
-        version: 3.22.4
-    devDependencies:
-      '@nwlnexus/eslint-config':
-        specifier: workspace:*
-        version: link:../../packages/eslint-config
-      '@nwlnexus/typescript-config':
-        specifier: workspace:*
-        version: link:../../packages/typescript-config
-      '@remix-run/dev':
-        specifier: ^2.3.0
-        version: 2.4.1(@types/node@20.10.5)(typescript@5.3.3)(vite@5.0.10)
-      '@tailwindcss/container-queries':
-        specifier: ^0.1.1
-        version: 0.1.1(tailwindcss@3.4.0)
-      '@tailwindcss/forms':
-        specifier: ^0.5.7
-        version: 0.5.7(tailwindcss@3.4.0)
-      '@tailwindcss/typography':
-        specifier: ^0.5.10
-        version: 0.5.10(tailwindcss@3.4.0)
-      '@types/react':
-        specifier: ^18.2.20
-        version: 18.2.45
-      '@types/react-dom':
-        specifier: ^18.2.7
-        version: 18.2.18
-      '@typescript-eslint/scope-manager':
-        specifier: ^6.12.0
-        version: 6.15.0
-      autoprefixer:
-        specifier: ^10.4.16
-        version: 10.4.16(postcss@8.4.32)
-      postcss:
-        specifier: ^8.4.31
-        version: 8.4.32
-      tailwindcss:
-        specifier: ^3.3.5
-        version: 3.4.0
-      tailwindcss-3d:
-        specifier: ^1.0.2
-        version: 1.0.4(tailwindcss@3.4.0)
-      tailwindcss-animate:
-        specifier: ^1.0.7
-        version: 1.0.7(tailwindcss@3.4.0)
-      vitest:
-        specifier: ^0.34.6
-        version: 0.34.6
-
   packages/cfsetup:
     dependencies:
       '@types/yargs':
@@ -406,6 +291,121 @@ importers:
         version: 3.0.0(@typescript-eslint/eslint-plugin@6.15.0)(eslint@8.56.0)
 
   packages/typescript-config: {}
+
+  pages_apps/helios:
+    dependencies:
+      '@nwlnexus/db-schema':
+        specifier: workspace:^
+        version: link:../../packages/db-schema
+      '@preact/signals-react':
+        specifier: ^1.3.6
+        version: 1.3.8(react@18.2.0)
+      '@remix-run/cloudflare':
+        specifier: ^2.3.0
+        version: 2.4.1(@cloudflare/workers-types@4.20231218.0)(typescript@5.3.3)
+      '@remix-run/cloudflare-pages':
+        specifier: ^2.3.0
+        version: 2.4.1(@cloudflare/workers-types@4.20231218.0)(typescript@5.3.3)
+      '@remix-run/css-bundle':
+        specifier: ^2.3.0
+        version: 2.4.1
+      '@remix-run/react':
+        specifier: ^2.3.0
+        version: 2.4.1(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
+      '@remix-run/server-runtime':
+        specifier: ^2.3.0
+        version: 2.4.1(typescript@5.3.3)
+      clsx:
+        specifier: ^2.0.0
+        version: 2.0.0
+      daisyui:
+        specifier: ^4.4.0
+        version: 4.4.23(postcss@8.4.32)
+      is-ip:
+        specifier: ^5.0.1
+        version: 5.0.1
+      isbot:
+        specifier: ^3.7.1
+        version: 3.7.1
+      next-themes:
+        specifier: ^0.2.1
+        version: 0.2.1(next@14.0.4)(react-dom@18.2.0)(react@18.2.0)
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-daisyui:
+        specifier: ^4.1.2
+        version: 4.1.2(daisyui@4.4.23)(react-dom@18.2.0)(react@18.2.0)(tailwindcss@3.4.0)
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      react-icons:
+        specifier: ^4.12.0
+        version: 4.12.0(react@18.2.0)
+      remix-auth:
+        specifier: ^3.6.0
+        version: 3.6.0(@remix-run/react@2.4.1)(@remix-run/server-runtime@2.4.1)
+      remix-auth-auth0:
+        specifier: ^1.9.0
+        version: 1.9.0(@remix-run/server-runtime@2.4.1)(remix-auth@3.6.0)
+      remix-utils:
+        specifier: ^7.1.0
+        version: 7.4.0(@remix-run/cloudflare@2.4.1)(@remix-run/react@2.4.1)(is-ip@5.0.1)(react@18.2.0)(zod@3.22.4)
+      tailwind-merge:
+        specifier: ^2.0.0
+        version: 2.2.0
+      ulid-workers:
+        specifier: ^2.1.0
+        version: 2.1.0
+      zod:
+        specifier: ^3.22.4
+        version: 3.22.4
+    devDependencies:
+      '@nwlnexus/eslint-config':
+        specifier: workspace:*
+        version: link:../../packages/eslint-config
+      '@nwlnexus/typescript-config':
+        specifier: workspace:*
+        version: link:../../packages/typescript-config
+      '@remix-run/dev':
+        specifier: ^2.3.0
+        version: 2.4.1(@types/node@20.10.5)(typescript@5.3.3)(vite@5.0.10)
+      '@tailwindcss/container-queries':
+        specifier: ^0.1.1
+        version: 0.1.1(tailwindcss@3.4.0)
+      '@tailwindcss/forms':
+        specifier: ^0.5.7
+        version: 0.5.7(tailwindcss@3.4.0)
+      '@tailwindcss/typography':
+        specifier: ^0.5.10
+        version: 0.5.10(tailwindcss@3.4.0)
+      '@types/react':
+        specifier: ^18.2.20
+        version: 18.2.45
+      '@types/react-dom':
+        specifier: ^18.2.7
+        version: 18.2.18
+      '@typescript-eslint/scope-manager':
+        specifier: ^6.12.0
+        version: 6.15.0
+      autoprefixer:
+        specifier: ^10.4.16
+        version: 10.4.16(postcss@8.4.32)
+      postcss:
+        specifier: ^8.4.31
+        version: 8.4.32
+      tailwindcss:
+        specifier: ^3.3.5
+        version: 3.4.0
+      tailwindcss-3d:
+        specifier: ^1.0.2
+        version: 1.0.4(tailwindcss@3.4.0)
+      tailwindcss-animate:
+        specifier: ^1.0.7
+        version: 1.0.7(tailwindcss@3.4.0)
+      vitest:
+        specifier: ^0.34.6
+        version: 0.34.6
 
 packages:
 

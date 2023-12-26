@@ -24,8 +24,8 @@
     "type:tests": "dotenv -- turbo type:tests",
     "gen:package": "turbo gen package",
     "db:prepare": "pnpm run db:prepare:helios && pnpm run db:prepare:hermes",
-    "db:prepare:helios": "cfsetup prepare all --schema-dir=\"packages/db-schema/src\" --persist-to=\".wrangler\" --wrangler-file=\"apps/helios/wrangler.toml\"",
-    "db:prepare:hermes": "cfsetup prepare all --schema-dir=\"packages/db-schema/src\" --persist-to=\".wrangler\" --wrangler-file=\"apps/hermes/wrangler.toml\"",
+    "db:prepare:helios": "cfsetup prepare all --schema-dir=\\\"packages/db-schema/src\\\" --persist-to=\\\".wrangler\\\" --wrangler-file=\\\"pages_apps/helios/wrangler.toml\\\"",
+    "db:prepare:hermes": "cfsetup prepare all --schema-dir=\\\\\\\"packages/db-schema/src\\\\\\\" --persist-to=\\\\\\\".wrangler\\\\\\\" --wrangler-file=\\\\\\\"worker_apps/hermes/wrangler.toml\\\\\\\"",
     "db:prepare:reset": "cfsetup prepare --reset --schema-dir=\"./app/db/schema\" --persist-to=\"../../.wrangler\""
   },
   "dependencies": {
