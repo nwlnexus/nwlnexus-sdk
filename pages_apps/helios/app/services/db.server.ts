@@ -1,8 +1,9 @@
-import { eq } from 'drizzle-orm';
 import { drizzle } from 'drizzle-orm/d1';
 import type { Auth0Profile } from 'remix-auth-auth0';
 import * as schema from '@nwlnexus/db-schema/schema';
+import { profiles } from '@nwlnexus/db-schema/schema';
 
+type UserProfile = typeof profiles.$inferSelect;
 const findOrCreateProfile = async ({
   db,
   profile
@@ -35,6 +36,4 @@ const findOrCreateProfile = async ({
   return user;
 };
 
-export {};
-
-export { findOrCreateProfile };
+export { findOrCreateProfile, type UserProfile };

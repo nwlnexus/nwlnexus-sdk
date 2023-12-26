@@ -1,10 +1,8 @@
+import type { UserProfile } from '@services/db.server';
 import { findOrCreateProfile } from '@services/db.server';
 import { Authenticator } from 'remix-auth';
 import { Auth0Strategy } from 'remix-auth-auth0';
 import type { AppLoadContext, SessionStorage } from '@remix-run/cloudflare';
-import type { profiles } from '@nwlnexus/db-schema/schema';
-
-type UserProfile = typeof profiles.$inferSelect;
 
 const getAuthenticator = async (context: AppLoadContext, sessionStorage: SessionStorage) => {
   const authConfig = {

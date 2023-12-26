@@ -16,9 +16,9 @@ const { execSync } = require("child_process");
 try {
   const packageName = getArgs()[0] ?? "cfsetup";
   const packageJsonPath = `./packages/${packageName}/package.json`;
-  const package = JSON.parse(readFileSync(packageJsonPath));
+  const pkg = JSON.parse(readFileSync(packageJsonPath));
   const stdout = execSync("git rev-parse --short HEAD", { encoding: "utf8" });
-  package.version = "0.0.0-" + stdout.trim();
+  pkg.version = "0.0.0-" + stdout.trim();
   writeFileSync(packageJsonPath, JSON.stringify(package, null, "\t") + "\n");
 } catch (error) {
   console.error(error);
