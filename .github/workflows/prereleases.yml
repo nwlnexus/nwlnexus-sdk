@@ -2,8 +2,8 @@ name: Package Prerelease
 
 on:
   push:
-    branches:
-      - "!main"
+    branches-ignore:
+      - main
     paths:
       - packages/cfsetup/*
       - .github/workflows/prereleases.yml
