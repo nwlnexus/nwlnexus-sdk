@@ -41,6 +41,6 @@
       "outputs": ["./migrations/**/*"],
       "dependsOn": ["@nwlnexus/cfsetup#build"]
     },
-    "//#check:format": { "cache": true }
+    "check:format": { "cache": false }
   }
 }
