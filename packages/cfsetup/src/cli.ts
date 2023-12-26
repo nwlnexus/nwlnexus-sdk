@@ -24,7 +24,7 @@ export class CommandLineArgsError extends Error {}
 // via https://github.com/yargs/yargs/issues/1093#issuecomment-491299261
 export function demandOneOfOption(...options: string[]) {
   return function (argv: Yargs.Arguments) {
-    const count = options.filter((option) => argv[option]).length;
+    const count = options.filter(option => argv[option]).length;
     const lastOption = options.pop();
 
     if (count === 0) {
@@ -76,7 +76,7 @@ function createCLIParser(argv: string[]) {
   // Default help command that supports the subcommands
   const subHelp: Yargs.CommandModule<RootArguments, RootArguments> = {
     command: ['*'],
-    handler: async (args) => {
+    handler: async args => {
       setImmediate(() => cfsetup.parse([...args._.map((a: any) => `${a}`), '--help']));
     }
   };
@@ -85,7 +85,7 @@ function createCLIParser(argv: string[]) {
     ['*'],
     false,
     () => {},
-    async (args) => {
+    async args => {
       if (args._.length > 0) {
         throw new CommandLineArgsError(`Unknown command: ${args._}.`);
       } else {
@@ -131,7 +131,7 @@ function createCLIParser(argv: string[]) {
   );
 
   //project
-  cfsetup.command('pages [command..]', '⚡️ Manage CF Pages Project', (pagesYargs) => {
+  cfsetup.command('pages [command..]', '⚡️ Manage CF Pages Project', pagesYargs => {
     return pages(pagesYargs.command(subHelp));
   });
 
@@ -205,7 +205,7 @@ async function main(argv: string[]): Promise<void> {
  */
 // @ts-expect-error
 if (typeof jest === 'undefined' && require.main === module) {
-  main(hideBin(process.argv)).catch((e) => {
+  main(hideBin(process.argv)).catch(e => {
     // The logging of any error that was thrown from `main()` is handled in the `yargs.fail()` handler.
     // Here we just want to ensure that the process exits with a non-zero code.
     // We don't want to do this inside the `main()` function, since that would kill the process when running our tests.

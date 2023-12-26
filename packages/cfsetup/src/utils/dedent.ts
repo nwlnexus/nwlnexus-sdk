@@ -34,6 +34,6 @@ export function dedent(strings: TemplateStringsArray, ...values: unknown[]) {
   if (lines.length > 0 && lines[0].trim() === '') lines = lines.slice(1);
 
   // Remove indent from all lines, and return them all joined together
-  lines = lines.map((line) => (line.startsWith(minIndent) ? line.substring(minIndent.length) : line));
+  lines = lines.map(line => (line.startsWith(minIndent) ? line.substring(minIndent.length) : line));
   return lines.join('\n');
 }

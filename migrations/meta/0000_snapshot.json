@@ -264,44 +264,32 @@
       "indexes": {
         "locations_code_unique": {
           "name": "locations_code_unique",
-          "columns": [
-            "code"
-          ],
+          "columns": ["code"],
           "isUnique": true
         },
         "locations_id_unique": {
           "name": "locations_id_unique",
-          "columns": [
-            "id"
-          ],
+          "columns": ["id"],
           "isUnique": true
         },
         "location_name_idx": {
           "name": "location_name_idx",
-          "columns": [
-            "name"
-          ],
+          "columns": ["name"],
           "isUnique": false
         },
         "location_district_idx": {
           "name": "location_district_idx",
-          "columns": [
-            "district"
-          ],
+          "columns": ["district"],
           "isUnique": false
         },
         "location_region_idx": {
           "name": "location_region_idx",
-          "columns": [
-            "region"
-          ],
+          "columns": ["region"],
           "isUnique": false
         },
         "location_code_idx": {
           "name": "location_code_idx",
-          "columns": [
-            "code"
-          ],
+          "columns": ["code"],
           "isUnique": true
         }
       },
@@ -310,12 +298,8 @@
           "name": "locations_tenant_id_tenants_id_fk",
           "tableFrom": "locations",
           "tableTo": "tenants",
-          "columnsFrom": [
-            "tenant_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["tenant_id"],
+          "columnsTo": ["id"],
           "onDelete": "set null",
           "onUpdate": "no action"
         }
@@ -443,51 +427,37 @@
       "indexes": {
         "nodes_id_unique": {
           "name": "nodes_id_unique",
-          "columns": [
-            "id"
-          ],
+          "columns": ["id"],
           "isUnique": true
         },
         "nodes_mac_unique": {
           "name": "nodes_mac_unique",
-          "columns": [
-            "mac"
-          ],
+          "columns": ["mac"],
           "isUnique": true
         },
         "nodes_serial_unique": {
           "name": "nodes_serial_unique",
-          "columns": [
-            "serial"
-          ],
+          "columns": ["serial"],
           "isUnique": true
         },
         "node_name_idx": {
           "name": "node_name_idx",
-          "columns": [
-            "name"
-          ],
+          "columns": ["name"],
           "isUnique": true
         },
         "serial_idx": {
           "name": "serial_idx",
-          "columns": [
-            "serial"
-          ],
+          "columns": ["serial"],
           "isUnique": true
         },
         "manu_idx": {
           "name": "manu_idx",
-          "columns": [
-            "manufacturer"
-          ],
+          "columns": ["manufacturer"],
           "isUnique": false
         },
         "model_idx": {
           "name": "model_idx",
-          "columns": [
-            "model"
-          ],
+          "columns": ["model"],
           "isUnique": false
         }
       },
@@ -496,12 +466,8 @@
           "name": "nodes_location_id_locations_id_fk",
           "tableFrom": "nodes",
           "tableTo": "locations",
-          "columnsFrom": [
-            "location_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["location_id"],
+          "columnsTo": ["id"],
           "onDelete": "set null",
           "onUpdate": "cascade"
         },
@@ -509,12 +475,8 @@
           "name": "nodes_tenant_id_tenants_id_fk",
           "tableFrom": "nodes",
           "tableTo": "tenants",
-          "columnsFrom": [
-            "tenant_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["tenant_id"],
+          "columnsTo": ["id"],
           "onDelete": "set null",
           "onUpdate": "cascade"
         }
@@ -600,23 +562,17 @@
       "indexes": {
         "profiles_email_unique": {
           "name": "profiles_email_unique",
-          "columns": [
-            "email"
-          ],
+          "columns": ["email"],
           "isUnique": true
         },
         "users_email_idx": {
           "name": "users_email_idx",
-          "columns": [
-            "email"
-          ],
+          "columns": ["email"],
           "isUnique": true
         },
         "provider_idx": {
           "name": "provider_idx",
-          "columns": [
-            "auth_provider"
-          ],
+          "columns": ["auth_provider"],
           "isUnique": false
         }
       },
@@ -725,16 +681,12 @@
       "indexes": {
         "vendor_idx": {
           "name": "vendor_idx",
-          "columns": [
-            "vendor"
-          ],
+          "columns": ["vendor"],
           "isUnique": false
         },
         "requestor_idx": {
           "name": "requestor_idx",
-          "columns": [
-            "requestor"
-          ],
+          "columns": ["requestor"],
           "isUnique": false
         }
       },
@@ -799,16 +751,12 @@
       "indexes": {
         "tenants_id_unique": {
           "name": "tenants_id_unique",
-          "columns": [
-            "id"
-          ],
+          "columns": ["id"],
           "isUnique": true
         },
         "tenant_name_idx": {
           "name": "tenant_name_idx",
-          "columns": [
-            "sanitized_name"
-          ],
+          "columns": ["sanitized_name"],
           "isUnique": true
         }
       },

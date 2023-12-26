@@ -1,7 +1,7 @@
-name: "Install Dependencies"
-description: "Install dependencies, fetching from cache when possible"
+name: 'Install Dependencies'
+description: 'Install dependencies, fetching from cache when possible'
 runs:
-  using: "composite"
+  using: 'composite'
   steps:
     - name: Install pnpm
       uses: pnpm/action-setup@v2
@@ -12,7 +12,7 @@ runs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ env.node-version }}
-        cache: "pnpm"
+        cache: 'pnpm'
 
     - name: Install NPM Dependencies
       shell: bash

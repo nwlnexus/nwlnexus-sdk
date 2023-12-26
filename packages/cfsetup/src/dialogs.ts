@@ -39,7 +39,7 @@ export async function confirm(text: string, { defaultValue = true }: ConfirmOpti
     name: 'value',
     message: text,
     initial: defaultValue,
-    onState: (state) => {
+    onState: state => {
       if (state.aborted) {
         process.nextTick(() => {
           process.exit(1);
@@ -72,7 +72,7 @@ export async function prompt(text: string, options: PromptOptions = {}): Promise
     message: text,
     initial: options?.defaultValue,
     style: options?.isSecret ? 'password' : 'default',
-    onState: (state) => {
+    onState: state => {
       if (state.aborted) {
         process.nextTick(() => {
           process.exit(1);
@@ -114,7 +114,7 @@ export async function select<Values extends string>(text: string, options: Selec
     message: text,
     choices: options.choices,
     initial: options.defaultOption,
-    onState: (state) => {
+    onState: state => {
       if (state.aborted) {
         process.nextTick(() => {
           process.exit(1);

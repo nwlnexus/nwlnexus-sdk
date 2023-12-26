@@ -40,7 +40,7 @@ function getLoggerLevel(): LoggerLevel {
   if (fromEnv !== undefined) {
     if (fromEnv in LOGGER_LEVELS) return fromEnv as LoggerLevel;
     const expected = Object.keys(LOGGER_LEVELS)
-      .map((level) => `"${level}"`)
+      .map(level => `"${level}"`)
       .join(' | ');
     console.warn(
       `Unrecognised CFSETUP_LOG value ${JSON.stringify(fromEnv)}, expected ${expected}, defaulting to "log"...`
@@ -78,7 +78,7 @@ export class Logger {
         border: chalk.level ? ['gray'] : []
       }
     });
-    t.push(...data.map((row) => keys.map((k) => row[k])));
+    t.push(...data.map(row => keys.map(k => row[k])));
     return this.doLog('log', [t.toString()]);
   }
 
@@ -105,7 +105,7 @@ export class Logger {
       // The first line of the message is the main `text`,
       // subsequent lines are put into the `notes`.
       const [firstLine, ...otherLines] = message.split('\n');
-      const notes = otherLines.length > 0 ? otherLines.map((text) => ({ text })) : undefined;
+      const notes = otherLines.length > 0 ? otherLines.map(text => ({ text })) : undefined;
       return formatMessagesSync([{ text: firstLine, notes }], {
         color: true,
         kind,

@@ -1,7 +1,7 @@
 import shellquote from 'shell-quote';
 
 export const quote = function (args: (string | number | boolean)[]) {
-  const stringArgs = args.map((arg) => String(arg));
+  const stringArgs = args.map(arg => String(arg));
 
   return shellquote.quote(stringArgs);
 };
