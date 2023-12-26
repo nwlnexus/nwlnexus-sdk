@@ -35,6 +35,7 @@
     "build:emit-types": "pnpm run clean && pnpm run bundle && pnpm run emit-types",
     "build:watch": "pnpm run clean && pnpm run bundle -- --watch",
     "bundle": "node -r esbuild-register scripts/bundle.ts",
+    "check:format": "prettier . --check --ignore-unknown",
     "check:lint": "eslint ..",
     "check:type": "tsc",
     "clean": "rimraf dist emitted-types",
