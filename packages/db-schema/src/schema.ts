@@ -1,5 +1,5 @@
 import { createId } from '@paralleldrive/cuid2';
-import { index, integer, real, sqliteTable, text, uniqueIndex } from 'drizzle-orm/sqlite-core';
+import { index, integer, blob, real, sqliteTable, text, uniqueIndex } from 'drizzle-orm/sqlite-core';
 import { createSelectSchema } from 'drizzle-zod';
 
 import { commonTime } from './common';
@@ -14,6 +14,8 @@ export const profiles = sqliteTable(
     authTenantId: text('auth_tenant_id').notNull(),
     authProvider: text('auth_provider').notNull(),
     email: text('email').notNull().unique(),
+    emailVerified: integer('email_verified', { mode: 'boolean' }),
+    photo: blob('photo'),
     idp_groups: text('groups', { mode: 'json' }).$type<string[]>(),
     displayName: text('display_name').notNull(),
     ...commonTime
@@ -65,7 +67,6 @@ export const locations = sqliteTable(
     countryId: integer('country_id'),
     district: text('district'),
     id: text('id').primaryKey().unique(),
-    ipBackupCidr: text('ip_backup_cidr'),
     ipPrimaryCidr: text('ip_primary_cidr'),
     ipSchema: text('ip_schema'),
     itOpsStatus: text('it_ops_status'),
@@ -81,7 +82,6 @@ export const locations = sqliteTable(
     tenantId: text('tenant_id').references(() => tenants.id, {
       onDelete: 'set null'
     }),
-    xiqLocId: integer('xiq_loc_id'),
     ...commonTime
   },
   locations => ({
@@ -123,24 +123,5 @@ export const nodes = sqliteTable(
     serialIdx: uniqueIndex('serial_idx').on(nodes.serial),
     manufacturerIdx: index('manu_idx').on(nodes.manufacturer),
     modelIdx: index('model_idx').on(nodes.model)
-  })
-);
-
-export const purchase_orders = sqliteTable(
-  'purchase_orders',
-  {
-    id: text('id')
-      .$defaultFn(() => createId())
-      .primaryKey(),
-    po_num: integer('po_num', { mode: 'number' }),
-    vendor: text('vendor').notNull(),
-    requestor: text('requestor').notNull(),
-    reason: text('reason').notNull(),
-    amt: real('amt').notNull(),
-    ...commonTime
-  },
-  purchase_orders => ({
-    vendorIdx: index('vendor_idx').on(purchase_orders.vendor),
-    requestorIdx: index('requestor_idx').on(purchase_orders.requestor)
   })
 );

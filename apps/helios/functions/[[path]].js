@@ -4825,12 +4825,12 @@ var require_react_development = __commonJS({
           var moduleObject = payload._result;
           return moduleObject === void 0 && error(`lazy: Expected the result of a dynamic import() call. Instead received: %s
 
-Your code should look like: 
+Your code should look like:
   const MyComponent = lazy(() => import('./MyComponent'))
 
 Did you accidentally put curly braces around the import?`, moduleObject), "default" in moduleObject || error(`lazy: Expected the result of a dynamic import() call. Instead received: %s
 
-Your code should look like: 
+Your code should look like:
   const MyComponent = lazy(() => import('./MyComponent'))`, moduleObject), moduleObject.default;
         } else
           throw payload._result;
@@ -38555,7 +38555,7 @@ function drizzle(client, config2 = {}) {
   return new DrizzleD1Database("async", dialect, session, schema);
 }
 
-// app/db/accounts.server.ts
+// app/db/db.server.ts
 var findOrCreateAccount = async ({
   userId,
   db,

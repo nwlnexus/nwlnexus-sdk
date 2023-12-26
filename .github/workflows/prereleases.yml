@@ -1,9 +1,13 @@
-name: Prerelease
+name: Package Prerelease
 
 on:
   push:
     branches:
-      - main
+      - "!main"
+    paths:
+      - packages/cfsetup/*
+      - .github/workflows/prereleases.yml
+
 jobs:
   prerelease:
     timeout-minutes: 30

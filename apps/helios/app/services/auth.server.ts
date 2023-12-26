@@ -1,13 +1,11 @@
-import { findOrCreateAuthAccount } from '~/db/accounts.server';
-import { findOrCreateUser } from '~/db/users.server';
+import { findOrCreateAuthAccount } from '@services/db.server';
+import { findOrCreateUser } from '@db/users.server';
 import { Authenticator } from 'remix-auth';
 import { Auth0Strategy } from 'remix-auth-auth0';
 import type { AppLoadContext, SessionStorage } from '@remix-run/cloudflare';
-import type { users } from '~/db/schema/db';
+import type { profiles } from '@nwlnexus/db-schema/schema';
 
-type UserProfile = Pick<typeof users.$inferSelect, 'id' | 'name' | 'email' | 'emailVerified' | 'accountId'> & {
-  accessToken: string;
-};
+type UserProfile = typeof profiles.$inferSelect;
 
 const getAuthenticator = async (context: AppLoadContext, sessionStorage: SessionStorage) => {
   const authConfig = {
@@ -17,10 +15,10 @@ const getAuthenticator = async (context: AppLoadContext, sessionStorage: Session
     domain: context.env.AUTH_AUTH0_DOMAIN
   };
 
-  const auth0Strategy = new Auth0Strategy(authConfig, async ({ accessToken, refreshToken, profile }) => {
-    const user = await findOrCreateUser({ db: context.env.DB, profile });
-    await findOrCreateAuthAccount({ userId: user.id, db: context.env.DB, profile, accessToken });
-    return { ...user, accessToken };
+  const auth0Strategy = new Auth0Strategy(authConfig, async ({ accessToken, profile }) => {
+    const userProfile = await findOrCreateUser({ db: context.env.DB, profile });
+    await findOrCreateAuthAccount({ userId: userProfile.id, db: context.env.DB, profile, accessToken });
+    return userProfile;
   });
   const authenticator = new Authenticator<UserProfile>(sessionStorage, { throwOnError: true });
   authenticator.use(auth0Strategy);
