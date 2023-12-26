@@ -13,9 +13,10 @@ const getAuthenticator = async (context: AppLoadContext, sessionStorage: Session
   };
 
   const auth0Strategy = new Auth0Strategy(authConfig, async ({ profile }) => {
-    const userProfile = await findOrCreateProfile({ db: context.env.DB, profile });
+    const userProfile = await findOrCreateProfile({ d1DB: context.env.DB, profile });
     return userProfile;
   });
+
   const authenticator = new Authenticator<UserProfile>(sessionStorage, { throwOnError: true });
   authenticator.use(auth0Strategy);
   return authenticator;

@@ -1,5 +1,5 @@
 import { createId } from '@paralleldrive/cuid2';
-import { index, integer, blob, real, sqliteTable, text, uniqueIndex } from 'drizzle-orm/sqlite-core';
+import { index, integer, real, sqliteTable, text, uniqueIndex } from 'drizzle-orm/sqlite-core';
 import { createSelectSchema } from 'drizzle-zod';
 
 import { commonTime } from './common';
@@ -14,9 +14,9 @@ export const profiles = sqliteTable(
     authTenantId: text('auth_tenant_id').notNull(),
     authProvider: text('auth_provider').notNull(),
     email: text('email').notNull().unique(),
-    emailVerified: integer('email_verified', { mode: 'boolean' }),
-    photo: blob('photo'),
-    idp_groups: text('groups', { mode: 'json' }).$type<string[]>(),
+    emailVerified: integer('email_verified', { mode: 'boolean' }).notNull().default(false),
+    photo: text('photo'),
+    idpGroups: text('idp_groups', { mode: 'json' }).$type<string[]>(),
     displayName: text('display_name').notNull(),
     ...commonTime
   },

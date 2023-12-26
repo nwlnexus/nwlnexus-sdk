@@ -29,9 +29,9 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 )), __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: !0 }), mod);
 var __publicField = (obj, key, value) => (__defNormalProp(obj, typeof key != "symbol" ? key + "" : key, value), value);
 
-// ../../node_modules/cookie/index.js
+// ../../node_modules/.pnpm/cookie@0.5.0/node_modules/cookie/index.js
 var require_cookie = __commonJS({
-  "../../node_modules/cookie/index.js"(exports) {
+  "../../node_modules/.pnpm/cookie@0.5.0/node_modules/cookie/index.js"(exports) {
     "use strict";
     exports.parse = parse3;
     exports.serialize = serialize2;
@@ -39,23 +39,23 @@ var require_cookie = __commonJS({
     function parse3(str, options2) {
       if (typeof str != "string")
         throw new TypeError("argument str must be a string");
-      for (var obj = {}, opt = options2 || {}, dec = opt.decode || decode, index = 0; index < str.length; ) {
-        var eqIdx = str.indexOf("=", index);
+      for (var obj = {}, opt = options2 || {}, dec = opt.decode || decode, index2 = 0; index2 < str.length; ) {
+        var eqIdx = str.indexOf("=", index2);
         if (eqIdx === -1)
           break;
-        var endIdx = str.indexOf(";", index);
+        var endIdx = str.indexOf(";", index2);
         if (endIdx === -1)
           endIdx = str.length;
         else if (endIdx < eqIdx) {
-          index = str.lastIndexOf(";", eqIdx - 1) + 1;
+          index2 = str.lastIndexOf(";", eqIdx - 1) + 1;
           continue;
         }
-        var key = str.slice(index, eqIdx).trim();
+        var key = str.slice(index2, eqIdx).trim();
         if (obj[key] === void 0) {
           var val = str.slice(eqIdx + 1, endIdx).trim();
           val.charCodeAt(0) === 34 && (val = val.slice(1, -1)), obj[key] = tryDecode(val, dec);
         }
-        index = endIdx + 1;
+        index2 = endIdx + 1;
       }
       return obj;
     }
@@ -147,17 +147,17 @@ var require_cookie = __commonJS({
   }
 });
 
-// ../../node_modules/@remix-run/server-runtime/dist/esm/warnings.js
+// ../../node_modules/.pnpm/@remix-run+server-runtime@2.4.1_typescript@5.3.3/node_modules/@remix-run/server-runtime/dist/esm/warnings.js
 function warnOnce(condition, message) {
   !condition && !alreadyWarned[message] && (alreadyWarned[message] = !0, console.warn(message));
 }
 var alreadyWarned, init_warnings = __esm({
-  "../../node_modules/@remix-run/server-runtime/dist/esm/warnings.js"() {
+  "../../node_modules/.pnpm/@remix-run+server-runtime@2.4.1_typescript@5.3.3/node_modules/@remix-run/server-runtime/dist/esm/warnings.js"() {
     alreadyWarned = {};
   }
 });
 
-// ../../node_modules/@remix-run/server-runtime/dist/esm/cookies.js
+// ../../node_modules/.pnpm/@remix-run+server-runtime@2.4.1_typescript@5.3.3/node_modules/@remix-run/server-runtime/dist/esm/cookies.js
 async function encodeCookieValue(sign, value, secrets) {
   let encoded = encodeData(value);
   return secrets.length > 0 && (encoded = await sign(encoded, secrets[0])), encoded;
@@ -184,9 +184,9 @@ function decodeData(value) {
   }
 }
 function myEscape(value) {
-  let str = value.toString(), result = "", index = 0, chr, code;
-  for (; index < str.length; )
-    chr = str.charAt(index++), /[\w*+\-./@]/.exec(chr) ? result += chr : (code = chr.charCodeAt(0), code < 256 ? result += "%" + hex(code, 2) : result += "%u" + hex(code, 4).toUpperCase());
+  let str = value.toString(), result = "", index2 = 0, chr, code;
+  for (; index2 < str.length; )
+    chr = str.charAt(index2++), /[\w*+\-./@]/.exec(chr) ? result += chr : (code = chr.charCodeAt(0), code < 256 ? result += "%" + hex(code, 2) : result += "%u" + hex(code, 4).toUpperCase());
   return result;
 }
 function hex(code, length) {
@@ -196,16 +196,16 @@ function hex(code, length) {
   return result;
 }
 function myUnescape(value) {
-  let str = value.toString(), result = "", index = 0, chr, part;
-  for (; index < str.length; ) {
-    if (chr = str.charAt(index++), chr === "%") {
-      if (str.charAt(index) === "u") {
-        if (part = str.slice(index + 1, index + 5), /^[\da-f]{4}$/i.exec(part)) {
-          result += String.fromCharCode(parseInt(part, 16)), index += 5;
+  let str = value.toString(), result = "", index2 = 0, chr, part;
+  for (; index2 < str.length; ) {
+    if (chr = str.charAt(index2++), chr === "%") {
+      if (str.charAt(index2) === "u") {
+        if (part = str.slice(index2 + 1, index2 + 5), /^[\da-f]{4}$/i.exec(part)) {
+          result += String.fromCharCode(parseInt(part, 16)), index2 += 5;
           continue;
         }
-      } else if (part = str.slice(index, index + 2), /^[\da-f]{2}$/i.exec(part)) {
-        result += String.fromCharCode(parseInt(part, 16)), index += 2;
+      } else if (part = str.slice(index2, index2 + 2), /^[\da-f]{2}$/i.exec(part)) {
+        result += String.fromCharCode(parseInt(part, 16)), index2 += 2;
         continue;
       }
     }
@@ -217,7 +217,7 @@ function warnOnceAboutExpiresCookie(name, expires) {
   warnOnce(!expires, `The "${name}" cookie has an "expires" property set. This will cause the expires value to not be updated when the session is committed. Instead, you should set the expires value when serializing the cookie. You can use \`commitSession(session, { expires })\` if using a session storage object, or \`cookie.serialize("value", { expires })\` if you're using the cookie directly.`);
 }
 var import_cookie, createCookieFactory, isCookie, init_cookies = __esm({
-  "../../node_modules/@remix-run/server-runtime/dist/esm/cookies.js"() {
+  "../../node_modules/.pnpm/@remix-run+server-runtime@2.4.1_typescript@5.3.3/node_modules/@remix-run/server-runtime/dist/esm/cookies.js"() {
     import_cookie = __toESM(require_cookie());
     init_warnings();
     createCookieFactory = ({
@@ -262,7 +262,7 @@ var import_cookie, createCookieFactory, isCookie, init_cookies = __esm({
   }
 });
 
-// ../../node_modules/@web3-storage/multipart-parser/esm/src/utils.js
+// ../../node_modules/.pnpm/@web3-storage+multipart-parser@1.0.0/node_modules/@web3-storage/multipart-parser/esm/src/utils.js
 function stringToArray(s4) {
   let utf8 = unescape(encodeURIComponent(s4));
   return Uint8Array.from(utf8, (_2, i4) => utf8.charCodeAt(i4));
@@ -286,13 +286,13 @@ function arraysEqual(a4, b5) {
   return !0;
 }
 var init_utils = __esm({
-  "../../node_modules/@web3-storage/multipart-parser/esm/src/utils.js"() {
+  "../../node_modules/.pnpm/@web3-storage+multipart-parser@1.0.0/node_modules/@web3-storage/multipart-parser/esm/src/utils.js"() {
   }
 });
 
-// ../../node_modules/@web3-storage/multipart-parser/esm/src/search.js
+// ../../node_modules/.pnpm/@web3-storage+multipart-parser@1.0.0/node_modules/@web3-storage/multipart-parser/esm/src/search.js
 function coerce(a4) {
-  return a4 instanceof Uint8Array ? (index) => a4[index] : a4;
+  return a4 instanceof Uint8Array ? (index2) => a4[index2] : a4;
 }
 function jsmemcmp(buf1, pos1, buf2, pos2, len) {
   let fn1 = coerce(buf1), fn2 = coerce(buf2);
@@ -309,7 +309,7 @@ function createOccurenceTable(s4) {
   return table;
 }
 var MATCH, StreamSearch, ReadableStreamSearch, EOQ, QueueableStreamSearch, init_search = __esm({
-  "../../node_modules/@web3-storage/multipart-parser/esm/src/search.js"() {
+  "../../node_modules/.pnpm/@web3-storage+multipart-parser@1.0.0/node_modules/@web3-storage/multipart-parser/esm/src/search.js"() {
     init_utils();
     MATCH = Symbol("Match"), StreamSearch = class {
       constructor(needle) {
@@ -424,7 +424,7 @@ var MATCH, StreamSearch, ReadableStreamSearch, EOQ, QueueableStreamSearch, init_
   }
 });
 
-// ../../node_modules/@web3-storage/multipart-parser/esm/src/index.js
+// ../../node_modules/.pnpm/@web3-storage+multipart-parser@1.0.0/node_modules/@web3-storage/multipart-parser/esm/src/index.js
 function parseContentDisposition(header) {
   let parts = header.split(";").map((part) => part.trim());
   if (parts.shift() !== "form-data")
@@ -571,7 +571,7 @@ async function* streamMultipart(body, boundary) {
   }
 }
 var mergeArrays2, dash, CRLF, init_src = __esm({
-  "../../node_modules/@web3-storage/multipart-parser/esm/src/index.js"() {
+  "../../node_modules/.pnpm/@web3-storage+multipart-parser@1.0.0/node_modules/@web3-storage/multipart-parser/esm/src/index.js"() {
     init_search();
     init_utils();
     mergeArrays2 = Function.prototype.apply.bind(mergeArrays, void 0), dash = stringToArray("--"), CRLF = stringToArray(`\r
@@ -579,7 +579,7 @@ var mergeArrays2, dash, CRLF, init_src = __esm({
   }
 });
 
-// ../../node_modules/@remix-run/server-runtime/dist/esm/formData.js
+// ../../node_modules/.pnpm/@remix-run+server-runtime@2.4.1_typescript@5.3.3/node_modules/@remix-run/server-runtime/dist/esm/formData.js
 function composeUploadHandlers(...handlers) {
   return async (part) => {
     for (let handler of handlers) {
@@ -604,12 +604,12 @@ async function parseMultipartFormData(request, uploadHandler) {
   return formData;
 }
 var init_formData = __esm({
-  "../../node_modules/@remix-run/server-runtime/dist/esm/formData.js"() {
+  "../../node_modules/.pnpm/@remix-run+server-runtime@2.4.1_typescript@5.3.3/node_modules/@remix-run/server-runtime/dist/esm/formData.js"() {
     init_src();
   }
 });
 
-// ../../node_modules/@remix-run/router/dist/router.js
+// ../../node_modules/.pnpm/@remix-run+router@1.14.1/node_modules/@remix-run/router/dist/router.js
 var router_exports = {};
 __export(router_exports, {
   AbortedDeferredError: () => AbortedDeferredError,
@@ -622,7 +622,7 @@ __export(router_exports, {
   UNSAFE_ErrorResponseImpl: () => ErrorResponseImpl,
   UNSAFE_convertRouteMatchToUiMatch: () => convertRouteMatchToUiMatch,
   UNSAFE_convertRoutesToDataRoutes: () => convertRoutesToDataRoutes,
-  UNSAFE_getPathContributingMatches: () => getPathContributingMatches,
+  UNSAFE_getResolveToMatches: () => getResolveToMatches,
   UNSAFE_invariant: () => invariant,
   UNSAFE_warning: () => warning,
   createBrowserHistory: () => createBrowserHistory,
@@ -666,13 +666,13 @@ function createMemoryHistory(options2) {
     initialIndex,
     v5Compat = !1
   } = options2, entries;
-  entries = initialEntries.map((entry2, index2) => createMemoryLocation(entry2, typeof entry2 == "string" ? null : entry2.state, index2 === 0 ? "default" : void 0));
-  let index = clampIndex(initialIndex ?? entries.length - 1), action3 = Action.Pop, listener = null;
+  entries = initialEntries.map((entry2, index3) => createMemoryLocation(entry2, typeof entry2 == "string" ? null : entry2.state, index3 === 0 ? "default" : void 0));
+  let index2 = clampIndex(initialIndex ?? entries.length - 1), action3 = Action.Pop, listener = null;
   function clampIndex(n3) {
     return Math.min(Math.max(n3, 0), entries.length - 1);
   }
   function getCurrentLocation() {
-    return entries[index];
+    return entries[index2];
   }
   function createMemoryLocation(to, state, key) {
     state === void 0 && (state = null);
@@ -684,7 +684,7 @@ function createMemoryHistory(options2) {
   }
   return {
     get index() {
-      return index;
+      return index2;
     },
     get action() {
       return action3;
@@ -707,7 +707,7 @@ function createMemoryHistory(options2) {
     push(to, state) {
       action3 = Action.Push;
       let nextLocation = createMemoryLocation(to, state);
-      index += 1, entries.splice(index, entries.length, nextLocation), v5Compat && listener && listener({
+      index2 += 1, entries.splice(index2, entries.length, nextLocation), v5Compat && listener && listener({
         action: action3,
         location: nextLocation,
         delta: 1
@@ -716,7 +716,7 @@ function createMemoryHistory(options2) {
     replace(to, state) {
       action3 = Action.Replace;
       let nextLocation = createMemoryLocation(to, state);
-      entries[index] = nextLocation, v5Compat && listener && listener({
+      entries[index2] = nextLocation, v5Compat && listener && listener({
         action: action3,
         location: nextLocation,
         delta: 0
@@ -724,8 +724,8 @@ function createMemoryHistory(options2) {
     },
     go(delta) {
       action3 = Action.Pop;
-      let nextIndex = clampIndex(index + delta), nextLocation = entries[nextIndex];
-      index = nextIndex, listener && listener({
+      let nextIndex = clampIndex(index2 + delta), nextLocation = entries[nextIndex];
+      index2 = nextIndex, listener && listener({
         action: action3,
         location: nextLocation,
         delta
@@ -812,11 +812,11 @@ function warning(cond, message) {
 function createKey() {
   return Math.random().toString(36).substr(2, 8);
 }
-function getHistoryState(location, index) {
+function getHistoryState(location, index2) {
   return {
     usr: location.state,
     key: location.key,
-    idx: index
+    idx: index2
   };
 }
 function createLocation(current, to, state, key) {
@@ -856,9 +856,9 @@ function getUrlBasedHistory(getLocation, createHref, validateLocation, options2)
   let {
     window: window2 = document.defaultView,
     v5Compat = !1
-  } = options2, globalHistory = window2.history, action3 = Action.Pop, listener = null, index = getIndex();
-  index == null && (index = 0, globalHistory.replaceState(_extends({}, globalHistory.state, {
-    idx: index
+  } = options2, globalHistory = window2.history, action3 = Action.Pop, listener = null, index2 = getIndex();
+  index2 == null && (index2 = 0, globalHistory.replaceState(_extends({}, globalHistory.state, {
+    idx: index2
   }), ""));
   function getIndex() {
     return (globalHistory.state || {
@@ -867,8 +867,8 @@ function getUrlBasedHistory(getLocation, createHref, validateLocation, options2)
   }
   function handlePop() {
     action3 = Action.Pop;
-    let nextIndex = getIndex(), delta = nextIndex == null ? null : nextIndex - index;
-    index = nextIndex, listener && listener({
+    let nextIndex = getIndex(), delta = nextIndex == null ? null : nextIndex - index2;
+    index2 = nextIndex, listener && listener({
       action: action3,
       location: history.location,
       delta
@@ -877,8 +877,8 @@ function getUrlBasedHistory(getLocation, createHref, validateLocation, options2)
   function push(to, state) {
     action3 = Action.Push;
     let location = createLocation(history.location, to, state);
-    validateLocation && validateLocation(location, to), index = getIndex() + 1;
-    let historyState = getHistoryState(location, index), url = history.createHref(location);
+    validateLocation && validateLocation(location, to), index2 = getIndex() + 1;
+    let historyState = getHistoryState(location, index2), url = history.createHref(location);
     try {
       globalHistory.pushState(historyState, "", url);
     } catch (error) {
@@ -895,8 +895,8 @@ function getUrlBasedHistory(getLocation, createHref, validateLocation, options2)
   function replace(to, state) {
     action3 = Action.Replace;
     let location = createLocation(history.location, to, state);
-    validateLocation && validateLocation(location, to), index = getIndex();
-    let historyState = getHistoryState(location, index), url = history.createHref(location);
+    validateLocation && validateLocation(location, to), index2 = getIndex();
+    let historyState = getHistoryState(location, index2), url = history.createHref(location);
     globalHistory.replaceState(historyState, "", url), v5Compat && listener && listener({
       action: action3,
       location: history.location,
@@ -945,8 +945,8 @@ function isIndexRoute(route) {
   return route.index === !0;
 }
 function convertRoutesToDataRoutes(routes2, mapRouteProperties2, parentPath, manifest) {
-  return parentPath === void 0 && (parentPath = []), manifest === void 0 && (manifest = {}), routes2.map((route, index) => {
-    let treePath = [...parentPath, index], id = typeof route.id == "string" ? route.id : treePath.join("-");
+  return parentPath === void 0 && (parentPath = []), manifest === void 0 && (manifest = {}), routes2.map((route, index2) => {
+    let treePath = [...parentPath, index2], id = typeof route.id == "string" ? route.id : treePath.join("-");
     if (invariant(route.index !== !0 || !route.children, "Cannot specify children on an index route"), invariant(!manifest[id], 'Found a route id collision on id "' + id + `".  Route id's must be globally unique within Data Router usages`), isIndexRoute(route)) {
       let indexRoute = _extends({}, route, mapRouteProperties2(route), {
         id
@@ -998,15 +998,15 @@ function convertRouteMatchToUiMatch(match, loaderData) {
 }
 function flattenRoutes(routes2, branches, parentsMeta, parentPath) {
   branches === void 0 && (branches = []), parentsMeta === void 0 && (parentsMeta = []), parentPath === void 0 && (parentPath = "");
-  let flattenRoute = (route, index, relativePath) => {
-    let meta5 = {
+  let flattenRoute = (route, index2, relativePath) => {
+    let meta6 = {
       relativePath: relativePath === void 0 ? route.path || "" : relativePath,
       caseSensitive: route.caseSensitive === !0,
-      childrenIndex: index,
+      childrenIndex: index2,
       route
     };
-    meta5.relativePath.startsWith("/") && (invariant(meta5.relativePath.startsWith(parentPath), 'Absolute route path "' + meta5.relativePath + '" nested under path ' + ('"' + parentPath + '" is not valid. An absolute child route path ') + "must start with the combined path of all its parent routes."), meta5.relativePath = meta5.relativePath.slice(parentPath.length));
-    let path = joinPaths([parentPath, meta5.relativePath]), routesMeta = parentsMeta.concat(meta5);
+    meta6.relativePath.startsWith("/") && (invariant(meta6.relativePath.startsWith(parentPath), 'Absolute route path "' + meta6.relativePath + '" nested under path ' + ('"' + parentPath + '" is not valid. An absolute child route path ') + "must start with the combined path of all its parent routes."), meta6.relativePath = meta6.relativePath.slice(parentPath.length));
+    let path = joinPaths([parentPath, meta6.relativePath]), routesMeta = parentsMeta.concat(meta6);
     route.children && route.children.length > 0 && (invariant(
       // Our types know better, but runtime JS may not!
       // @ts-expect-error
@@ -1018,13 +1018,13 @@ function flattenRoutes(routes2, branches, parentsMeta, parentPath) {
       routesMeta
     });
   };
-  return routes2.forEach((route, index) => {
+  return routes2.forEach((route, index2) => {
     var _route$path;
     if (route.path === "" || !((_route$path = route.path) != null && _route$path.includes("?")))
-      flattenRoute(route, index);
+      flattenRoute(route, index2);
     else
       for (let exploded of explodeOptionalSegments(route.path))
-        flattenRoute(route, index, exploded);
+        flattenRoute(route, index2, exploded);
   }), branches;
 }
 function explodeOptionalSegments(path) {
@@ -1038,11 +1038,11 @@ function explodeOptionalSegments(path) {
   return result.push(...restExploded.map((subpath) => subpath === "" ? required : [required, subpath].join("/"))), isOptional && result.push(...restExploded), result.map((exploded) => path.startsWith("/") && exploded === "" ? "/" : exploded);
 }
 function rankRouteBranches(branches) {
-  branches.sort((a4, b5) => a4.score !== b5.score ? b5.score - a4.score : compareIndexes(a4.routesMeta.map((meta5) => meta5.childrenIndex), b5.routesMeta.map((meta5) => meta5.childrenIndex)));
+  branches.sort((a4, b5) => a4.score !== b5.score ? b5.score - a4.score : compareIndexes(a4.routesMeta.map((meta6) => meta6.childrenIndex), b5.routesMeta.map((meta6) => meta6.childrenIndex)));
 }
-function computeScore(path, index) {
+function computeScore(path, index2) {
   let segments = path.split("/"), initialScore = segments.length;
-  return segments.some(isSplat) && (initialScore += splatPenalty), index && (initialScore += indexRouteValue), segments.filter((s4) => !isSplat(s4)).reduce((score, segment) => score + (paramRe.test(segment) ? dynamicSegmentValue : segment === "" ? emptySegmentValue : staticSegmentValue), initialScore);
+  return segments.some(isSplat) && (initialScore += splatPenalty), index2 && (initialScore += indexRouteValue), segments.filter((s4) => !isSplat(s4)).reduce((score, segment) => score + (paramRe.test(segment) ? dynamicSegmentValue : segment === "" ? emptySegmentValue : staticSegmentValue), initialScore);
 }
 function compareIndexes(a4, b5) {
   return a4.length === b5.length && a4.slice(0, -1).every((n3, i4) => n3 === b5[i4]) ? (
@@ -1062,15 +1062,15 @@ function matchRouteBranch(branch, pathname) {
     routesMeta
   } = branch, matchedParams = {}, matchedPathname = "/", matches = [];
   for (let i4 = 0; i4 < routesMeta.length; ++i4) {
-    let meta5 = routesMeta[i4], end = i4 === routesMeta.length - 1, remainingPathname = matchedPathname === "/" ? pathname : pathname.slice(matchedPathname.length) || "/", match = matchPath({
-      path: meta5.relativePath,
-      caseSensitive: meta5.caseSensitive,
+    let meta6 = routesMeta[i4], end = i4 === routesMeta.length - 1, remainingPathname = matchedPathname === "/" ? pathname : pathname.slice(matchedPathname.length) || "/", match = matchPath({
+      path: meta6.relativePath,
+      caseSensitive: meta6.caseSensitive,
       end
     }, remainingPathname);
     if (!match)
       return null;
     Object.assign(matchedParams, match.params);
-    let route = meta5.route;
+    let route = meta6.route;
     matches.push({
       // TODO: Can this as be avoided?
       params: matchedParams,
@@ -1085,8 +1085,8 @@ function generatePath(originalPath, params) {
   params === void 0 && (params = {});
   let path = originalPath;
   path.endsWith("*") && path !== "*" && !path.endsWith("/*") && (warning(!1, 'Route path "' + path + '" will be treated as if it were ' + ('"' + path.replace(/\*$/, "/*") + '" because the `*` character must ') + "always follow a `/` in the pattern. To get rid of this warning, " + ('please change the route path to "' + path.replace(/\*$/, "/*") + '".')), path = path.replace(/\*$/, "/*"));
-  let prefix = path.startsWith("/") ? "/" : "", stringify2 = (p5) => p5 == null ? "" : typeof p5 == "string" ? p5 : String(p5), segments = path.split(/\/+/).map((segment, index, array) => {
-    if (index === array.length - 1 && segment === "*")
+  let prefix = path.startsWith("/") ? "/" : "", stringify2 = (p5) => p5 == null ? "" : typeof p5 == "string" ? p5 : String(p5), segments = path.split(/\/+/).map((segment, index2, array) => {
+    if (index2 === array.length - 1 && segment === "*")
       return stringify2(params["*"]);
     let keyMatch = segment.match(/^:(\w+)(\??)$/);
     if (keyMatch) {
@@ -1108,16 +1108,16 @@ function matchPath(pattern, pathname) {
     return null;
   let matchedPathname = match[0], pathnameBase = matchedPathname.replace(/(.)\/+$/, "$1"), captureGroups = match.slice(1);
   return {
-    params: compiledParams.reduce((memo, _ref, index) => {
+    params: compiledParams.reduce((memo, _ref, index2) => {
       let {
         paramName,
         isOptional
       } = _ref;
       if (paramName === "*") {
-        let splatValue = captureGroups[index] || "";
+        let splatValue = captureGroups[index2] || "";
         pathnameBase = matchedPathname.slice(0, matchedPathname.length - splatValue.length).replace(/(.)\/+$/, "$1");
       }
-      let value = captureGroups[index];
+      let value = captureGroups[index2];
       return isOptional && !value ? memo[paramName] = void 0 : memo[paramName] = safelyDecodeURIComponent(value || "", paramName), memo;
     }, {}),
     pathname: matchedPathname,
@@ -1180,7 +1180,11 @@ function getInvalidPathError(char, field, dest, path) {
   return "Cannot include a '" + char + "' character in a manually specified " + ("`to." + field + "` field [" + JSON.stringify(path) + "].  Please separate it out to the ") + ("`to." + dest + "` field. Alternatively you may provide the full path as ") + 'a string in <Link to="..."> and the router will parse it for you.';
 }
 function getPathContributingMatches(matches) {
-  return matches.filter((match, index) => index === 0 || match.route.path && match.route.path.length > 0);
+  return matches.filter((match, index2) => index2 === 0 || match.route.path && match.route.path.length > 0);
+}
+function getResolveToMatches(matches, v7_relativeSplatPath) {
+  let pathMatches = getPathContributingMatches(matches);
+  return v7_relativeSplatPath ? pathMatches.map((match, idx) => idx === matches.length - 1 ? match.pathname : match.pathnameBase) : pathMatches.map((match) => match.pathnameBase);
 }
 function resolveTo(toArg, routePathnames, locationPathname, isPathRelative) {
   isPathRelative === void 0 && (isPathRelative = !1);
@@ -1189,18 +1193,9 @@ function resolveTo(toArg, routePathnames, locationPathname, isPathRelative) {
   let isEmptyPath = toArg === "" || to.pathname === "", toPathname = isEmptyPath ? "/" : to.pathname, from;
   if (toPathname == null)
     from = locationPathname;
-  else if (isPathRelative) {
-    let fromSegments = routePathnames[routePathnames.length - 1].replace(/^\//, "").split("/");
-    if (toPathname.startsWith("..")) {
-      let toSegments = toPathname.split("/");
-      for (; toSegments[0] === ".."; )
-        toSegments.shift(), fromSegments.pop();
-      to.pathname = toSegments.join("/");
-    }
-    from = "/" + fromSegments.join("/");
-  } else {
+  else {
     let routePathnameIndex = routePathnames.length - 1;
-    if (toPathname.startsWith("..")) {
+    if (!isPathRelative && toPathname.startsWith("..")) {
       let toSegments = toPathname.split("/");
       for (; toSegments[0] === ".."; )
         toSegments.shift(), routePathnameIndex -= 1;
@@ -1243,7 +1238,9 @@ function createRouter(init) {
   let manifest = {}, dataRoutes = convertRoutesToDataRoutes(init.routes, mapRouteProperties2, void 0, manifest), inFlightDataRoutes, basename = init.basename || "/", future2 = _extends({
     v7_fetcherPersist: !1,
     v7_normalizeFormMethod: !1,
-    v7_prependBasename: !1
+    v7_partialHydration: !1,
+    v7_prependBasename: !1,
+    v7_relativeSplatPath: !1
   }, init.future), unlistenHistory = null, subscribers = /* @__PURE__ */ new Set(), savedScrollPositions2 = null, getScrollRestorationKey = null, getScrollPosition = null, initialScrollRestored = init.hydrationData != null, initialMatches = matchRoutes(dataRoutes, init.history.location, basename), initialErrors = null;
   if (initialMatches == null) {
     let error = getInternalRouterError(404, {
@@ -1256,12 +1253,17 @@ function createRouter(init) {
       [route.id]: error
     };
   }
-  let initialized = (
-    // All initialMatches need to be loaded before we're ready.  If we have lazy
-    // functions around still then we'll need to run them in initialize()
-    !initialMatches.some((m4) => m4.route.lazy) && // And we have to either have no loaders or have been provided hydrationData
-    (!initialMatches.some((m4) => m4.route.loader) || init.hydrationData != null)
-  ), router, state = {
+  let initialized, hasLazyRoutes = initialMatches.some((m4) => m4.route.lazy), hasLoaders = initialMatches.some((m4) => m4.route.loader);
+  if (hasLazyRoutes)
+    initialized = !1;
+  else if (!hasLoaders)
+    initialized = !0;
+  else if (future2.v7_partialHydration) {
+    let loaderData = init.hydrationData ? init.hydrationData.loaderData : null, errors = init.hydrationData ? init.hydrationData.errors : null;
+    initialized = initialMatches.every((m4) => m4.route.loader && m4.route.loader.hydrate !== !0 && (loaderData && loaderData[m4.route.id] !== void 0 || errors && errors[m4.route.id] !== void 0));
+  } else
+    initialized = init.hydrationData != null;
+  let router, state = {
     historyAction: init.history.action,
     location: init.history.location,
     matches: initialMatches,
@@ -1321,7 +1323,9 @@ function createRouter(init) {
       let _saveAppliedTransitions = () => persistAppliedTransitions(routerWindow, appliedViewTransitions);
       routerWindow.addEventListener("pagehide", _saveAppliedTransitions), removePageHideEventListener = () => routerWindow.removeEventListener("pagehide", _saveAppliedTransitions);
     }
-    return state.initialized || startNavigation(Action.Pop, state.location), router;
+    return state.initialized || startNavigation(Action.Pop, state.location, {
+      initialHydration: !0
+    }), router;
   }
   function dispose() {
     unlistenHistory && unlistenHistory(), removePageHideEventListener && removePageHideEventListener(), subscribers.clear(), pendingNavigationController && pendingNavigationController.abort(), state.fetchers.forEach((_2, key) => deleteFetcher(key)), state.blockers.forEach((_2, key) => deleteBlocker(key));
@@ -1388,7 +1392,7 @@ function createRouter(init) {
       init.history.go(to);
       return;
     }
-    let normalizedPath = normalizeTo(state.location, state.matches, basename, future2.v7_prependBasename, to, opts?.fromRouteId, opts?.relative), {
+    let normalizedPath = normalizeTo(state.location, state.matches, basename, future2.v7_prependBasename, to, future2.v7_relativeSplatPath, opts?.fromRouteId, opts?.relative), {
       path,
       submission,
       error
@@ -1498,7 +1502,7 @@ function createRouter(init) {
       shortCircuited,
       loaderData,
       errors
-    } = await handleLoaders(request, location, matches, loadingNavigation, opts && opts.submission, opts && opts.fetcherSubmission, opts && opts.replace, flushSync, pendingActionData, pendingError);
+    } = await handleLoaders(request, location, matches, loadingNavigation, opts && opts.submission, opts && opts.fetcherSubmission, opts && opts.replace, opts && opts.initialHydration === !0, flushSync, pendingActionData, pendingError);
     shortCircuited || (pendingNavigationController = null, completeNavigation(location, _extends({
       matches
     }, pendingActionData ? {
@@ -1526,7 +1530,7 @@ function createRouter(init) {
           routeId: actionMatch.route.id
         })
       };
-    else if (result = await callLoaderOrAction("action", request, actionMatch, matches, manifest, mapRouteProperties2, basename), request.signal.aborted)
+    else if (result = await callLoaderOrAction("action", request, actionMatch, matches, manifest, mapRouteProperties2, basename, future2.v7_relativeSplatPath), request.signal.aborted)
       return {
         shortCircuited: !0
       };
@@ -1559,8 +1563,8 @@ function createRouter(init) {
       }
     };
   }
-  async function handleLoaders(request, location, matches, overrideNavigation, submission, fetcherSubmission, replace, flushSync, pendingActionData, pendingError) {
-    let loadingNavigation = overrideNavigation || getLoadingNavigation(location, submission), activeSubmission = submission || fetcherSubmission || getSubmissionFromNavigation(loadingNavigation), routesToUse = inFlightDataRoutes || dataRoutes, [matchesToLoad, revalidatingFetchers] = getMatchesToLoad(init.history, state, matches, activeSubmission, location, isRevalidationRequired, cancelledDeferredRoutes, cancelledFetcherLoads, fetchLoadMatches, fetchRedirectIds, routesToUse, basename, pendingActionData, pendingError);
+  async function handleLoaders(request, location, matches, overrideNavigation, submission, fetcherSubmission, replace, initialHydration, flushSync, pendingActionData, pendingError) {
+    let loadingNavigation = overrideNavigation || getLoadingNavigation(location, submission), activeSubmission = submission || fetcherSubmission || getSubmissionFromNavigation(loadingNavigation), routesToUse = inFlightDataRoutes || dataRoutes, [matchesToLoad, revalidatingFetchers] = getMatchesToLoad(init.history, state, matches, activeSubmission, location, future2.v7_partialHydration && initialHydration === !0, isRevalidationRequired, cancelledDeferredRoutes, cancelledFetcherLoads, deletedFetchers, fetchLoadMatches, fetchRedirectIds, routesToUse, basename, pendingActionData, pendingError);
     if (cancelActiveDeferreds((routeId) => !(matches && matches.some((m4) => m4.route.id === routeId)) || matchesToLoad && matchesToLoad.some((m4) => m4.route.id === routeId)), pendingNavigationLoadId = ++incrementingLoadId, matchesToLoad.length === 0 && revalidatingFetchers.length === 0) {
       let updatedFetchers2 = markFetchRedirectsDone();
       return completeNavigation(location, _extends({
@@ -1578,7 +1582,7 @@ function createRouter(init) {
         shortCircuited: !0
       };
     }
-    if (!isUninterruptedRevalidation) {
+    if (!isUninterruptedRevalidation && (!future2.v7_partialHydration || !initialHydration)) {
       revalidatingFetchers.forEach((rf) => {
         let fetcher = state.fetchers.get(rf.key), revalidatingFetcher = getLoadingFetcher(void 0, fetcher ? fetcher.data : void 0);
         state.fetchers.set(rf.key, revalidatingFetcher);
@@ -1644,7 +1648,7 @@ function createRouter(init) {
     if (isServer)
       throw new Error("router.fetch() was called during the server render, but it shouldn't be. You are likely calling a useFetcher() method in the body of your component. Try moving it to a useEffect or a callback.");
     fetchControllers.has(key) && abortFetcher(key);
-    let flushSync = (opts && opts.unstable_flushSync) === !0, routesToUse = inFlightDataRoutes || dataRoutes, normalizedPath = normalizeTo(state.location, state.matches, basename, future2.v7_prependBasename, href, routeId, opts?.relative), matches = matchRoutes(routesToUse, normalizedPath, basename);
+    let flushSync = (opts && opts.unstable_flushSync) === !0, routesToUse = inFlightDataRoutes || dataRoutes, normalizedPath = normalizeTo(state.location, state.matches, basename, future2.v7_prependBasename, href, future2.v7_relativeSplatPath, routeId, opts?.relative), matches = matchRoutes(routesToUse, normalizedPath, basename);
     if (!matches) {
       setFetcherError(key, routeId, getInternalRouterError(404, {
         pathname: normalizedPath
@@ -1692,26 +1696,29 @@ function createRouter(init) {
     });
     let abortController = new AbortController(), fetchRequest = createClientSideRequest(init.history, path, abortController.signal, submission);
     fetchControllers.set(key, abortController);
-    let originatingLoadId = incrementingLoadId, actionResult = await callLoaderOrAction("action", fetchRequest, match, requestMatches, manifest, mapRouteProperties2, basename);
+    let originatingLoadId = incrementingLoadId, actionResult = await callLoaderOrAction("action", fetchRequest, match, requestMatches, manifest, mapRouteProperties2, basename, future2.v7_relativeSplatPath);
     if (fetchRequest.signal.aborted) {
       fetchControllers.get(key) === abortController && fetchControllers.delete(key);
       return;
     }
-    if (deletedFetchers.has(key)) {
-      updateFetcherState(key, getDoneFetcher(void 0));
-      return;
-    }
-    if (isRedirectResult(actionResult))
-      if (fetchControllers.delete(key), pendingNavigationLoadId > originatingLoadId) {
+    if (future2.v7_fetcherPersist && deletedFetchers.has(key)) {
+      if (isRedirectResult(actionResult) || isErrorResult(actionResult)) {
         updateFetcherState(key, getDoneFetcher(void 0));
         return;
-      } else
-        return fetchRedirectIds.add(key), updateFetcherState(key, getLoadingFetcher(submission)), startRedirectNavigation(state, actionResult, {
-          fetcherSubmission: submission
-        });
-    if (isErrorResult(actionResult)) {
-      setFetcherError(key, routeId, actionResult.error);
-      return;
+      }
+    } else {
+      if (isRedirectResult(actionResult))
+        if (fetchControllers.delete(key), pendingNavigationLoadId > originatingLoadId) {
+          updateFetcherState(key, getDoneFetcher(void 0));
+          return;
+        } else
+          return fetchRedirectIds.add(key), updateFetcherState(key, getLoadingFetcher(submission)), startRedirectNavigation(state, actionResult, {
+            fetcherSubmission: submission
+          });
+      if (isErrorResult(actionResult)) {
+        setFetcherError(key, routeId, actionResult.error);
+        return;
+      }
     }
     if (isDeferredResult(actionResult))
       throw getInternalRouterError(400, {
@@ -1729,9 +1736,11 @@ function createRouter(init) {
       matches,
       submission,
       nextLocation,
+      !1,
       isRevalidationRequired,
       cancelledDeferredRoutes,
       cancelledFetcherLoads,
+      deletedFetchers,
       fetchLoadMatches,
       fetchRedirectIds,
       routesToUse,
@@ -1792,7 +1801,7 @@ function createRouter(init) {
     });
     let abortController = new AbortController(), fetchRequest = createClientSideRequest(init.history, path, abortController.signal);
     fetchControllers.set(key, abortController);
-    let originatingLoadId = incrementingLoadId, result = await callLoaderOrAction("loader", fetchRequest, match, matches, manifest, mapRouteProperties2, basename);
+    let originatingLoadId = incrementingLoadId, result = await callLoaderOrAction("loader", fetchRequest, match, matches, manifest, mapRouteProperties2, basename, future2.v7_relativeSplatPath);
     if (isDeferredResult(result) && (result = await resolveDeferredData(result, fetchRequest.signal, !0) || result), fetchControllers.get(key) === abortController && fetchControllers.delete(key), !fetchRequest.signal.aborted) {
       if (deletedFetchers.has(key)) {
         updateFetcherState(key, getDoneFetcher(void 0));
@@ -1866,7 +1875,7 @@ function createRouter(init) {
     }
   }
   async function callLoadersAndMaybeResolveData(currentMatches, matches, matchesToLoad, fetchersToLoad, request) {
-    let results = await Promise.all([...matchesToLoad.map((match) => callLoaderOrAction("loader", request, match, matches, manifest, mapRouteProperties2, basename)), ...fetchersToLoad.map((f6) => f6.matches && f6.match && f6.controller ? callLoaderOrAction("loader", createClientSideRequest(init.history, f6.path, f6.controller.signal), f6.match, f6.matches, manifest, mapRouteProperties2, basename) : {
+    let results = await Promise.all([...matchesToLoad.map((match) => callLoaderOrAction("loader", request, match, matches, manifest, mapRouteProperties2, basename, future2.v7_relativeSplatPath)), ...fetchersToLoad.map((f6) => f6.matches && f6.match && f6.controller ? callLoaderOrAction("loader", createClientSideRequest(init.history, f6.path, f6.controller.signal), f6.match, f6.matches, manifest, mapRouteProperties2, basename, future2.v7_relativeSplatPath) : {
       type: ResultType.error,
       error: getInternalRouterError(404, {
         pathname: f6.path
@@ -2020,6 +2029,9 @@ function createRouter(init) {
     get basename() {
       return basename;
     },
+    get future() {
+      return future2;
+    },
     get state() {
       return state;
     },
@@ -2063,7 +2075,9 @@ function createStaticHandler(routes2, opts) {
     });
   } else
     mapRouteProperties2 = defaultMapRouteProperties;
-  let dataRoutes = convertRoutesToDataRoutes(routes2, mapRouteProperties2, void 0, manifest);
+  let future2 = _extends({
+    v7_relativeSplatPath: !1
+  }, opts ? opts.future : null), dataRoutes = convertRoutesToDataRoutes(routes2, mapRouteProperties2, void 0, manifest);
   async function query(request, _temp3) {
     let {
       requestContext
@@ -2189,7 +2203,7 @@ function createStaticHandler(routes2, opts) {
         type: ResultType.error,
         error
       };
-    } else if (result = await callLoaderOrAction("action", request, actionMatch, matches, manifest, mapRouteProperties2, basename, {
+    } else if (result = await callLoaderOrAction("action", request, actionMatch, matches, manifest, mapRouteProperties2, basename, future2.v7_relativeSplatPath, {
       isStaticRequest: !0,
       isRouteRequest,
       requestContext
@@ -2282,7 +2296,7 @@ function createStaticHandler(routes2, opts) {
         loaderHeaders: {},
         activeDeferreds: null
       };
-    let results = await Promise.all([...matchesToLoad.map((match) => callLoaderOrAction("loader", request, match, matches, manifest, mapRouteProperties2, basename, {
+    let results = await Promise.all([...matchesToLoad.map((match) => callLoaderOrAction("loader", request, match, matches, manifest, mapRouteProperties2, basename, future2.v7_relativeSplatPath, {
       isStaticRequest: !0,
       isRouteRequest,
       requestContext
@@ -2316,7 +2330,7 @@ function getStaticContextFromError(routes2, context, error) {
 function isSubmissionNavigation(opts) {
   return opts != null && ("formData" in opts && opts.formData != null || "body" in opts && opts.body !== void 0);
 }
-function normalizeTo(location, matches, basename, prependBasename, to, fromRouteId, relative) {
+function normalizeTo(location, matches, basename, prependBasename, to, v7_relativeSplatPath, fromRouteId, relative) {
   let contextualMatches, activeRouteMatch;
   if (fromRouteId) {
     contextualMatches = [];
@@ -2327,7 +2341,7 @@ function normalizeTo(location, matches, basename, prependBasename, to, fromRoute
       }
   } else
     contextualMatches = matches, activeRouteMatch = matches[matches.length - 1];
-  let path = resolveTo(to || ".", getPathContributingMatches(contextualMatches).map((m4) => m4.pathnameBase), stripBasename(location.pathname, basename) || location.pathname, relative === "path");
+  let path = resolveTo(to || ".", getResolveToMatches(contextualMatches, v7_relativeSplatPath), stripBasename(location.pathname, basename) || location.pathname, relative === "path");
   return to == null && (path.search = location.search, path.hash = location.hash), (to == null || to === "" || to === ".") && activeRouteMatch && activeRouteMatch.route.index && !hasNakedIndexQuery(path.search) && (path.search = path.search ? path.search.replace(/^\?/, "?index&") : "?index"), prependBasename && basename !== "/" && (path.pathname = path.pathname === "/" ? basename : joinPaths([basename, path.pathname])), createPath(path);
 }
 function normalizeNavigateOptions(normalizeFormMethod, isFetcher, path, opts) {
@@ -2430,20 +2444,26 @@ function normalizeNavigateOptions(normalizeFormMethod, isFetcher, path, opts) {
 function getLoaderMatchesUntilBoundary(matches, boundaryId) {
   let boundaryMatches = matches;
   if (boundaryId) {
-    let index = matches.findIndex((m4) => m4.route.id === boundaryId);
-    index >= 0 && (boundaryMatches = matches.slice(0, index));
+    let index2 = matches.findIndex((m4) => m4.route.id === boundaryId);
+    index2 >= 0 && (boundaryMatches = matches.slice(0, index2));
   }
   return boundaryMatches;
 }
-function getMatchesToLoad(history, state, matches, submission, location, isRevalidationRequired, cancelledDeferredRoutes, cancelledFetcherLoads, fetchLoadMatches, fetchRedirectIds, routesToUse, basename, pendingActionData, pendingError) {
-  let actionResult = pendingError ? Object.values(pendingError)[0] : pendingActionData ? Object.values(pendingActionData)[0] : void 0, currentUrl = history.createURL(state.location), nextUrl = history.createURL(location), boundaryId = pendingError ? Object.keys(pendingError)[0] : void 0, navigationMatches = getLoaderMatchesUntilBoundary(matches, boundaryId).filter((match, index) => {
-    if (match.route.lazy)
+function getMatchesToLoad(history, state, matches, submission, location, isInitialLoad, isRevalidationRequired, cancelledDeferredRoutes, cancelledFetcherLoads, deletedFetchers, fetchLoadMatches, fetchRedirectIds, routesToUse, basename, pendingActionData, pendingError) {
+  let actionResult = pendingError ? Object.values(pendingError)[0] : pendingActionData ? Object.values(pendingActionData)[0] : void 0, currentUrl = history.createURL(state.location), nextUrl = history.createURL(location), boundaryId = pendingError ? Object.keys(pendingError)[0] : void 0, navigationMatches = getLoaderMatchesUntilBoundary(matches, boundaryId).filter((match, index2) => {
+    let {
+      route
+    } = match;
+    if (route.lazy)
       return !0;
-    if (match.route.loader == null)
+    if (route.loader == null)
       return !1;
-    if (isNewLoader(state.loaderData, state.matches[index], match) || cancelledDeferredRoutes.some((id) => id === match.route.id))
+    if (isInitialLoad)
+      return route.loader.hydrate ? !0 : state.loaderData[route.id] === void 0 && // Don't re-run if the loader ran and threw an error
+      (!state.errors || state.errors[route.id] === void 0);
+    if (isNewLoader(state.loaderData, state.matches[index2], match) || cancelledDeferredRoutes.some((id) => id === match.route.id))
       return !0;
-    let currentRouteMatch = state.matches[index], nextRouteMatch = match;
+    let currentRouteMatch = state.matches[index2], nextRouteMatch = match;
     return shouldRevalidateLoader(match, _extends({
       currentUrl,
       currentParams: currentRouteMatch.params,
@@ -2460,7 +2480,7 @@ function getMatchesToLoad(history, state, matches, submission, location, isReval
     }));
   }), revalidatingFetchers = [];
   return fetchLoadMatches.forEach((f6, key) => {
-    if (!matches.some((m4) => m4.route.id === f6.routeId))
+    if (isInitialLoad || !matches.some((m4) => m4.route.id === f6.routeId) || deletedFetchers.has(key))
       return;
     let fetcherMatches = matchRoutes(routesToUse, f6.path, basename);
     if (!fetcherMatches) {
@@ -2537,7 +2557,7 @@ async function loadLazyRouteModule(route, mapRouteProperties2, manifest) {
     lazy: void 0
   }));
 }
-async function callLoaderOrAction(type, request, match, matches, manifest, mapRouteProperties2, basename, opts) {
+async function callLoaderOrAction(type, request, match, matches, manifest, mapRouteProperties2, basename, v7_relativeSplatPath, opts) {
   opts === void 0 && (opts = {});
   let resultType, result, onReject, runHandler = (handler) => {
     let reject, abortPromise = new Promise((_2, r5) => reject = r5);
@@ -2596,7 +2616,7 @@ async function callLoaderOrAction(type, request, match, matches, manifest, mapRo
     if (redirectStatusCodes.has(status)) {
       let location = result.headers.get("Location");
       if (invariant(location, "Redirects returned/thrown from loaders/actions must have a Location header"), !ABSOLUTE_URL_REGEX.test(location))
-        location = normalizeTo(new URL(request.url), matches.slice(0, matches.indexOf(match) + 1), basename, !0, location);
+        location = normalizeTo(new URL(request.url), matches.slice(0, matches.indexOf(match) + 1), basename, !0, location, v7_relativeSplatPath);
       else if (!opts.isStaticRequest) {
         let currentUrl = new URL(request.url), url = location.startsWith("//") ? new URL(currentUrl.protocol + location) : new URL(location), isSameBasename = stripBasename(url.pathname, basename) != null;
         url.origin === currentUrl.origin && isSameBasename && (location = url.pathname + url.search + url.hash);
@@ -2616,8 +2636,17 @@ async function callLoaderOrAction(type, request, match, matches, manifest, mapRo
         type: resultType === ResultType.error ? ResultType.error : ResultType.data,
         response: result
       };
-    let data, contentType = result.headers.get("Content-Type");
-    return contentType && /\bapplication\/json\b/.test(contentType) ? data = await result.json() : data = await result.text(), resultType === ResultType.error ? {
+    let data;
+    try {
+      let contentType = result.headers.get("Content-Type");
+      contentType && /\bapplication\/json\b/.test(contentType) ? data = await result.json() : data = await result.text();
+    } catch (e3) {
+      return {
+        type: ResultType.error,
+        error: e3
+      };
+    }
+    return resultType === ResultType.error ? {
       type: resultType,
       error: new ErrorResponseImpl(status, result.statusText, data),
       headers: result.headers
@@ -2676,8 +2705,8 @@ function convertSearchParamsToFormData(searchParams) {
 }
 function processRouteLoaderData(matches, matchesToLoad, results, pendingError, activeDeferreds) {
   let loaderData = {}, errors = null, statusCode, foundError = !1, loaderHeaders = {};
-  return results.forEach((result, index) => {
-    let id = matchesToLoad[index].route.id;
+  return results.forEach((result, index2) => {
+    let id = matchesToLoad[index2].route.id;
     if (invariant(!isRedirectResult(result), "Cannot handle redirect results in processLoaderData"), isErrorResult(result)) {
       let boundaryMatch = findNearestBoundary(matches, id), error = result.error;
       pendingError && (error = Object.values(pendingError)[0], pendingError = void 0), errors = errors || {}, errors[boundaryMatch.route.id] == null && (errors[boundaryMatch.route.id] = error), loaderData[id] = void 0, foundError || (foundError = !0, statusCode = isRouteErrorResponse(result.error) ? result.error.status : 500), result.headers && (loaderHeaders[id] = result.headers);
@@ -2695,14 +2724,14 @@ function processLoaderData(state, matches, matchesToLoad, results, pendingError,
     loaderData,
     errors
   } = processRouteLoaderData(matches, matchesToLoad, results, pendingError, activeDeferreds);
-  for (let index = 0; index < revalidatingFetchers.length; index++) {
+  for (let index2 = 0; index2 < revalidatingFetchers.length; index2++) {
     let {
       key,
       match,
       controller
-    } = revalidatingFetchers[index];
-    invariant(fetcherResults !== void 0 && fetcherResults[index] !== void 0, "Did not find corresponding fetcher result");
-    let result = fetcherResults[index];
+    } = revalidatingFetchers[index2];
+    invariant(fetcherResults !== void 0 && fetcherResults[index2] !== void 0, "Did not find corresponding fetcher result");
+    let result = fetcherResults[index2];
     if (!(controller && controller.signal.aborted))
       if (isErrorResult(result)) {
         let boundaryMatch = findNearestBoundary(state.matches, match?.route.id);
@@ -2809,15 +2838,15 @@ function isMutationMethod(method) {
   return validMutationMethods.has(method.toLowerCase());
 }
 async function resolveDeferredResults(currentMatches, matchesToLoad, results, signals, isFetcher, currentLoaderData) {
-  for (let index = 0; index < results.length; index++) {
-    let result = results[index], match = matchesToLoad[index];
+  for (let index2 = 0; index2 < results.length; index2++) {
+    let result = results[index2], match = matchesToLoad[index2];
     if (!match)
       continue;
     let currentMatch = currentMatches.find((m4) => m4.route.id === match.route.id), isRevalidatingLoader = currentMatch != null && !isNewRouteInstance(currentMatch, match) && (currentLoaderData && currentLoaderData[match.route.id]) !== void 0;
     if (isDeferredResult(result) && (isFetcher || isRevalidatingLoader)) {
-      let signal = signals[index];
+      let signal = signals[index2];
       invariant(signal, "Expected an AbortSignal for revalidating fetcher deferred result"), await resolveDeferredData(result, signal, isFetcher).then((result2) => {
-        result2 && (results[index] = result2 || results[index]);
+        result2 && (results[index2] = result2 || results[index2]);
       });
     }
   }
@@ -2993,7 +3022,7 @@ function persistAppliedTransitions(_window, transitions) {
   }
 }
 var Action, PopStateEventType, ResultType, immutableRouteKeys, paramRe, dynamicSegmentValue, indexRouteValue, emptySegmentValue, staticSegmentValue, splatPenalty, isSplat, joinPaths, normalizePathname, normalizeSearch, normalizeHash, json, AbortedDeferredError, DeferredData, defer, redirect, redirectDocument, ErrorResponseImpl, validMutationMethodsArr, validMutationMethods, validRequestMethodsArr, validRequestMethods, redirectStatusCodes, redirectPreserveMethodStatusCodes, IDLE_NAVIGATION, IDLE_FETCHER, IDLE_BLOCKER, ABSOLUTE_URL_REGEX, defaultMapRouteProperties, TRANSITIONS_STORAGE_KEY, UNSAFE_DEFERRED_SYMBOL, init_router = __esm({
-  "../../node_modules/@remix-run/router/dist/router.js"() {
+  "../../node_modules/.pnpm/@remix-run+router@1.14.1/node_modules/@remix-run/router/dist/router.js"() {
     (function(Action2) {
       Action2.Pop = "POP", Action2.Push = "PUSH", Action2.Replace = "REPLACE";
     })(Action || (Action = {}));
@@ -3142,19 +3171,19 @@ var Action, PopStateEventType, ResultType, immutableRouteKeys, paramRe, dynamicS
   }
 });
 
-// ../../node_modules/@remix-run/server-runtime/dist/esm/mode.js
+// ../../node_modules/.pnpm/@remix-run+server-runtime@2.4.1_typescript@5.3.3/node_modules/@remix-run/server-runtime/dist/esm/mode.js
 function isServerMode(value) {
   return value === ServerMode.Development || value === ServerMode.Production || value === ServerMode.Test;
 }
 var ServerMode, init_mode = __esm({
-  "../../node_modules/@remix-run/server-runtime/dist/esm/mode.js"() {
+  "../../node_modules/.pnpm/@remix-run+server-runtime@2.4.1_typescript@5.3.3/node_modules/@remix-run/server-runtime/dist/esm/mode.js"() {
     ServerMode = /* @__PURE__ */ function(ServerMode2) {
       return ServerMode2.Development = "development", ServerMode2.Production = "production", ServerMode2.Test = "test", ServerMode2;
     }({});
   }
 });
 
-// ../../node_modules/@remix-run/server-runtime/dist/esm/errors.js
+// ../../node_modules/.pnpm/@remix-run+server-runtime@2.4.1_typescript@5.3.3/node_modules/@remix-run/server-runtime/dist/esm/errors.js
 function sanitizeError(error, serverMode) {
   if (error instanceof Error && serverMode !== ServerMode.Development) {
     let sanitized = new Error("Unexpected Server Error");
@@ -3203,13 +3232,13 @@ function serializeErrors(errors, serverMode) {
   return serialized;
 }
 var init_errors = __esm({
-  "../../node_modules/@remix-run/server-runtime/dist/esm/errors.js"() {
+  "../../node_modules/.pnpm/@remix-run+server-runtime@2.4.1_typescript@5.3.3/node_modules/@remix-run/server-runtime/dist/esm/errors.js"() {
     init_router();
     init_mode();
   }
 });
 
-// ../../node_modules/@remix-run/server-runtime/dist/esm/responses.js
+// ../../node_modules/.pnpm/@remix-run+server-runtime@2.4.1_typescript@5.3.3/node_modules/@remix-run/server-runtime/dist/esm/responses.js
 function isDeferredData2(value) {
   let deferred = value;
   return deferred && typeof deferred == "object" && typeof deferred.data == "object" && typeof deferred.subscribe == "function" && typeof deferred.cancel == "function" && typeof deferred.resolveData == "function";
@@ -3257,7 +3286,7 @@ function enqueueTrackedPromise(controller, encoder, settledKey, promise, serverM
 `));
 }
 var json3, defer3, redirect3, redirectDocument2, redirectStatusCodes2, DEFERRED_VALUE_PLACEHOLDER_PREFIX, init_responses = __esm({
-  "../../node_modules/@remix-run/server-runtime/dist/esm/responses.js"() {
+  "../../node_modules/.pnpm/@remix-run+server-runtime@2.4.1_typescript@5.3.3/node_modules/@remix-run/server-runtime/dist/esm/responses.js"() {
     init_router();
     init_errors();
     json3 = (data, init = {}) => json(data, init), defer3 = (data, init = {}) => defer(data, init), redirect3 = (url, init = 302) => redirect(url, init), redirectDocument2 = (url, init = 302) => redirectDocument(url, init);
@@ -3266,18 +3295,18 @@ var json3, defer3, redirect3, redirectDocument2, redirectStatusCodes2, DEFERRED_
   }
 });
 
-// ../../node_modules/@remix-run/server-runtime/dist/esm/entry.js
+// ../../node_modules/.pnpm/@remix-run+server-runtime@2.4.1_typescript@5.3.3/node_modules/@remix-run/server-runtime/dist/esm/entry.js
 function createEntryRouteModules(manifest) {
   return Object.keys(manifest).reduce((memo, routeId) => (memo[routeId] = manifest[routeId].module, memo), {});
 }
 var init_entry = __esm({
-  "../../node_modules/@remix-run/server-runtime/dist/esm/entry.js"() {
+  "../../node_modules/.pnpm/@remix-run+server-runtime@2.4.1_typescript@5.3.3/node_modules/@remix-run/server-runtime/dist/esm/entry.js"() {
   }
 });
 
-// ../../node_modules/set-cookie-parser/lib/set-cookie.js
+// ../../node_modules/.pnpm/set-cookie-parser@2.6.0/node_modules/set-cookie-parser/lib/set-cookie.js
 var require_set_cookie = __commonJS({
-  "../../node_modules/set-cookie-parser/lib/set-cookie.js"(exports, module) {
+  "../../node_modules/.pnpm/set-cookie-parser@2.6.0/node_modules/set-cookie-parser/lib/set-cookie.js"(exports, module) {
     "use strict";
     var defaultParseOptions = {
       decodeValues: !0,
@@ -3371,7 +3400,7 @@ var require_set_cookie = __commonJS({
   }
 });
 
-// ../../node_modules/@remix-run/server-runtime/dist/esm/headers.js
+// ../../node_modules/.pnpm/@remix-run+server-runtime@2.4.1_typescript@5.3.3/node_modules/@remix-run/server-runtime/dist/esm/headers.js
 function getDocumentHeadersRR(build, context) {
   let boundaryIdx = context.errors ? context.matches.findIndex((m4) => context.errors[m4.route.id]) : -1, matches = boundaryIdx >= 0 ? context.matches.slice(0, boundaryIdx + 1) : context.matches, errorHeaders;
   if (boundaryIdx >= 0) {
@@ -3410,22 +3439,22 @@ function prependCookies(parentHeaders, childHeaders) {
   });
 }
 var import_set_cookie_parser, init_headers = __esm({
-  "../../node_modules/@remix-run/server-runtime/dist/esm/headers.js"() {
+  "../../node_modules/.pnpm/@remix-run+server-runtime@2.4.1_typescript@5.3.3/node_modules/@remix-run/server-runtime/dist/esm/headers.js"() {
     import_set_cookie_parser = __toESM(require_set_cookie());
   }
 });
 
-// ../../node_modules/@remix-run/server-runtime/dist/esm/invariant.js
+// ../../node_modules/.pnpm/@remix-run+server-runtime@2.4.1_typescript@5.3.3/node_modules/@remix-run/server-runtime/dist/esm/invariant.js
 function invariant2(value, message) {
   if (value === !1 || value === null || typeof value > "u")
     throw console.error("The following error is a bug in Remix; please open an issue! https://github.com/remix-run/remix/issues/new"), new Error(message);
 }
 var init_invariant = __esm({
-  "../../node_modules/@remix-run/server-runtime/dist/esm/invariant.js"() {
+  "../../node_modules/.pnpm/@remix-run+server-runtime@2.4.1_typescript@5.3.3/node_modules/@remix-run/server-runtime/dist/esm/invariant.js"() {
   }
 });
 
-// ../../node_modules/@remix-run/server-runtime/dist/esm/routeMatching.js
+// ../../node_modules/.pnpm/@remix-run+server-runtime@2.4.1_typescript@5.3.3/node_modules/@remix-run/server-runtime/dist/esm/routeMatching.js
 function matchServerRoutes(routes2, pathname) {
   let matches = matchRoutes(routes2, pathname);
   return matches ? matches.map((match) => ({
@@ -3435,12 +3464,12 @@ function matchServerRoutes(routes2, pathname) {
   })) : null;
 }
 var init_routeMatching = __esm({
-  "../../node_modules/@remix-run/server-runtime/dist/esm/routeMatching.js"() {
+  "../../node_modules/.pnpm/@remix-run+server-runtime@2.4.1_typescript@5.3.3/node_modules/@remix-run/server-runtime/dist/esm/routeMatching.js"() {
     init_router();
   }
 });
 
-// ../../node_modules/@remix-run/server-runtime/dist/esm/data.js
+// ../../node_modules/.pnpm/@remix-run+server-runtime@2.4.1_typescript@5.3.3/node_modules/@remix-run/server-runtime/dist/esm/data.js
 async function callRouteActionRR({
   loadContext,
   action: action3,
@@ -3501,12 +3530,12 @@ function stripDataParam(request) {
   return init.body && (init.duplex = "half"), new Request(url.href, init);
 }
 var init_data = __esm({
-  "../../node_modules/@remix-run/server-runtime/dist/esm/data.js"() {
+  "../../node_modules/.pnpm/@remix-run+server-runtime@2.4.1_typescript@5.3.3/node_modules/@remix-run/server-runtime/dist/esm/data.js"() {
     init_responses();
   }
 });
 
-// ../../node_modules/@remix-run/server-runtime/dist/esm/routes.js
+// ../../node_modules/.pnpm/@remix-run+server-runtime@2.4.1_typescript@5.3.3/node_modules/@remix-run/server-runtime/dist/esm/routes.js
 function groupRoutesByParentId(manifest) {
   let routes2 = {};
   return Object.values(manifest).forEach((route) => {
@@ -3558,17 +3587,17 @@ function createStaticHandlerDataRoutes(manifest, future2, parentId = "", routesB
   });
 }
 var init_routes = __esm({
-  "../../node_modules/@remix-run/server-runtime/dist/esm/routes.js"() {
+  "../../node_modules/.pnpm/@remix-run+server-runtime@2.4.1_typescript@5.3.3/node_modules/@remix-run/server-runtime/dist/esm/routes.js"() {
     init_data();
   }
 });
 
-// ../../node_modules/@remix-run/server-runtime/dist/esm/markup.js
+// ../../node_modules/.pnpm/@remix-run+server-runtime@2.4.1_typescript@5.3.3/node_modules/@remix-run/server-runtime/dist/esm/markup.js
 function escapeHtml(html) {
   return html.replace(ESCAPE_REGEX, (match) => ESCAPE_LOOKUP[match]);
 }
 var ESCAPE_LOOKUP, ESCAPE_REGEX, init_markup = __esm({
-  "../../node_modules/@remix-run/server-runtime/dist/esm/markup.js"() {
+  "../../node_modules/.pnpm/@remix-run+server-runtime@2.4.1_typescript@5.3.3/node_modules/@remix-run/server-runtime/dist/esm/markup.js"() {
     ESCAPE_LOOKUP = {
       "&": "\\u0026",
       ">": "\\u003e",
@@ -3579,19 +3608,59 @@ var ESCAPE_LOOKUP, ESCAPE_REGEX, init_markup = __esm({
   }
 });
 
-// ../../node_modules/@remix-run/server-runtime/dist/esm/serverHandoff.js
+// ../../node_modules/.pnpm/@remix-run+server-runtime@2.4.1_typescript@5.3.3/node_modules/@remix-run/server-runtime/dist/esm/serverHandoff.js
 function createServerHandoffString(serverHandoff) {
   return escapeHtml(JSON.stringify(serverHandoff));
 }
 var init_serverHandoff = __esm({
-  "../../node_modules/@remix-run/server-runtime/dist/esm/serverHandoff.js"() {
+  "../../node_modules/.pnpm/@remix-run+server-runtime@2.4.1_typescript@5.3.3/node_modules/@remix-run/server-runtime/dist/esm/serverHandoff.js"() {
     init_markup();
   }
 });
 
-// ../../node_modules/@remix-run/server-runtime/dist/esm/server.js
+// ../../node_modules/.pnpm/@remix-run+server-runtime@2.4.1_typescript@5.3.3/node_modules/@remix-run/server-runtime/dist/esm/dev.js
+async function broadcastDevReady(build, origin) {
+  if (origin ??= "http://localhost:3001/", !origin)
+    throw Error("Dev server origin not set");
+  let url = new URL(origin);
+  url.pathname = "ping";
+  let response = await fetch(url.href, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      buildHash: build.assets.version
+    })
+  }).catch((error) => {
+    throw console.error(`Could not reach Remix dev server at ${url}`), error;
+  });
+  if (!response.ok)
+    throw console.error(`Could not reach Remix dev server at ${url} (${response.status})`), Error(await response.text());
+}
+function logDevReady(build) {
+  console.log(`[REMIX DEV] ${build.assets.version} ready`);
+}
+function setDevServerHooks(devServerHooks) {
+  globalThis[globalDevServerHooksKey] = devServerHooks;
+}
+function getDevServerHooks() {
+  return globalThis[globalDevServerHooksKey];
+}
+var globalDevServerHooksKey, init_dev = __esm({
+  "../../node_modules/.pnpm/@remix-run+server-runtime@2.4.1_typescript@5.3.3/node_modules/@remix-run/server-runtime/dist/esm/dev.js"() {
+    globalDevServerHooksKey = "__remix_devServerHooks";
+  }
+});
+
+// ../../node_modules/.pnpm/@remix-run+server-runtime@2.4.1_typescript@5.3.3/node_modules/@remix-run/server-runtime/dist/esm/server.js
 function derive(build, mode2) {
-  let routes2 = createRoutes(build.routes), dataRoutes = createStaticHandlerDataRoutes(build.routes, build.future), serverMode = isServerMode(mode2) ? mode2 : ServerMode.Production, staticHandler = createStaticHandler(dataRoutes), errorHandler = build.entry.module.handleError || ((error, {
+  var _build$future;
+  let routes2 = createRoutes(build.routes), dataRoutes = createStaticHandlerDataRoutes(build.routes, build.future), serverMode = isServerMode(mode2) ? mode2 : ServerMode.Production, staticHandler = createStaticHandler(dataRoutes, {
+    future: {
+      v7_relativeSplatPath: (_build$future = build.future) === null || _build$future === void 0 ? void 0 : _build$future.v3_relativeSplatPath
+    }
+  }), errorHandler = build.entry.module.handleError || ((error, {
     request
   }) => {
     serverMode !== ServerMode.Test && !request.signal.aborted && console.error(
@@ -3732,7 +3801,7 @@ ${String(error)}`), new Response(message, {
   });
 }
 var createRequestHandler, init_server = __esm({
-  "../../node_modules/@remix-run/server-runtime/dist/esm/server.js"() {
+  "../../node_modules/.pnpm/@remix-run+server-runtime@2.4.1_typescript@5.3.3/node_modules/@remix-run/server-runtime/dist/esm/server.js"() {
     init_router();
     init_entry();
     init_errors();
@@ -3743,11 +3812,10 @@ var createRequestHandler, init_server = __esm({
     init_routes();
     init_responses();
     init_serverHandoff();
+    init_dev();
     createRequestHandler = (build, mode2) => {
       let _build, routes2, serverMode, staticHandler, errorHandler;
-      return async function(request, loadContext = {}, {
-        __criticalCss: criticalCss
-      } = {}) {
+      return async function(request, loadContext = {}) {
         if (_build = typeof build == "function" ? await build() : build, typeof build == "function") {
           let derived = derive(_build, mode2);
           routes2 = derived.routes, serverMode = derived.serverMode, staticHandler = derived.staticHandler, errorHandler = derived.errorHandler;
@@ -3755,11 +3823,17 @@ var createRequestHandler, init_server = __esm({
           let derived = derive(_build, mode2);
           routes2 = derived.routes, serverMode = derived.serverMode, staticHandler = derived.staticHandler, errorHandler = derived.errorHandler;
         }
-        let url = new URL(request.url), matches = matchServerRoutes(routes2, url.pathname), handleError = (error) => errorHandler(error, {
-          context: loadContext,
-          params: matches && matches.length > 0 ? matches[0].params : {},
-          request
-        }), response;
+        let url = new URL(request.url), matches = matchServerRoutes(routes2, url.pathname), handleError = (error) => {
+          if (mode2 === ServerMode.Development) {
+            var _getDevServerHooks, _getDevServerHooks$pr;
+            (_getDevServerHooks = getDevServerHooks()) === null || _getDevServerHooks === void 0 || (_getDevServerHooks$pr = _getDevServerHooks.processRequestError) === null || _getDevServerHooks$pr === void 0 || _getDevServerHooks$pr.call(_getDevServerHooks, error);
+          }
+          errorHandler(error, {
+            context: loadContext,
+            params: matches && matches.length > 0 ? matches[0].params : {},
+            request
+          });
+        }, response;
         if (url.searchParams.has("_data")) {
           let routeId = url.searchParams.get("_data");
           if (response = await handleDataRequestRR(serverMode, staticHandler, routeId, request, loadContext, handleError), _build.entry.module.handleDataRequest) {
@@ -3770,8 +3844,13 @@ var createRequestHandler, init_server = __esm({
               request
             });
           }
-        } else
-          matches && matches[matches.length - 1].route.module.default == null && matches[matches.length - 1].route.module.ErrorBoundary == null ? response = await handleResourceRequestRR(serverMode, staticHandler, matches.slice(-1)[0].route.id, request, loadContext, handleError) : response = await handleDocumentRequestRR(serverMode, _build, staticHandler, request, loadContext, handleError, criticalCss);
+        } else if (matches && matches[matches.length - 1].route.module.default == null && matches[matches.length - 1].route.module.ErrorBoundary == null)
+          response = await handleResourceRequestRR(serverMode, staticHandler, matches.slice(-1)[0].route.id, request, loadContext, handleError);
+        else {
+          var _getDevServerHooks2, _getDevServerHooks2$g;
+          let criticalCss = mode2 === ServerMode.Development ? await ((_getDevServerHooks2 = getDevServerHooks()) === null || _getDevServerHooks2 === void 0 || (_getDevServerHooks2$g = _getDevServerHooks2.getCriticalCss) === null || _getDevServerHooks2$g === void 0 ? void 0 : _getDevServerHooks2$g.call(_getDevServerHooks2, _build, url.pathname)) : void 0;
+          response = await handleDocumentRequestRR(serverMode, _build, staticHandler, request, loadContext, handleError, criticalCss);
+        }
         return request.method === "HEAD" ? new Response(null, {
           headers: response.headers,
           status: response.status,
@@ -3782,7 +3861,7 @@ var createRequestHandler, init_server = __esm({
   }
 });
 
-// ../../node_modules/@remix-run/server-runtime/dist/esm/sessions.js
+// ../../node_modules/.pnpm/@remix-run+server-runtime@2.4.1_typescript@5.3.3/node_modules/@remix-run/server-runtime/dist/esm/sessions.js
 function flash(name) {
   return `__flash_${name}__`;
 }
@@ -3790,7 +3869,7 @@ function warnOnceAboutSigningSessionCookie(cookie) {
   warnOnce(cookie.isSigned, `The "${cookie.name}" cookie is not signed, but session cookies should be signed to prevent tampering on the client before they are sent back to the server. See https://remix.run/utils/cookies#signing-cookies for more information.`);
 }
 var createSession, isSession, createSessionStorageFactory, init_sessions = __esm({
-  "../../node_modules/@remix-run/server-runtime/dist/esm/sessions.js"() {
+  "../../node_modules/.pnpm/@remix-run+server-runtime@2.4.1_typescript@5.3.3/node_modules/@remix-run/server-runtime/dist/esm/sessions.js"() {
     init_cookies();
     init_warnings();
     createSession = (initialData = {}, id = "") => {
@@ -3856,9 +3935,9 @@ var createSession, isSession, createSessionStorageFactory, init_sessions = __esm
   }
 });
 
-// ../../node_modules/@remix-run/server-runtime/dist/esm/sessions/cookieStorage.js
+// ../../node_modules/.pnpm/@remix-run+server-runtime@2.4.1_typescript@5.3.3/node_modules/@remix-run/server-runtime/dist/esm/sessions/cookieStorage.js
 var createCookieSessionStorageFactory, init_cookieStorage = __esm({
-  "../../node_modules/@remix-run/server-runtime/dist/esm/sessions/cookieStorage.js"() {
+  "../../node_modules/.pnpm/@remix-run+server-runtime@2.4.1_typescript@5.3.3/node_modules/@remix-run/server-runtime/dist/esm/sessions/cookieStorage.js"() {
     init_cookies();
     init_sessions();
     createCookieSessionStorageFactory = (createCookie) => ({
@@ -3887,9 +3966,9 @@ var createCookieSessionStorageFactory, init_cookieStorage = __esm({
   }
 });
 
-// ../../node_modules/@remix-run/server-runtime/dist/esm/sessions/memoryStorage.js
+// ../../node_modules/.pnpm/@remix-run+server-runtime@2.4.1_typescript@5.3.3/node_modules/@remix-run/server-runtime/dist/esm/sessions/memoryStorage.js
 var createMemorySessionStorageFactory, init_memoryStorage = __esm({
-  "../../node_modules/@remix-run/server-runtime/dist/esm/sessions/memoryStorage.js"() {
+  "../../node_modules/.pnpm/@remix-run+server-runtime@2.4.1_typescript@5.3.3/node_modules/@remix-run/server-runtime/dist/esm/sessions/memoryStorage.js"() {
     createMemorySessionStorageFactory = (createSessionStorage) => ({
       cookie
     } = {}) => {
@@ -3929,9 +4008,9 @@ var createMemorySessionStorageFactory, init_memoryStorage = __esm({
   }
 });
 
-// ../../node_modules/@remix-run/server-runtime/dist/esm/upload/errors.js
+// ../../node_modules/.pnpm/@remix-run+server-runtime@2.4.1_typescript@5.3.3/node_modules/@remix-run/server-runtime/dist/esm/upload/errors.js
 var MaxPartSizeExceededError, init_errors2 = __esm({
-  "../../node_modules/@remix-run/server-runtime/dist/esm/upload/errors.js"() {
+  "../../node_modules/.pnpm/@remix-run+server-runtime@2.4.1_typescript@5.3.3/node_modules/@remix-run/server-runtime/dist/esm/upload/errors.js"() {
     MaxPartSizeExceededError = class extends Error {
       constructor(field, maxBytes) {
         super(`Field "${field}" exceeded upload size of ${maxBytes} bytes.`), this.field = field, this.maxBytes = maxBytes;
@@ -3940,7 +4019,7 @@ var MaxPartSizeExceededError, init_errors2 = __esm({
   }
 });
 
-// ../../node_modules/@remix-run/server-runtime/dist/esm/upload/memoryUploadHandler.js
+// ../../node_modules/.pnpm/@remix-run+server-runtime@2.4.1_typescript@5.3.3/node_modules/@remix-run/server-runtime/dist/esm/upload/memoryUploadHandler.js
 function createMemoryUploadHandler({
   filter,
   maxPartSize = 3e6
@@ -3971,40 +4050,12 @@ function createMemoryUploadHandler({
   };
 }
 var init_memoryUploadHandler = __esm({
-  "../../node_modules/@remix-run/server-runtime/dist/esm/upload/memoryUploadHandler.js"() {
+  "../../node_modules/.pnpm/@remix-run+server-runtime@2.4.1_typescript@5.3.3/node_modules/@remix-run/server-runtime/dist/esm/upload/memoryUploadHandler.js"() {
     init_errors2();
   }
 });
 
-// ../../node_modules/@remix-run/server-runtime/dist/esm/dev.js
-async function broadcastDevReady(build, origin) {
-  if (origin ??= "http://localhost:3001/", !origin)
-    throw Error("Dev server origin not set");
-  let url = new URL(origin);
-  url.pathname = "ping";
-  let response = await fetch(url.href, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      buildHash: build.assets.version
-    })
-  }).catch((error) => {
-    throw console.error(`Could not reach Remix dev server at ${url}`), error;
-  });
-  if (!response.ok)
-    throw console.error(`Could not reach Remix dev server at ${url} (${response.status})`), Error(await response.text());
-}
-function logDevReady(build) {
-  console.log(`[REMIX DEV] ${build.assets.version} ready`);
-}
-var init_dev = __esm({
-  "../../node_modules/@remix-run/server-runtime/dist/esm/dev.js"() {
-  }
-});
-
-// ../../node_modules/@remix-run/server-runtime/dist/esm/index.js
+// ../../node_modules/.pnpm/@remix-run+server-runtime@2.4.1_typescript@5.3.3/node_modules/@remix-run/server-runtime/dist/esm/index.js
 var esm_exports = {};
 __export(esm_exports, {
   MaxPartSizeExceededError: () => MaxPartSizeExceededError,
@@ -4024,10 +4075,11 @@ __export(esm_exports, {
   redirectDocument: () => redirectDocument2,
   unstable_composeUploadHandlers: () => composeUploadHandlers,
   unstable_createMemoryUploadHandler: () => createMemoryUploadHandler,
-  unstable_parseMultipartFormData: () => parseMultipartFormData
+  unstable_parseMultipartFormData: () => parseMultipartFormData,
+  unstable_setDevServerHooks: () => setDevServerHooks
 });
 var init_esm = __esm({
-  "../../node_modules/@remix-run/server-runtime/dist/esm/index.js"() {
+  "../../node_modules/.pnpm/@remix-run+server-runtime@2.4.1_typescript@5.3.3/node_modules/@remix-run/server-runtime/dist/esm/index.js"() {
     init_cookies();
     init_formData();
     init_responses();
@@ -4041,16 +4093,16 @@ var init_esm = __esm({
   }
 });
 
-// ../../node_modules/@remix-run/cloudflare/dist/crypto.js
+// ../../node_modules/.pnpm/@remix-run+cloudflare@2.4.1_@cloudflare+workers-types@4.20231218.0_typescript@5.3.3/node_modules/@remix-run/cloudflare/dist/crypto.js
 var require_crypto = __commonJS({
-  "../../node_modules/@remix-run/cloudflare/dist/crypto.js"(exports) {
+  "../../node_modules/.pnpm/@remix-run+cloudflare@2.4.1_@cloudflare+workers-types@4.20231218.0_typescript@5.3.3/node_modules/@remix-run/cloudflare/dist/crypto.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: !0 });
     var encoder = new TextEncoder(), sign = async (value, secret) => {
       let key = await createKey2(secret, ["sign"]), data = encoder.encode(value), signature = await crypto.subtle.sign("HMAC", key, data), hash = btoa(String.fromCharCode(...new Uint8Array(signature))).replace(/=+$/, "");
       return value + "." + hash;
     }, unsign = async (signed, secret) => {
-      let index = signed.lastIndexOf("."), value = signed.slice(0, index), hash = signed.slice(index + 1), key = await createKey2(secret, ["verify"]), data = encoder.encode(value), signature = byteStringToUint8Array(atob(hash));
+      let index2 = signed.lastIndexOf("."), value = signed.slice(0, index2), hash = signed.slice(index2 + 1), key = await createKey2(secret, ["verify"]), data = encoder.encode(value), signature = byteStringToUint8Array(atob(hash));
       return await crypto.subtle.verify("HMAC", key, signature, data) ? value : !1;
     };
     async function createKey2(secret, usages) {
@@ -4070,9 +4122,9 @@ var require_crypto = __commonJS({
   }
 });
 
-// ../../node_modules/@remix-run/cloudflare/dist/implementations.js
+// ../../node_modules/.pnpm/@remix-run+cloudflare@2.4.1_@cloudflare+workers-types@4.20231218.0_typescript@5.3.3/node_modules/@remix-run/cloudflare/dist/implementations.js
 var require_implementations = __commonJS({
-  "../../node_modules/@remix-run/cloudflare/dist/implementations.js"(exports) {
+  "../../node_modules/.pnpm/@remix-run+cloudflare@2.4.1_@cloudflare+workers-types@4.20231218.0_typescript@5.3.3/node_modules/@remix-run/cloudflare/dist/implementations.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: !0 });
     var serverRuntime = (init_esm(), __toCommonJS(esm_exports)), crypto2 = require_crypto(), createCookie = serverRuntime.createCookieFactory({
@@ -4086,9 +4138,9 @@ var require_implementations = __commonJS({
   }
 });
 
-// ../../node_modules/@remix-run/cloudflare/dist/sessions/workersKVStorage.js
+// ../../node_modules/.pnpm/@remix-run+cloudflare@2.4.1_@cloudflare+workers-types@4.20231218.0_typescript@5.3.3/node_modules/@remix-run/cloudflare/dist/sessions/workersKVStorage.js
 var require_workersKVStorage = __commonJS({
-  "../../node_modules/@remix-run/cloudflare/dist/sessions/workersKVStorage.js"(exports) {
+  "../../node_modules/.pnpm/@remix-run+cloudflare@2.4.1_@cloudflare+workers-types@4.20231218.0_typescript@5.3.3/node_modules/@remix-run/cloudflare/dist/sessions/workersKVStorage.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: !0 });
     var implementations = require_implementations();
@@ -4127,9 +4179,9 @@ var require_workersKVStorage = __commonJS({
   }
 });
 
-// ../../node_modules/@remix-run/cloudflare/dist/index.js
+// ../../node_modules/.pnpm/@remix-run+cloudflare@2.4.1_@cloudflare+workers-types@4.20231218.0_typescript@5.3.3/node_modules/@remix-run/cloudflare/dist/index.js
 var require_dist = __commonJS({
-  "../../node_modules/@remix-run/cloudflare/dist/index.js"(exports) {
+  "../../node_modules/.pnpm/@remix-run+cloudflare@2.4.1_@cloudflare+workers-types@4.20231218.0_typescript@5.3.3/node_modules/@remix-run/cloudflare/dist/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: !0 });
     var workersKVStorage = require_workersKVStorage(), implementations = require_implementations(), serverRuntime = (init_esm(), __toCommonJS(esm_exports));
@@ -4225,9 +4277,9 @@ var require_dist = __commonJS({
   }
 });
 
-// ../../node_modules/react/cjs/react.development.js
+// ../../node_modules/.pnpm/react@18.2.0/node_modules/react/cjs/react.development.js
 var require_react_development = __commonJS({
-  "../../node_modules/react/cjs/react.development.js"(exports, module) {
+  "../../node_modules/.pnpm/react@18.2.0/node_modules/react/cjs/react.development.js"(exports, module) {
     "use strict";
     (function() {
       "use strict";
@@ -4564,7 +4616,7 @@ var require_react_development = __commonJS({
           value: source
         }), Object.freeze && (Object.freeze(element.props), Object.freeze(element)), element;
       };
-      function createElement8(type, config2, children) {
+      function createElement9(type, config2, children) {
         var propName, props = {}, key = null, ref = null, self = null, source = null;
         if (config2 != null) {
           hasValidRef(config2) && (ref = config2.ref, warnIfStringRefCannotBeAutoConverted(config2)), hasValidKey(config2) && (checkKeyStringCoercion(config2.key), key = "" + config2.key), self = config2.__self === void 0 ? null : config2.__self, source = config2.__source === void 0 ? null : config2.__source;
@@ -4632,8 +4684,8 @@ var require_react_development = __commonJS({
       function escapeUserProvidedKey(text2) {
         return text2.replace(userProvidedKeyEscapeRegex, "$&/");
       }
-      function getElementKey(element, index) {
-        return typeof element == "object" && element !== null && element.key != null ? (checkKeyStringCoercion(element.key), escape2("" + element.key)) : index.toString(36);
+      function getElementKey(element, index2) {
+        return typeof element == "object" && element !== null && element.key != null ? (checkKeyStringCoercion(element.key), escape2("" + element.key)) : index2.toString(36);
       }
       function mapIntoArray(children, array, escapedPrefix, nameSoFar, callback) {
         var type = typeof children;
@@ -4658,8 +4710,8 @@ var require_react_development = __commonJS({
           var _child = children, mappedChild = callback(_child), childKey = nameSoFar === "" ? SEPARATOR + getElementKey(_child, 0) : nameSoFar;
           if (isArray(mappedChild)) {
             var escapedChildKey = "";
-            childKey != null && (escapedChildKey = escapeUserProvidedKey(childKey) + "/"), mapIntoArray(mappedChild, array, escapedChildKey, "", function(c5) {
-              return c5;
+            childKey != null && (escapedChildKey = escapeUserProvidedKey(childKey) + "/"), mapIntoArray(mappedChild, array, escapedChildKey, "", function(c4) {
+              return c4;
             });
           } else
             mappedChild != null && (isValidElement2(mappedChild) && (mappedChild.key && (!_child || _child.key !== mappedChild.key) && checkKeyStringCoercion(mappedChild.key), mappedChild = cloneAndReplaceKey(
@@ -4825,12 +4877,12 @@ var require_react_development = __commonJS({
           var moduleObject = payload._result;
           return moduleObject === void 0 && error(`lazy: Expected the result of a dynamic import() call. Instead received: %s
 
-Your code should look like:
+Your code should look like: 
   const MyComponent = lazy(() => import('./MyComponent'))
 
 Did you accidentally put curly braces around the import?`, moduleObject), "default" in moduleObject || error(`lazy: Expected the result of a dynamic import() call. Instead received: %s
 
-Your code should look like:
+Your code should look like: 
   const MyComponent = lazy(() => import('./MyComponent'))`, moduleObject), moduleObject.default;
         } else
           throw payload._result;
@@ -4942,7 +4994,7 @@ See https://reactjs.org/link/invalid-hook-call for tips about how to debug and f
         }
         return dispatcher.useContext(Context);
       }
-      function useState8(initialState) {
+      function useState9(initialState) {
         var dispatcher = resolveDispatcher();
         return dispatcher.useState(initialState);
       }
@@ -4954,7 +5006,7 @@ See https://reactjs.org/link/invalid-hook-call for tips about how to debug and f
         var dispatcher = resolveDispatcher();
         return dispatcher.useRef(initialValue);
       }
-      function useEffect8(create, deps) {
+      function useEffect9(create, deps) {
         var dispatcher = resolveDispatcher();
         return dispatcher.useEffect(create, deps);
       }
@@ -5131,18 +5183,18 @@ See https://reactjs.org/link/invalid-hook-call for tips about how to debug and f
           if (sample && control && typeof sample.stack == "string") {
             for (var sampleLines = sample.stack.split(`
 `), controlLines = control.stack.split(`
-`), s4 = sampleLines.length - 1, c5 = controlLines.length - 1; s4 >= 1 && c5 >= 0 && sampleLines[s4] !== controlLines[c5]; )
-              c5--;
-            for (; s4 >= 1 && c5 >= 0; s4--, c5--)
-              if (sampleLines[s4] !== controlLines[c5]) {
-                if (s4 !== 1 || c5 !== 1)
+`), s4 = sampleLines.length - 1, c4 = controlLines.length - 1; s4 >= 1 && c4 >= 0 && sampleLines[s4] !== controlLines[c4]; )
+              c4--;
+            for (; s4 >= 1 && c4 >= 0; s4--, c4--)
+              if (sampleLines[s4] !== controlLines[c4]) {
+                if (s4 !== 1 || c4 !== 1)
                   do
-                    if (s4--, c5--, c5 < 0 || sampleLines[s4] !== controlLines[c5]) {
+                    if (s4--, c4--, c4 < 0 || sampleLines[s4] !== controlLines[c4]) {
                       var _frame = `
 ` + sampleLines[s4].replace(" at new ", " at ");
                       return fn.displayName && _frame.includes("<anonymous>") && (_frame = _frame.replace("<anonymous>", fn.displayName)), typeof fn == "function" && componentFrameCache.set(fn, _frame), _frame;
                     }
-                  while (s4 >= 1 && c5 >= 0);
+                  while (s4 >= 1 && c4 >= 0);
                 break;
               }
           }
@@ -5332,7 +5384,7 @@ Check the top-level render call using <` + parentName + ">.");
           var typeString;
           type === null ? typeString = "null" : isArray(type) ? typeString = "array" : type !== void 0 && type.$$typeof === REACT_ELEMENT_TYPE ? (typeString = "<" + (getComponentNameFromType(type.type) || "Unknown") + " />", info = " Did you accidentally export a JSX literal instead of a component?") : typeString = typeof type, error("React.createElement: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: %s.%s", typeString, info);
         }
-        var element = createElement8.apply(this, arguments);
+        var element = createElement9.apply(this, arguments);
         if (element == null)
           return element;
         if (validType)
@@ -5483,30 +5535,30 @@ Check the top-level render call using <` + parentName + ">.");
         toArray,
         only: onlyChild
       };
-      exports.Children = Children2, exports.Component = Component3, exports.Fragment = REACT_FRAGMENT_TYPE, exports.Profiler = REACT_PROFILER_TYPE, exports.PureComponent = PureComponent, exports.StrictMode = REACT_STRICT_MODE_TYPE, exports.Suspense = REACT_SUSPENSE_TYPE, exports.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED = ReactSharedInternals, exports.cloneElement = cloneElement$1, exports.createContext = createContext5, exports.createElement = createElement$1, exports.createFactory = createFactory, exports.createRef = createRef2, exports.forwardRef = forwardRef4, exports.isValidElement = isValidElement2, exports.lazy = lazy, exports.memo = memo, exports.startTransition = startTransition, exports.unstable_act = act, exports.useCallback = useCallback6, exports.useContext = useContext5, exports.useDebugValue = useDebugValue, exports.useDeferredValue = useDeferredValue, exports.useEffect = useEffect8, exports.useId = useId, exports.useImperativeHandle = useImperativeHandle2, exports.useInsertionEffect = useInsertionEffect, exports.useLayoutEffect = useLayoutEffect3, exports.useMemo = useMemo6, exports.useReducer = useReducer, exports.useRef = useRef5, exports.useState = useState8, exports.useSyncExternalStore = useSyncExternalStore, exports.useTransition = useTransition, exports.version = ReactVersion, typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ < "u" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop == "function" && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(new Error());
+      exports.Children = Children2, exports.Component = Component3, exports.Fragment = REACT_FRAGMENT_TYPE, exports.Profiler = REACT_PROFILER_TYPE, exports.PureComponent = PureComponent, exports.StrictMode = REACT_STRICT_MODE_TYPE, exports.Suspense = REACT_SUSPENSE_TYPE, exports.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED = ReactSharedInternals, exports.cloneElement = cloneElement$1, exports.createContext = createContext5, exports.createElement = createElement$1, exports.createFactory = createFactory, exports.createRef = createRef2, exports.forwardRef = forwardRef4, exports.isValidElement = isValidElement2, exports.lazy = lazy, exports.memo = memo, exports.startTransition = startTransition, exports.unstable_act = act, exports.useCallback = useCallback6, exports.useContext = useContext5, exports.useDebugValue = useDebugValue, exports.useDeferredValue = useDeferredValue, exports.useEffect = useEffect9, exports.useId = useId, exports.useImperativeHandle = useImperativeHandle2, exports.useInsertionEffect = useInsertionEffect, exports.useLayoutEffect = useLayoutEffect3, exports.useMemo = useMemo6, exports.useReducer = useReducer, exports.useRef = useRef5, exports.useState = useState9, exports.useSyncExternalStore = useSyncExternalStore, exports.useTransition = useTransition, exports.version = ReactVersion, typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ < "u" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop == "function" && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(new Error());
     })();
   }
 });
 
-// ../../node_modules/react/index.js
+// ../../node_modules/.pnpm/react@18.2.0/node_modules/react/index.js
 var require_react = __commonJS({
-  "../../node_modules/react/index.js"(exports, module) {
+  "../../node_modules/.pnpm/react@18.2.0/node_modules/react/index.js"(exports, module) {
     "use strict";
     module.exports = require_react_development();
   }
 });
 
-// ../../node_modules/scheduler/cjs/scheduler.development.js
+// ../../node_modules/.pnpm/scheduler@0.23.0/node_modules/scheduler/cjs/scheduler.development.js
 var require_scheduler_development = __commonJS({
-  "../../node_modules/scheduler/cjs/scheduler.development.js"(exports) {
+  "../../node_modules/.pnpm/scheduler@0.23.0/node_modules/scheduler/cjs/scheduler.development.js"(exports) {
     "use strict";
     (function() {
       "use strict";
       typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ < "u" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart == "function" && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
       var enableSchedulerDebugging = !1, enableProfiling = !1, frameYieldMs = 5;
       function push(heap, node) {
-        var index = heap.length;
-        heap.push(node), siftUp(heap, node, index);
+        var index2 = heap.length;
+        heap.push(node), siftUp(heap, node, index2);
       }
       function peek(heap) {
         return heap.length === 0 ? null : heap[0];
@@ -5518,21 +5570,21 @@ var require_scheduler_development = __commonJS({
         return last !== first && (heap[0] = last, siftDown(heap, last, 0)), first;
       }
       function siftUp(heap, node, i4) {
-        for (var index = i4; index > 0; ) {
-          var parentIndex = index - 1 >>> 1, parent = heap[parentIndex];
+        for (var index2 = i4; index2 > 0; ) {
+          var parentIndex = index2 - 1 >>> 1, parent = heap[parentIndex];
           if (compare(parent, node) > 0)
-            heap[parentIndex] = node, heap[index] = parent, index = parentIndex;
+            heap[parentIndex] = node, heap[index2] = parent, index2 = parentIndex;
           else
             return;
         }
       }
       function siftDown(heap, node, i4) {
-        for (var index = i4, length = heap.length, halfLength = length >>> 1; index < halfLength; ) {
-          var leftIndex = (index + 1) * 2 - 1, left = heap[leftIndex], rightIndex = leftIndex + 1, right = heap[rightIndex];
+        for (var index2 = i4, length = heap.length, halfLength = length >>> 1; index2 < halfLength; ) {
+          var leftIndex = (index2 + 1) * 2 - 1, left = heap[leftIndex], rightIndex = leftIndex + 1, right = heap[rightIndex];
           if (compare(left, node) < 0)
-            rightIndex < length && compare(right, left) < 0 ? (heap[index] = right, heap[rightIndex] = node, index = rightIndex) : (heap[index] = left, heap[leftIndex] = node, index = leftIndex);
+            rightIndex < length && compare(right, left) < 0 ? (heap[index2] = right, heap[rightIndex] = node, index2 = rightIndex) : (heap[index2] = left, heap[leftIndex] = node, index2 = leftIndex);
           else if (rightIndex < length && compare(right, node) < 0)
-            heap[index] = right, heap[rightIndex] = node, index = rightIndex;
+            heap[index2] = right, heap[rightIndex] = node, index2 = rightIndex;
           else
             return;
         }
@@ -5772,22 +5824,22 @@ var require_scheduler_development = __commonJS({
   }
 });
 
-// ../../node_modules/scheduler/index.js
+// ../../node_modules/.pnpm/scheduler@0.23.0/node_modules/scheduler/index.js
 var require_scheduler = __commonJS({
-  "../../node_modules/scheduler/index.js"(exports, module) {
+  "../../node_modules/.pnpm/scheduler@0.23.0/node_modules/scheduler/index.js"(exports, module) {
     "use strict";
     module.exports = require_scheduler_development();
   }
 });
 
-// ../../node_modules/react-dom/cjs/react-dom.development.js
+// ../../node_modules/.pnpm/react-dom@18.2.0_react@18.2.0/node_modules/react-dom/cjs/react-dom.development.js
 var require_react_dom_development = __commonJS({
-  "../../node_modules/react-dom/cjs/react-dom.development.js"(exports) {
+  "../../node_modules/.pnpm/react-dom@18.2.0_react@18.2.0/node_modules/react-dom/cjs/react-dom.development.js"(exports) {
     "use strict";
     (function() {
       "use strict";
       typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ < "u" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart == "function" && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
-      var React11 = require_react(), Scheduler = require_scheduler(), ReactSharedInternals = React11.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED, suppressWarning = !1;
+      var React12 = require_react(), Scheduler = require_scheduler(), ReactSharedInternals = React12.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED, suppressWarning = !1;
       function setSuppressWarning(newSuppressWarning) {
         suppressWarning = newSuppressWarning;
       }
@@ -5815,7 +5867,7 @@ var require_react_dom_development = __commonJS({
           argsWithFormat.unshift("Warning: " + format), Function.prototype.apply.call(console[level], console, argsWithFormat);
         }
       }
-      var FunctionComponent = 0, ClassComponent = 1, IndeterminateComponent = 2, HostRoot = 3, HostPortal = 4, HostComponent = 5, HostText = 6, Fragment17 = 7, Mode = 8, ContextConsumer = 9, ContextProvider = 10, ForwardRef = 11, Profiler = 12, SuspenseComponent = 13, MemoComponent = 14, SimpleMemoComponent = 15, LazyComponent = 16, IncompleteClassComponent = 17, DehydratedFragment = 18, SuspenseListComponent = 19, ScopeComponent = 21, OffscreenComponent = 22, LegacyHiddenComponent = 23, CacheComponent = 24, TracingMarkerComponent = 25, enableClientRenderFallbackOnTextMismatch = !0, enableNewReconciler = !1, enableLazyContextPropagation = !1, enableLegacyHidden = !1, enableSuspenseAvoidThisFallback = !1, disableCommentsAsDOMContainers = !0, enableCustomElementPropertySupport = !1, warnAboutStringRefs = !1, enableSchedulingProfiler = !0, enableProfilerTimer = !0, enableProfilerCommitHooks = !0, allNativeEvents = /* @__PURE__ */ new Set(), registrationNameDependencies = {}, possibleRegistrationNames = {};
+      var FunctionComponent = 0, ClassComponent = 1, IndeterminateComponent = 2, HostRoot = 3, HostPortal = 4, HostComponent = 5, HostText = 6, Fragment18 = 7, Mode = 8, ContextConsumer = 9, ContextProvider = 10, ForwardRef = 11, Profiler = 12, SuspenseComponent = 13, MemoComponent = 14, SimpleMemoComponent = 15, LazyComponent = 16, IncompleteClassComponent = 17, DehydratedFragment = 18, SuspenseListComponent = 19, ScopeComponent = 21, OffscreenComponent = 22, LegacyHiddenComponent = 23, CacheComponent = 24, TracingMarkerComponent = 25, enableClientRenderFallbackOnTextMismatch = !0, enableNewReconciler = !1, enableLazyContextPropagation = !1, enableLegacyHidden = !1, enableSuspenseAvoidThisFallback = !1, disableCommentsAsDOMContainers = !0, enableCustomElementPropertySupport = !1, warnAboutStringRefs = !1, enableSchedulingProfiler = !0, enableProfilerTimer = !0, enableProfilerCommitHooks = !0, allNativeEvents = /* @__PURE__ */ new Set(), registrationNameDependencies = {}, possibleRegistrationNames = {};
       function registerTwoPhaseEvent(registrationName, dependencies) {
         registerDirectEvent(registrationName, dependencies), registerDirectEvent(registrationName + "Capture", dependencies);
       }
@@ -6492,18 +6544,18 @@ var require_react_dom_development = __commonJS({
           if (sample && control && typeof sample.stack == "string") {
             for (var sampleLines = sample.stack.split(`
 `), controlLines = control.stack.split(`
-`), s4 = sampleLines.length - 1, c5 = controlLines.length - 1; s4 >= 1 && c5 >= 0 && sampleLines[s4] !== controlLines[c5]; )
-              c5--;
-            for (; s4 >= 1 && c5 >= 0; s4--, c5--)
-              if (sampleLines[s4] !== controlLines[c5]) {
-                if (s4 !== 1 || c5 !== 1)
+`), s4 = sampleLines.length - 1, c4 = controlLines.length - 1; s4 >= 1 && c4 >= 0 && sampleLines[s4] !== controlLines[c4]; )
+              c4--;
+            for (; s4 >= 1 && c4 >= 0; s4--, c4--)
+              if (sampleLines[s4] !== controlLines[c4]) {
+                if (s4 !== 1 || c4 !== 1)
                   do
-                    if (s4--, c5--, c5 < 0 || sampleLines[s4] !== controlLines[c5]) {
+                    if (s4--, c4--, c4 < 0 || sampleLines[s4] !== controlLines[c4]) {
                       var _frame = `
 ` + sampleLines[s4].replace(" at new ", " at ");
                       return fn.displayName && _frame.includes("<anonymous>") && (_frame = _frame.replace("<anonymous>", fn.displayName)), typeof fn == "function" && componentFrameCache.set(fn, _frame), _frame;
                     }
-                  while (s4 >= 1 && c5 >= 0);
+                  while (s4 >= 1 && c4 >= 0);
                 break;
               }
           }
@@ -6665,7 +6717,7 @@ Error generating stack: ` + x3.message + `
             return "DehydratedFragment";
           case ForwardRef:
             return getWrappedName$1(type, type.render, "ForwardRef");
-          case Fragment17:
+          case Fragment18:
             return "Fragment";
           case HostComponent:
             return type;
@@ -6909,7 +6961,7 @@ Error generating stack: ` + x3.message + `
       }
       var didWarnSelectedSetOnOption = !1, didWarnInvalidChild = !1, didWarnInvalidInnerHTML = !1;
       function validateProps(element, props) {
-        props.value == null && (typeof props.children == "object" && props.children !== null ? React11.Children.forEach(props.children, function(child) {
+        props.value == null && (typeof props.children == "object" && props.children !== null ? React12.Children.forEach(props.children, function(child) {
           child != null && (typeof child == "string" || typeof child == "number" || didWarnInvalidChild || (didWarnInvalidChild = !0, error("Cannot infer the option value of complex children. Pass a `value` prop or use a plain string as children to <option>.")));
         }) : props.dangerouslySetInnerHTML != null && (didWarnInvalidInnerHTML || (didWarnInvalidInnerHTML = !0, error("Pass a `value` prop if you set dangerouslyInnerHTML so React knows which value should be selected.")))), props.selected != null && !didWarnSelectedSetOnOption && (error("Use the `defaultValue` or `value` props on <select> instead of setting `selected` on <option>."), didWarnSelectedSetOnOption = !0);
       }
@@ -8082,7 +8134,7 @@ Check the render method of \`` + ownerName + "`." : "";
         } catch {
           passiveBrowserEventsSupported = !1;
         }
-      function invokeGuardedCallbackProd(name, func, context, a4, b5, c5, d4, e3, f6) {
+      function invokeGuardedCallbackProd(name, func, context, a4, b5, c4, d4, e3, f6) {
         var funcArgs = Array.prototype.slice.call(arguments, 3);
         try {
           func.apply(context, funcArgs);
@@ -8093,7 +8145,7 @@ Check the render method of \`` + ownerName + "`." : "";
       var invokeGuardedCallbackImpl = invokeGuardedCallbackProd;
       if (typeof window < "u" && typeof window.dispatchEvent == "function" && typeof document < "u" && typeof document.createEvent == "function") {
         var fakeNode = document.createElement("react");
-        invokeGuardedCallbackImpl = function(name, func, context, a4, b5, c5, d4, e3, f6) {
+        invokeGuardedCallbackImpl = function(name, func, context, a4, b5, c4, d4, e3, f6) {
           if (typeof document > "u" || document === null)
             throw new Error("The `document` global was defined when React was initialized, but is not defined anymore. This can happen in a test environment if a component schedules an update from an asynchronous callback, but the test has already finished running. To solve this, you can either unmount the component at the end of your test (and ensure that any asynchronous operations get canceled in `componentWillUnmount`), or you can change the test itself to be asynchronous.");
           var evt = document.createEvent("Event"), didCall = !1, didError = !0, windowEvent = window.event, windowEventDescriptor = Object.getOwnPropertyDescriptor(window, "event");
@@ -8122,10 +8174,10 @@ Check the render method of \`` + ownerName + "`." : "";
           hasError = !0, caughtError = error2;
         }
       };
-      function invokeGuardedCallback(name, func, context, a4, b5, c5, d4, e3, f6) {
+      function invokeGuardedCallback(name, func, context, a4, b5, c4, d4, e3, f6) {
         hasError = !1, caughtError = null, invokeGuardedCallbackImpl$1.apply(reporter, arguments);
       }
-      function invokeGuardedCallbackAndCatchFirstError(name, func, context, a4, b5, c5, d4, e3, f6) {
+      function invokeGuardedCallbackAndCatchFirstError(name, func, context, a4, b5, c4, d4, e3, f6) {
         if (invokeGuardedCallback.apply(this, arguments), hasError) {
           var error2 = clearCaughtError();
           hasRethrowError || (hasRethrowError = !0, rethrowError = error2);
@@ -8468,7 +8520,7 @@ Check the render method of \`` + ownerName + "`." : "";
       }
       function getLaneLabelMap() {
         {
-          for (var map = /* @__PURE__ */ new Map(), lane = 1, index2 = 0; index2 < TotalLanes; index2++) {
+          for (var map = /* @__PURE__ */ new Map(), lane = 1, index3 = 0; index3 < TotalLanes; index3++) {
             var label = getLabelForLane(lane);
             map.set(lane, label), lane *= 2;
           }
@@ -8791,14 +8843,14 @@ Check the render method of \`` + ownerName + "`." : "";
         var entangledLanes = root2.entangledLanes;
         if (entangledLanes !== NoLanes)
           for (var entanglements = root2.entanglements, lanes = nextLanes & entangledLanes; lanes > 0; ) {
-            var index2 = pickArbitraryLaneIndex(lanes), lane = 1 << index2;
-            nextLanes |= entanglements[index2], lanes &= ~lane;
+            var index3 = pickArbitraryLaneIndex(lanes), lane = 1 << index3;
+            nextLanes |= entanglements[index3], lanes &= ~lane;
           }
         return nextLanes;
       }
       function getMostRecentEventTime(root2, lanes) {
         for (var eventTimes = root2.eventTimes, mostRecentEventTime = NoTimestamp; lanes > 0; ) {
-          var index2 = pickArbitraryLaneIndex(lanes), lane = 1 << index2, eventTime = eventTimes[index2];
+          var index3 = pickArbitraryLaneIndex(lanes), lane = 1 << index3, eventTime = eventTimes[index3];
           eventTime > mostRecentEventTime && (mostRecentEventTime = eventTime), lanes &= ~lane;
         }
         return mostRecentEventTime;
@@ -8846,8 +8898,8 @@ Check the render method of \`` + ownerName + "`." : "";
       }
       function markStarvedLanesAsExpired(root2, currentTime) {
         for (var pendingLanes = root2.pendingLanes, suspendedLanes = root2.suspendedLanes, pingedLanes = root2.pingedLanes, expirationTimes = root2.expirationTimes, lanes = pendingLanes; lanes > 0; ) {
-          var index2 = pickArbitraryLaneIndex(lanes), lane = 1 << index2, expirationTime = expirationTimes[index2];
-          expirationTime === NoTimestamp ? ((lane & suspendedLanes) === NoLanes || (lane & pingedLanes) !== NoLanes) && (expirationTimes[index2] = computeExpirationTime(lane, currentTime)) : expirationTime <= currentTime && (root2.expiredLanes |= lane), lanes &= ~lane;
+          var index3 = pickArbitraryLaneIndex(lanes), lane = 1 << index3, expirationTime = expirationTimes[index3];
+          expirationTime === NoTimestamp ? ((lane & suspendedLanes) === NoLanes || (lane & pingedLanes) !== NoLanes) && (expirationTimes[index3] = computeExpirationTime(lane, currentTime)) : expirationTime <= currentTime && (root2.expiredLanes |= lane), lanes &= ~lane;
         }
       }
       function getHighestPriorityPendingLanes(root2) {
@@ -8931,14 +8983,14 @@ Check the render method of \`` + ownerName + "`." : "";
       }
       function markRootUpdated(root2, updateLane, eventTime) {
         root2.pendingLanes |= updateLane, updateLane !== IdleLane && (root2.suspendedLanes = NoLanes, root2.pingedLanes = NoLanes);
-        var eventTimes = root2.eventTimes, index2 = laneToIndex(updateLane);
-        eventTimes[index2] = eventTime;
+        var eventTimes = root2.eventTimes, index3 = laneToIndex(updateLane);
+        eventTimes[index3] = eventTime;
       }
       function markRootSuspended(root2, suspendedLanes) {
         root2.suspendedLanes |= suspendedLanes, root2.pingedLanes &= ~suspendedLanes;
         for (var expirationTimes = root2.expirationTimes, lanes = suspendedLanes; lanes > 0; ) {
-          var index2 = pickArbitraryLaneIndex(lanes), lane = 1 << index2;
-          expirationTimes[index2] = NoTimestamp, lanes &= ~lane;
+          var index3 = pickArbitraryLaneIndex(lanes), lane = 1 << index3;
+          expirationTimes[index3] = NoTimestamp, lanes &= ~lane;
         }
       }
       function markRootPinged(root2, pingedLanes, eventTime) {
@@ -8948,16 +9000,16 @@ Check the render method of \`` + ownerName + "`." : "";
         var noLongerPendingLanes = root2.pendingLanes & ~remainingLanes;
         root2.pendingLanes = remainingLanes, root2.suspendedLanes = NoLanes, root2.pingedLanes = NoLanes, root2.expiredLanes &= remainingLanes, root2.mutableReadLanes &= remainingLanes, root2.entangledLanes &= remainingLanes;
         for (var entanglements = root2.entanglements, eventTimes = root2.eventTimes, expirationTimes = root2.expirationTimes, lanes = noLongerPendingLanes; lanes > 0; ) {
-          var index2 = pickArbitraryLaneIndex(lanes), lane = 1 << index2;
-          entanglements[index2] = NoLanes, eventTimes[index2] = NoTimestamp, expirationTimes[index2] = NoTimestamp, lanes &= ~lane;
+          var index3 = pickArbitraryLaneIndex(lanes), lane = 1 << index3;
+          entanglements[index3] = NoLanes, eventTimes[index3] = NoTimestamp, expirationTimes[index3] = NoTimestamp, lanes &= ~lane;
         }
       }
       function markRootEntangled(root2, entangledLanes) {
         for (var rootEntangledLanes = root2.entangledLanes |= entangledLanes, entanglements = root2.entanglements, lanes = rootEntangledLanes; lanes; ) {
-          var index2 = pickArbitraryLaneIndex(lanes), lane = 1 << index2;
+          var index3 = pickArbitraryLaneIndex(lanes), lane = 1 << index3;
           // Is this one of the newly entangled lanes?
           lane & entangledLanes | // Is this lane transitively entangled with the newly entangled lanes?
-          entanglements[index2] & entangledLanes && (entanglements[index2] |= entangledLanes), lanes &= ~lane;
+          entanglements[index3] & entangledLanes && (entanglements[index3] |= entangledLanes), lanes &= ~lane;
         }
       }
       function getBumpedLaneForHydration(root2, renderLanes2) {
@@ -9004,14 +9056,14 @@ Check the render method of \`` + ownerName + "`." : "";
       function addFiberToLanesMap(root2, fiber, lanes) {
         if (isDevToolsPresent)
           for (var pendingUpdatersLaneMap = root2.pendingUpdatersLaneMap; lanes > 0; ) {
-            var index2 = laneToIndex(lanes), lane = 1 << index2, updaters = pendingUpdatersLaneMap[index2];
+            var index3 = laneToIndex(lanes), lane = 1 << index3, updaters = pendingUpdatersLaneMap[index3];
             updaters.add(fiber), lanes &= ~lane;
           }
       }
       function movePendingFibersToMemoized(root2, lanes) {
         if (isDevToolsPresent)
           for (var pendingUpdatersLaneMap = root2.pendingUpdatersLaneMap, memoizedUpdaters = root2.memoizedUpdaters; lanes > 0; ) {
-            var index2 = laneToIndex(lanes), lane = 1 << index2, updaters = pendingUpdatersLaneMap[index2];
+            var index3 = laneToIndex(lanes), lane = 1 << index3, updaters = pendingUpdatersLaneMap[index3];
             updaters.size > 0 && (updaters.forEach(function(fiber) {
               var alternate = fiber.alternate;
               (alternate === null || !memoizedUpdaters.has(alternate)) && memoizedUpdaters.add(fiber);
@@ -10646,7 +10698,7 @@ Check the render method of \`` + ownerName + "`." : "";
           propKey === STYLE ? setValueForStyles(domElement, propValue) : propKey === DANGEROUSLY_SET_INNER_HTML ? setInnerHTML(domElement, propValue) : propKey === CHILDREN ? setTextContent(domElement, propValue) : setValueForProperty(domElement, propKey, propValue, isCustomComponentTag);
         }
       }
-      function createElement8(type, props, rootContainerElement, parentNamespace) {
+      function createElement9(type, props, rootContainerElement, parentNamespace) {
         var isCustomComponentTag, ownerDocument = getOwnerDocumentFromRootContainer(rootContainerElement), domElement, namespaceURI = parentNamespace;
         if (namespaceURI === HTML_NAMESPACE && (namespaceURI = getIntrinsicNamespace(type)), namespaceURI === HTML_NAMESPACE) {
           if (isCustomComponentTag = isCustomComponent(type, props), !isCustomComponentTag && type !== type.toLowerCase() && error("<%s /> is using incorrect casing. Use PascalCase for React components, or lowercase for HTML elements.", type), type === "script") {
@@ -11186,7 +11238,7 @@ Check the render method of \`` + ownerName + "`." : "";
           }
           parentNamespace = hostContextDev.namespace;
         }
-        var domElement = createElement8(type, props, rootContainerInstance, parentNamespace);
+        var domElement = createElement9(type, props, rootContainerInstance, parentNamespace);
         return precacheFiberNode(internalInstanceHandle, domElement), updateFiberProps(domElement, props), domElement;
       }
       function appendInitialChild(parentInstance, child) {
@@ -11569,21 +11621,21 @@ Check the render method of \`` + ownerName + "`." : "";
       }
       var valueStack = [], fiberStack;
       fiberStack = [];
-      var index = -1;
+      var index2 = -1;
       function createCursor(defaultValue) {
         return {
           current: defaultValue
         };
       }
       function pop(cursor, fiber) {
-        if (index < 0) {
+        if (index2 < 0) {
           error("Unexpected pop.");
           return;
         }
-        fiber !== fiberStack[index] && error("Unexpected Fiber popped."), cursor.current = valueStack[index], valueStack[index] = null, fiberStack[index] = null, index--;
+        fiber !== fiberStack[index2] && error("Unexpected Fiber popped."), cursor.current = valueStack[index2], valueStack[index2] = null, fiberStack[index2] = null, index2--;
       }
       function push(cursor, value, fiber) {
-        index++, valueStack[index] = cursor.current, fiberStack[index] = fiber, cursor.current = value;
+        index2++, valueStack[index2] = cursor.current, fiberStack[index2] = fiber, cursor.current = value;
       }
       var warnedAboutMissingGetChildContext;
       warnedAboutMissingGetChildContext = {};
@@ -11744,9 +11796,9 @@ Check the render method of \`` + ownerName + "`." : "";
       function pushTreeFork(workInProgress2, totalChildren) {
         warnIfNotHydrating(), forkStack[forkStackIndex++] = treeForkCount, forkStack[forkStackIndex++] = treeForkProvider, treeForkProvider = workInProgress2, treeForkCount = totalChildren;
       }
-      function pushTreeId(workInProgress2, totalChildren, index2) {
+      function pushTreeId(workInProgress2, totalChildren, index3) {
         warnIfNotHydrating(), idStack[idStackIndex++] = treeContextId, idStack[idStackIndex++] = treeContextOverflow, idStack[idStackIndex++] = treeContextProvider, treeContextProvider = workInProgress2;
-        var baseIdWithLeadingBit = treeContextId, baseOverflow = treeContextOverflow, baseLength = getBitLength(baseIdWithLeadingBit) - 1, baseId = baseIdWithLeadingBit & ~(1 << baseLength), slot = index2 + 1, length = getBitLength(totalChildren) + baseLength;
+        var baseIdWithLeadingBit = treeContextId, baseOverflow = treeContextOverflow, baseLength = getBitLength(baseIdWithLeadingBit) - 1, baseId = baseIdWithLeadingBit & ~(1 << baseLength), slot = index3 + 1, length = getBitLength(totalChildren) + baseLength;
         if (length > 30) {
           var numberOfOverflowBits = baseLength - baseLength % 5, newOverflowBits = (1 << numberOfOverflowBits) - 1, newOverflow = (baseId & newOverflowBits).toString(32), restOfBaseId = baseId >> numberOfOverflowBits, restOfBaseLength = baseLength - numberOfOverflowBits, restOfLength = getBitLength(totalChildren) + restOfBaseLength, restOfNewBits = slot << restOfBaseLength, id = restOfNewBits | restOfBaseId, overflow = newOverflow + baseOverflow;
           treeContextId = 1 << restOfLength | id, treeContextOverflow = overflow;
@@ -12605,7 +12657,7 @@ Learn more about this warning here: https://reactjs.org/link/legacy-context`, so
             callback !== null && (effect.callback = null, callCallback(callback, instance));
           }
       }
-      var fakeInternalInstance = {}, emptyRefsObject = new React11.Component().refs, didWarnAboutStateAssignmentForComponent, didWarnAboutUninitializedState, didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate, didWarnAboutLegacyLifecyclesAndDerivedState, didWarnAboutUndefinedDerivedState, warnOnUndefinedDerivedState, warnOnInvalidCallback, didWarnAboutDirectlyAssigningPropsToState, didWarnAboutContextTypeAndContextTypes, didWarnAboutInvalidateContextType;
+      var fakeInternalInstance = {}, emptyRefsObject = new React12.Component().refs, didWarnAboutStateAssignmentForComponent, didWarnAboutUninitializedState, didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate, didWarnAboutLegacyLifecyclesAndDerivedState, didWarnAboutUndefinedDerivedState, warnOnUndefinedDerivedState, warnOnInvalidCallback, didWarnAboutDirectlyAssigningPropsToState, didWarnAboutContextTypeAndContextTypes, didWarnAboutInvalidateContextType;
       {
         didWarnAboutStateAssignmentForComponent = /* @__PURE__ */ new Set(), didWarnAboutUninitializedState = /* @__PURE__ */ new Set(), didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate = /* @__PURE__ */ new Set(), didWarnAboutLegacyLifecyclesAndDerivedState = /* @__PURE__ */ new Set(), didWarnAboutDirectlyAssigningPropsToState = /* @__PURE__ */ new Set(), didWarnAboutUndefinedDerivedState = /* @__PURE__ */ new Set(), didWarnAboutContextTypeAndContextTypes = /* @__PURE__ */ new Set(), didWarnAboutInvalidateContextType = /* @__PURE__ */ new Set();
         var didWarnOnInvalidCallback = /* @__PURE__ */ new Set();
@@ -12994,7 +13046,7 @@ See https://reactjs.org/link/refs-must-have-owner for more information.`);
           }
         }
         function updateFragment2(returnFiber, current2, fragment, lanes, key) {
-          if (current2 === null || current2.tag !== Fragment17) {
+          if (current2 === null || current2.tag !== Fragment18) {
             var created = createFiberFromFragment(fragment, returnFiber.mode, lanes, key);
             return created.return = returnFiber, created;
           } else {
@@ -13222,7 +13274,7 @@ See https://reactjs.org/link/refs-must-have-owner for more information.`);
             if (child.key === key) {
               var elementType = element.type;
               if (elementType === REACT_FRAGMENT_TYPE) {
-                if (child.tag === Fragment17) {
+                if (child.tag === Fragment18) {
                   deleteRemainingChildren(returnFiber, child.sibling);
                   var existing = useFiber(child, element.props.children);
                   return existing.return = returnFiber, existing._debugSource = element._source, existing._debugOwner = element._owner, existing;
@@ -13307,10 +13359,10 @@ See https://reactjs.org/link/refs-must-have-owner for more information.`);
           resetWorkInProgress(child, lanes), child = child.sibling;
       }
       var NO_CONTEXT = {}, contextStackCursor$1 = createCursor(NO_CONTEXT), contextFiberStackCursor = createCursor(NO_CONTEXT), rootInstanceStackCursor = createCursor(NO_CONTEXT);
-      function requiredContext(c5) {
-        if (c5 === NO_CONTEXT)
+      function requiredContext(c4) {
+        if (c4 === NO_CONTEXT)
           throw new Error("Expected host context to exist. This error is likely caused by a bug in React. Please file an issue.");
-        return c5;
+        return c4;
       }
       function getRootHostContainer() {
         var rootInstance = requiredContext(rootInstanceStackCursor.current);
@@ -15522,12 +15574,12 @@ Check the render method of \`` + ownerName + "`.");
       function validateTailOptions(tailMode, revealOrder) {
         tailMode !== void 0 && !didWarnAboutTailOptions[tailMode] && (tailMode !== "collapsed" && tailMode !== "hidden" ? (didWarnAboutTailOptions[tailMode] = !0, error('"%s" is not a supported value for tail on <SuspenseList />. Did you mean "collapsed" or "hidden"?', tailMode)) : revealOrder !== "forwards" && revealOrder !== "backwards" && (didWarnAboutTailOptions[tailMode] = !0, error('<SuspenseList tail="%s" /> is only valid if revealOrder is "forwards" or "backwards". Did you mean to specify revealOrder="forwards"?', tailMode)));
       }
-      function validateSuspenseListNestedChild(childSlot, index2) {
+      function validateSuspenseListNestedChild(childSlot, index3) {
         {
           var isAnArray = isArray(childSlot), isIterable = !isAnArray && typeof getIteratorFn(childSlot) == "function";
           if (isAnArray || isIterable) {
             var type = isAnArray ? "array" : "iterable";
-            return error("A nested %s was passed to row #%s in <SuspenseList />. Wrap it in an additional SuspenseList to configure its revealOrder: <SuspenseList revealOrder=...> ... <SuspenseList revealOrder=...>{%s}</SuspenseList> ... </SuspenseList>", type, index2, type), !1;
+            return error("A nested %s was passed to row #%s in <SuspenseList />. Wrap it in an additional SuspenseList to configure its revealOrder: <SuspenseList revealOrder=...> ... <SuspenseList revealOrder=...>{%s}</SuspenseList> ... </SuspenseList>", type, index3, type), !1;
           }
         }
         return !0;
@@ -15812,7 +15864,7 @@ Check the render method of \`` + ownerName + "`.");
             var type = workInProgress2.type, _unresolvedProps2 = workInProgress2.pendingProps, _resolvedProps2 = workInProgress2.elementType === type ? _unresolvedProps2 : resolveDefaultProps(type, _unresolvedProps2);
             return updateForwardRef(current2, workInProgress2, type, _resolvedProps2, renderLanes2);
           }
-          case Fragment17:
+          case Fragment18:
             return updateFragment(current2, workInProgress2, renderLanes2);
           case Mode:
             return updateMode(current2, workInProgress2, renderLanes2);
@@ -15964,7 +16016,7 @@ Check the render method of \`` + ownerName + "`.");
           case SimpleMemoComponent:
           case FunctionComponent:
           case ForwardRef:
-          case Fragment17:
+          case Fragment18:
           case Mode:
           case Profiler:
           case ContextConsumer:
@@ -17693,10 +17745,10 @@ Learn more about data fetching with Hooks: https://reactjs.org/link/hooks-data-f
           !ReactCurrentActQueue$1.isBatchingLegacy && (resetRenderTimer(), flushSyncCallbacksOnlyInLegacyMode());
         }
       }
-      function discreteUpdates(fn, a4, b5, c5, d4) {
+      function discreteUpdates(fn, a4, b5, c4, d4) {
         var previousPriority = getCurrentUpdatePriority(), prevTransition = ReactCurrentBatchConfig$3.transition;
         try {
-          return ReactCurrentBatchConfig$3.transition = null, setCurrentUpdatePriority(DiscreteEventPriority), fn(a4, b5, c5, d4);
+          return ReactCurrentBatchConfig$3.transition = null, setCurrentUpdatePriority(DiscreteEventPriority), fn(a4, b5, c4, d4);
         } finally {
           setCurrentUpdatePriority(previousPriority), ReactCurrentBatchConfig$3.transition = prevTransition, executionContext === NoContext && resetRenderTimer();
         }
@@ -18521,7 +18573,7 @@ Check the render method of \`` + ownerName + "`.");
         return fiber._debugSource = element._source, fiber._debugOwner = element._owner, fiber;
       }
       function createFiberFromFragment(elements, mode2, lanes, key) {
-        var fiber = createFiber(Fragment17, elements, key, mode2);
+        var fiber = createFiber(Fragment18, elements, key, mode2);
         return fiber.lanes = lanes, fiber;
       }
       function createFiberFromProfiler(pendingProps, mode2, lanes, key) {
@@ -18763,15 +18815,15 @@ Check the render method of %s.`, getComponentNameFromFiber(current) || "Unknown"
       }
       var overrideHookState = null, overrideHookStateDeletePath = null, overrideHookStateRenamePath = null, overrideProps = null, overridePropsDeletePath = null, overridePropsRenamePath = null, scheduleUpdate = null, setErrorHandler = null, setSuspenseHandler = null;
       {
-        var copyWithDeleteImpl = function(obj, path, index2) {
-          var key = path[index2], updated = isArray(obj) ? obj.slice() : assign({}, obj);
-          return index2 + 1 === path.length ? (isArray(updated) ? updated.splice(key, 1) : delete updated[key], updated) : (updated[key] = copyWithDeleteImpl(obj[key], path, index2 + 1), updated);
+        var copyWithDeleteImpl = function(obj, path, index3) {
+          var key = path[index3], updated = isArray(obj) ? obj.slice() : assign({}, obj);
+          return index3 + 1 === path.length ? (isArray(updated) ? updated.splice(key, 1) : delete updated[key], updated) : (updated[key] = copyWithDeleteImpl(obj[key], path, index3 + 1), updated);
         }, copyWithDelete = function(obj, path) {
           return copyWithDeleteImpl(obj, path, 0);
-        }, copyWithRenameImpl = function(obj, oldPath, newPath, index2) {
-          var oldKey = oldPath[index2], updated = isArray(obj) ? obj.slice() : assign({}, obj);
-          if (index2 + 1 === oldPath.length) {
-            var newKey = newPath[index2];
+        }, copyWithRenameImpl = function(obj, oldPath, newPath, index3) {
+          var oldKey = oldPath[index3], updated = isArray(obj) ? obj.slice() : assign({}, obj);
+          if (index3 + 1 === oldPath.length) {
+            var newKey = newPath[index3];
             updated[newKey] = updated[oldKey], isArray(updated) ? updated.splice(oldKey, 1) : delete updated[oldKey];
           } else
             updated[oldKey] = copyWithRenameImpl(
@@ -18779,7 +18831,7 @@ Check the render method of %s.`, getComponentNameFromFiber(current) || "Unknown"
               obj[oldKey],
               oldPath,
               newPath,
-              index2 + 1
+              index3 + 1
             );
           return updated;
         }, copyWithRename = function(obj, oldPath, newPath) {
@@ -18793,11 +18845,11 @@ Check the render method of %s.`, getComponentNameFromFiber(current) || "Unknown"
                 return;
               }
           return copyWithRenameImpl(obj, oldPath, newPath, 0);
-        }, copyWithSetImpl = function(obj, path, index2, value) {
-          if (index2 >= path.length)
+        }, copyWithSetImpl = function(obj, path, index3, value) {
+          if (index3 >= path.length)
             return value;
-          var key = path[index2], updated = isArray(obj) ? obj.slice() : assign({}, obj);
-          return updated[key] = copyWithSetImpl(obj[key], path, index2 + 1, value), updated;
+          var key = path[index3], updated = isArray(obj) ? obj.slice() : assign({}, obj);
+          return updated[key] = copyWithSetImpl(obj[key], path, index3 + 1, value), updated;
         }, copyWithSet = function(obj, path, value) {
           return copyWithSetImpl(obj, path, 0, value);
         }, findHook = function(fiber, id) {
@@ -19163,15 +19215,15 @@ You might need to use a local HTTP server (instead of file://): https://reactjs.
   }
 });
 
-// ../../node_modules/react-dom/index.js
+// ../../node_modules/.pnpm/react-dom@18.2.0_react@18.2.0/node_modules/react-dom/index.js
 var require_react_dom = __commonJS({
-  "../../node_modules/react-dom/index.js"(exports, module) {
+  "../../node_modules/.pnpm/react-dom@18.2.0_react@18.2.0/node_modules/react-dom/index.js"(exports, module) {
     "use strict";
     module.exports = require_react_dom_development();
   }
 });
 
-// ../../node_modules/react-router/dist/index.js
+// ../../node_modules/.pnpm/react-router@6.21.1_react@18.2.0/node_modules/react-router/dist/index.js
 var dist_exports = {};
 __export(dist_exports, {
   AbortedDeferredError: () => AbortedDeferredError,
@@ -19309,12 +19361,13 @@ function useNavigateUnstable() {
   );
   let dataRouterContext = React.useContext(DataRouterContext), {
     basename,
+    future: future2,
     navigator: navigator2
   } = React.useContext(NavigationContext), {
     matches
   } = React.useContext(RouteContext), {
     pathname: locationPathname
-  } = useLocation(), routePathnamesJson = JSON.stringify(getPathContributingMatches(matches).map((match) => match.pathnameBase)), activeRef = React.useRef(!1);
+  } = useLocation(), routePathnamesJson = JSON.stringify(getResolveToMatches(matches, future2.v7_relativeSplatPath)), activeRef = React.useRef(!1);
   return useIsomorphicLayoutEffect(() => {
     activeRef.current = !0;
   }), React.useCallback(function(to, options2) {
@@ -19347,16 +19400,18 @@ function useResolvedPath(to, _temp2) {
   let {
     relative
   } = _temp2 === void 0 ? {} : _temp2, {
+    future: future2
+  } = React.useContext(NavigationContext), {
     matches
   } = React.useContext(RouteContext), {
     pathname: locationPathname
-  } = useLocation(), routePathnamesJson = JSON.stringify(getPathContributingMatches(matches).map((match, idx) => idx === matches.length - 1 ? match.pathname : match.pathnameBase));
+  } = useLocation(), routePathnamesJson = JSON.stringify(getResolveToMatches(matches, future2.v7_relativeSplatPath));
   return React.useMemo(() => resolveTo(to, JSON.parse(routePathnamesJson), locationPathname, relative === "path"), [to, routePathnamesJson, locationPathname, relative]);
 }
 function useRoutes(routes2, locationArg) {
   return useRoutesImpl(routes2, locationArg);
 }
-function useRoutesImpl(routes2, locationArg, dataRouterState) {
+function useRoutesImpl(routes2, locationArg, dataRouterState, future2) {
   useInRouterContext() || invariant(
     !1,
     // TODO: This error is probably because they somehow have 2 versions of the
@@ -19384,7 +19439,7 @@ function useRoutesImpl(routes2, locationArg, dataRouterState) {
   let pathname = location.pathname || "/", remainingPathname = parentPathnameBase === "/" ? pathname : pathname.slice(parentPathnameBase.length) || "/", matches = matchRoutes(routes2, {
     pathname: remainingPathname
   });
-  warning(parentRoute || matches != null, 'No routes matched location "' + location.pathname + location.search + location.hash + '" '), warning(matches == null || matches[matches.length - 1].route.element !== void 0 || matches[matches.length - 1].route.Component !== void 0, 'Matched leaf route at location "' + location.pathname + location.search + location.hash + '" does not have an element or Component. This means it will render an <Outlet /> with a null value by default resulting in an "empty" page.');
+  warning(parentRoute || matches != null, 'No routes matched location "' + location.pathname + location.search + location.hash + '" '), warning(matches == null || matches[matches.length - 1].route.element !== void 0 || matches[matches.length - 1].route.Component !== void 0 || matches[matches.length - 1].route.lazy !== void 0, 'Matched leaf route at location "' + location.pathname + location.search + location.hash + '" does not have an element or Component. This means it will render an <Outlet /> with a null value by default resulting in an "empty" page.');
   let renderedMatches = _renderMatches(matches && matches.map((match) => Object.assign({}, match, {
     params: Object.assign({}, parentParams, match.params),
     pathname: joinPaths([
@@ -19397,7 +19452,7 @@ function useRoutesImpl(routes2, locationArg, dataRouterState) {
       // Re-encode pathnames that were decoded inside matchRoutes
       navigator2.encodeLocation ? navigator2.encodeLocation(match.pathnameBase).pathname : match.pathnameBase
     ])
-  })), parentMatches, dataRouterState);
+  })), parentMatches, dataRouterState, future2);
   return locationArg && renderedMatches ? /* @__PURE__ */ React.createElement(LocationContext.Provider, {
     value: {
       location: _extends2({
@@ -19441,9 +19496,9 @@ function RenderedRoute(_ref) {
     value: routeContext
   }, children);
 }
-function _renderMatches(matches, parentMatches, dataRouterState) {
+function _renderMatches(matches, parentMatches, dataRouterState, future2) {
   var _dataRouterState2;
-  if (parentMatches === void 0 && (parentMatches = []), dataRouterState === void 0 && (dataRouterState = null), matches == null) {
+  if (parentMatches === void 0 && (parentMatches = []), dataRouterState === void 0 && (dataRouterState = null), future2 === void 0 && (future2 = null), matches == null) {
     var _dataRouterState;
     if ((_dataRouterState = dataRouterState) != null && _dataRouterState.errors)
       matches = dataRouterState.matches;
@@ -19455,12 +19510,27 @@ function _renderMatches(matches, parentMatches, dataRouterState) {
     let errorIndex = renderedMatches.findIndex((m4) => m4.route.id && errors?.[m4.route.id]);
     errorIndex >= 0 || invariant(!1, "Could not find a matching route for errors on route IDs: " + Object.keys(errors).join(",")), renderedMatches = renderedMatches.slice(0, Math.min(renderedMatches.length, errorIndex + 1));
   }
-  return renderedMatches.reduceRight((outlet, match, index) => {
-    let error = match.route.id ? errors?.[match.route.id] : null, errorElement = null;
-    dataRouterState && (errorElement = match.route.errorElement || defaultErrorElement);
-    let matches2 = parentMatches.concat(renderedMatches.slice(0, index + 1)), getChildren = () => {
+  let renderFallback = !1, fallbackIndex = -1;
+  if (dataRouterState && future2 && future2.v7_partialHydration)
+    for (let i4 = 0; i4 < renderedMatches.length; i4++) {
+      let match = renderedMatches[i4];
+      if ((match.route.HydrateFallback || match.route.hydrateFallbackElement) && (fallbackIndex = i4), match.route.id) {
+        let {
+          loaderData,
+          errors: errors2
+        } = dataRouterState, needsToRunLoader = match.route.loader && loaderData[match.route.id] === void 0 && (!errors2 || errors2[match.route.id] === void 0);
+        if (match.route.lazy || needsToRunLoader) {
+          renderFallback = !0, fallbackIndex >= 0 ? renderedMatches = renderedMatches.slice(0, fallbackIndex + 1) : renderedMatches = [renderedMatches[0]];
+          break;
+        }
+      }
+    }
+  return renderedMatches.reduceRight((outlet, match, index2) => {
+    let error, shouldRenderHydrateFallback = !1, errorElement = null, hydrateFallbackElement = null;
+    dataRouterState && (error = errors && match.route.id ? errors[match.route.id] : void 0, errorElement = match.route.errorElement || defaultErrorElement, renderFallback && (fallbackIndex < 0 && index2 === 0 ? (warningOnce("route-fallback", !1, "No `HydrateFallback` element provided to render during initial hydration"), shouldRenderHydrateFallback = !0, hydrateFallbackElement = null) : fallbackIndex === index2 && (shouldRenderHydrateFallback = !0, hydrateFallbackElement = match.route.hydrateFallbackElement || null)));
+    let matches2 = parentMatches.concat(renderedMatches.slice(0, index2 + 1)), getChildren = () => {
       let children;
-      return error ? children = errorElement : match.route.Component ? children = /* @__PURE__ */ React.createElement(match.route.Component, null) : match.route.element ? children = match.route.element : children = outlet, /* @__PURE__ */ React.createElement(RenderedRoute, {
+      return error ? children = errorElement : shouldRenderHydrateFallback ? children = hydrateFallbackElement : match.route.Component ? children = /* @__PURE__ */ React.createElement(match.route.Component, null) : match.route.element ? children = match.route.element : children = outlet, /* @__PURE__ */ React.createElement(RenderedRoute, {
         match,
         routeContext: {
           outlet,
@@ -19470,7 +19540,7 @@ function _renderMatches(matches, parentMatches, dataRouterState) {
         children
       });
     };
-    return dataRouterState && (match.route.ErrorBoundary || match.route.errorElement || index === 0) ? /* @__PURE__ */ React.createElement(RenderErrorBoundary, {
+    return dataRouterState && (match.route.ErrorBoundary || match.route.errorElement || index2 === 0) ? /* @__PURE__ */ React.createElement(RenderErrorBoundary, {
       location: dataRouterState.location,
       revalidation: dataRouterState.revalidation,
       component: errorElement,
@@ -19541,7 +19611,7 @@ function useActionData() {
 function useRouteError() {
   var _state$errors;
   let error = React.useContext(RouteErrorContext), state = useDataRouterState(DataRouterStateHook.UseRouteError), routeId = useCurrentRouteId(DataRouterStateHook.UseRouteError);
-  return error || ((_state$errors = state.errors) == null ? void 0 : _state$errors[routeId]);
+  return error !== void 0 ? error : (_state$errors = state.errors) == null ? void 0 : _state$errors[routeId];
 }
 function useAsyncValue() {
   let value = React.useContext(AwaitContext);
@@ -19607,7 +19677,9 @@ function RouterProvider(_ref) {
   } = future2 || {}, setState = React.useCallback((newState) => {
     v7_startTransition && startTransitionImpl ? startTransitionImpl(() => setStateImpl(newState)) : setStateImpl(newState);
   }, [setStateImpl, v7_startTransition]);
-  React.useLayoutEffect(() => router.subscribe(setState), [router, setState]);
+  React.useLayoutEffect(() => router.subscribe(setState), [router, setState]), React.useEffect(() => {
+    warning(fallbackElement == null || !router.future.v7_partialHydration, "`<RouterProvider fallbackElement>` is deprecated when using `v7_partialHydration`, use a `HydrateFallback` component instead");
+  }, []);
   let navigator2 = React.useMemo(() => ({
     createHref: router.createHref,
     encodeLocation: router.encodeLocation,
@@ -19635,18 +19707,23 @@ function RouterProvider(_ref) {
     basename,
     location: state.location,
     navigationType: state.historyAction,
-    navigator: navigator2
-  }, state.initialized ? /* @__PURE__ */ React.createElement(DataRoutes, {
+    navigator: navigator2,
+    future: {
+      v7_relativeSplatPath: router.future.v7_relativeSplatPath
+    }
+  }, state.initialized || router.future.v7_partialHydration ? /* @__PURE__ */ React.createElement(DataRoutes, {
     routes: router.routes,
+    future: router.future,
     state
   }) : fallbackElement))), null);
 }
 function DataRoutes(_ref2) {
   let {
     routes: routes2,
+    future: future2,
     state
   } = _ref2;
-  return useRoutesImpl(routes2, void 0, state);
+  return useRoutesImpl(routes2, void 0, state, future2);
 }
 function MemoryRouter(_ref3) {
   let {
@@ -19674,7 +19751,8 @@ function MemoryRouter(_ref3) {
     children,
     location: state.location,
     navigationType: state.action,
-    navigator: history
+    navigator: history,
+    future: future2
   });
 }
 function Navigate(_ref4) {
@@ -19689,12 +19767,17 @@ function Navigate(_ref4) {
     // TODO: This error is probably because they somehow have 2 versions of
     // the router loaded. We can help them understand how to avoid that.
     "<Navigate> may be used only in the context of a <Router> component."
-  ), warning(!React.useContext(NavigationContext).static, "<Navigate> must not be used on the initial render in a <StaticRouter>. This is a no-op, but you should modify your code so the <Navigate> is only ever rendered in response to some user interaction or state change.");
+  );
+  let {
+    future: future2,
+    static: isStatic
+  } = React.useContext(NavigationContext);
+  warning(!isStatic, "<Navigate> must not be used on the initial render in a <StaticRouter>. This is a no-op, but you should modify your code so the <Navigate> is only ever rendered in response to some user interaction or state change.");
   let {
     matches
   } = React.useContext(RouteContext), {
     pathname: locationPathname
-  } = useLocation(), navigate = useNavigate(), path = resolveTo(to, getPathContributingMatches(matches).map((match) => match.pathnameBase), locationPathname, relative === "path"), jsonPath = JSON.stringify(path);
+  } = useLocation(), navigate = useNavigate(), path = resolveTo(to, getResolveToMatches(matches, future2.v7_relativeSplatPath), locationPathname, relative === "path"), jsonPath = JSON.stringify(path);
   return React.useEffect(() => navigate(JSON.parse(jsonPath), {
     replace,
     state,
@@ -19714,14 +19797,18 @@ function Router(_ref5) {
     location: locationProp,
     navigationType = Action.Pop,
     navigator: navigator2,
-    static: staticProp = !1
+    static: staticProp = !1,
+    future: future2
   } = _ref5;
   useInRouterContext() && invariant(!1, "You cannot render a <Router> inside another <Router>. You should never have more than one in your app.");
   let basename = basenameProp.replace(/^\/*/, "/"), navigationContext = React.useMemo(() => ({
     basename,
     navigator: navigator2,
-    static: staticProp
-  }), [basename, navigator2, staticProp]);
+    static: staticProp,
+    future: _extends2({
+      v7_relativeSplatPath: !1
+    }, future2)
+  }), [basename, future2, navigator2, staticProp]);
   typeof locationProp == "string" && (locationProp = parsePath(locationProp));
   let {
     pathname = "/",
@@ -19776,10 +19863,10 @@ function ResolveAwait(_ref8) {
 function createRoutesFromChildren(children, parentPath) {
   parentPath === void 0 && (parentPath = []);
   let routes2 = [];
-  return React.Children.forEach(children, (element, index) => {
+  return React.Children.forEach(children, (element, index2) => {
     if (!/* @__PURE__ */ React.isValidElement(element))
       return;
-    let treePath = [...parentPath, index];
+    let treePath = [...parentPath, index2];
     if (element.type === React.Fragment) {
       routes2.push.apply(routes2, createRoutesFromChildren(element.props.children, treePath));
       return;
@@ -19816,6 +19903,9 @@ function mapRouteProperties(route) {
   return route.Component && (route.element && warning(!1, "You should not include both `Component` and `element` on your route - `Component` will be used."), Object.assign(updates, {
     element: /* @__PURE__ */ React.createElement(route.Component),
     Component: void 0
+  })), route.HydrateFallback && (route.hydrateFallbackElement && warning(!1, "You should not include both `HydrateFallback` and `hydrateFallbackElement` on your route - `HydrateFallback` will be used."), Object.assign(updates, {
+    hydrateFallbackElement: /* @__PURE__ */ React.createElement(route.HydrateFallback),
+    HydrateFallback: void 0
   })), route.ErrorBoundary && (route.errorElement && warning(!1, "You should not include both `ErrorBoundary` and `errorElement` on your route - `ErrorBoundary` will be used."), Object.assign(updates, {
     errorElement: /* @__PURE__ */ React.createElement(route.ErrorBoundary),
     ErrorBoundary: void 0
@@ -19837,7 +19927,7 @@ function createMemoryRouter(routes2, opts) {
   }).initialize();
 }
 var React, DataRouterContext, DataRouterStateContext, AwaitContext, NavigationContext, LocationContext, RouteContext, RouteErrorContext, navigateEffectWarning, OutletContext, defaultErrorElement, RenderErrorBoundary, DataRouterHook, DataRouterStateHook, blockerId, alreadyWarned2, START_TRANSITION, startTransitionImpl, AwaitRenderStatus, neverSettledPromise, AwaitErrorBoundary, init_dist = __esm({
-  "../../node_modules/react-router/dist/index.js"() {
+  "../../node_modules/.pnpm/react-router@6.21.1_react@18.2.0/node_modules/react-router/dist/index.js"() {
     React = __toESM(require_react());
     init_router();
     init_router();
@@ -19880,7 +19970,7 @@ var React, DataRouterContext, DataRouterStateContext, AwaitContext, NavigationCo
           location: props.location,
           revalidation: props.revalidation
         } : {
-          error: props.error || state.error,
+          error: props.error !== void 0 ? props.error : state.error,
           location: state.location,
           revalidation: props.revalidation || state.revalidation
         };
@@ -19889,7 +19979,7 @@ var React, DataRouterContext, DataRouterStateContext, AwaitContext, NavigationCo
         console.error("React Router caught the following error during render", error, errorInfo);
       }
       render() {
-        return this.state.error ? /* @__PURE__ */ React.createElement(RouteContext.Provider, {
+        return this.state.error !== void 0 ? /* @__PURE__ */ React.createElement(RouteContext.Provider, {
           value: this.props.routeContext
         }, /* @__PURE__ */ React.createElement(RouteErrorContext.Provider, {
           value: this.state.error,
@@ -19971,7 +20061,7 @@ var React, DataRouterContext, DataRouterStateContext, AwaitContext, NavigationCo
   }
 });
 
-// ../../node_modules/react-router-dom/dist/index.js
+// ../../node_modules/.pnpm/react-router-dom@6.21.1_react-dom@18.2.0_react@18.2.0/node_modules/react-router-dom/dist/index.js
 var dist_exports2 = {};
 __export(dist_exports2, {
   AbortedDeferredError: () => AbortedDeferredError,
@@ -20299,7 +20389,9 @@ function RouterProvider2(_ref) {
       currentLocation: interruption.currentLocation,
       nextLocation: interruption.nextLocation
     }), setInterruption(void 0));
-  }, [vtContext.isTransitioning, interruption]);
+  }, [vtContext.isTransitioning, interruption]), React2.useEffect(() => {
+    warning(fallbackElement == null || !router.future.v7_partialHydration, "`<RouterProvider fallbackElement>` is deprecated when using `v7_partialHydration`, use a `HydrateFallback` component instead");
+  }, []);
   let navigator2 = React2.useMemo(() => ({
     createHref: router.createHref,
     encodeLocation: router.encodeLocation,
@@ -20331,18 +20423,23 @@ function RouterProvider2(_ref) {
     basename,
     location: state.location,
     navigationType: state.historyAction,
-    navigator: navigator2
-  }, state.initialized ? /* @__PURE__ */ React2.createElement(DataRoutes2, {
+    navigator: navigator2,
+    future: {
+      v7_relativeSplatPath: router.future.v7_relativeSplatPath
+    }
+  }, state.initialized || router.future.v7_partialHydration ? /* @__PURE__ */ React2.createElement(DataRoutes2, {
     routes: router.routes,
+    future: router.future,
     state
   }) : fallbackElement))))), null);
 }
 function DataRoutes2(_ref3) {
   let {
     routes: routes2,
+    future: future2,
     state
   } = _ref3;
-  return useRoutesImpl(routes2, void 0, state);
+  return useRoutesImpl(routes2, void 0, state, future2);
 }
 function BrowserRouter(_ref4) {
   let {
@@ -20368,7 +20465,8 @@ function BrowserRouter(_ref4) {
     children,
     location: state.location,
     navigationType: state.action,
-    navigator: history
+    navigator: history,
+    future: future2
   });
 }
 function HashRouter(_ref5) {
@@ -20395,7 +20493,8 @@ function HashRouter(_ref5) {
     children,
     location: state.location,
     navigationType: state.action,
-    navigator: history
+    navigator: history,
+    future: future2
   });
 }
 function HistoryRouter(_ref6) {
@@ -20417,7 +20516,8 @@ function HistoryRouter(_ref6) {
     children,
     location: state.location,
     navigationType: state.action,
-    navigator: history
+    navigator: history,
+    future: future2
   });
 }
 function ScrollRestoration(_ref10) {
@@ -20693,7 +20793,7 @@ function useViewTransitionState(to, opts) {
   return matchPath(path.pathname, nextPath) != null || matchPath(path.pathname, currentPath) != null;
 }
 var React2, ReactDOM, defaultMethod, defaultEncType, _formDataSupportsSubmitter, supportedFormEncTypes, _excluded, _excluded2, _excluded3, ViewTransitionContext, FetchersContext, START_TRANSITION2, startTransitionImpl2, FLUSH_SYNC, flushSyncImpl, Deferred, isBrowser, ABSOLUTE_URL_REGEX2, Link, NavLink, Form, DataRouterHook2, DataRouterStateHook2, fetcherId, getUniqueFetcherId, SCROLL_RESTORATION_STORAGE_KEY, savedScrollPositions, init_dist2 = __esm({
-  "../../node_modules/react-router-dom/dist/index.js"() {
+  "../../node_modules/.pnpm/react-router-dom@6.21.1_react-dom@18.2.0_react@18.2.0/node_modules/react-router-dom/dist/index.js"() {
     React2 = __toESM(require_react()), ReactDOM = __toESM(require_react_dom());
     init_dist();
     init_dist();
@@ -20852,12 +20952,12 @@ var React2, ReactDOM, defaultMethod, defaultEncType, _formDataSupportsSubmitter,
   }
 });
 
-// ../../node_modules/react-router-dom/server.js
+// ../../node_modules/.pnpm/react-router-dom@6.21.1_react-dom@18.2.0_react@18.2.0/node_modules/react-router-dom/server.js
 var require_server = __commonJS({
-  "../../node_modules/react-router-dom/server.js"(exports) {
+  "../../node_modules/.pnpm/react-router-dom@6.21.1_react-dom@18.2.0_react@18.2.0/node_modules/react-router-dom/server.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: !0 });
-    var React11 = require_react(), router = (init_router(), __toCommonJS(router_exports)), reactRouter = (init_dist(), __toCommonJS(dist_exports)), reactRouterDom = (init_dist2(), __toCommonJS(dist_exports2));
+    var React12 = require_react(), router = (init_router(), __toCommonJS(router_exports)), reactRouter = (init_dist(), __toCommonJS(dist_exports)), reactRouterDom = (init_dist2(), __toCommonJS(dist_exports2));
     function _interopNamespace(e3) {
       if (e3 && e3.__esModule)
         return e3;
@@ -20874,11 +20974,12 @@ var require_server = __commonJS({
         }
       }), n3.default = e3, Object.freeze(n3);
     }
-    var React__namespace = /* @__PURE__ */ _interopNamespace(React11);
+    var React__namespace = /* @__PURE__ */ _interopNamespace(React12);
     function StaticRouter({
       basename,
       children,
-      location: locationProp = "/"
+      location: locationProp = "/",
+      future: future2
     }) {
       typeof locationProp == "string" && (locationProp = reactRouterDom.parsePath(locationProp));
       let action3 = router.Action.Pop, location = {
@@ -20894,6 +20995,7 @@ var require_server = __commonJS({
         location,
         navigationType: action3,
         navigator: staticNavigator,
+        future: future2,
         static: !0
       });
     }
@@ -20937,9 +21039,13 @@ var require_server = __commonJS({
         location: state.location,
         navigationType: state.historyAction,
         navigator: dataRouterContext.navigator,
-        static: dataRouterContext.static
+        static: dataRouterContext.static,
+        future: {
+          v7_relativeSplatPath: router$1.future.v7_relativeSplatPath
+        }
       }, /* @__PURE__ */ React__namespace.createElement(DataRoutes3, {
         routes: router$1.routes,
+        future: router$1.future,
         state
       })))))), hydrateScript ? /* @__PURE__ */ React__namespace.createElement("script", {
         suppressHydrationWarning: !0,
@@ -20951,9 +21057,10 @@ var require_server = __commonJS({
     }
     function DataRoutes3({
       routes: routes2,
+      future: future2,
       state
     }) {
-      return reactRouter.UNSAFE_useRoutesImpl(routes2, void 0, state);
+      return reactRouter.UNSAFE_useRoutesImpl(routes2, void 0, state, future2);
     }
     function serializeErrors2(errors) {
       if (!errors)
@@ -21001,7 +21108,7 @@ var require_server = __commonJS({
         mapRouteProperties: reactRouter.UNSAFE_mapRouteProperties
       });
     }
-    function createStaticRouter2(routes2, context) {
+    function createStaticRouter2(routes2, context, opts = {}) {
       let manifest = {}, dataRoutes = router.UNSAFE_convertRoutesToDataRoutes(routes2, reactRouter.UNSAFE_mapRouteProperties, void 0, manifest), matches = context.matches.map((match) => {
         let route = manifest[match.route.id] || match.route;
         return {
@@ -21012,6 +21119,15 @@ var require_server = __commonJS({
       return {
         get basename() {
           return context.basename;
+        },
+        get future() {
+          return {
+            v7_fetcherPersist: !1,
+            v7_normalizeFormMethod: !1,
+            v7_partialHydration: opts.future?.v7_partialHydration === !0,
+            v7_prependBasename: !1,
+            v7_relativeSplatPath: opts.future?.v7_relativeSplatPath === !0
+          };
         },
         get state() {
           return {
@@ -21105,13 +21221,13 @@ var require_server = __commonJS({
   }
 });
 
-// ../../node_modules/react-dom/cjs/react-dom-server-legacy.browser.development.js
+// ../../node_modules/.pnpm/react-dom@18.2.0_react@18.2.0/node_modules/react-dom/cjs/react-dom-server-legacy.browser.development.js
 var require_react_dom_server_legacy_browser_development = __commonJS({
-  "../../node_modules/react-dom/cjs/react-dom-server-legacy.browser.development.js"(exports) {
+  "../../node_modules/.pnpm/react-dom@18.2.0_react@18.2.0/node_modules/react-dom/cjs/react-dom-server-legacy.browser.development.js"(exports) {
     "use strict";
     (function() {
       "use strict";
-      var React11 = require_react(), ReactVersion = "18.2.0", ReactSharedInternals = React11.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+      var React12 = require_react(), ReactVersion = "18.2.0", ReactSharedInternals = React12.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
       function warn(format) {
         {
           for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++)
@@ -22356,9 +22472,9 @@ var require_react_dom_server_legacy_browser_development = __commonJS({
         var str = "" + string, match = matchHtmlRegExp.exec(str);
         if (!match)
           return str;
-        var escape2, html = "", index, lastIndex = 0;
-        for (index = match.index; index < str.length; index++) {
-          switch (str.charCodeAt(index)) {
+        var escape2, html = "", index2, lastIndex = 0;
+        for (index2 = match.index; index2 < str.length; index2++) {
+          switch (str.charCodeAt(index2)) {
             case 34:
               escape2 = "&quot;";
               break;
@@ -22377,9 +22493,9 @@ var require_react_dom_server_legacy_browser_development = __commonJS({
             default:
               continue;
           }
-          lastIndex !== index && (html += str.substring(lastIndex, index)), lastIndex = index + 1, html += escape2;
+          lastIndex !== index2 && (html += str.substring(lastIndex, index2)), lastIndex = index2 + 1, html += escape2;
         }
-        return lastIndex !== index ? html + str.substring(lastIndex, index) : html;
+        return lastIndex !== index2 ? html + str.substring(lastIndex, index2) : html;
       }
       function escapeTextForBrowser(text2) {
         return typeof text2 == "boolean" || typeof text2 == "number" ? "" + text2 : escapeHtml3(text2);
@@ -22605,7 +22721,7 @@ var require_react_dom_server_legacy_browser_development = __commonJS({
       }
       function flattenOptionChildren(children) {
         var content = "";
-        return React11.Children.forEach(children, function(child) {
+        return React12.Children.forEach(children, function(child) {
           child != null && (content += child, !didWarnInvalidOptionChildren && typeof child != "string" && typeof child != "number" && (didWarnInvalidOptionChildren = !0, error("Cannot infer the option value of complex children. Pass a `value` prop or use a plain string as children to <option>.")));
         }), content;
       }
@@ -23297,18 +23413,18 @@ var require_react_dom_server_legacy_browser_development = __commonJS({
           if (sample && control && typeof sample.stack == "string") {
             for (var sampleLines = sample.stack.split(`
 `), controlLines = control.stack.split(`
-`), s4 = sampleLines.length - 1, c5 = controlLines.length - 1; s4 >= 1 && c5 >= 0 && sampleLines[s4] !== controlLines[c5]; )
-              c5--;
-            for (; s4 >= 1 && c5 >= 0; s4--, c5--)
-              if (sampleLines[s4] !== controlLines[c5]) {
-                if (s4 !== 1 || c5 !== 1)
+`), s4 = sampleLines.length - 1, c4 = controlLines.length - 1; s4 >= 1 && c4 >= 0 && sampleLines[s4] !== controlLines[c4]; )
+              c4--;
+            for (; s4 >= 1 && c4 >= 0; s4--, c4--)
+              if (sampleLines[s4] !== controlLines[c4]) {
+                if (s4 !== 1 || c4 !== 1)
                   do
-                    if (s4--, c5--, c5 < 0 || sampleLines[s4] !== controlLines[c5]) {
+                    if (s4--, c4--, c4 < 0 || sampleLines[s4] !== controlLines[c4]) {
                       var _frame = `
 ` + sampleLines[s4].replace(" at new ", " at ");
                       return fn.displayName && _frame.includes("<anonymous>") && (_frame = _frame.replace("<anonymous>", fn.displayName)), typeof fn == "function" && componentFrameCache.set(fn, _frame), _frame;
                     }
-                  while (s4 >= 1 && c5 >= 0);
+                  while (s4 >= 1 && c4 >= 0);
                 break;
               }
           }
@@ -23665,8 +23781,8 @@ Please update the following components: %s`,
         var overflow = context.overflow, idWithLeadingBit = context.id, id = idWithLeadingBit & ~getLeadingBit(idWithLeadingBit);
         return id.toString(32) + overflow;
       }
-      function pushTreeContext(baseContext, totalChildren, index) {
-        var baseIdWithLeadingBit = baseContext.id, baseOverflow = baseContext.overflow, baseLength = getBitLength(baseIdWithLeadingBit) - 1, baseId = baseIdWithLeadingBit & ~(1 << baseLength), slot = index + 1, length = getBitLength(totalChildren) + baseLength;
+      function pushTreeContext(baseContext, totalChildren, index2) {
+        var baseIdWithLeadingBit = baseContext.id, baseOverflow = baseContext.overflow, baseLength = getBitLength(baseIdWithLeadingBit) - 1, baseId = baseIdWithLeadingBit & ~(1 << baseLength), slot = index2 + 1, length = getBitLength(totalChildren) + baseLength;
         if (length > 30) {
           var numberOfOverflowBits = baseLength - baseLength % 5, newOverflowBits = (1 << numberOfOverflowBits) - 1, newOverflow = (baseId & newOverflowBits).toString(32), restOfBaseId = baseId >> numberOfOverflowBits, restOfBaseLength = baseLength - numberOfOverflowBits, restOfLength = getBitLength(totalChildren) + restOfBaseLength, restOfNewBits = slot << restOfBaseLength, id = restOfNewBits | restOfBaseId, overflow = newOverflow + baseOverflow;
           return {
@@ -23753,7 +23869,7 @@ Incoming: %s`, currentHookNameInDev, "[" + nextDeps.join(", ") + "]", "[" + prev
       function basicStateReducer(state, action3) {
         return typeof action3 == "function" ? action3(state) : action3;
       }
-      function useState8(initialState) {
+      function useState9(initialState) {
         return currentHookNameInDev = "useState", useReducer(
           basicStateReducer,
           // useReducer has a special case to support lazy useState initializers
@@ -23873,7 +23989,7 @@ Incoming: %s`, currentHookNameInDev, "[" + nextDeps.join(", ") + "]", "[" + prev
         useMemo: useMemo6,
         useReducer,
         useRef: useRef5,
-        useState: useState8,
+        useState: useState9,
         useInsertionEffect: noop,
         useLayoutEffect: useLayoutEffect3,
         useCallback: useCallback6,
@@ -23992,12 +24108,12 @@ Error generating stack: ` + x3.message + `
         };
         return task.componentStack = null, abortSet.add(task), task;
       }
-      function createPendingSegment(request, index, boundary, formatContext, lastPushedText, textEmbedded) {
+      function createPendingSegment(request, index2, boundary, formatContext, lastPushedText, textEmbedded) {
         return {
           status: PENDING,
           id: -1,
           // lazily assigned later
-          index,
+          index: index2,
           parentFlushed: !1,
           chunks: [],
           children: [],
@@ -24148,8 +24264,8 @@ Error generating stack: ` + x3.message + `
           }
           mountClassInstance(value, Component3, props, legacyContext), finishClassComponent(request, task, value, Component3, props);
         } else if (validateFunctionComponentInDev(Component3), hasId) {
-          var prevTreeContext = task.treeContext, totalChildren = 1, index = 0;
-          task.treeContext = pushTreeContext(prevTreeContext, totalChildren, index);
+          var prevTreeContext = task.treeContext, totalChildren = 1, index2 = 0;
+          task.treeContext = pushTreeContext(prevTreeContext, totalChildren, index2);
           try {
             renderNodeDestructive(request, task, value);
           } finally {
@@ -24184,8 +24300,8 @@ Error generating stack: ` + x3.message + `
         pushFunctionComponentStackInDEV(task, type.render);
         var children = renderWithHooks(request, task, type.render, props, ref), hasId = checkDidRenderIdHook();
         if (hasId) {
-          var prevTreeContext = task.treeContext, totalChildren = 1, index = 0;
-          task.treeContext = pushTreeContext(prevTreeContext, totalChildren, index);
+          var prevTreeContext = task.treeContext, totalChildren = 1, index2 = 0;
+          task.treeContext = pushTreeContext(prevTreeContext, totalChildren, index2);
           try {
             renderNodeDestructive(request, task, children);
           } finally {
@@ -24686,13 +24802,13 @@ Error generating stack: ` + x3.message + `
   }
 });
 
-// ../../node_modules/react-dom/cjs/react-dom-server.browser.development.js
+// ../../node_modules/.pnpm/react-dom@18.2.0_react@18.2.0/node_modules/react-dom/cjs/react-dom-server.browser.development.js
 var require_react_dom_server_browser_development = __commonJS({
-  "../../node_modules/react-dom/cjs/react-dom-server.browser.development.js"(exports) {
+  "../../node_modules/.pnpm/react-dom@18.2.0_react@18.2.0/node_modules/react-dom/cjs/react-dom-server.browser.development.js"(exports) {
     "use strict";
     (function() {
       "use strict";
-      var React11 = require_react(), ReactVersion = "18.2.0", ReactSharedInternals = React11.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+      var React12 = require_react(), ReactVersion = "18.2.0", ReactSharedInternals = React12.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
       function warn(format) {
         {
           for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++)
@@ -25948,9 +26064,9 @@ var require_react_dom_server_browser_development = __commonJS({
         var str = "" + string, match = matchHtmlRegExp.exec(str);
         if (!match)
           return str;
-        var escape2, html = "", index, lastIndex = 0;
-        for (index = match.index; index < str.length; index++) {
-          switch (str.charCodeAt(index)) {
+        var escape2, html = "", index2, lastIndex = 0;
+        for (index2 = match.index; index2 < str.length; index2++) {
+          switch (str.charCodeAt(index2)) {
             case 34:
               escape2 = "&quot;";
               break;
@@ -25969,9 +26085,9 @@ var require_react_dom_server_browser_development = __commonJS({
             default:
               continue;
           }
-          lastIndex !== index && (html += str.substring(lastIndex, index)), lastIndex = index + 1, html += escape2;
+          lastIndex !== index2 && (html += str.substring(lastIndex, index2)), lastIndex = index2 + 1, html += escape2;
         }
-        return lastIndex !== index ? html + str.substring(lastIndex, index) : html;
+        return lastIndex !== index2 ? html + str.substring(lastIndex, index2) : html;
       }
       function escapeTextForBrowser(text2) {
         return typeof text2 == "boolean" || typeof text2 == "number" ? "" + text2 : escapeHtml3(text2);
@@ -26201,7 +26317,7 @@ var require_react_dom_server_browser_development = __commonJS({
       }
       function flattenOptionChildren(children) {
         var content = "";
-        return React11.Children.forEach(children, function(child) {
+        return React12.Children.forEach(children, function(child) {
           child != null && (content += child, !didWarnInvalidOptionChildren && typeof child != "string" && typeof child != "number" && (didWarnInvalidOptionChildren = !0, error("Cannot infer the option value of complex children. Pass a `value` prop or use a plain string as children to <option>.")));
         }), content;
       }
@@ -26849,18 +26965,18 @@ var require_react_dom_server_browser_development = __commonJS({
           if (sample && control && typeof sample.stack == "string") {
             for (var sampleLines = sample.stack.split(`
 `), controlLines = control.stack.split(`
-`), s4 = sampleLines.length - 1, c5 = controlLines.length - 1; s4 >= 1 && c5 >= 0 && sampleLines[s4] !== controlLines[c5]; )
-              c5--;
-            for (; s4 >= 1 && c5 >= 0; s4--, c5--)
-              if (sampleLines[s4] !== controlLines[c5]) {
-                if (s4 !== 1 || c5 !== 1)
+`), s4 = sampleLines.length - 1, c4 = controlLines.length - 1; s4 >= 1 && c4 >= 0 && sampleLines[s4] !== controlLines[c4]; )
+              c4--;
+            for (; s4 >= 1 && c4 >= 0; s4--, c4--)
+              if (sampleLines[s4] !== controlLines[c4]) {
+                if (s4 !== 1 || c4 !== 1)
                   do
-                    if (s4--, c5--, c5 < 0 || sampleLines[s4] !== controlLines[c5]) {
+                    if (s4--, c4--, c4 < 0 || sampleLines[s4] !== controlLines[c4]) {
                       var _frame = `
 ` + sampleLines[s4].replace(" at new ", " at ");
                       return fn.displayName && _frame.includes("<anonymous>") && (_frame = _frame.replace("<anonymous>", fn.displayName)), typeof fn == "function" && componentFrameCache.set(fn, _frame), _frame;
                     }
-                  while (s4 >= 1 && c5 >= 0);
+                  while (s4 >= 1 && c4 >= 0);
                 break;
               }
           }
@@ -27217,8 +27333,8 @@ Please update the following components: %s`,
         var overflow = context.overflow, idWithLeadingBit = context.id, id = idWithLeadingBit & ~getLeadingBit(idWithLeadingBit);
         return id.toString(32) + overflow;
       }
-      function pushTreeContext(baseContext, totalChildren, index) {
-        var baseIdWithLeadingBit = baseContext.id, baseOverflow = baseContext.overflow, baseLength = getBitLength(baseIdWithLeadingBit) - 1, baseId = baseIdWithLeadingBit & ~(1 << baseLength), slot = index + 1, length = getBitLength(totalChildren) + baseLength;
+      function pushTreeContext(baseContext, totalChildren, index2) {
+        var baseIdWithLeadingBit = baseContext.id, baseOverflow = baseContext.overflow, baseLength = getBitLength(baseIdWithLeadingBit) - 1, baseId = baseIdWithLeadingBit & ~(1 << baseLength), slot = index2 + 1, length = getBitLength(totalChildren) + baseLength;
         if (length > 30) {
           var numberOfOverflowBits = baseLength - baseLength % 5, newOverflowBits = (1 << numberOfOverflowBits) - 1, newOverflow = (baseId & newOverflowBits).toString(32), restOfBaseId = baseId >> numberOfOverflowBits, restOfBaseLength = baseLength - numberOfOverflowBits, restOfLength = getBitLength(totalChildren) + restOfBaseLength, restOfNewBits = slot << restOfBaseLength, id = restOfNewBits | restOfBaseId, overflow = newOverflow + baseOverflow;
           return {
@@ -27305,7 +27421,7 @@ Incoming: %s`, currentHookNameInDev, "[" + nextDeps.join(", ") + "]", "[" + prev
       function basicStateReducer(state, action3) {
         return typeof action3 == "function" ? action3(state) : action3;
       }
-      function useState8(initialState) {
+      function useState9(initialState) {
         return currentHookNameInDev = "useState", useReducer(
           basicStateReducer,
           // useReducer has a special case to support lazy useState initializers
@@ -27425,7 +27541,7 @@ Incoming: %s`, currentHookNameInDev, "[" + nextDeps.join(", ") + "]", "[" + prev
         useMemo: useMemo6,
         useReducer,
         useRef: useRef5,
-        useState: useState8,
+        useState: useState9,
         useInsertionEffect: noop,
         useLayoutEffect: useLayoutEffect3,
         useCallback: useCallback6,
@@ -27544,12 +27660,12 @@ Error generating stack: ` + x3.message + `
         };
         return task.componentStack = null, abortSet.add(task), task;
       }
-      function createPendingSegment(request, index, boundary, formatContext, lastPushedText, textEmbedded) {
+      function createPendingSegment(request, index2, boundary, formatContext, lastPushedText, textEmbedded) {
         return {
           status: PENDING,
           id: -1,
           // lazily assigned later
-          index,
+          index: index2,
           parentFlushed: !1,
           chunks: [],
           children: [],
@@ -27700,8 +27816,8 @@ Error generating stack: ` + x3.message + `
           }
           mountClassInstance(value, Component3, props, legacyContext), finishClassComponent(request, task, value, Component3, props);
         } else if (validateFunctionComponentInDev(Component3), hasId) {
-          var prevTreeContext = task.treeContext, totalChildren = 1, index = 0;
-          task.treeContext = pushTreeContext(prevTreeContext, totalChildren, index);
+          var prevTreeContext = task.treeContext, totalChildren = 1, index2 = 0;
+          task.treeContext = pushTreeContext(prevTreeContext, totalChildren, index2);
           try {
             renderNodeDestructive(request, task, value);
           } finally {
@@ -27736,8 +27852,8 @@ Error generating stack: ` + x3.message + `
         pushFunctionComponentStackInDEV(task, type.render);
         var children = renderWithHooks(request, task, type.render, props, ref), hasId = checkDidRenderIdHook();
         if (hasId) {
-          var prevTreeContext = task.treeContext, totalChildren = 1, index = 0;
-          task.treeContext = pushTreeContext(prevTreeContext, totalChildren, index);
+          var prevTreeContext = task.treeContext, totalChildren = 1, index2 = 0;
+          task.treeContext = pushTreeContext(prevTreeContext, totalChildren, index2);
           try {
             renderNodeDestructive(request, task, children);
           } finally {
@@ -28243,9 +28359,9 @@ Error generating stack: ` + x3.message + `
   }
 });
 
-// ../../node_modules/react-dom/server.browser.js
+// ../../node_modules/.pnpm/react-dom@18.2.0_react@18.2.0/node_modules/react-dom/server.browser.js
 var require_server_browser = __commonJS({
-  "../../node_modules/react-dom/server.browser.js"(exports) {
+  "../../node_modules/.pnpm/react-dom@18.2.0_react@18.2.0/node_modules/react-dom/server.browser.js"(exports) {
     "use strict";
     var l4, s4;
     l4 = require_react_dom_server_legacy_browser_development(), s4 = require_react_dom_server_browser_development();
@@ -28258,20 +28374,20 @@ var require_server_browser = __commonJS({
   }
 });
 
-// ../../node_modules/react/cjs/react-jsx-dev-runtime.development.js
+// ../../node_modules/.pnpm/react@18.2.0/node_modules/react/cjs/react-jsx-dev-runtime.development.js
 var require_react_jsx_dev_runtime_development = __commonJS({
-  "../../node_modules/react/cjs/react-jsx-dev-runtime.development.js"(exports) {
+  "../../node_modules/.pnpm/react@18.2.0/node_modules/react/cjs/react-jsx-dev-runtime.development.js"(exports) {
     "use strict";
     (function() {
       "use strict";
-      var React11 = require_react(), REACT_ELEMENT_TYPE = Symbol.for("react.element"), REACT_PORTAL_TYPE = Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = Symbol.for("react.profiler"), REACT_PROVIDER_TYPE = Symbol.for("react.provider"), REACT_CONTEXT_TYPE = Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = Symbol.for("react.memo"), REACT_LAZY_TYPE = Symbol.for("react.lazy"), REACT_OFFSCREEN_TYPE = Symbol.for("react.offscreen"), MAYBE_ITERATOR_SYMBOL = Symbol.iterator, FAUX_ITERATOR_SYMBOL = "@@iterator";
+      var React12 = require_react(), REACT_ELEMENT_TYPE = Symbol.for("react.element"), REACT_PORTAL_TYPE = Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = Symbol.for("react.profiler"), REACT_PROVIDER_TYPE = Symbol.for("react.provider"), REACT_CONTEXT_TYPE = Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = Symbol.for("react.memo"), REACT_LAZY_TYPE = Symbol.for("react.lazy"), REACT_OFFSCREEN_TYPE = Symbol.for("react.offscreen"), MAYBE_ITERATOR_SYMBOL = Symbol.iterator, FAUX_ITERATOR_SYMBOL = "@@iterator";
       function getIteratorFn(maybeIterable) {
         if (maybeIterable === null || typeof maybeIterable != "object")
           return null;
         var maybeIterator = MAYBE_ITERATOR_SYMBOL && maybeIterable[MAYBE_ITERATOR_SYMBOL] || maybeIterable[FAUX_ITERATOR_SYMBOL];
         return typeof maybeIterator == "function" ? maybeIterator : null;
       }
-      var ReactSharedInternals = React11.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+      var ReactSharedInternals = React12.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
       function error(format) {
         {
           for (var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++)
@@ -28484,18 +28600,18 @@ var require_react_jsx_dev_runtime_development = __commonJS({
           if (sample && control && typeof sample.stack == "string") {
             for (var sampleLines = sample.stack.split(`
 `), controlLines = control.stack.split(`
-`), s4 = sampleLines.length - 1, c5 = controlLines.length - 1; s4 >= 1 && c5 >= 0 && sampleLines[s4] !== controlLines[c5]; )
-              c5--;
-            for (; s4 >= 1 && c5 >= 0; s4--, c5--)
-              if (sampleLines[s4] !== controlLines[c5]) {
-                if (s4 !== 1 || c5 !== 1)
+`), s4 = sampleLines.length - 1, c4 = controlLines.length - 1; s4 >= 1 && c4 >= 0 && sampleLines[s4] !== controlLines[c4]; )
+              c4--;
+            for (; s4 >= 1 && c4 >= 0; s4--, c4--)
+              if (sampleLines[s4] !== controlLines[c4]) {
+                if (s4 !== 1 || c4 !== 1)
                   do
-                    if (s4--, c5--, c5 < 0 || sampleLines[s4] !== controlLines[c5]) {
+                    if (s4--, c4--, c4 < 0 || sampleLines[s4] !== controlLines[c4]) {
                       var _frame = `
 ` + sampleLines[s4].replace(" at new ", " at ");
                       return fn.displayName && _frame.includes("<anonymous>") && (_frame = _frame.replace("<anonymous>", fn.displayName)), typeof fn == "function" && componentFrameCache.set(fn, _frame), _frame;
                     }
-                  while (s4 >= 1 && c5 >= 0);
+                  while (s4 >= 1 && c4 >= 0);
                 break;
               }
           }
@@ -28672,7 +28788,7 @@ var require_react_jsx_dev_runtime_development = __commonJS({
           value: source
         }), Object.freeze && (Object.freeze(element.props), Object.freeze(element)), element;
       };
-      function jsxDEV18(type, config2, maybeKey, source, self) {
+      function jsxDEV19(type, config2, maybeKey, source, self) {
         {
           var propName, props = {}, key = null, ref = null;
           maybeKey !== void 0 && (checkKeyStringCoercion(maybeKey), key = "" + maybeKey), hasValidKey(config2) && (checkKeyStringCoercion(config2.key), key = "" + config2.key), hasValidRef(config2) && (ref = config2.ref, warnIfStringRefCannotBeAutoConverted(config2, self));
@@ -28819,7 +28935,7 @@ Check the top-level render call using <` + parentName + ">.");
             var typeString;
             type === null ? typeString = "null" : isArray(type) ? typeString = "array" : type !== void 0 && type.$$typeof === REACT_ELEMENT_TYPE ? (typeString = "<" + (getComponentNameFromType(type.type) || "Unknown") + " />", info = " Did you accidentally export a JSX literal instead of a component?") : typeString = typeof type, error("React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: %s.%s", typeString, info);
           }
-          var element = jsxDEV18(type, props, key, source, self);
+          var element = jsxDEV19(type, props, key, source, self);
           if (element == null)
             return element;
           if (validType) {
@@ -28844,142 +28960,492 @@ Check the top-level render call using <` + parentName + ">.");
   }
 });
 
-// ../../node_modules/react/jsx-dev-runtime.js
+// ../../node_modules/.pnpm/react@18.2.0/node_modules/react/jsx-dev-runtime.js
 var require_jsx_dev_runtime = __commonJS({
-  "../../node_modules/react/jsx-dev-runtime.js"(exports, module) {
+  "../../node_modules/.pnpm/react@18.2.0/node_modules/react/jsx-dev-runtime.js"(exports, module) {
     "use strict";
     module.exports = require_react_jsx_dev_runtime_development();
   }
 });
 
-// ../../node_modules/ulid-workers/dist/ulid.js
-var require_ulid = __commonJS({
-  "../../node_modules/ulid-workers/dist/ulid.js"(exports) {
+// ../../node_modules/.pnpm/@noble+hashes@1.3.3/node_modules/@noble/hashes/_assert.js
+var require_assert = __commonJS({
+  "../../node_modules/.pnpm/@noble+hashes@1.3.3/node_modules/@noble/hashes/_assert.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: !0 });
-    exports.exportedForTesting = exports.ulidFactory = exports.decodeTime = exports.encodeTime = void 0;
-    var ENCODING = "0123456789ABCDEFGHJKMNPQRSTVWXYZ", ENCODING_LEN = ENCODING.length, TIME_MAX = Math.pow(2, 48) - 1, TIME_LEN = 10, RANDOM_LEN = 16;
-    function webCryptoPRNG() {
-      let buffer = new Uint8Array(1);
-      return crypto.getRandomValues(buffer), buffer[0] / 255;
+    exports.output = exports.exists = exports.hash = exports.bytes = exports.bool = exports.number = void 0;
+    function number(n3) {
+      if (!Number.isSafeInteger(n3) || n3 < 0)
+        throw new Error(`Wrong positive integer: ${n3}`);
     }
-    function encodeRandom(len) {
-      let str = "";
-      for (; len > 0; len--)
-        str = randomChar() + str;
-      return str;
+    exports.number = number;
+    function bool(b5) {
+      if (typeof b5 != "boolean")
+        throw new Error(`Expected boolean, not ${b5}`);
     }
-    function validateTimestamp(timestamp) {
-      if (isNaN(timestamp))
-        throw new Error(`timestamp must be a number: ${timestamp}`);
-      if (timestamp > TIME_MAX)
-        throw new Error(`cannot encode a timestamp larger than 2^48 - 1 (${TIME_MAX}) : ${timestamp}`);
-      if (timestamp < 0)
-        throw new Error(`timestamp must be positive: ${timestamp}`);
-      if (Number.isInteger(timestamp) === !1)
-        throw new Error(`timestamp must be an integer: ${timestamp}`);
+    exports.bool = bool;
+    function isBytes(a4) {
+      return a4 instanceof Uint8Array || a4 != null && typeof a4 == "object" && a4.constructor.name === "Uint8Array";
     }
-    function encodeTime(timestamp) {
-      validateTimestamp(timestamp);
-      let mod, str = "";
-      for (let tLen = TIME_LEN; tLen > 0; tLen--)
-        mod = timestamp % ENCODING_LEN, str = ENCODING.charAt(mod) + str, timestamp = (timestamp - mod) / ENCODING_LEN;
-      return str;
+    function bytes(b5, ...lengths) {
+      if (!isBytes(b5))
+        throw new Error("Expected Uint8Array");
+      if (lengths.length > 0 && !lengths.includes(b5.length))
+        throw new Error(`Expected Uint8Array of length ${lengths}, not of length=${b5.length}`);
     }
-    exports.encodeTime = encodeTime;
-    function incrementBase32(str) {
-      let done, index = str.length, char, charIndex, output = str, maxCharIndex = ENCODING_LEN - 1;
-      if (str.length > RANDOM_LEN)
-        throw new Error(`Base32 value to increment cannot be longer than ${RANDOM_LEN} characters`);
-      if (str === "Z".repeat(RANDOM_LEN))
-        throw new Error(`Cannot increment Base32 maximum value ${"Z".repeat(RANDOM_LEN)}`);
-      for (; !done && index-- >= 0; ) {
-        if (char = output[index], charIndex = ENCODING.indexOf(char), charIndex === -1)
-          throw new Error("Incorrectly encoded string");
-        if (charIndex === maxCharIndex) {
-          output = replaceCharAt(output, index, ENCODING[0]);
-          continue;
-        }
-        done = replaceCharAt(output, index, ENCODING[charIndex + 1]);
+    exports.bytes = bytes;
+    function hash(hash2) {
+      if (typeof hash2 != "function" || typeof hash2.create != "function")
+        throw new Error("Hash should be wrapped by utils.wrapConstructor");
+      number(hash2.outputLen), number(hash2.blockLen);
+    }
+    exports.hash = hash;
+    function exists2(instance, checkFinished = !0) {
+      if (instance.destroyed)
+        throw new Error("Hash instance has been destroyed");
+      if (checkFinished && instance.finished)
+        throw new Error("Hash#digest() has already been called");
+    }
+    exports.exists = exists2;
+    function output(out, instance) {
+      bytes(out);
+      let min = instance.outputLen;
+      if (out.length < min)
+        throw new Error(`digestInto() expects output buffer of length at least ${min}`);
+    }
+    exports.output = output;
+    var assert = { number, bool, bytes, hash, exists: exists2, output };
+    exports.default = assert;
+  }
+});
+
+// ../../node_modules/.pnpm/@noble+hashes@1.3.3/node_modules/@noble/hashes/_u64.js
+var require_u64 = __commonJS({
+  "../../node_modules/.pnpm/@noble+hashes@1.3.3/node_modules/@noble/hashes/_u64.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: !0 });
+    exports.add5L = exports.add5H = exports.add4H = exports.add4L = exports.add3H = exports.add3L = exports.add = exports.rotlBL = exports.rotlBH = exports.rotlSL = exports.rotlSH = exports.rotr32L = exports.rotr32H = exports.rotrBL = exports.rotrBH = exports.rotrSL = exports.rotrSH = exports.shrSL = exports.shrSH = exports.toBig = exports.split = exports.fromBig = void 0;
+    var U32_MASK64 = /* @__PURE__ */ BigInt(2 ** 32 - 1), _32n = /* @__PURE__ */ BigInt(32);
+    function fromBig(n3, le = !1) {
+      return le ? { h: Number(n3 & U32_MASK64), l: Number(n3 >> _32n & U32_MASK64) } : { h: Number(n3 >> _32n & U32_MASK64) | 0, l: Number(n3 & U32_MASK64) | 0 };
+    }
+    exports.fromBig = fromBig;
+    function split(lst, le = !1) {
+      let Ah = new Uint32Array(lst.length), Al = new Uint32Array(lst.length);
+      for (let i4 = 0; i4 < lst.length; i4++) {
+        let { h: h3, l: l4 } = fromBig(lst[i4], le);
+        [Ah[i4], Al[i4]] = [h3, l4];
       }
-      if (typeof done == "string")
-        return done;
-      throw new Error("Failed incrementing string");
+      return [Ah, Al];
     }
-    function randomChar() {
-      let rand = Math.floor(webCryptoPRNG() * ENCODING_LEN);
-      return rand === ENCODING_LEN && (rand = ENCODING_LEN - 1), ENCODING.charAt(rand);
+    exports.split = split;
+    var toBig = (h3, l4) => BigInt(h3 >>> 0) << _32n | BigInt(l4 >>> 0);
+    exports.toBig = toBig;
+    var shrSH = (h3, _l, s4) => h3 >>> s4;
+    exports.shrSH = shrSH;
+    var shrSL = (h3, l4, s4) => h3 << 32 - s4 | l4 >>> s4;
+    exports.shrSL = shrSL;
+    var rotrSH = (h3, l4, s4) => h3 >>> s4 | l4 << 32 - s4;
+    exports.rotrSH = rotrSH;
+    var rotrSL = (h3, l4, s4) => h3 << 32 - s4 | l4 >>> s4;
+    exports.rotrSL = rotrSL;
+    var rotrBH = (h3, l4, s4) => h3 << 64 - s4 | l4 >>> s4 - 32;
+    exports.rotrBH = rotrBH;
+    var rotrBL = (h3, l4, s4) => h3 >>> s4 - 32 | l4 << 64 - s4;
+    exports.rotrBL = rotrBL;
+    var rotr32H = (_h, l4) => l4;
+    exports.rotr32H = rotr32H;
+    var rotr32L = (h3, _l) => h3;
+    exports.rotr32L = rotr32L;
+    var rotlSH = (h3, l4, s4) => h3 << s4 | l4 >>> 32 - s4;
+    exports.rotlSH = rotlSH;
+    var rotlSL = (h3, l4, s4) => l4 << s4 | h3 >>> 32 - s4;
+    exports.rotlSL = rotlSL;
+    var rotlBH = (h3, l4, s4) => l4 << s4 - 32 | h3 >>> 64 - s4;
+    exports.rotlBH = rotlBH;
+    var rotlBL = (h3, l4, s4) => h3 << s4 - 32 | l4 >>> 64 - s4;
+    exports.rotlBL = rotlBL;
+    function add(Ah, Al, Bh, Bl) {
+      let l4 = (Al >>> 0) + (Bl >>> 0);
+      return { h: Ah + Bh + (l4 / 2 ** 32 | 0) | 0, l: l4 | 0 };
     }
-    function replaceCharAt(str, index, char) {
-      return index > str.length - 1 ? str : str.substring(0, index) + char + str.substring(index + 1);
-    }
-    function decodeTime(id) {
-      if (id.length !== TIME_LEN + RANDOM_LEN)
-        throw new Error("Malformed ULID");
-      let time = id.substring(0, TIME_LEN).split("").reverse().reduce((carry, char, index) => {
-        let encodingIndex = ENCODING.indexOf(char);
-        if (encodingIndex === -1)
-          throw new Error(`Time decode error: Invalid character: ${char}`);
-        return carry += encodingIndex * Math.pow(ENCODING_LEN, index);
-      }, 0);
-      if (time > TIME_MAX)
-        throw new Error(`Malformed ULID: timestamp too large: ${time}`);
-      return time;
-    }
-    exports.decodeTime = decodeTime;
-    var ulidFactory2 = (args) => args?.monotonic ?? !0 ? function() {
-      let lastTime = 0, lastRandom;
-      return function(timestamp) {
-        let timestampOrNow = timestamp || Date.now();
-        if (validateTimestamp(timestampOrNow), timestampOrNow > lastTime) {
-          lastTime = timestampOrNow;
-          let random = encodeRandom(RANDOM_LEN);
-          return lastRandom = random, encodeTime(timestampOrNow) + random;
-        } else {
-          let random = incrementBase32(lastRandom);
-          return lastRandom = random, encodeTime(lastTime) + random;
-        }
-      };
-    }() : function() {
-      return function(timestamp) {
-        let timestampOrNow = timestamp || Date.now();
-        return validateTimestamp(timestampOrNow), encodeTime(timestampOrNow) + encodeRandom(RANDOM_LEN);
-      };
-    }();
-    exports.ulidFactory = ulidFactory2;
-    exports.exportedForTesting = {
-      encodeRandom,
-      incrementBase32,
-      randomChar,
-      replaceCharAt,
-      validateTimestamp,
-      webCryptoPRNG
+    exports.add = add;
+    var add3L = (Al, Bl, Cl) => (Al >>> 0) + (Bl >>> 0) + (Cl >>> 0);
+    exports.add3L = add3L;
+    var add3H = (low, Ah, Bh, Ch) => Ah + Bh + Ch + (low / 2 ** 32 | 0) | 0;
+    exports.add3H = add3H;
+    var add4L = (Al, Bl, Cl, Dl) => (Al >>> 0) + (Bl >>> 0) + (Cl >>> 0) + (Dl >>> 0);
+    exports.add4L = add4L;
+    var add4H = (low, Ah, Bh, Ch, Dh) => Ah + Bh + Ch + Dh + (low / 2 ** 32 | 0) | 0;
+    exports.add4H = add4H;
+    var add5L = (Al, Bl, Cl, Dl, El) => (Al >>> 0) + (Bl >>> 0) + (Cl >>> 0) + (Dl >>> 0) + (El >>> 0);
+    exports.add5L = add5L;
+    var add5H = (low, Ah, Bh, Ch, Dh, Eh) => Ah + Bh + Ch + Dh + Eh + (low / 2 ** 32 | 0) | 0;
+    exports.add5H = add5H;
+    var u64 = {
+      fromBig,
+      split,
+      toBig,
+      shrSH,
+      shrSL,
+      rotrSH,
+      rotrSL,
+      rotrBH,
+      rotrBL,
+      rotr32H,
+      rotr32L,
+      rotlSH,
+      rotlSL,
+      rotlBH,
+      rotlBL,
+      add,
+      add3L,
+      add3H,
+      add4L,
+      add4H,
+      add5H,
+      add5L
     };
+    exports.default = u64;
   }
 });
 
-// ../../node_modules/ulid-workers/dist/index.js
-var require_dist2 = __commonJS({
-  "../../node_modules/ulid-workers/dist/index.js"(exports) {
+// ../../node_modules/.pnpm/@noble+hashes@1.3.3/node_modules/@noble/hashes/crypto.js
+var require_crypto2 = __commonJS({
+  "../../node_modules/.pnpm/@noble+hashes@1.3.3/node_modules/@noble/hashes/crypto.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: !0 });
-    exports.ulidFactory = exports.encodeTime = exports.decodeTime = void 0;
-    var ulid_1 = require_ulid();
-    Object.defineProperty(exports, "decodeTime", { enumerable: !0, get: function() {
-      return ulid_1.decodeTime;
-    } });
-    Object.defineProperty(exports, "encodeTime", { enumerable: !0, get: function() {
-      return ulid_1.encodeTime;
-    } });
-    Object.defineProperty(exports, "ulidFactory", { enumerable: !0, get: function() {
-      return ulid_1.ulidFactory;
-    } });
+    exports.crypto = void 0;
+    exports.crypto = typeof globalThis == "object" && "crypto" in globalThis ? globalThis.crypto : void 0;
   }
 });
 
-// ../../node_modules/remix-auth/build/authenticator.js
+// ../../node_modules/.pnpm/@noble+hashes@1.3.3/node_modules/@noble/hashes/utils.js
+var require_utils = __commonJS({
+  "../../node_modules/.pnpm/@noble+hashes@1.3.3/node_modules/@noble/hashes/utils.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: !0 });
+    exports.randomBytes = exports.wrapXOFConstructorWithOpts = exports.wrapConstructorWithOpts = exports.wrapConstructor = exports.checkOpts = exports.Hash = exports.concatBytes = exports.toBytes = exports.utf8ToBytes = exports.asyncLoop = exports.nextTick = exports.hexToBytes = exports.bytesToHex = exports.isLE = exports.rotr = exports.createView = exports.u32 = exports.u8 = void 0;
+    var crypto_1 = require_crypto2(), u8 = (arr) => new Uint8Array(arr.buffer, arr.byteOffset, arr.byteLength);
+    exports.u8 = u8;
+    var u32 = (arr) => new Uint32Array(arr.buffer, arr.byteOffset, Math.floor(arr.byteLength / 4));
+    exports.u32 = u32;
+    function isBytes(a4) {
+      return a4 instanceof Uint8Array || a4 != null && typeof a4 == "object" && a4.constructor.name === "Uint8Array";
+    }
+    var createView = (arr) => new DataView(arr.buffer, arr.byteOffset, arr.byteLength);
+    exports.createView = createView;
+    var rotr = (word2, shift) => word2 << 32 - shift | word2 >>> shift;
+    exports.rotr = rotr;
+    exports.isLE = new Uint8Array(new Uint32Array([287454020]).buffer)[0] === 68;
+    if (!exports.isLE)
+      throw new Error("Non little-endian hardware is not supported");
+    var hexes = /* @__PURE__ */ Array.from({ length: 256 }, (_2, i4) => i4.toString(16).padStart(2, "0"));
+    function bytesToHex(bytes) {
+      if (!isBytes(bytes))
+        throw new Error("Uint8Array expected");
+      let hex2 = "";
+      for (let i4 = 0; i4 < bytes.length; i4++)
+        hex2 += hexes[bytes[i4]];
+      return hex2;
+    }
+    exports.bytesToHex = bytesToHex;
+    var asciis = { _0: 48, _9: 57, _A: 65, _F: 70, _a: 97, _f: 102 };
+    function asciiToBase16(char) {
+      if (char >= asciis._0 && char <= asciis._9)
+        return char - asciis._0;
+      if (char >= asciis._A && char <= asciis._F)
+        return char - (asciis._A - 10);
+      if (char >= asciis._a && char <= asciis._f)
+        return char - (asciis._a - 10);
+    }
+    function hexToBytes(hex2) {
+      if (typeof hex2 != "string")
+        throw new Error("hex string expected, got " + typeof hex2);
+      let hl = hex2.length, al = hl / 2;
+      if (hl % 2)
+        throw new Error("padded hex string expected, got unpadded hex of length " + hl);
+      let array = new Uint8Array(al);
+      for (let ai = 0, hi = 0; ai < al; ai++, hi += 2) {
+        let n1 = asciiToBase16(hex2.charCodeAt(hi)), n22 = asciiToBase16(hex2.charCodeAt(hi + 1));
+        if (n1 === void 0 || n22 === void 0) {
+          let char = hex2[hi] + hex2[hi + 1];
+          throw new Error('hex string expected, got non-hex character "' + char + '" at index ' + hi);
+        }
+        array[ai] = n1 * 16 + n22;
+      }
+      return array;
+    }
+    exports.hexToBytes = hexToBytes;
+    var nextTick = async () => {
+    };
+    exports.nextTick = nextTick;
+    async function asyncLoop(iters, tick, cb) {
+      let ts = Date.now();
+      for (let i4 = 0; i4 < iters; i4++) {
+        cb(i4);
+        let diff = Date.now() - ts;
+        diff >= 0 && diff < tick || (await (0, exports.nextTick)(), ts += diff);
+      }
+    }
+    exports.asyncLoop = asyncLoop;
+    function utf8ToBytes(str) {
+      if (typeof str != "string")
+        throw new Error(`utf8ToBytes expected string, got ${typeof str}`);
+      return new Uint8Array(new TextEncoder().encode(str));
+    }
+    exports.utf8ToBytes = utf8ToBytes;
+    function toBytes(data) {
+      if (typeof data == "string" && (data = utf8ToBytes(data)), !isBytes(data))
+        throw new Error(`expected Uint8Array, got ${typeof data}`);
+      return data;
+    }
+    exports.toBytes = toBytes;
+    function concatBytes(...arrays) {
+      let sum = 0;
+      for (let i4 = 0; i4 < arrays.length; i4++) {
+        let a4 = arrays[i4];
+        if (!isBytes(a4))
+          throw new Error("Uint8Array expected");
+        sum += a4.length;
+      }
+      let res = new Uint8Array(sum);
+      for (let i4 = 0, pad = 0; i4 < arrays.length; i4++) {
+        let a4 = arrays[i4];
+        res.set(a4, pad), pad += a4.length;
+      }
+      return res;
+    }
+    exports.concatBytes = concatBytes;
+    var Hash = class {
+      // Safe version that clones internal state
+      clone() {
+        return this._cloneInto();
+      }
+    };
+    exports.Hash = Hash;
+    var toStr = {}.toString;
+    function checkOpts(defaults, opts) {
+      if (opts !== void 0 && toStr.call(opts) !== "[object Object]")
+        throw new Error("Options should be object or undefined");
+      return Object.assign(defaults, opts);
+    }
+    exports.checkOpts = checkOpts;
+    function wrapConstructor(hashCons) {
+      let hashC = (msg) => hashCons().update(toBytes(msg)).digest(), tmp = hashCons();
+      return hashC.outputLen = tmp.outputLen, hashC.blockLen = tmp.blockLen, hashC.create = () => hashCons(), hashC;
+    }
+    exports.wrapConstructor = wrapConstructor;
+    function wrapConstructorWithOpts(hashCons) {
+      let hashC = (msg, opts) => hashCons(opts).update(toBytes(msg)).digest(), tmp = hashCons({});
+      return hashC.outputLen = tmp.outputLen, hashC.blockLen = tmp.blockLen, hashC.create = (opts) => hashCons(opts), hashC;
+    }
+    exports.wrapConstructorWithOpts = wrapConstructorWithOpts;
+    function wrapXOFConstructorWithOpts(hashCons) {
+      let hashC = (msg, opts) => hashCons(opts).update(toBytes(msg)).digest(), tmp = hashCons({});
+      return hashC.outputLen = tmp.outputLen, hashC.blockLen = tmp.blockLen, hashC.create = (opts) => hashCons(opts), hashC;
+    }
+    exports.wrapXOFConstructorWithOpts = wrapXOFConstructorWithOpts;
+    function randomBytes(bytesLength = 32) {
+      if (crypto_1.crypto && typeof crypto_1.crypto.getRandomValues == "function")
+        return crypto_1.crypto.getRandomValues(new Uint8Array(bytesLength));
+      throw new Error("crypto.getRandomValues must be defined");
+    }
+    exports.randomBytes = randomBytes;
+  }
+});
+
+// ../../node_modules/.pnpm/@noble+hashes@1.3.3/node_modules/@noble/hashes/sha3.js
+var require_sha3 = __commonJS({
+  "../../node_modules/.pnpm/@noble+hashes@1.3.3/node_modules/@noble/hashes/sha3.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: !0 });
+    exports.shake256 = exports.shake128 = exports.keccak_512 = exports.keccak_384 = exports.keccak_256 = exports.keccak_224 = exports.sha3_512 = exports.sha3_384 = exports.sha3_256 = exports.sha3_224 = exports.Keccak = exports.keccakP = void 0;
+    var _assert_js_1 = require_assert(), _u64_js_1 = require_u64(), utils_js_1 = require_utils(), [SHA3_PI, SHA3_ROTL, _SHA3_IOTA] = [[], [], []], _0n = /* @__PURE__ */ BigInt(0), _1n = /* @__PURE__ */ BigInt(1), _2n = /* @__PURE__ */ BigInt(2), _7n = /* @__PURE__ */ BigInt(7), _256n = /* @__PURE__ */ BigInt(256), _0x71n = /* @__PURE__ */ BigInt(113);
+    for (let round = 0, R = _1n, x3 = 1, y4 = 0; round < 24; round++) {
+      [x3, y4] = [y4, (2 * x3 + 3 * y4) % 5], SHA3_PI.push(2 * (5 * y4 + x3)), SHA3_ROTL.push((round + 1) * (round + 2) / 2 % 64);
+      let t3 = _0n;
+      for (let j2 = 0; j2 < 7; j2++)
+        R = (R << _1n ^ (R >> _7n) * _0x71n) % _256n, R & _2n && (t3 ^= _1n << (_1n << /* @__PURE__ */ BigInt(j2)) - _1n);
+      _SHA3_IOTA.push(t3);
+    }
+    var [SHA3_IOTA_H, SHA3_IOTA_L] = /* @__PURE__ */ (0, _u64_js_1.split)(_SHA3_IOTA, !0), rotlH = (h3, l4, s4) => s4 > 32 ? (0, _u64_js_1.rotlBH)(h3, l4, s4) : (0, _u64_js_1.rotlSH)(h3, l4, s4), rotlL = (h3, l4, s4) => s4 > 32 ? (0, _u64_js_1.rotlBL)(h3, l4, s4) : (0, _u64_js_1.rotlSL)(h3, l4, s4);
+    function keccakP(s4, rounds = 24) {
+      let B2 = new Uint32Array(10);
+      for (let round = 24 - rounds; round < 24; round++) {
+        for (let x3 = 0; x3 < 10; x3++)
+          B2[x3] = s4[x3] ^ s4[x3 + 10] ^ s4[x3 + 20] ^ s4[x3 + 30] ^ s4[x3 + 40];
+        for (let x3 = 0; x3 < 10; x3 += 2) {
+          let idx1 = (x3 + 8) % 10, idx0 = (x3 + 2) % 10, B0 = B2[idx0], B1 = B2[idx0 + 1], Th = rotlH(B0, B1, 1) ^ B2[idx1], Tl = rotlL(B0, B1, 1) ^ B2[idx1 + 1];
+          for (let y4 = 0; y4 < 50; y4 += 10)
+            s4[x3 + y4] ^= Th, s4[x3 + y4 + 1] ^= Tl;
+        }
+        let curH = s4[2], curL = s4[3];
+        for (let t3 = 0; t3 < 24; t3++) {
+          let shift = SHA3_ROTL[t3], Th = rotlH(curH, curL, shift), Tl = rotlL(curH, curL, shift), PI = SHA3_PI[t3];
+          curH = s4[PI], curL = s4[PI + 1], s4[PI] = Th, s4[PI + 1] = Tl;
+        }
+        for (let y4 = 0; y4 < 50; y4 += 10) {
+          for (let x3 = 0; x3 < 10; x3++)
+            B2[x3] = s4[y4 + x3];
+          for (let x3 = 0; x3 < 10; x3++)
+            s4[y4 + x3] ^= ~B2[(x3 + 2) % 10] & B2[(x3 + 4) % 10];
+        }
+        s4[0] ^= SHA3_IOTA_H[round], s4[1] ^= SHA3_IOTA_L[round];
+      }
+      B2.fill(0);
+    }
+    exports.keccakP = keccakP;
+    var Keccak = class extends utils_js_1.Hash {
+      // NOTE: we accept arguments in bytes instead of bits here.
+      constructor(blockLen, suffix, outputLen, enableXOF = !1, rounds = 24) {
+        if (super(), this.blockLen = blockLen, this.suffix = suffix, this.outputLen = outputLen, this.enableXOF = enableXOF, this.rounds = rounds, this.pos = 0, this.posOut = 0, this.finished = !1, this.destroyed = !1, (0, _assert_js_1.number)(outputLen), 0 >= this.blockLen || this.blockLen >= 200)
+          throw new Error("Sha3 supports only keccak-f1600 function");
+        this.state = new Uint8Array(200), this.state32 = (0, utils_js_1.u32)(this.state);
+      }
+      keccak() {
+        keccakP(this.state32, this.rounds), this.posOut = 0, this.pos = 0;
+      }
+      update(data) {
+        (0, _assert_js_1.exists)(this);
+        let { blockLen, state } = this;
+        data = (0, utils_js_1.toBytes)(data);
+        let len = data.length;
+        for (let pos = 0; pos < len; ) {
+          let take = Math.min(blockLen - this.pos, len - pos);
+          for (let i4 = 0; i4 < take; i4++)
+            state[this.pos++] ^= data[pos++];
+          this.pos === blockLen && this.keccak();
+        }
+        return this;
+      }
+      finish() {
+        if (this.finished)
+          return;
+        this.finished = !0;
+        let { state, suffix, pos, blockLen } = this;
+        state[pos] ^= suffix, suffix & 128 && pos === blockLen - 1 && this.keccak(), state[blockLen - 1] ^= 128, this.keccak();
+      }
+      writeInto(out) {
+        (0, _assert_js_1.exists)(this, !1), (0, _assert_js_1.bytes)(out), this.finish();
+        let bufferOut = this.state, { blockLen } = this;
+        for (let pos = 0, len = out.length; pos < len; ) {
+          this.posOut >= blockLen && this.keccak();
+          let take = Math.min(blockLen - this.posOut, len - pos);
+          out.set(bufferOut.subarray(this.posOut, this.posOut + take), pos), this.posOut += take, pos += take;
+        }
+        return out;
+      }
+      xofInto(out) {
+        if (!this.enableXOF)
+          throw new Error("XOF is not possible for this instance");
+        return this.writeInto(out);
+      }
+      xof(bytes) {
+        return (0, _assert_js_1.number)(bytes), this.xofInto(new Uint8Array(bytes));
+      }
+      digestInto(out) {
+        if ((0, _assert_js_1.output)(out, this), this.finished)
+          throw new Error("digest() was already called");
+        return this.writeInto(out), this.destroy(), out;
+      }
+      digest() {
+        return this.digestInto(new Uint8Array(this.outputLen));
+      }
+      destroy() {
+        this.destroyed = !0, this.state.fill(0);
+      }
+      _cloneInto(to) {
+        let { blockLen, suffix, outputLen, rounds, enableXOF } = this;
+        return to || (to = new Keccak(blockLen, suffix, outputLen, enableXOF, rounds)), to.state32.set(this.state32), to.pos = this.pos, to.posOut = this.posOut, to.finished = this.finished, to.rounds = rounds, to.suffix = suffix, to.outputLen = outputLen, to.enableXOF = enableXOF, to.destroyed = this.destroyed, to;
+      }
+    };
+    exports.Keccak = Keccak;
+    var gen = (suffix, blockLen, outputLen) => (0, utils_js_1.wrapConstructor)(() => new Keccak(blockLen, suffix, outputLen));
+    exports.sha3_224 = gen(6, 144, 224 / 8);
+    exports.sha3_256 = gen(6, 136, 256 / 8);
+    exports.sha3_384 = gen(6, 104, 384 / 8);
+    exports.sha3_512 = gen(6, 72, 512 / 8);
+    exports.keccak_224 = gen(1, 144, 224 / 8);
+    exports.keccak_256 = gen(1, 136, 256 / 8);
+    exports.keccak_384 = gen(1, 104, 384 / 8);
+    exports.keccak_512 = gen(1, 72, 512 / 8);
+    var genShake = (suffix, blockLen, outputLen) => (0, utils_js_1.wrapXOFConstructorWithOpts)((opts = {}) => new Keccak(blockLen, suffix, opts.dkLen === void 0 ? outputLen : opts.dkLen, !0));
+    exports.shake128 = genShake(31, 168, 128 / 8);
+    exports.shake256 = genShake(31, 136, 256 / 8);
+  }
+});
+
+// ../../node_modules/.pnpm/@paralleldrive+cuid2@2.2.2/node_modules/@paralleldrive/cuid2/src/index.js
+var require_src = __commonJS({
+  "../../node_modules/.pnpm/@paralleldrive+cuid2@2.2.2/node_modules/@paralleldrive/cuid2/src/index.js"(exports, module) {
+    var { sha3_512: sha3 } = require_sha3(), defaultLength = 24, bigLength = 32, createEntropy = (length = 4, random = Math.random) => {
+      let entropy = "";
+      for (; entropy.length < length; )
+        entropy = entropy + Math.floor(random() * 36).toString(36);
+      return entropy;
+    };
+    function bufToBigInt(buf) {
+      let bits = 8n, value = 0n;
+      for (let i4 of buf.values()) {
+        let bi = BigInt(i4);
+        value = (value << bits) + bi;
+      }
+      return value;
+    }
+    var hash = (input = "") => bufToBigInt(sha3(input)).toString(36).slice(1), alphabet = Array.from(
+      { length: 26 },
+      (x3, i4) => String.fromCharCode(i4 + 97)
+    ), randomLetter = (random) => alphabet[Math.floor(random() * alphabet.length)], createFingerprint = ({
+      globalObj = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : {},
+      random = Math.random
+    } = {}) => {
+      let globals = Object.keys(globalObj).toString(), sourceString = globals.length ? globals + createEntropy(bigLength, random) : createEntropy(bigLength, random);
+      return hash(sourceString).substring(0, bigLength);
+    }, createCounter = (count) => () => count++, initialCountMax = 476782367, init = ({
+      // Fallback if the user does not pass in a CSPRNG. This should be OK
+      // because we don't rely solely on the random number generator for entropy.
+      // We also use the host fingerprint, current time, and a session counter.
+      random = Math.random,
+      counter = createCounter(Math.floor(random() * initialCountMax)),
+      length = defaultLength,
+      fingerprint = createFingerprint({ random })
+    } = {}) => function() {
+      let firstLetter = randomLetter(random), time = Date.now().toString(36), count = counter().toString(36), salt = createEntropy(length, random), hashInput = `${time + salt + count + fingerprint}`;
+      return `${firstLetter + hash(hashInput).substring(1, length)}`;
+    }, createId2 = init(), isCuid = (id, { minLength = 2, maxLength = bigLength } = {}) => {
+      let length = id.length, regex = /^[0-9a-z]+$/;
+      try {
+        if (typeof id == "string" && length >= minLength && length <= maxLength && regex.test(id))
+          return !0;
+      } finally {
+      }
+      return !1;
+    };
+    module.exports.getConstants = () => ({ defaultLength, bigLength });
+    module.exports.init = init;
+    module.exports.createId = createId2;
+    module.exports.bufToBigInt = bufToBigInt;
+    module.exports.createCounter = createCounter;
+    module.exports.createFingerprint = createFingerprint;
+    module.exports.isCuid = isCuid;
+  }
+});
+
+// ../../node_modules/.pnpm/@paralleldrive+cuid2@2.2.2/node_modules/@paralleldrive/cuid2/index.js
+var require_cuid2 = __commonJS({
+  "../../node_modules/.pnpm/@paralleldrive+cuid2@2.2.2/node_modules/@paralleldrive/cuid2/index.js"(exports, module) {
+    var { createId: createId2, init, getConstants, isCuid } = require_src();
+    module.exports.createId = createId2;
+    module.exports.init = init;
+    module.exports.getConstants = getConstants;
+    module.exports.isCuid = isCuid;
+  }
+});
+
+// ../../node_modules/.pnpm/remix-auth@3.6.0_@remix-run+react@2.4.1_@remix-run+server-runtime@2.4.1/node_modules/remix-auth/build/authenticator.js
 var require_authenticator = __commonJS({
-  "../../node_modules/remix-auth/build/authenticator.js"(exports) {
+  "../../node_modules/.pnpm/remix-auth@3.6.0_@remix-run+react@2.4.1_@remix-run+server-runtime@2.4.1/node_modules/remix-auth/build/authenticator.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: !0 });
     exports.Authenticator = void 0;
@@ -29007,8 +29473,8 @@ var require_authenticator = __commonJS({
        * });
        */
       constructor(sessionStorage2, options2 = {}) {
-        var _a110;
-        this.sessionStorage = sessionStorage2, this.strategies = /* @__PURE__ */ new Map(), this.sessionKey = options2.sessionKey || "user", this.sessionErrorKey = options2.sessionErrorKey || "auth:error", this.sessionStrategyKey = options2.sessionStrategyKey || "strategy", this.throwOnError = (_a110 = options2.throwOnError) !== null && _a110 !== void 0 ? _a110 : !1;
+        var _a113;
+        this.sessionStorage = sessionStorage2, this.strategies = /* @__PURE__ */ new Map(), this.sessionKey = options2.sessionKey || "user", this.sessionErrorKey = options2.sessionErrorKey || "auth:error", this.sessionStrategyKey = options2.sessionStrategyKey || "strategy", this.throwOnError = (_a113 = options2.throwOnError) !== null && _a113 !== void 0 ? _a113 : !1;
       }
       /**
        * Call this method with the Strategy, the optional name allows you to setup
@@ -29045,8 +29511,8 @@ var require_authenticator = __commonJS({
         });
       }
       async isAuthenticated(request, options2 = {}) {
-        var _a110;
-        let user = (_a110 = ((0, server_runtime_1.isSession)(request) ? request : await this.sessionStorage.getSession(request.headers.get("Cookie"))).get(this.sessionKey)) !== null && _a110 !== void 0 ? _a110 : null;
+        var _a113;
+        let user = (_a113 = ((0, server_runtime_1.isSession)(request) ? request : await this.sessionStorage.getSession(request.headers.get("Cookie"))).get(this.sessionKey)) !== null && _a113 !== void 0 ? _a113 : null;
         if (user) {
           if (options2.successRedirect)
             throw (0, server_runtime_1.redirect)(options2.successRedirect, { headers: options2.headers });
@@ -29076,9 +29542,9 @@ var require_authenticator = __commonJS({
   }
 });
 
-// ../../node_modules/remix-auth/build/authorizer.js
+// ../../node_modules/.pnpm/remix-auth@3.6.0_@remix-run+react@2.4.1_@remix-run+server-runtime@2.4.1/node_modules/remix-auth/build/authorizer.js
 var require_authorizer = __commonJS({
-  "../../node_modules/remix-auth/build/authorizer.js"(exports) {
+  "../../node_modules/.pnpm/remix-auth@3.6.0_@remix-run+react@2.4.1_@remix-run+server-runtime@2.4.1/node_modules/remix-auth/build/authorizer.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: !0 });
     exports.Authorizer = void 0;
@@ -29100,9 +29566,9 @@ var require_authorizer = __commonJS({
   }
 });
 
-// ../../node_modules/remix-auth/build/error.js
+// ../../node_modules/.pnpm/remix-auth@3.6.0_@remix-run+react@2.4.1_@remix-run+server-runtime@2.4.1/node_modules/remix-auth/build/error.js
 var require_error = __commonJS({
-  "../../node_modules/remix-auth/build/error.js"(exports) {
+  "../../node_modules/.pnpm/remix-auth@3.6.0_@remix-run+react@2.4.1_@remix-run+server-runtime@2.4.1/node_modules/remix-auth/build/error.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: !0 });
     exports.AuthorizationError = void 0;
@@ -29115,9 +29581,9 @@ var require_error = __commonJS({
   }
 });
 
-// ../../node_modules/remix-auth/build/strategy.js
+// ../../node_modules/.pnpm/remix-auth@3.6.0_@remix-run+react@2.4.1_@remix-run+server-runtime@2.4.1/node_modules/remix-auth/build/strategy.js
 var require_strategy = __commonJS({
-  "../../node_modules/remix-auth/build/strategy.js"(exports) {
+  "../../node_modules/.pnpm/remix-auth@3.6.0_@remix-run+react@2.4.1_@remix-run+server-runtime@2.4.1/node_modules/remix-auth/build/strategy.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: !0 });
     exports.Strategy = void 0;
@@ -29153,11 +29619,11 @@ var require_strategy = __commonJS({
        * @throws {Response} If the successRedirect is set, it will redirect to it.
        */
       async success(user, request, sessionStorage2, options2) {
-        var _a110;
+        var _a113;
         if (!options2.successRedirect)
           return user;
         let session = await sessionStorage2.getSession(request.headers.get("Cookie"));
-        throw session.set(options2.sessionKey, user), session.set(options2.sessionStrategyKey, (_a110 = options2.name) !== null && _a110 !== void 0 ? _a110 : this.name), (0, server_runtime_1.redirect)(options2.successRedirect, {
+        throw session.set(options2.sessionKey, user), session.set(options2.sessionStrategyKey, (_a113 = options2.name) !== null && _a113 !== void 0 ? _a113 : this.name), (0, server_runtime_1.redirect)(options2.successRedirect, {
           headers: { "Set-Cookie": await sessionStorage2.commitSession(session) }
         });
       }
@@ -29166,9 +29632,9 @@ var require_strategy = __commonJS({
   }
 });
 
-// ../../node_modules/remix-auth/build/index.js
+// ../../node_modules/.pnpm/remix-auth@3.6.0_@remix-run+react@2.4.1_@remix-run+server-runtime@2.4.1/node_modules/remix-auth/build/index.js
 var require_build = __commonJS({
-  "../../node_modules/remix-auth/build/index.js"(exports) {
+  "../../node_modules/.pnpm/remix-auth@3.6.0_@remix-run+react@2.4.1_@remix-run+server-runtime@2.4.1/node_modules/remix-auth/build/index.js"(exports) {
     "use strict";
     var __createBinding = exports && exports.__createBinding || (Object.create ? function(o4, m4, k2, k22) {
       k22 === void 0 && (k22 = k2);
@@ -29190,10 +29656,10 @@ var require_build = __commonJS({
   }
 });
 
-// ../../node_modules/ms/index.js
+// ../../node_modules/.pnpm/ms@2.1.2/node_modules/ms/index.js
 var require_ms = __commonJS({
-  "../../node_modules/ms/index.js"(exports, module) {
-    var s4 = 1e3, m4 = s4 * 60, h3 = m4 * 60, d4 = h3 * 24, w2 = d4 * 7, y4 = d4 * 365.25;
+  "../../node_modules/.pnpm/ms@2.1.2/node_modules/ms/index.js"(exports, module) {
+    var s4 = 1e3, m4 = s4 * 60, h3 = m4 * 60, d4 = h3 * 24, w3 = d4 * 7, y4 = d4 * 365.25;
     module.exports = function(val, options2) {
       options2 = options2 || {};
       var type = typeof val;
@@ -29222,7 +29688,7 @@ var require_ms = __commonJS({
             case "weeks":
             case "week":
             case "w":
-              return n3 * w2;
+              return n3 * w3;
             case "days":
             case "day":
             case "d":
@@ -29272,9 +29738,9 @@ var require_ms = __commonJS({
   }
 });
 
-// ../../node_modules/debug/src/common.js
+// ../../node_modules/.pnpm/debug@4.3.4_supports-color@9.4.0/node_modules/debug/src/common.js
 var require_common = __commonJS({
-  "../../node_modules/debug/src/common.js"(exports, module) {
+  "../../node_modules/.pnpm/debug@4.3.4_supports-color@9.4.0/node_modules/debug/src/common.js"(exports, module) {
     function setup(env) {
       createDebug.debug = createDebug, createDebug.default = createDebug, createDebug.coerce = coerce3, createDebug.disable = disable, createDebug.enable = enable, createDebug.enabled = enabled, createDebug.humanize = require_ms(), createDebug.destroy = destroy, Object.keys(env).forEach((key) => {
         createDebug[key] = env[key];
@@ -29293,15 +29759,15 @@ var require_common = __commonJS({
             return;
           let self = debug, curr = Number(/* @__PURE__ */ new Date()), ms = curr - (prevTime || curr);
           self.diff = ms, self.prev = prevTime, self.curr = curr, prevTime = curr, args[0] = createDebug.coerce(args[0]), typeof args[0] != "string" && args.unshift("%O");
-          let index = 0;
+          let index2 = 0;
           args[0] = args[0].replace(/%([a-zA-Z%])/g, (match, format) => {
             if (match === "%%")
               return "%";
-            index++;
+            index2++;
             let formatter = createDebug.formatters[format];
             if (typeof formatter == "function") {
-              let val = args[index];
-              match = formatter.call(self, val), args.splice(index, 1), index--;
+              let val = args[index2];
+              match = formatter.call(self, val), args.splice(index2, 1), index2--;
             }
             return match;
           }), createDebug.formatArgs.call(self, args), (self.log || createDebug.log).apply(self, args);
@@ -29359,9 +29825,9 @@ var require_common = __commonJS({
   }
 });
 
-// ../../node_modules/debug/src/browser.js
+// ../../node_modules/.pnpm/debug@4.3.4_supports-color@9.4.0/node_modules/debug/src/browser.js
 var require_browser = __commonJS({
-  "../../node_modules/debug/src/browser.js"(exports, module) {
+  "../../node_modules/.pnpm/debug@4.3.4_supports-color@9.4.0/node_modules/debug/src/browser.js"(exports, module) {
     exports.formatArgs = formatArgs;
     exports.save = save;
     exports.load = load;
@@ -29461,12 +29927,12 @@ var require_browser = __commonJS({
     function formatArgs(args) {
       if (args[0] = (this.useColors ? "%c" : "") + this.namespace + (this.useColors ? " %c" : " ") + args[0] + (this.useColors ? "%c " : " ") + "+" + module.exports.humanize(this.diff), !this.useColors)
         return;
-      let c5 = "color: " + this.color;
-      args.splice(1, 0, c5, "color: inherit");
-      let index = 0, lastC = 0;
+      let c4 = "color: " + this.color;
+      args.splice(1, 0, c4, "color: inherit");
+      let index2 = 0, lastC = 0;
       args[0].replace(/%[a-zA-Z%]/g, (match) => {
-        match !== "%%" && (index++, match === "%c" && (lastC = index));
-      }), args.splice(lastC, 0, c5);
+        match !== "%%" && (index2++, match === "%c" && (lastC = index2));
+      }), args.splice(lastC, 0, c4);
     }
     exports.log = console.debug || console.log || (() => {
     });
@@ -29502,37 +29968,37 @@ var require_browser = __commonJS({
   }
 });
 
-// ../../node_modules/uuid/dist/esm-browser/rng.js
+// ../../node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-browser/rng.js
 function rng() {
   if (!getRandomValues && (getRandomValues = typeof crypto < "u" && crypto.getRandomValues && crypto.getRandomValues.bind(crypto) || typeof msCrypto < "u" && typeof msCrypto.getRandomValues == "function" && msCrypto.getRandomValues.bind(msCrypto), !getRandomValues))
     throw new Error("crypto.getRandomValues() not supported. See https://github.com/uuidjs/uuid#getrandomvalues-not-supported");
   return getRandomValues(rnds8);
 }
 var getRandomValues, rnds8, init_rng = __esm({
-  "../../node_modules/uuid/dist/esm-browser/rng.js"() {
+  "../../node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-browser/rng.js"() {
     rnds8 = new Uint8Array(16);
   }
 });
 
-// ../../node_modules/uuid/dist/esm-browser/regex.js
+// ../../node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-browser/regex.js
 var regex_default, init_regex = __esm({
-  "../../node_modules/uuid/dist/esm-browser/regex.js"() {
+  "../../node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-browser/regex.js"() {
     regex_default = /^(?:[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|00000000-0000-0000-0000-000000000000)$/i;
   }
 });
 
-// ../../node_modules/uuid/dist/esm-browser/validate.js
+// ../../node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-browser/validate.js
 function validate(uuid) {
   return typeof uuid == "string" && regex_default.test(uuid);
 }
 var validate_default, init_validate = __esm({
-  "../../node_modules/uuid/dist/esm-browser/validate.js"() {
+  "../../node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-browser/validate.js"() {
     init_regex();
     validate_default = validate;
   }
 });
 
-// ../../node_modules/uuid/dist/esm-browser/stringify.js
+// ../../node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-browser/stringify.js
 function stringify(arr) {
   var offset = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : 0, uuid = (byteToHex[arr[offset + 0]] + byteToHex[arr[offset + 1]] + byteToHex[arr[offset + 2]] + byteToHex[arr[offset + 3]] + "-" + byteToHex[arr[offset + 4]] + byteToHex[arr[offset + 5]] + "-" + byteToHex[arr[offset + 6]] + byteToHex[arr[offset + 7]] + "-" + byteToHex[arr[offset + 8]] + byteToHex[arr[offset + 9]] + "-" + byteToHex[arr[offset + 10]] + byteToHex[arr[offset + 11]] + byteToHex[arr[offset + 12]] + byteToHex[arr[offset + 13]] + byteToHex[arr[offset + 14]] + byteToHex[arr[offset + 15]]).toLowerCase();
   if (!validate_default(uuid))
@@ -29540,7 +30006,7 @@ function stringify(arr) {
   return uuid;
 }
 var byteToHex, i4, stringify_default, init_stringify = __esm({
-  "../../node_modules/uuid/dist/esm-browser/stringify.js"() {
+  "../../node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-browser/stringify.js"() {
     init_validate();
     byteToHex = [];
     for (i4 = 0; i4 < 256; ++i4)
@@ -29549,7 +30015,7 @@ var byteToHex, i4, stringify_default, init_stringify = __esm({
   }
 });
 
-// ../../node_modules/uuid/dist/esm-browser/v1.js
+// ../../node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-browser/v1.js
 function v1(options2, buf, offset) {
   var i4 = buf && offset || 0, b5 = buf || new Array(16);
   options2 = options2 || {};
@@ -29571,7 +30037,7 @@ function v1(options2, buf, offset) {
   return buf || stringify_default(b5);
 }
 var _nodeId, _clockseq, _lastMSecs, _lastNSecs, v1_default, init_v1 = __esm({
-  "../../node_modules/uuid/dist/esm-browser/v1.js"() {
+  "../../node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-browser/v1.js"() {
     init_rng();
     init_stringify();
     _lastMSecs = 0, _lastNSecs = 0;
@@ -29579,7 +30045,7 @@ var _nodeId, _clockseq, _lastMSecs, _lastNSecs, v1_default, init_v1 = __esm({
   }
 });
 
-// ../../node_modules/uuid/dist/esm-browser/parse.js
+// ../../node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-browser/parse.js
 function parse2(uuid) {
   if (!validate_default(uuid))
     throw TypeError("Invalid UUID");
@@ -29587,13 +30053,13 @@ function parse2(uuid) {
   return arr[0] = (v7 = parseInt(uuid.slice(0, 8), 16)) >>> 24, arr[1] = v7 >>> 16 & 255, arr[2] = v7 >>> 8 & 255, arr[3] = v7 & 255, arr[4] = (v7 = parseInt(uuid.slice(9, 13), 16)) >>> 8, arr[5] = v7 & 255, arr[6] = (v7 = parseInt(uuid.slice(14, 18), 16)) >>> 8, arr[7] = v7 & 255, arr[8] = (v7 = parseInt(uuid.slice(19, 23), 16)) >>> 8, arr[9] = v7 & 255, arr[10] = (v7 = parseInt(uuid.slice(24, 36), 16)) / 1099511627776 & 255, arr[11] = v7 / 4294967296 & 255, arr[12] = v7 >>> 24 & 255, arr[13] = v7 >>> 16 & 255, arr[14] = v7 >>> 8 & 255, arr[15] = v7 & 255, arr;
 }
 var parse_default, init_parse = __esm({
-  "../../node_modules/uuid/dist/esm-browser/parse.js"() {
+  "../../node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-browser/parse.js"() {
     init_validate();
     parse_default = parse2;
   }
 });
 
-// ../../node_modules/uuid/dist/esm-browser/v35.js
+// ../../node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-browser/v35.js
 function stringToBytes(str) {
   str = unescape(encodeURIComponent(str));
   for (var bytes = [], i4 = 0; i4 < str.length; ++i4)
@@ -29620,14 +30086,14 @@ function v35_default(name, version3, hashfunc) {
   return generateUUID.DNS = DNS, generateUUID.URL = URL2, generateUUID;
 }
 var DNS, URL2, init_v35 = __esm({
-  "../../node_modules/uuid/dist/esm-browser/v35.js"() {
+  "../../node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-browser/v35.js"() {
     init_stringify();
     init_parse();
     DNS = "6ba7b810-9dad-11d1-80b4-00c04fd430c8", URL2 = "6ba7b811-9dad-11d1-80b4-00c04fd430c8";
   }
 });
 
-// ../../node_modules/uuid/dist/esm-browser/md5.js
+// ../../node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-browser/md5.js
 function md5(bytes) {
   if (typeof bytes == "string") {
     var msg = unescape(encodeURIComponent(bytes));
@@ -29649,11 +30115,11 @@ function getOutputLength(inputLength8) {
 }
 function wordsToMd5(x3, len) {
   x3[len >> 5] |= 128 << len % 32, x3[getOutputLength(len) - 1] = len;
-  for (var a4 = 1732584193, b5 = -271733879, c5 = -1732584194, d4 = 271733878, i4 = 0; i4 < x3.length; i4 += 16) {
-    var olda = a4, oldb = b5, oldc = c5, oldd = d4;
-    a4 = md5ff(a4, b5, c5, d4, x3[i4], 7, -680876936), d4 = md5ff(d4, a4, b5, c5, x3[i4 + 1], 12, -389564586), c5 = md5ff(c5, d4, a4, b5, x3[i4 + 2], 17, 606105819), b5 = md5ff(b5, c5, d4, a4, x3[i4 + 3], 22, -1044525330), a4 = md5ff(a4, b5, c5, d4, x3[i4 + 4], 7, -176418897), d4 = md5ff(d4, a4, b5, c5, x3[i4 + 5], 12, 1200080426), c5 = md5ff(c5, d4, a4, b5, x3[i4 + 6], 17, -1473231341), b5 = md5ff(b5, c5, d4, a4, x3[i4 + 7], 22, -45705983), a4 = md5ff(a4, b5, c5, d4, x3[i4 + 8], 7, 1770035416), d4 = md5ff(d4, a4, b5, c5, x3[i4 + 9], 12, -1958414417), c5 = md5ff(c5, d4, a4, b5, x3[i4 + 10], 17, -42063), b5 = md5ff(b5, c5, d4, a4, x3[i4 + 11], 22, -1990404162), a4 = md5ff(a4, b5, c5, d4, x3[i4 + 12], 7, 1804603682), d4 = md5ff(d4, a4, b5, c5, x3[i4 + 13], 12, -40341101), c5 = md5ff(c5, d4, a4, b5, x3[i4 + 14], 17, -1502002290), b5 = md5ff(b5, c5, d4, a4, x3[i4 + 15], 22, 1236535329), a4 = md5gg(a4, b5, c5, d4, x3[i4 + 1], 5, -165796510), d4 = md5gg(d4, a4, b5, c5, x3[i4 + 6], 9, -1069501632), c5 = md5gg(c5, d4, a4, b5, x3[i4 + 11], 14, 643717713), b5 = md5gg(b5, c5, d4, a4, x3[i4], 20, -373897302), a4 = md5gg(a4, b5, c5, d4, x3[i4 + 5], 5, -701558691), d4 = md5gg(d4, a4, b5, c5, x3[i4 + 10], 9, 38016083), c5 = md5gg(c5, d4, a4, b5, x3[i4 + 15], 14, -660478335), b5 = md5gg(b5, c5, d4, a4, x3[i4 + 4], 20, -405537848), a4 = md5gg(a4, b5, c5, d4, x3[i4 + 9], 5, 568446438), d4 = md5gg(d4, a4, b5, c5, x3[i4 + 14], 9, -1019803690), c5 = md5gg(c5, d4, a4, b5, x3[i4 + 3], 14, -187363961), b5 = md5gg(b5, c5, d4, a4, x3[i4 + 8], 20, 1163531501), a4 = md5gg(a4, b5, c5, d4, x3[i4 + 13], 5, -1444681467), d4 = md5gg(d4, a4, b5, c5, x3[i4 + 2], 9, -51403784), c5 = md5gg(c5, d4, a4, b5, x3[i4 + 7], 14, 1735328473), b5 = md5gg(b5, c5, d4, a4, x3[i4 + 12], 20, -1926607734), a4 = md5hh(a4, b5, c5, d4, x3[i4 + 5], 4, -378558), d4 = md5hh(d4, a4, b5, c5, x3[i4 + 8], 11, -2022574463), c5 = md5hh(c5, d4, a4, b5, x3[i4 + 11], 16, 1839030562), b5 = md5hh(b5, c5, d4, a4, x3[i4 + 14], 23, -35309556), a4 = md5hh(a4, b5, c5, d4, x3[i4 + 1], 4, -1530992060), d4 = md5hh(d4, a4, b5, c5, x3[i4 + 4], 11, 1272893353), c5 = md5hh(c5, d4, a4, b5, x3[i4 + 7], 16, -155497632), b5 = md5hh(b5, c5, d4, a4, x3[i4 + 10], 23, -1094730640), a4 = md5hh(a4, b5, c5, d4, x3[i4 + 13], 4, 681279174), d4 = md5hh(d4, a4, b5, c5, x3[i4], 11, -358537222), c5 = md5hh(c5, d4, a4, b5, x3[i4 + 3], 16, -722521979), b5 = md5hh(b5, c5, d4, a4, x3[i4 + 6], 23, 76029189), a4 = md5hh(a4, b5, c5, d4, x3[i4 + 9], 4, -640364487), d4 = md5hh(d4, a4, b5, c5, x3[i4 + 12], 11, -421815835), c5 = md5hh(c5, d4, a4, b5, x3[i4 + 15], 16, 530742520), b5 = md5hh(b5, c5, d4, a4, x3[i4 + 2], 23, -995338651), a4 = md5ii(a4, b5, c5, d4, x3[i4], 6, -198630844), d4 = md5ii(d4, a4, b5, c5, x3[i4 + 7], 10, 1126891415), c5 = md5ii(c5, d4, a4, b5, x3[i4 + 14], 15, -1416354905), b5 = md5ii(b5, c5, d4, a4, x3[i4 + 5], 21, -57434055), a4 = md5ii(a4, b5, c5, d4, x3[i4 + 12], 6, 1700485571), d4 = md5ii(d4, a4, b5, c5, x3[i4 + 3], 10, -1894986606), c5 = md5ii(c5, d4, a4, b5, x3[i4 + 10], 15, -1051523), b5 = md5ii(b5, c5, d4, a4, x3[i4 + 1], 21, -2054922799), a4 = md5ii(a4, b5, c5, d4, x3[i4 + 8], 6, 1873313359), d4 = md5ii(d4, a4, b5, c5, x3[i4 + 15], 10, -30611744), c5 = md5ii(c5, d4, a4, b5, x3[i4 + 6], 15, -1560198380), b5 = md5ii(b5, c5, d4, a4, x3[i4 + 13], 21, 1309151649), a4 = md5ii(a4, b5, c5, d4, x3[i4 + 4], 6, -145523070), d4 = md5ii(d4, a4, b5, c5, x3[i4 + 11], 10, -1120210379), c5 = md5ii(c5, d4, a4, b5, x3[i4 + 2], 15, 718787259), b5 = md5ii(b5, c5, d4, a4, x3[i4 + 9], 21, -343485551), a4 = safeAdd(a4, olda), b5 = safeAdd(b5, oldb), c5 = safeAdd(c5, oldc), d4 = safeAdd(d4, oldd);
+  for (var a4 = 1732584193, b5 = -271733879, c4 = -1732584194, d4 = 271733878, i4 = 0; i4 < x3.length; i4 += 16) {
+    var olda = a4, oldb = b5, oldc = c4, oldd = d4;
+    a4 = md5ff(a4, b5, c4, d4, x3[i4], 7, -680876936), d4 = md5ff(d4, a4, b5, c4, x3[i4 + 1], 12, -389564586), c4 = md5ff(c4, d4, a4, b5, x3[i4 + 2], 17, 606105819), b5 = md5ff(b5, c4, d4, a4, x3[i4 + 3], 22, -1044525330), a4 = md5ff(a4, b5, c4, d4, x3[i4 + 4], 7, -176418897), d4 = md5ff(d4, a4, b5, c4, x3[i4 + 5], 12, 1200080426), c4 = md5ff(c4, d4, a4, b5, x3[i4 + 6], 17, -1473231341), b5 = md5ff(b5, c4, d4, a4, x3[i4 + 7], 22, -45705983), a4 = md5ff(a4, b5, c4, d4, x3[i4 + 8], 7, 1770035416), d4 = md5ff(d4, a4, b5, c4, x3[i4 + 9], 12, -1958414417), c4 = md5ff(c4, d4, a4, b5, x3[i4 + 10], 17, -42063), b5 = md5ff(b5, c4, d4, a4, x3[i4 + 11], 22, -1990404162), a4 = md5ff(a4, b5, c4, d4, x3[i4 + 12], 7, 1804603682), d4 = md5ff(d4, a4, b5, c4, x3[i4 + 13], 12, -40341101), c4 = md5ff(c4, d4, a4, b5, x3[i4 + 14], 17, -1502002290), b5 = md5ff(b5, c4, d4, a4, x3[i4 + 15], 22, 1236535329), a4 = md5gg(a4, b5, c4, d4, x3[i4 + 1], 5, -165796510), d4 = md5gg(d4, a4, b5, c4, x3[i4 + 6], 9, -1069501632), c4 = md5gg(c4, d4, a4, b5, x3[i4 + 11], 14, 643717713), b5 = md5gg(b5, c4, d4, a4, x3[i4], 20, -373897302), a4 = md5gg(a4, b5, c4, d4, x3[i4 + 5], 5, -701558691), d4 = md5gg(d4, a4, b5, c4, x3[i4 + 10], 9, 38016083), c4 = md5gg(c4, d4, a4, b5, x3[i4 + 15], 14, -660478335), b5 = md5gg(b5, c4, d4, a4, x3[i4 + 4], 20, -405537848), a4 = md5gg(a4, b5, c4, d4, x3[i4 + 9], 5, 568446438), d4 = md5gg(d4, a4, b5, c4, x3[i4 + 14], 9, -1019803690), c4 = md5gg(c4, d4, a4, b5, x3[i4 + 3], 14, -187363961), b5 = md5gg(b5, c4, d4, a4, x3[i4 + 8], 20, 1163531501), a4 = md5gg(a4, b5, c4, d4, x3[i4 + 13], 5, -1444681467), d4 = md5gg(d4, a4, b5, c4, x3[i4 + 2], 9, -51403784), c4 = md5gg(c4, d4, a4, b5, x3[i4 + 7], 14, 1735328473), b5 = md5gg(b5, c4, d4, a4, x3[i4 + 12], 20, -1926607734), a4 = md5hh(a4, b5, c4, d4, x3[i4 + 5], 4, -378558), d4 = md5hh(d4, a4, b5, c4, x3[i4 + 8], 11, -2022574463), c4 = md5hh(c4, d4, a4, b5, x3[i4 + 11], 16, 1839030562), b5 = md5hh(b5, c4, d4, a4, x3[i4 + 14], 23, -35309556), a4 = md5hh(a4, b5, c4, d4, x3[i4 + 1], 4, -1530992060), d4 = md5hh(d4, a4, b5, c4, x3[i4 + 4], 11, 1272893353), c4 = md5hh(c4, d4, a4, b5, x3[i4 + 7], 16, -155497632), b5 = md5hh(b5, c4, d4, a4, x3[i4 + 10], 23, -1094730640), a4 = md5hh(a4, b5, c4, d4, x3[i4 + 13], 4, 681279174), d4 = md5hh(d4, a4, b5, c4, x3[i4], 11, -358537222), c4 = md5hh(c4, d4, a4, b5, x3[i4 + 3], 16, -722521979), b5 = md5hh(b5, c4, d4, a4, x3[i4 + 6], 23, 76029189), a4 = md5hh(a4, b5, c4, d4, x3[i4 + 9], 4, -640364487), d4 = md5hh(d4, a4, b5, c4, x3[i4 + 12], 11, -421815835), c4 = md5hh(c4, d4, a4, b5, x3[i4 + 15], 16, 530742520), b5 = md5hh(b5, c4, d4, a4, x3[i4 + 2], 23, -995338651), a4 = md5ii(a4, b5, c4, d4, x3[i4], 6, -198630844), d4 = md5ii(d4, a4, b5, c4, x3[i4 + 7], 10, 1126891415), c4 = md5ii(c4, d4, a4, b5, x3[i4 + 14], 15, -1416354905), b5 = md5ii(b5, c4, d4, a4, x3[i4 + 5], 21, -57434055), a4 = md5ii(a4, b5, c4, d4, x3[i4 + 12], 6, 1700485571), d4 = md5ii(d4, a4, b5, c4, x3[i4 + 3], 10, -1894986606), c4 = md5ii(c4, d4, a4, b5, x3[i4 + 10], 15, -1051523), b5 = md5ii(b5, c4, d4, a4, x3[i4 + 1], 21, -2054922799), a4 = md5ii(a4, b5, c4, d4, x3[i4 + 8], 6, 1873313359), d4 = md5ii(d4, a4, b5, c4, x3[i4 + 15], 10, -30611744), c4 = md5ii(c4, d4, a4, b5, x3[i4 + 6], 15, -1560198380), b5 = md5ii(b5, c4, d4, a4, x3[i4 + 13], 21, 1309151649), a4 = md5ii(a4, b5, c4, d4, x3[i4 + 4], 6, -145523070), d4 = md5ii(d4, a4, b5, c4, x3[i4 + 11], 10, -1120210379), c4 = md5ii(c4, d4, a4, b5, x3[i4 + 2], 15, 718787259), b5 = md5ii(b5, c4, d4, a4, x3[i4 + 9], 21, -343485551), a4 = safeAdd(a4, olda), b5 = safeAdd(b5, oldb), c4 = safeAdd(c4, oldc), d4 = safeAdd(d4, oldd);
   }
-  return [a4, b5, c5, d4];
+  return [a4, b5, c4, d4];
 }
 function bytesToWords(input) {
   if (input.length === 0)
@@ -29672,35 +30138,35 @@ function bitRotateLeft(num, cnt) {
 function md5cmn(q, a4, b5, x3, s4, t3) {
   return safeAdd(bitRotateLeft(safeAdd(safeAdd(a4, q), safeAdd(x3, t3)), s4), b5);
 }
-function md5ff(a4, b5, c5, d4, x3, s4, t3) {
-  return md5cmn(b5 & c5 | ~b5 & d4, a4, b5, x3, s4, t3);
+function md5ff(a4, b5, c4, d4, x3, s4, t3) {
+  return md5cmn(b5 & c4 | ~b5 & d4, a4, b5, x3, s4, t3);
 }
-function md5gg(a4, b5, c5, d4, x3, s4, t3) {
-  return md5cmn(b5 & d4 | c5 & ~d4, a4, b5, x3, s4, t3);
+function md5gg(a4, b5, c4, d4, x3, s4, t3) {
+  return md5cmn(b5 & d4 | c4 & ~d4, a4, b5, x3, s4, t3);
 }
-function md5hh(a4, b5, c5, d4, x3, s4, t3) {
-  return md5cmn(b5 ^ c5 ^ d4, a4, b5, x3, s4, t3);
+function md5hh(a4, b5, c4, d4, x3, s4, t3) {
+  return md5cmn(b5 ^ c4 ^ d4, a4, b5, x3, s4, t3);
 }
-function md5ii(a4, b5, c5, d4, x3, s4, t3) {
-  return md5cmn(c5 ^ (b5 | ~d4), a4, b5, x3, s4, t3);
+function md5ii(a4, b5, c4, d4, x3, s4, t3) {
+  return md5cmn(c4 ^ (b5 | ~d4), a4, b5, x3, s4, t3);
 }
 var md5_default, init_md5 = __esm({
-  "../../node_modules/uuid/dist/esm-browser/md5.js"() {
+  "../../node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-browser/md5.js"() {
     md5_default = md5;
   }
 });
 
-// ../../node_modules/uuid/dist/esm-browser/v3.js
+// ../../node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-browser/v3.js
 var v3, v3_default, init_v3 = __esm({
-  "../../node_modules/uuid/dist/esm-browser/v3.js"() {
+  "../../node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-browser/v3.js"() {
     init_v35();
     init_md5();
     v3 = v35_default("v3", 48, md5_default), v3_default = v3;
   }
 });
 
-// ../../node_modules/uuid/dist/esm-browser/v4.js
-function v42(options2, buf, offset) {
+// ../../node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-browser/v4.js
+function v4(options2, buf, offset) {
   options2 = options2 || {};
   var rnds = options2.random || (options2.rng || rng)();
   if (rnds[6] = rnds[6] & 15 | 64, rnds[8] = rnds[8] & 63 | 128, buf) {
@@ -29712,14 +30178,14 @@ function v42(options2, buf, offset) {
   return stringify_default(rnds);
 }
 var v4_default, init_v4 = __esm({
-  "../../node_modules/uuid/dist/esm-browser/v4.js"() {
+  "../../node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-browser/v4.js"() {
     init_rng();
     init_stringify();
-    v4_default = v42;
+    v4_default = v4;
   }
 });
 
-// ../../node_modules/uuid/dist/esm-browser/sha1.js
+// ../../node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-browser/sha1.js
 function f3(s4, x3, y4, z2) {
   switch (s4) {
     case 0:
@@ -29756,50 +30222,50 @@ function sha1(bytes) {
       W[t3] = M[_i2][t3];
     for (var _t = 16; _t < 80; ++_t)
       W[_t] = ROTL(W[_t - 3] ^ W[_t - 8] ^ W[_t - 14] ^ W[_t - 16], 1);
-    for (var a4 = H[0], b5 = H[1], c5 = H[2], d4 = H[3], e3 = H[4], _t2 = 0; _t2 < 80; ++_t2) {
-      var s4 = Math.floor(_t2 / 20), T = ROTL(a4, 5) + f3(s4, b5, c5, d4) + e3 + K[s4] + W[_t2] >>> 0;
-      e3 = d4, d4 = c5, c5 = ROTL(b5, 30) >>> 0, b5 = a4, a4 = T;
+    for (var a4 = H[0], b5 = H[1], c4 = H[2], d4 = H[3], e3 = H[4], _t2 = 0; _t2 < 80; ++_t2) {
+      var s4 = Math.floor(_t2 / 20), T = ROTL(a4, 5) + f3(s4, b5, c4, d4) + e3 + K[s4] + W[_t2] >>> 0;
+      e3 = d4, d4 = c4, c4 = ROTL(b5, 30) >>> 0, b5 = a4, a4 = T;
     }
-    H[0] = H[0] + a4 >>> 0, H[1] = H[1] + b5 >>> 0, H[2] = H[2] + c5 >>> 0, H[3] = H[3] + d4 >>> 0, H[4] = H[4] + e3 >>> 0;
+    H[0] = H[0] + a4 >>> 0, H[1] = H[1] + b5 >>> 0, H[2] = H[2] + c4 >>> 0, H[3] = H[3] + d4 >>> 0, H[4] = H[4] + e3 >>> 0;
   }
   return [H[0] >> 24 & 255, H[0] >> 16 & 255, H[0] >> 8 & 255, H[0] & 255, H[1] >> 24 & 255, H[1] >> 16 & 255, H[1] >> 8 & 255, H[1] & 255, H[2] >> 24 & 255, H[2] >> 16 & 255, H[2] >> 8 & 255, H[2] & 255, H[3] >> 24 & 255, H[3] >> 16 & 255, H[3] >> 8 & 255, H[3] & 255, H[4] >> 24 & 255, H[4] >> 16 & 255, H[4] >> 8 & 255, H[4] & 255];
 }
 var sha1_default, init_sha1 = __esm({
-  "../../node_modules/uuid/dist/esm-browser/sha1.js"() {
+  "../../node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-browser/sha1.js"() {
     sha1_default = sha1;
   }
 });
 
-// ../../node_modules/uuid/dist/esm-browser/v5.js
+// ../../node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-browser/v5.js
 var v5, v5_default, init_v5 = __esm({
-  "../../node_modules/uuid/dist/esm-browser/v5.js"() {
+  "../../node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-browser/v5.js"() {
     init_v35();
     init_sha1();
     v5 = v35_default("v5", 80, sha1_default), v5_default = v5;
   }
 });
 
-// ../../node_modules/uuid/dist/esm-browser/nil.js
+// ../../node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-browser/nil.js
 var nil_default, init_nil = __esm({
-  "../../node_modules/uuid/dist/esm-browser/nil.js"() {
+  "../../node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-browser/nil.js"() {
     nil_default = "00000000-0000-0000-0000-000000000000";
   }
 });
 
-// ../../node_modules/uuid/dist/esm-browser/version.js
+// ../../node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-browser/version.js
 function version2(uuid) {
   if (!validate_default(uuid))
     throw TypeError("Invalid UUID");
   return parseInt(uuid.substr(14, 1), 16);
 }
 var version_default, init_version = __esm({
-  "../../node_modules/uuid/dist/esm-browser/version.js"() {
+  "../../node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-browser/version.js"() {
     init_validate();
     version_default = version2;
   }
 });
 
-// ../../node_modules/uuid/dist/esm-browser/index.js
+// ../../node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-browser/index.js
 var esm_browser_exports = {};
 __export(esm_browser_exports, {
   NIL: () => nil_default,
@@ -29813,7 +30279,7 @@ __export(esm_browser_exports, {
   version: () => version_default
 });
 var init_esm_browser = __esm({
-  "../../node_modules/uuid/dist/esm-browser/index.js"() {
+  "../../node_modules/.pnpm/uuid@8.3.2/node_modules/uuid/dist/esm-browser/index.js"() {
     init_v1();
     init_v3();
     init_v4();
@@ -29826,9 +30292,9 @@ var init_esm_browser = __esm({
   }
 });
 
-// ../../node_modules/remix-auth-oauth2/build/index.js
+// ../../node_modules/.pnpm/remix-auth-oauth2@1.10.0_@remix-run+server-runtime@2.4.1_remix-auth@3.6.0/node_modules/remix-auth-oauth2/build/index.js
 var require_build2 = __commonJS({
-  "../../node_modules/remix-auth-oauth2/build/index.js"(exports) {
+  "../../node_modules/.pnpm/remix-auth-oauth2@1.10.0_@remix-run+server-runtime@2.4.1_remix-auth@3.6.0/node_modules/remix-auth-oauth2/build/index.js"(exports) {
     "use strict";
     var __importDefault = exports && exports.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { default: mod };
@@ -29837,13 +30303,13 @@ var require_build2 = __commonJS({
     exports.OAuth2Strategy = void 0;
     var server_runtime_1 = (init_esm(), __toCommonJS(esm_exports)), debug_1 = __importDefault(require_browser()), remix_auth_1 = require_build(), uuid_1 = (init_esm_browser(), __toCommonJS(esm_browser_exports)), debug = (0, debug_1.default)("OAuth2Strategy"), OAuth2Strategy = class extends remix_auth_1.Strategy {
       constructor(options2, verify) {
-        var _a110, _b;
-        super(verify), this.name = "oauth2", this.sessionStateKey = "oauth2:state", this.authorizationURL = options2.authorizationURL, this.tokenURL = options2.tokenURL, this.clientID = options2.clientID, this.clientSecret = options2.clientSecret, this.callbackURL = options2.callbackURL, this.responseType = (_a110 = options2.responseType) !== null && _a110 !== void 0 ? _a110 : "code", this.useBasicAuthenticationHeader = (_b = options2.useBasicAuthenticationHeader) !== null && _b !== void 0 ? _b : !1;
+        var _a113, _b;
+        super(verify), this.name = "oauth2", this.sessionStateKey = "oauth2:state", this.authorizationURL = options2.authorizationURL, this.tokenURL = options2.tokenURL, this.clientID = options2.clientID, this.clientSecret = options2.clientSecret, this.callbackURL = options2.callbackURL, this.responseType = (_a113 = options2.responseType) !== null && _a113 !== void 0 ? _a113 : "code", this.useBasicAuthenticationHeader = (_b = options2.useBasicAuthenticationHeader) !== null && _b !== void 0 ? _b : !1;
       }
       async authenticate(request, sessionStorage2, options2) {
-        var _a110;
+        var _a113;
         debug("Request URL", request.url);
-        let url = new URL(request.url), session = await sessionStorage2.getSession(request.headers.get("Cookie")), user = (_a110 = session.get(options2.sessionKey)) !== null && _a110 !== void 0 ? _a110 : null;
+        let url = new URL(request.url), session = await sessionStorage2.getSession(request.headers.get("Cookie")), user = (_a113 = session.get(options2.sessionKey)) !== null && _a113 !== void 0 ? _a113 : null;
         if (user)
           return debug("User is authenticated"), this.success(user, request, sessionStorage2, options2);
         let callbackURL = this.getCallbackURL(request);
@@ -29930,10 +30396,10 @@ var require_build2 = __commonJS({
         };
       }
       getCallbackURL(request) {
-        var _a110, _b;
+        var _a113, _b;
         if (this.callbackURL.startsWith("http:") || this.callbackURL.startsWith("https:"))
           return new URL(this.callbackURL);
-        let host = (_b = (_a110 = request.headers.get("X-Forwarded-Host")) !== null && _a110 !== void 0 ? _a110 : request.headers.get("host")) !== null && _b !== void 0 ? _b : new URL(request.url).host, protocol = host.includes("localhost") ? "http" : "https";
+        let host = (_b = (_a113 = request.headers.get("X-Forwarded-Host")) !== null && _a113 !== void 0 ? _a113 : request.headers.get("host")) !== null && _b !== void 0 ? _b : new URL(request.url).host, protocol = host.includes("localhost") ? "http" : "https";
         return this.callbackURL.startsWith("/") ? new URL(this.callbackURL, `${protocol}://${host}`) : new URL(`${protocol}//${this.callbackURL}`);
       }
       getAuthorizationURL(request, state) {
@@ -29975,9 +30441,9 @@ var require_build2 = __commonJS({
   }
 });
 
-// ../../node_modules/remix-auth-auth0/build/index.js
+// ../../node_modules/.pnpm/remix-auth-auth0@1.9.0_@remix-run+server-runtime@2.4.1_remix-auth@3.6.0/node_modules/remix-auth-auth0/build/index.js
 var require_build3 = __commonJS({
-  "../../node_modules/remix-auth-auth0/build/index.js"(exports) {
+  "../../node_modules/.pnpm/remix-auth-auth0@1.9.0_@remix-run+server-runtime@2.4.1_remix-auth@3.6.0/node_modules/remix-auth-auth0/build/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: !0 });
     exports.Auth0Strategy = exports.Auth0StrategyScopeSeperator = exports.Auth0StrategyDefaultScope = exports.Auth0StrategyDefaultName = void 0;
@@ -30023,20 +30489,20 @@ var require_build3 = __commonJS({
   }
 });
 
-// ../../node_modules/react/cjs/react-jsx-runtime.development.js
+// ../../node_modules/.pnpm/react@18.2.0/node_modules/react/cjs/react-jsx-runtime.development.js
 var require_react_jsx_runtime_development = __commonJS({
-  "../../node_modules/react/cjs/react-jsx-runtime.development.js"(exports) {
+  "../../node_modules/.pnpm/react@18.2.0/node_modules/react/cjs/react-jsx-runtime.development.js"(exports) {
     "use strict";
     (function() {
       "use strict";
-      var React11 = require_react(), REACT_ELEMENT_TYPE = Symbol.for("react.element"), REACT_PORTAL_TYPE = Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = Symbol.for("react.profiler"), REACT_PROVIDER_TYPE = Symbol.for("react.provider"), REACT_CONTEXT_TYPE = Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = Symbol.for("react.memo"), REACT_LAZY_TYPE = Symbol.for("react.lazy"), REACT_OFFSCREEN_TYPE = Symbol.for("react.offscreen"), MAYBE_ITERATOR_SYMBOL = Symbol.iterator, FAUX_ITERATOR_SYMBOL = "@@iterator";
+      var React12 = require_react(), REACT_ELEMENT_TYPE = Symbol.for("react.element"), REACT_PORTAL_TYPE = Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = Symbol.for("react.profiler"), REACT_PROVIDER_TYPE = Symbol.for("react.provider"), REACT_CONTEXT_TYPE = Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = Symbol.for("react.memo"), REACT_LAZY_TYPE = Symbol.for("react.lazy"), REACT_OFFSCREEN_TYPE = Symbol.for("react.offscreen"), MAYBE_ITERATOR_SYMBOL = Symbol.iterator, FAUX_ITERATOR_SYMBOL = "@@iterator";
       function getIteratorFn(maybeIterable) {
         if (maybeIterable === null || typeof maybeIterable != "object")
           return null;
         var maybeIterator = MAYBE_ITERATOR_SYMBOL && maybeIterable[MAYBE_ITERATOR_SYMBOL] || maybeIterable[FAUX_ITERATOR_SYMBOL];
         return typeof maybeIterator == "function" ? maybeIterator : null;
       }
-      var ReactSharedInternals = React11.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+      var ReactSharedInternals = React12.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
       function error(format) {
         {
           for (var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++)
@@ -30249,18 +30715,18 @@ var require_react_jsx_runtime_development = __commonJS({
           if (sample && control && typeof sample.stack == "string") {
             for (var sampleLines = sample.stack.split(`
 `), controlLines = control.stack.split(`
-`), s4 = sampleLines.length - 1, c5 = controlLines.length - 1; s4 >= 1 && c5 >= 0 && sampleLines[s4] !== controlLines[c5]; )
-              c5--;
-            for (; s4 >= 1 && c5 >= 0; s4--, c5--)
-              if (sampleLines[s4] !== controlLines[c5]) {
-                if (s4 !== 1 || c5 !== 1)
+`), s4 = sampleLines.length - 1, c4 = controlLines.length - 1; s4 >= 1 && c4 >= 0 && sampleLines[s4] !== controlLines[c4]; )
+              c4--;
+            for (; s4 >= 1 && c4 >= 0; s4--, c4--)
+              if (sampleLines[s4] !== controlLines[c4]) {
+                if (s4 !== 1 || c4 !== 1)
                   do
-                    if (s4--, c5--, c5 < 0 || sampleLines[s4] !== controlLines[c5]) {
+                    if (s4--, c4--, c4 < 0 || sampleLines[s4] !== controlLines[c4]) {
                       var _frame = `
 ` + sampleLines[s4].replace(" at new ", " at ");
                       return fn.displayName && _frame.includes("<anonymous>") && (_frame = _frame.replace("<anonymous>", fn.displayName)), typeof fn == "function" && componentFrameCache.set(fn, _frame), _frame;
                     }
-                  while (s4 >= 1 && c5 >= 0);
+                  while (s4 >= 1 && c4 >= 0);
                 break;
               }
           }
@@ -30437,7 +30903,7 @@ var require_react_jsx_runtime_development = __commonJS({
           value: source
         }), Object.freeze && (Object.freeze(element.props), Object.freeze(element)), element;
       };
-      function jsxDEV18(type, config2, maybeKey, source, self) {
+      function jsxDEV19(type, config2, maybeKey, source, self) {
         {
           var propName, props = {}, key = null, ref = null;
           maybeKey !== void 0 && (checkKeyStringCoercion(maybeKey), key = "" + maybeKey), hasValidKey(config2) && (checkKeyStringCoercion(config2.key), key = "" + config2.key), hasValidRef(config2) && (ref = config2.ref, warnIfStringRefCannotBeAutoConverted(config2, self));
@@ -30584,7 +31050,7 @@ Check the top-level render call using <` + parentName + ">.");
             var typeString;
             type === null ? typeString = "null" : isArray(type) ? typeString = "array" : type !== void 0 && type.$$typeof === REACT_ELEMENT_TYPE ? (typeString = "<" + (getComponentNameFromType(type.type) || "Unknown") + " />", info = " Did you accidentally export a JSX literal instead of a component?") : typeString = typeof type, error("React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: %s.%s", typeString, info);
           }
-          var element = jsxDEV18(type, props, key, source, self);
+          var element = jsxDEV19(type, props, key, source, self);
           if (element == null)
             return element;
           if (validType) {
@@ -30615,22 +31081,22 @@ Check the top-level render call using <` + parentName + ">.");
   }
 });
 
-// ../../node_modules/react/jsx-runtime.js
+// ../../node_modules/.pnpm/react@18.2.0/node_modules/react/jsx-runtime.js
 var require_jsx_runtime = __commonJS({
-  "../../node_modules/react/jsx-runtime.js"(exports, module) {
+  "../../node_modules/.pnpm/react@18.2.0/node_modules/react/jsx-runtime.js"(exports, module) {
     "use strict";
     module.exports = require_react_jsx_runtime_development();
   }
 });
 
-// ../../node_modules/use-sync-external-store/cjs/use-sync-external-store-shim.development.js
+// ../../node_modules/.pnpm/use-sync-external-store@1.2.0_react@18.2.0/node_modules/use-sync-external-store/cjs/use-sync-external-store-shim.development.js
 var require_use_sync_external_store_shim_development = __commonJS({
-  "../../node_modules/use-sync-external-store/cjs/use-sync-external-store-shim.development.js"(exports) {
+  "../../node_modules/.pnpm/use-sync-external-store@1.2.0_react@18.2.0/node_modules/use-sync-external-store/cjs/use-sync-external-store-shim.development.js"(exports) {
     "use strict";
     (function() {
       "use strict";
       typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ < "u" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart == "function" && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
-      var React11 = require_react(), ReactSharedInternals = React11.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+      var React12 = require_react(), ReactSharedInternals = React12.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
       function error(format) {
         {
           for (var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++)
@@ -30651,15 +31117,15 @@ var require_use_sync_external_store_shim_development = __commonJS({
       function is2(x3, y4) {
         return x3 === y4 && (x3 !== 0 || 1 / x3 === 1 / y4) || x3 !== x3 && y4 !== y4;
       }
-      var objectIs = typeof Object.is == "function" ? Object.is : is2, useState8 = React11.useState, useEffect8 = React11.useEffect, useLayoutEffect3 = React11.useLayoutEffect, useDebugValue = React11.useDebugValue, didWarnOld18Alpha = !1, didWarnUncachedGetSnapshot = !1;
+      var objectIs = typeof Object.is == "function" ? Object.is : is2, useState9 = React12.useState, useEffect9 = React12.useEffect, useLayoutEffect3 = React12.useLayoutEffect, useDebugValue = React12.useDebugValue, didWarnOld18Alpha = !1, didWarnUncachedGetSnapshot = !1;
       function useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot) {
-        didWarnOld18Alpha || React11.startTransition !== void 0 && (didWarnOld18Alpha = !0, error("You are using an outdated, pre-release alpha of React 18 that does not support useSyncExternalStore. The use-sync-external-store shim will not work correctly. Upgrade to a newer pre-release."));
+        didWarnOld18Alpha || React12.startTransition !== void 0 && (didWarnOld18Alpha = !0, error("You are using an outdated, pre-release alpha of React 18 that does not support useSyncExternalStore. The use-sync-external-store shim will not work correctly. Upgrade to a newer pre-release."));
         var value = getSnapshot();
         if (!didWarnUncachedGetSnapshot) {
           var cachedValue = getSnapshot();
           objectIs(value, cachedValue) || (error("The result of getSnapshot should be cached to avoid an infinite loop"), didWarnUncachedGetSnapshot = !0);
         }
-        var _useState = useState8({
+        var _useState = useState9({
           inst: {
             value,
             getSnapshot
@@ -30669,7 +31135,7 @@ var require_use_sync_external_store_shim_development = __commonJS({
           inst.value = value, inst.getSnapshot = getSnapshot, checkIfSnapshotChanged(inst) && forceUpdate({
             inst
           });
-        }, [subscribe, value, getSnapshot]), useEffect8(function() {
+        }, [subscribe, value, getSnapshot]), useEffect9(function() {
           checkIfSnapshotChanged(inst) && forceUpdate({
             inst
           });
@@ -30693,24 +31159,149 @@ var require_use_sync_external_store_shim_development = __commonJS({
       function useSyncExternalStore$1(subscribe, getSnapshot, getServerSnapshot) {
         return getSnapshot();
       }
-      var canUseDOM = typeof window < "u" && typeof window.document < "u" && typeof window.document.createElement < "u", isServerEnvironment = !canUseDOM, shim = isServerEnvironment ? useSyncExternalStore$1 : useSyncExternalStore, useSyncExternalStore$2 = React11.useSyncExternalStore !== void 0 ? React11.useSyncExternalStore : shim;
+      var canUseDOM = typeof window < "u" && typeof window.document < "u" && typeof window.document.createElement < "u", isServerEnvironment = !canUseDOM, shim = isServerEnvironment ? useSyncExternalStore$1 : useSyncExternalStore, useSyncExternalStore$2 = React12.useSyncExternalStore !== void 0 ? React12.useSyncExternalStore : shim;
       exports.useSyncExternalStore = useSyncExternalStore$2, typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ < "u" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop == "function" && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(new Error());
     })();
   }
 });
 
-// ../../node_modules/use-sync-external-store/shim/index.js
+// ../../node_modules/.pnpm/use-sync-external-store@1.2.0_react@18.2.0/node_modules/use-sync-external-store/shim/index.js
 var require_shim = __commonJS({
-  "../../node_modules/use-sync-external-store/shim/index.js"(exports, module) {
+  "../../node_modules/.pnpm/use-sync-external-store@1.2.0_react@18.2.0/node_modules/use-sync-external-store/shim/index.js"(exports, module) {
     "use strict";
     module.exports = require_use_sync_external_store_shim_development();
+  }
+});
+
+// ../../node_modules/.pnpm/ulid-workers@2.1.0/node_modules/ulid-workers/dist/ulid.js
+var require_ulid = __commonJS({
+  "../../node_modules/.pnpm/ulid-workers@2.1.0/node_modules/ulid-workers/dist/ulid.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: !0 });
+    exports.exportedForTesting = exports.ulidFactory = exports.decodeTime = exports.encodeTime = void 0;
+    var ENCODING = "0123456789ABCDEFGHJKMNPQRSTVWXYZ", ENCODING_LEN = ENCODING.length, TIME_MAX = Math.pow(2, 48) - 1, TIME_LEN = 10, RANDOM_LEN = 16;
+    function webCryptoPRNG() {
+      let buffer = new Uint8Array(1);
+      return crypto.getRandomValues(buffer), buffer[0] / 255;
+    }
+    function encodeRandom(len) {
+      let str = "";
+      for (; len > 0; len--)
+        str = randomChar() + str;
+      return str;
+    }
+    function validateTimestamp(timestamp) {
+      if (isNaN(timestamp))
+        throw new Error(`timestamp must be a number: ${timestamp}`);
+      if (timestamp > TIME_MAX)
+        throw new Error(`cannot encode a timestamp larger than 2^48 - 1 (${TIME_MAX}) : ${timestamp}`);
+      if (timestamp < 0)
+        throw new Error(`timestamp must be positive: ${timestamp}`);
+      if (Number.isInteger(timestamp) === !1)
+        throw new Error(`timestamp must be an integer: ${timestamp}`);
+    }
+    function encodeTime(timestamp) {
+      validateTimestamp(timestamp);
+      let mod, str = "";
+      for (let tLen = TIME_LEN; tLen > 0; tLen--)
+        mod = timestamp % ENCODING_LEN, str = ENCODING.charAt(mod) + str, timestamp = (timestamp - mod) / ENCODING_LEN;
+      return str;
+    }
+    exports.encodeTime = encodeTime;
+    function incrementBase32(str) {
+      let done, index2 = str.length, char, charIndex, output = str, maxCharIndex = ENCODING_LEN - 1;
+      if (str.length > RANDOM_LEN)
+        throw new Error(`Base32 value to increment cannot be longer than ${RANDOM_LEN} characters`);
+      if (str === "Z".repeat(RANDOM_LEN))
+        throw new Error(`Cannot increment Base32 maximum value ${"Z".repeat(RANDOM_LEN)}`);
+      for (; !done && index2-- >= 0; ) {
+        if (char = output[index2], charIndex = ENCODING.indexOf(char), charIndex === -1)
+          throw new Error("Incorrectly encoded string");
+        if (charIndex === maxCharIndex) {
+          output = replaceCharAt(output, index2, ENCODING[0]);
+          continue;
+        }
+        done = replaceCharAt(output, index2, ENCODING[charIndex + 1]);
+      }
+      if (typeof done == "string")
+        return done;
+      throw new Error("Failed incrementing string");
+    }
+    function randomChar() {
+      let rand = Math.floor(webCryptoPRNG() * ENCODING_LEN);
+      return rand === ENCODING_LEN && (rand = ENCODING_LEN - 1), ENCODING.charAt(rand);
+    }
+    function replaceCharAt(str, index2, char) {
+      return index2 > str.length - 1 ? str : str.substring(0, index2) + char + str.substring(index2 + 1);
+    }
+    function decodeTime(id) {
+      if (id.length !== TIME_LEN + RANDOM_LEN)
+        throw new Error("Malformed ULID");
+      let time = id.substring(0, TIME_LEN).split("").reverse().reduce((carry, char, index2) => {
+        let encodingIndex = ENCODING.indexOf(char);
+        if (encodingIndex === -1)
+          throw new Error(`Time decode error: Invalid character: ${char}`);
+        return carry += encodingIndex * Math.pow(ENCODING_LEN, index2);
+      }, 0);
+      if (time > TIME_MAX)
+        throw new Error(`Malformed ULID: timestamp too large: ${time}`);
+      return time;
+    }
+    exports.decodeTime = decodeTime;
+    var ulidFactory2 = (args) => args?.monotonic ?? !0 ? function() {
+      let lastTime = 0, lastRandom;
+      return function(timestamp) {
+        let timestampOrNow = timestamp || Date.now();
+        if (validateTimestamp(timestampOrNow), timestampOrNow > lastTime) {
+          lastTime = timestampOrNow;
+          let random = encodeRandom(RANDOM_LEN);
+          return lastRandom = random, encodeTime(timestampOrNow) + random;
+        } else {
+          let random = incrementBase32(lastRandom);
+          return lastRandom = random, encodeTime(lastTime) + random;
+        }
+      };
+    }() : function() {
+      return function(timestamp) {
+        let timestampOrNow = timestamp || Date.now();
+        return validateTimestamp(timestampOrNow), encodeTime(timestampOrNow) + encodeRandom(RANDOM_LEN);
+      };
+    }();
+    exports.ulidFactory = ulidFactory2;
+    exports.exportedForTesting = {
+      encodeRandom,
+      incrementBase32,
+      randomChar,
+      replaceCharAt,
+      validateTimestamp,
+      webCryptoPRNG
+    };
+  }
+});
+
+// ../../node_modules/.pnpm/ulid-workers@2.1.0/node_modules/ulid-workers/dist/index.js
+var require_dist2 = __commonJS({
+  "../../node_modules/.pnpm/ulid-workers@2.1.0/node_modules/ulid-workers/dist/index.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: !0 });
+    exports.ulidFactory = exports.encodeTime = exports.decodeTime = void 0;
+    var ulid_1 = require_ulid();
+    Object.defineProperty(exports, "decodeTime", { enumerable: !0, get: function() {
+      return ulid_1.decodeTime;
+    } });
+    Object.defineProperty(exports, "encodeTime", { enumerable: !0, get: function() {
+      return ulid_1.encodeTime;
+    } });
+    Object.defineProperty(exports, "ulidFactory", { enumerable: !0, get: function() {
+      return ulid_1.ulidFactory;
+    } });
   }
 });
 
 // server.ts
 var import_cloudflare6 = __toESM(require_dist(), 1);
 
-// ../../node_modules/@remix-run/cloudflare-pages/dist/esm/worker.js
+// ../../node_modules/.pnpm/@remix-run+cloudflare-pages@2.4.1_@cloudflare+workers-types@4.20231218.0_typescript@5.3.3/node_modules/@remix-run/cloudflare-pages/dist/esm/worker.js
 var import_cloudflare = __toESM(require_dist());
 function createRequestHandler2({
   build,
@@ -30772,7 +31363,10 @@ __export(entry_server_exports, {
   default: () => handleRequest
 });
 
-// ../../node_modules/@remix-run/react/dist/esm/_virtual/_rollupPluginBabelHelpers.js
+// ../../node_modules/.pnpm/@remix-run+react@2.4.1_react-dom@18.2.0_react@18.2.0_typescript@5.3.3/node_modules/@remix-run/react/dist/esm/index.js
+init_dist2();
+
+// ../../node_modules/.pnpm/@remix-run+react@2.4.1_react-dom@18.2.0_react@18.2.0_typescript@5.3.3/node_modules/@remix-run/react/dist/esm/_virtual/_rollupPluginBabelHelpers.js
 function _extends4() {
   return _extends4 = Object.assign ? Object.assign.bind() : function(target) {
     for (var i4 = 1; i4 < arguments.length; i4++) {
@@ -30784,20 +31378,20 @@ function _extends4() {
   }, _extends4.apply(this, arguments);
 }
 
-// ../../node_modules/@remix-run/react/dist/esm/components.js
+// ../../node_modules/.pnpm/@remix-run+react@2.4.1_react-dom@18.2.0_react@18.2.0_typescript@5.3.3/node_modules/@remix-run/react/dist/esm/components.js
 var React3 = __toESM(require_react());
 init_dist2();
 
-// ../../node_modules/@remix-run/react/dist/esm/invariant.js
+// ../../node_modules/.pnpm/@remix-run+react@2.4.1_react-dom@18.2.0_react@18.2.0_typescript@5.3.3/node_modules/@remix-run/react/dist/esm/invariant.js
 function invariant3(value, message) {
   if (value === !1 || value === null || typeof value > "u")
     throw new Error(message);
 }
 
-// ../../node_modules/@remix-run/react/dist/esm/links.js
+// ../../node_modules/.pnpm/@remix-run+react@2.4.1_react-dom@18.2.0_react@18.2.0_typescript@5.3.3/node_modules/@remix-run/react/dist/esm/links.js
 init_dist2();
 
-// ../../node_modules/@remix-run/react/dist/esm/routeModules.js
+// ../../node_modules/.pnpm/@remix-run+react@2.4.1_react-dom@18.2.0_react@18.2.0_typescript@5.3.3/node_modules/@remix-run/react/dist/esm/routeModules.js
 async function loadRouteModule(route, routeModulesCache) {
   if (route.id in routeModulesCache)
     return routeModulesCache[route.id];
@@ -30813,7 +31407,7 @@ async function loadRouteModule(route, routeModulesCache) {
   }
 }
 
-// ../../node_modules/@remix-run/react/dist/esm/links.js
+// ../../node_modules/.pnpm/@remix-run+react@2.4.1_react-dom@18.2.0_react@18.2.0_typescript@5.3.3/node_modules/@remix-run/react/dist/esm/links.js
 function getKeyedLinksForMatches(matches, routeModules, manifest) {
   let descriptors = matches.map((match) => {
     var _module$links;
@@ -30846,22 +31440,22 @@ async function getKeyedPrefetchLinks(matches, manifest, routeModules) {
   }));
 }
 function getNewMatchesForLinks(page, nextMatches, currentMatches, manifest, location, mode2) {
-  let path = parsePathPatch(page), isNew = (match, index) => currentMatches[index] ? match.route.id !== currentMatches[index].route.id : !0, matchPathChanged = (match, index) => {
+  let path = parsePathPatch(page), isNew = (match, index2) => currentMatches[index2] ? match.route.id !== currentMatches[index2].route.id : !0, matchPathChanged = (match, index2) => {
     var _currentMatches$index;
     return (
       // param change, /users/123 -> /users/456
-      currentMatches[index].pathname !== match.pathname || // splat param changed, which is not present in match.path
+      currentMatches[index2].pathname !== match.pathname || // splat param changed, which is not present in match.path
       // e.g. /files/images/avatar.jpg -> files/finances.xls
-      ((_currentMatches$index = currentMatches[index].route.path) === null || _currentMatches$index === void 0 ? void 0 : _currentMatches$index.endsWith("*")) && currentMatches[index].params["*"] !== match.params["*"]
+      ((_currentMatches$index = currentMatches[index2].route.path) === null || _currentMatches$index === void 0 ? void 0 : _currentMatches$index.endsWith("*")) && currentMatches[index2].params["*"] !== match.params["*"]
     );
   };
   return mode2 === "data" && location.search !== path.search ? (
     // this is really similar to stuff in transition.ts, maybe somebody smarter
     // than me (or in less of a hurry) can share some of it. You're the best.
-    nextMatches.filter((match, index) => {
+    nextMatches.filter((match, index2) => {
       if (!manifest.routes[match.route.id].hasLoader)
         return !1;
-      if (isNew(match, index) || matchPathChanged(match, index))
+      if (isNew(match, index2) || matchPathChanged(match, index2))
         return !0;
       if (match.route.shouldRevalidate) {
         var _currentMatches$;
@@ -30877,9 +31471,9 @@ function getNewMatchesForLinks(page, nextMatches, currentMatches, manifest, loca
       }
       return !0;
     })
-  ) : nextMatches.filter((match, index) => {
+  ) : nextMatches.filter((match, index2) => {
     let manifestRoute = manifest.routes[match.route.id];
-    return (mode2 === "assets" || manifestRoute.hasLoader) && (isNew(match, index) || matchPathChanged(match, index));
+    return (mode2 === "assets" || manifestRoute.hasLoader) && (isNew(match, index2) || matchPathChanged(match, index2));
   });
 }
 function getDataLinkHrefs(page, matches, manifest) {
@@ -30930,7 +31524,7 @@ function parsePathPatch(href) {
   return path.search === void 0 && (path.search = ""), path;
 }
 
-// ../../node_modules/@remix-run/react/dist/esm/markup.js
+// ../../node_modules/.pnpm/@remix-run+react@2.4.1_react-dom@18.2.0_react@18.2.0_typescript@5.3.3/node_modules/@remix-run/react/dist/esm/markup.js
 var ESCAPE_LOOKUP2 = {
   "&": "\\u0026",
   ">": "\\u003e",
@@ -30947,7 +31541,7 @@ function createHtml(html) {
   };
 }
 
-// ../../node_modules/@remix-run/react/dist/esm/components.js
+// ../../node_modules/.pnpm/@remix-run+react@2.4.1_react-dom@18.2.0_react@18.2.0_typescript@5.3.3/node_modules/@remix-run/react/dist/esm/components.js
 function useDataRouterContext3() {
   let context = React3.useContext(DataRouterContext);
   return invariant3(context, "You must render this element inside a <DataRouterContext.Provider> element"), context;
@@ -31129,7 +31723,7 @@ function Meta() {
     let errorIdx = routerMatches.findIndex((m4) => errors[m4.route.id]);
     _matches = routerMatches.slice(0, errorIdx + 1), error = errors[routerMatches[errorIdx].route.id];
   }
-  let meta5 = [], leafMeta = null, matches = [];
+  let meta6 = [], leafMeta = null, matches = [];
   for (let i4 = 0; i4 < _matches.length; i4++) {
     let _match = _matches[i4], routeId = _match.route.id, data = loaderData[routeId], params = _match.params, routeModule = routeModules[routeId], routeMeta = [], match = {
       id: routeId,
@@ -31150,9 +31744,9 @@ function Meta() {
       throw new Error("The route at " + _match.route.path + ` returns an invalid value. All route meta functions must return an array of meta objects.
 
 To reference the meta function API, see https://remix.run/route/meta`);
-    match.meta = routeMeta, matches[i4] = match, meta5 = [...routeMeta], leafMeta = meta5;
+    match.meta = routeMeta, matches[i4] = match, meta6 = [...routeMeta], leafMeta = meta6;
   }
-  return /* @__PURE__ */ React3.createElement(React3.Fragment, null, meta5.flat().map((metaProps) => {
+  return /* @__PURE__ */ React3.createElement(React3.Fragment, null, meta6.flat().map((metaProps) => {
     if (!metaProps)
       return null;
     if ("tagName" in metaProps) {
@@ -31264,9 +31858,9 @@ function Scripts(props) {
     }).join(`
 `) + (deferredScripts.length > 0 ? `__remixContext.a=${deferredScripts.length};` : "") : "";
     let routeModulesScript = isStatic ? `${(_manifest$hmr = manifest.hmr) !== null && _manifest$hmr !== void 0 && _manifest$hmr.runtime ? `import ${JSON.stringify(manifest.hmr.runtime)};` : ""}import ${JSON.stringify(manifest.url)};
-${matches.map((match, index) => `import * as route${index} from ${JSON.stringify(manifest.routes[match.route.id].module)};`).join(`
+${matches.map((match, index2) => `import * as route${index2} from ${JSON.stringify(manifest.routes[match.route.id].module)};`).join(`
 `)}
-window.__remixRouteModules = {${matches.map((match, index) => `${JSON.stringify(match.route.id)}:route${index}`).join(",")}};
+window.__remixRouteModules = {${matches.map((match, index2) => `${JSON.stringify(match.route.id)}:route${index2}`).join(",")}};
 
 import(${JSON.stringify(manifest.entry.module)});` : " ";
     return /* @__PURE__ */ React3.createElement(React3.Fragment, null, /* @__PURE__ */ React3.createElement("script", _extends4({}, props, {
@@ -31378,6 +31972,7 @@ function useLoaderData2() {
   return useLoaderData();
 }
 var LiveReload = function({
+  origin = "http://localhost:3001/",
   port,
   timeoutMs = 1e3,
   nonce = void 0
@@ -31389,16 +31984,16 @@ var LiveReload = function({
     dangerouslySetInnerHTML: {
       __html: js`
                 function remixLiveReloadConnect(config) {
-                  let REMIX_DEV_ORIGIN = ${JSON.stringify("http://localhost:3001/")};
+                  let LIVE_RELOAD_ORIGIN = ${JSON.stringify(origin)};
                   let protocol =
-                    REMIX_DEV_ORIGIN ? new URL(REMIX_DEV_ORIGIN).protocol.replace(/^http/, "ws") :
+                    LIVE_RELOAD_ORIGIN ? new URL(LIVE_RELOAD_ORIGIN).protocol.replace(/^http/, "ws") :
                     location.protocol === "https:" ? "wss:" : "ws:"; // remove in v2?
-                  let hostname = REMIX_DEV_ORIGIN ? new URL(REMIX_DEV_ORIGIN).hostname : location.hostname;
+                  let hostname = LIVE_RELOAD_ORIGIN ? new URL(LIVE_RELOAD_ORIGIN).hostname : location.hostname;
                   let url = new URL(protocol + "//" + hostname + "/socket");
 
                   url.port =
                     ${port} ||
-                    (REMIX_DEV_ORIGIN ? new URL(REMIX_DEV_ORIGIN).port : 8002);
+                    (LIVE_RELOAD_ORIGIN ? new URL(LIVE_RELOAD_ORIGIN).port : 8002);
 
                   let ws = new WebSocket(url.href);
                   ws.onmessage = async (message) => {
@@ -31486,7 +32081,7 @@ function mergeRefs(...refs) {
   };
 }
 
-// ../../node_modules/@remix-run/react/dist/esm/errorBoundaries.js
+// ../../node_modules/.pnpm/@remix-run+react@2.4.1_react-dom@18.2.0_react@18.2.0_typescript@5.3.3/node_modules/@remix-run/react/dist/esm/errorBoundaries.js
 var React4 = __toESM(require_react());
 init_dist2();
 var RemixErrorBoundary = class extends React4.Component {
@@ -31570,16 +32165,41 @@ function BoundaryShell({
     dangerouslySetInnerHTML: {
       __html: `
               console.log(
-                "\u{1F4BF} Hey developer\u{1F44B}. You can provide a way better UX than this when your app throws errors. Check out https://remix.run/guides/errors for more information."
+                "\u{1F4BF} Hey developer \u{1F44B}. You can provide a way better UX than this when your app throws errors. Check out https://remix.run/guides/errors for more information."
               );
             `
     }
   })));
 }
 
-// ../../node_modules/@remix-run/react/dist/esm/routes.js
-var React5 = __toESM(require_react());
+// ../../node_modules/.pnpm/@remix-run+react@2.4.1_react-dom@18.2.0_react@18.2.0_typescript@5.3.3/node_modules/@remix-run/react/dist/esm/routes.js
+var React6 = __toESM(require_react());
 init_dist2();
+
+// ../../node_modules/.pnpm/@remix-run+react@2.4.1_react-dom@18.2.0_react@18.2.0_typescript@5.3.3/node_modules/@remix-run/react/dist/esm/fallback.js
+var React5 = __toESM(require_react());
+function RemixRootDefaultHydrateFallback() {
+  return /* @__PURE__ */ React5.createElement("html", {
+    lang: "en"
+  }, /* @__PURE__ */ React5.createElement("head", null, /* @__PURE__ */ React5.createElement("meta", {
+    charSet: "utf-8"
+  }), /* @__PURE__ */ React5.createElement("meta", {
+    name: "viewport",
+    content: "width=device-width,initial-scale=1,viewport-fit=cover"
+  })), /* @__PURE__ */ React5.createElement("body", null, /* @__PURE__ */ React5.createElement(Scripts, null), /* @__PURE__ */ React5.createElement("script", {
+    dangerouslySetInnerHTML: {
+      __html: `
+              console.log(
+                "\u{1F4BF} Hey developer \u{1F44B}. You can provide a way better UX than this " +
+                "when your app is running \`clientLoader\` functions on hydration. " +
+                "Check out https://remix.run/route/hydrate-fallback for more information."
+              );
+            `
+    }
+  }), " "));
+}
+
+// ../../node_modules/.pnpm/@remix-run+react@2.4.1_react-dom@18.2.0_react@18.2.0_typescript@5.3.3/node_modules/@remix-run/react/dist/esm/routes.js
 function groupRoutesByParentId2(manifest) {
   let routes2 = {};
   return Object.values(manifest).forEach((route) => {
@@ -31592,15 +32212,21 @@ function createServerRoutes(manifest, routeModules, future2, parentId = "", rout
     let routeModule = routeModules[route.id], dataRoute = {
       caseSensitive: route.caseSensitive,
       Component: getRouteModuleComponent(routeModule),
-      ErrorBoundary: routeModule.ErrorBoundary ? routeModule.ErrorBoundary : route.id === "root" ? () => /* @__PURE__ */ React5.createElement(RemixRootDefaultErrorBoundary, {
+      HydrateFallback: routeModule.HydrateFallback ? routeModule.HydrateFallback : route.id === "root" ? RemixRootDefaultHydrateFallback : void 0,
+      ErrorBoundary: routeModule.ErrorBoundary ? routeModule.ErrorBoundary : route.id === "root" ? () => /* @__PURE__ */ React6.createElement(RemixRootDefaultErrorBoundary, {
         error: useRouteError()
       }) : void 0,
       id: route.id,
       index: route.index,
       path: route.path,
-      handle: routeModules[route.id].handle
-      // Note: we don't need loader/action/shouldRevalidate on these routes
-      // since they're for a static render
+      handle: routeModules[route.id].handle,
+      // For partial hydration rendering, we need to indicate when the route
+      // has a loader/clientLoader, but it won't ever be called during the static
+      // render, so just give it a no-op function so we can render down to the
+      // proper fallback
+      loader: route.hasLoader || route.hasClientLoader ? () => null : void 0
+      // We don't need action/shouldRevalidate on these routes since they're
+      // for a static render
     }, children = createServerRoutes(manifest, routeModules, future2, route.id, routesByParentId);
     return children.length > 0 && (dataRoute.children = children), dataRoute;
   });
@@ -31611,12 +32237,12 @@ function getRouteModuleComponent(routeModule) {
   if (!(typeof routeModule.default == "object" && Object.keys(routeModule.default).length === 0))
     return routeModule.default;
 }
+function shouldHydrateRouteLoader(route, routeModule) {
+  return routeModule.clientLoader != null && (routeModule.clientLoader.hydrate === !0 || route.hasLoader !== !0);
+}
 
-// ../../node_modules/@remix-run/react/dist/esm/index.js
-init_dist2();
-
-// ../../node_modules/@remix-run/react/dist/esm/scroll-restoration.js
-var React6 = __toESM(require_react());
+// ../../node_modules/.pnpm/@remix-run+react@2.4.1_react-dom@18.2.0_react@18.2.0_typescript@5.3.3/node_modules/@remix-run/react/dist/esm/scroll-restoration.js
+var React7 = __toESM(require_react());
 init_dist2();
 var STORAGE_KEY = "positions";
 function ScrollRestoration2({
@@ -31628,7 +32254,7 @@ function ScrollRestoration2({
     getKey,
     storageKey: STORAGE_KEY
   });
-  let key = React6.useMemo(
+  let key = React7.useMemo(
     () => {
       if (!getKey)
         return null;
@@ -31652,7 +32278,7 @@ function ScrollRestoration2({
       console.error(error), sessionStorage.removeItem(STORAGE_KEY2);
     }
   }).toString();
-  return /* @__PURE__ */ React6.createElement("script", _extends4({}, props, {
+  return /* @__PURE__ */ React7.createElement("script", _extends4({}, props, {
     suppressHydrationWarning: !0,
     dangerouslySetInnerHTML: {
       __html: `(${restoreScroll})(${JSON.stringify(STORAGE_KEY)}, ${JSON.stringify(key)})`
@@ -31660,8 +32286,8 @@ function ScrollRestoration2({
   }));
 }
 
-// ../../node_modules/@remix-run/react/dist/esm/server.js
-var React7 = __toESM(require_react()), import_server2 = __toESM(require_server());
+// ../../node_modules/.pnpm/@remix-run+react@2.4.1_react-dom@18.2.0_react@18.2.0_typescript@5.3.3/node_modules/@remix-run/react/dist/esm/server.js
+var React8 = __toESM(require_react()), import_server2 = __toESM(require_server());
 function RemixServer({
   context,
   url,
@@ -31673,8 +32299,21 @@ function RemixServer({
     routeModules,
     criticalCss,
     serverHandoffString
-  } = context, routes2 = createServerRoutes(manifest.routes, routeModules, context.future), router = (0, import_server2.createStaticRouter)(routes2, context.staticHandlerContext);
-  return /* @__PURE__ */ React7.createElement(RemixContext.Provider, {
+  } = context, routes2 = createServerRoutes(manifest.routes, routeModules, context.future);
+  context.staticHandlerContext.loaderData = {
+    ...context.staticHandlerContext.loaderData
+  };
+  for (let match of context.staticHandlerContext.matches) {
+    let routeId = match.route.id, route = routeModules[routeId], manifestRoute = context.manifest.routes[routeId];
+    route && shouldHydrateRouteLoader(manifestRoute, route) && (route.HydrateFallback || !manifestRoute.hasLoader) && (context.staticHandlerContext.loaderData[routeId] = void 0);
+  }
+  let router = (0, import_server2.createStaticRouter)(routes2, context.staticHandlerContext, {
+    future: {
+      v7_partialHydration: !0,
+      v7_relativeSplatPath: context.future.v3_relativeSplatPath
+    }
+  });
+  return /* @__PURE__ */ React8.createElement(RemixContext.Provider, {
     value: {
       manifest,
       routeModules,
@@ -31684,16 +32323,16 @@ function RemixServer({
       serializeError: context.serializeError,
       abortDelay
     }
-  }, /* @__PURE__ */ React7.createElement(RemixErrorBoundary, {
+  }, /* @__PURE__ */ React8.createElement(RemixErrorBoundary, {
     location: router.state.location
-  }, /* @__PURE__ */ React7.createElement(import_server2.StaticRouterProvider, {
+  }, /* @__PURE__ */ React8.createElement(import_server2.StaticRouterProvider, {
     router,
     context: context.staticHandlerContext,
     hydrate: !1
   })));
 }
 
-// ../../node_modules/isbot/index.mjs
+// ../../node_modules/.pnpm/isbot@3.7.1/node_modules/isbot/index.mjs
 function _iterableToArrayLimit(r5, l4) {
   var t3 = r5 == null ? null : typeof Symbol < "u" && r5[Symbol.iterator] || r5["@@iterator"];
   if (t3 != null) {
@@ -32022,8 +32661,8 @@ function amend(list2) {
     // Addresses: Yandex Search App
     ["search", "(?<! ya(?:yandex)?)search"]
   ].forEach(function(_ref) {
-    var _ref2 = _slicedToArray(_ref, 2), search = _ref2[0], replace = _ref2[1], index = list2.lastIndexOf(search);
-    ~index && list2.splice(index, 1, replace);
+    var _ref2 = _slicedToArray(_ref, 2), search = _ref2[0], replace = _ref2[1], index2 = list2.lastIndexOf(search);
+    ~index2 && list2.splice(index2, 1, replace);
   }), list2;
 }
 amend(list);
@@ -32131,8 +32770,8 @@ var flags = "i", _list = /* @__PURE__ */ new WeakMap(), _pattern = /* @__PURE__ 
     key: "exclude",
     value: function() {
       for (var filters = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : [], length = filters.length; length--; ) {
-        var index = _classPrivateMethodGet(this, _index, _index2).call(this, filters[length]);
-        index > -1 && _classPrivateFieldGet(this, _list).splice(index, 1);
+        var index2 = _classPrivateMethodGet(this, _index, _index2).call(this, filters[length]);
+        index2 > -1 && _classPrivateFieldGet(this, _list).splice(index2, 1);
       }
       _classPrivateMethodGet(this, _update, _update2).call(this);
     }
@@ -32158,20 +32797,17 @@ var isbot = new Isbot();
 
 // app/entry.server.tsx
 var import_server4 = __toESM(require_server_browser(), 1), import_jsx_dev_runtime = __toESM(require_jsx_dev_runtime(), 1);
-async function handleRequest(request, responseStatusCode, responseHeaders, remixContext, loadContext) {
-  let body = await (0, import_server4.renderToReadableStream)(
-    /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(RemixServer, { context: remixContext, url: request.url }, void 0, !1, {
-      fileName: "app/entry.server.tsx",
-      lineNumber: 20,
-      columnNumber: 5
-    }, this),
-    {
-      signal: request.signal,
-      onError(error) {
-        console.error(error), responseStatusCode = 500;
-      }
+async function handleRequest(request, responseStatusCode, responseHeaders, remixContext, _loadContext) {
+  let body = await (0, import_server4.renderToReadableStream)(/* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(RemixServer, { context: remixContext, url: request.url }, void 0, !1, {
+    fileName: "app/entry.server.tsx",
+    lineNumber: 19,
+    columnNumber: 45
+  }, this), {
+    signal: request.signal,
+    onError(error) {
+      console.error(error), responseStatusCode = 500;
     }
-  );
+  });
   return isbot(request.headers.get("user-agent")) && await body.allReady, responseHeaders.set("Content-Type", "text/html"), new Response(body, {
     headers: responseHeaders,
     status: responseStatusCode
@@ -32217,19 +32853,19 @@ var config = {
   publicPages: ["/", "/about"]
 };
 
-// ../../node_modules/next-themes/dist/index.module.js
+// ../../node_modules/.pnpm/next-themes@0.2.1_next@14.0.4_react-dom@18.2.0_react@18.2.0/node_modules/next-themes/dist/index.module.js
 var import_react2 = __toESM(require_react()), c = ["light", "dark"], i = "(prefers-color-scheme: dark)", d = typeof window > "u", u = /* @__PURE__ */ (0, import_react2.createContext)(void 0), h = { setTheme: (e3) => {
 }, themes: [] }, y = () => {
   var e3;
   return (e3 = (0, import_react2.useContext)(u)) !== null && e3 !== void 0 ? e3 : h;
-}, $ = (r5) => (0, import_react2.useContext)(u) ? /* @__PURE__ */ import_react2.default.createElement(import_react2.Fragment, null, r5.children) : /* @__PURE__ */ import_react2.default.createElement(f, r5), v = ["light", "dark"], f = ({ forcedTheme: t3, disableTransitionOnChange: n3 = !1, enableSystem: l4 = !0, enableColorScheme: m4 = !0, storageKey: d4 = "theme", themes: h3 = v, defaultTheme: y4 = l4 ? "system" : "light", attribute: $3 = "data-theme", value: f6, children: w2, nonce: T }) => {
+}, $ = (r5) => (0, import_react2.useContext)(u) ? /* @__PURE__ */ import_react2.default.createElement(import_react2.Fragment, null, r5.children) : /* @__PURE__ */ import_react2.default.createElement(f, r5), v = ["light", "dark"], f = ({ forcedTheme: t3, disableTransitionOnChange: n3 = !1, enableSystem: l4 = !0, enableColorScheme: m4 = !0, storageKey: d4 = "theme", themes: h3 = v, defaultTheme: y4 = l4 ? "system" : "light", attribute: $2 = "data-theme", value: f6, children: w3, nonce: T }) => {
   let [E2, k2] = (0, import_react2.useState)(() => S(d4, y4)), [C, L] = (0, import_react2.useState)(() => S(d4)), x3 = f6 ? Object.values(f6) : h3, I = (0, import_react2.useCallback)((e3) => {
     let t4 = e3;
     if (!t4)
       return;
     e3 === "system" && l4 && (t4 = p());
     let r5 = f6 ? f6[t4] : t4, o4 = n3 ? b() : null, a4 = document.documentElement;
-    if ($3 === "class" ? (a4.classList.remove(...x3), r5 && a4.classList.add(r5)) : r5 ? a4.setAttribute($3, r5) : a4.removeAttribute($3), m4) {
+    if ($2 === "class" ? (a4.classList.remove(...x3), r5 && a4.classList.add(r5)) : r5 ? a4.setAttribute($2, r5) : a4.removeAttribute($2), m4) {
       let e4 = c.includes(y4) ? y4 : null, n4 = c.includes(t4) ? t4 : e4;
       a4.style.colorScheme = n4;
     }
@@ -32256,12 +32892,12 @@ var import_react2 = __toESM(require_react()), c = ["light", "dark"], i = "(prefe
     I(t3 ?? E2);
   }, [t3, E2]);
   let A = (0, import_react2.useMemo)(() => ({ theme: E2, setTheme: O3, forcedTheme: t3, resolvedTheme: E2 === "system" ? C : E2, themes: l4 ? [...h3, "system"] : h3, systemTheme: l4 ? C : void 0 }), [E2, O3, t3, C, l4, h3]);
-  return import_react2.default.createElement(u.Provider, { value: A }, /* @__PURE__ */ import_react2.default.createElement(g, { forcedTheme: t3, disableTransitionOnChange: n3, enableSystem: l4, enableColorScheme: m4, storageKey: d4, themes: h3, defaultTheme: y4, attribute: $3, value: f6, children: w2, attrs: x3, nonce: T }), w2);
+  return import_react2.default.createElement(u.Provider, { value: A }, /* @__PURE__ */ import_react2.default.createElement(g, { forcedTheme: t3, disableTransitionOnChange: n3, enableSystem: l4, enableColorScheme: m4, storageKey: d4, themes: h3, defaultTheme: y4, attribute: $2, value: f6, children: w3, attrs: x3, nonce: T }), w3);
 }, g = /* @__PURE__ */ (0, import_react2.memo)(({ forcedTheme: t3, storageKey: n3, attribute: r5, enableSystem: o4, enableColorScheme: a4, defaultTheme: s4, value: l4, attrs: m4, nonce: d4 }) => {
-  let u4 = s4 === "system", h3 = r5 === "class" ? `var d=document.documentElement,c=d.classList;c.remove(${m4.map((e3) => `'${e3}'`).join(",")});` : `var d=document.documentElement,n='${r5}',s='setAttribute';`, y4 = a4 ? c.includes(s4) && s4 ? `if(e==='light'||e==='dark'||!e)d.style.colorScheme=e||'${s4}'` : "if(e==='light'||e==='dark')d.style.colorScheme=e" : "", $3 = (e3, t4 = !1, n4 = !0) => {
+  let u4 = s4 === "system", h3 = r5 === "class" ? `var d=document.documentElement,c=d.classList;c.remove(${m4.map((e3) => `'${e3}'`).join(",")});` : `var d=document.documentElement,n='${r5}',s='setAttribute';`, y4 = a4 ? c.includes(s4) && s4 ? `if(e==='light'||e==='dark'||!e)d.style.colorScheme=e||'${s4}'` : "if(e==='light'||e==='dark')d.style.colorScheme=e" : "", $2 = (e3, t4 = !1, n4 = !0) => {
     let o5 = l4 ? l4[e3] : e3, s5 = t4 ? e3 + "|| ''" : `'${o5}'`, m5 = "";
     return a4 && n4 && !t4 && c.includes(e3) && (m5 += `d.style.colorScheme = '${e3}';`), r5 === "class" ? m5 += t4 || o5 ? `c.add(${s5})` : "null" : o5 && (m5 += `d[s](n,${s5})`), m5;
-  }, v7 = t3 ? `!function(){${h3}${$3(t3)}}()` : o4 ? `!function(){try{${h3}var e=localStorage.getItem('${n3}');if('system'===e||(!e&&${u4})){var t='${i}',m=window.matchMedia(t);if(m.media!==t||m.matches){${$3("dark")}}else{${$3("light")}}}else if(e){${l4 ? `var x=${JSON.stringify(l4)};` : ""}${$3(l4 ? "x[e]" : "e", !0)}}${u4 ? "" : "else{" + $3(s4, !1, !1) + "}"}${y4}}catch(e){}}()` : `!function(){try{${h3}var e=localStorage.getItem('${n3}');if(e){${l4 ? `var x=${JSON.stringify(l4)};` : ""}${$3(l4 ? "x[e]" : "e", !0)}}else{${$3(s4, !1, !1)};}${y4}}catch(t){}}();`;
+  }, v7 = t3 ? `!function(){${h3}${$2(t3)}}()` : o4 ? `!function(){try{${h3}var e=localStorage.getItem('${n3}');if('system'===e||(!e&&${u4})){var t='${i}',m=window.matchMedia(t);if(m.media!==t||m.matches){${$2("dark")}}else{${$2("light")}}}else if(e){${l4 ? `var x=${JSON.stringify(l4)};` : ""}${$2(l4 ? "x[e]" : "e", !0)}}${u4 ? "" : "else{" + $2(s4, !1, !1) + "}"}${y4}}catch(e){}}()` : `!function(){try{${h3}var e=localStorage.getItem('${n3}');if(e){${l4 ? `var x=${JSON.stringify(l4)};` : ""}${$2(l4 ? "x[e]" : "e", !0)}}else{${$2(s4, !1, !1)};}${y4}}catch(t){}}();`;
   return import_react2.default.createElement("script", { nonce: d4, dangerouslySetInnerHTML: { __html: v7 } });
 }, () => !0), S = (e3, t3) => {
   if (d)
@@ -32306,7 +32942,7 @@ function AppThemeProvider({ children }) {
 }
 
 // app/styles/tailwind.css
-var tailwind_default = "/build/_assets/tailwind-6FJIRDOP.css";
+var tailwind_default = "/build/_assets/tailwind-25QLLQAK.css";
 
 // app/root.tsx
 var import_jsx_dev_runtime3 = __toESM(require_jsx_dev_runtime(), 1), links = () => [
@@ -32335,58 +32971,58 @@ function Helios() {
     /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("head", { children: [
       /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("meta", { charSet: "utf-8" }, void 0, !1, {
         fileName: "app/root.tsx",
-        lineNumber: 45,
+        lineNumber: 46,
         columnNumber: 9
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("meta", { name: "viewport", content: "width=device-width, initial-scale=1" }, void 0, !1, {
         fileName: "app/root.tsx",
-        lineNumber: 46,
+        lineNumber: 47,
         columnNumber: 9
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(Meta, {}, void 0, !1, {
         fileName: "app/root.tsx",
-        lineNumber: 47,
+        lineNumber: 48,
         columnNumber: 9
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(Links, {}, void 0, !1, {
         fileName: "app/root.tsx",
-        lineNumber: 48,
+        lineNumber: 49,
         columnNumber: 9
       }, this)
     ] }, void 0, !0, {
       fileName: "app/root.tsx",
-      lineNumber: 44,
+      lineNumber: 45,
       columnNumber: 7
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("body", { children: [
       /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(Outlet, {}, void 0, !1, {
         fileName: "app/root.tsx",
-        lineNumber: 51,
+        lineNumber: 52,
         columnNumber: 9
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(ScrollRestoration2, {}, void 0, !1, {
         fileName: "app/root.tsx",
-        lineNumber: 52,
+        lineNumber: 53,
         columnNumber: 9
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(Scripts, {}, void 0, !1, {
         fileName: "app/root.tsx",
-        lineNumber: 53,
+        lineNumber: 54,
         columnNumber: 9
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(LiveReload, {}, void 0, !1, {
         fileName: "app/root.tsx",
-        lineNumber: 54,
+        lineNumber: 55,
         columnNumber: 9
       }, this)
     ] }, void 0, !0, {
       fileName: "app/root.tsx",
-      lineNumber: 50,
+      lineNumber: 51,
       columnNumber: 7
     }, this)
   ] }, void 0, !0, {
     fileName: "app/root.tsx",
-    lineNumber: 43,
+    lineNumber: 44,
     columnNumber: 5
   }, this);
 }
@@ -32396,126 +33032,147 @@ function ErrorBoundary() {
     /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("head", { children: [
       /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("title", { children: "Oh No!" }, void 0, !1, {
         fileName: "app/root.tsx",
-        lineNumber: 75,
+        lineNumber: 76,
         columnNumber: 9
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("meta", { charSet: "utf-8" }, void 0, !1, {
         fileName: "app/root.tsx",
-        lineNumber: 76,
+        lineNumber: 77,
         columnNumber: 9
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("meta", { name: "viewport", content: "width=device-width, initial-scale=1" }, void 0, !1, {
         fileName: "app/root.tsx",
-        lineNumber: 77,
+        lineNumber: 78,
         columnNumber: 9
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(Meta, {}, void 0, !1, {
         fileName: "app/root.tsx",
-        lineNumber: 78,
+        lineNumber: 79,
         columnNumber: 9
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(Links, {}, void 0, !1, {
         fileName: "app/root.tsx",
-        lineNumber: 79,
+        lineNumber: 80,
         columnNumber: 9
       }, this)
     ] }, void 0, !0, {
       fileName: "app/root.tsx",
-      lineNumber: 74,
+      lineNumber: 75,
       columnNumber: 7
     }, this),
     /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("body", { className: "h-full", children: /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(AppThemeProvider, { children: [
       /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("main", { className: "grid min-h-full place-items-center px-6 py-24 sm:py-32 lg:px-8", children: /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { className: "text-center", children: [
         /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("p", { className: "text-base font-bold", children: status_code }, void 0, !1, {
           fileName: "app/root.tsx",
-          lineNumber: 85,
+          lineNumber: 86,
           columnNumber: 15
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("h1", { className: "mt-4 text-3xl font-semibold tracking-tight sm:text-5xl", children: status_msg }, void 0, !1, {
           fileName: "app/root.tsx",
-          lineNumber: 86,
+          lineNumber: 87,
           columnNumber: 15
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("p", { className: "mt-6 text-base leading-7", children: msg }, void 0, !1, {
           fileName: "app/root.tsx",
-          lineNumber: 87,
+          lineNumber: 88,
           columnNumber: 15
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { className: "mt-10 flex items-center justify-center gap-x-6", children: [
           /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(NavLink2, { to: "/", className: "btn btn-accent px-3.5 py-2.5 text-sm shadow-sm", children: "Go back home" }, void 0, !1, {
             fileName: "app/root.tsx",
-            lineNumber: 89,
+            lineNumber: 90,
             columnNumber: 17
           }, this),
           /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(Link2, { to: "/support", className: "btn btn-neutral text-sm", children: [
             "Contact support ",
             /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("span", { "aria-hidden": "true", children: "\u2192" }, void 0, !1, {
               fileName: "app/root.tsx",
-              lineNumber: 93,
+              lineNumber: 94,
               columnNumber: 35
             }, this)
           ] }, void 0, !0, {
             fileName: "app/root.tsx",
-            lineNumber: 92,
+            lineNumber: 93,
             columnNumber: 17
           }, this)
         ] }, void 0, !0, {
           fileName: "app/root.tsx",
-          lineNumber: 88,
+          lineNumber: 89,
           columnNumber: 15
         }, this)
       ] }, void 0, !0, {
         fileName: "app/root.tsx",
-        lineNumber: 84,
+        lineNumber: 85,
         columnNumber: 13
       }, this) }, void 0, !1, {
         fileName: "app/root.tsx",
-        lineNumber: 83,
+        lineNumber: 84,
         columnNumber: 11
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(Scripts, {}, void 0, !1, {
         fileName: "app/root.tsx",
-        lineNumber: 98,
+        lineNumber: 99,
         columnNumber: 11
       }, this)
     ] }, void 0, !0, {
       fileName: "app/root.tsx",
-      lineNumber: 82,
+      lineNumber: 83,
       columnNumber: 9
     }, this) }, void 0, !1, {
       fileName: "app/root.tsx",
-      lineNumber: 81,
+      lineNumber: 82,
       columnNumber: 7
     }, this)
   ] }, void 0, !0, {
     fileName: "app/root.tsx",
-    lineNumber: 73,
+    lineNumber: 74,
     columnNumber: 5
   }, this);
 }
 
-// app/routes/_appLayout.dashboard/route.tsx
+// app/routes/_app.$accountId.profiles.$userId/route.tsx
 var route_exports = {};
-__export(route_exports, {
-  default: () => DashboardView,
+
+// app/routes/_app.$accountId.nodes.$nodeId/route.tsx
+var route_exports2 = {};
+__export(route_exports2, {
+  default: () => NodesView,
   meta: () => meta
 });
-var import_jsx_dev_runtime4 = __toESM(require_jsx_dev_runtime(), 1), meta = () => [{ title: "HELIOS | Dashboard" }, { description: "Helios management app." }];
-function DashboardView() {
+var import_jsx_dev_runtime4 = __toESM(require_jsx_dev_runtime(), 1), meta = () => [{ title: "HELIOS | Nodes" }, { description: "Helios node management app." }];
+function NodesView() {
   return /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(import_jsx_dev_runtime4.Fragment, {}, void 0, !1, {
-    fileName: "app/routes/_appLayout.dashboard/route.tsx",
+    fileName: "app/routes/_app.$accountId.nodes.$nodeId/route.tsx",
+    lineNumber: 7,
+    columnNumber: 10
+  }, this);
+}
+
+// app/routes/_app.$accountId._index/route.tsx
+var route_exports3 = {};
+
+// app/routes/_app.$accountId.nodes/route.tsx
+var route_exports4 = {};
+__export(route_exports4, {
+  default: () => NodesView2,
+  meta: () => meta2
+});
+var import_jsx_dev_runtime5 = __toESM(require_jsx_dev_runtime(), 1), meta2 = () => [{ title: "HELIOS | Nodes" }, { description: "Helios node management app." }];
+function NodesView2() {
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(import_jsx_dev_runtime5.Fragment, {}, void 0, !1, {
+    fileName: "app/routes/_app.$accountId.nodes/route.tsx",
     lineNumber: 7,
     columnNumber: 10
   }, this);
 }
 
 // app/routes/auth.auth0.callback/route.tsx
-var route_exports2 = {};
-__export(route_exports2, {
+var route_exports5 = {};
+__export(route_exports5, {
   loader: () => loader
 });
 
-// ../../node_modules/drizzle-orm/entity.js
+// ../../node_modules/.pnpm/drizzle-orm@0.29.1_@cloudflare+workers-types@4.20231218.0/node_modules/drizzle-orm/entity.js
 var entityKind = Symbol.for("drizzle:entityKind"), hasOwnEntityKind = Symbol.for("drizzle:hasOwnEntityKind");
 function is(value, type) {
   if (!value || typeof value != "object")
@@ -32536,40 +33193,43 @@ function is(value, type) {
   return !1;
 }
 
-// ../../node_modules/drizzle-orm/column.js
-var _a, Column = class {
-  constructor(table, config2) {
-    this.table = table, this.config = config2, this.name = config2.name, this.notNull = config2.notNull, this.default = config2.default, this.defaultFn = config2.defaultFn, this.hasDefault = config2.hasDefault, this.primary = config2.primaryKey, this.isUnique = config2.isUnique, this.uniqueName = config2.uniqueName, this.uniqueType = config2.uniqueType, this.dataType = config2.dataType, this.columnType = config2.columnType;
-  }
-  name;
-  primary;
-  notNull;
-  default;
-  defaultFn;
-  hasDefault;
-  isUnique;
-  uniqueName;
-  uniqueType;
-  dataType;
-  columnType;
-  enumValues = void 0;
-  config;
-  mapFromDriverValue(value) {
-    return value;
-  }
-  mapToDriverValue(value) {
-    return value;
+// ../../node_modules/.pnpm/drizzle-orm@0.29.1_@cloudflare+workers-types@4.20231218.0/node_modules/drizzle-orm/logger.js
+var _a, ConsoleLogWriter = class {
+  write(message) {
+    console.log(message);
   }
 };
-_a = entityKind, __publicField(Column, _a, "Column");
+_a = entityKind, __publicField(ConsoleLogWriter, _a, "ConsoleLogWriter");
+var _a2, DefaultLogger = class {
+  writer;
+  constructor(config2) {
+    this.writer = config2?.writer ?? new ConsoleLogWriter();
+  }
+  logQuery(query, params) {
+    let stringifiedParams = params.map((p5) => {
+      try {
+        return JSON.stringify(p5);
+      } catch {
+        return String(p5);
+      }
+    }), paramsStr = stringifiedParams.length ? ` -- params: [${stringifiedParams.join(", ")}]` : "";
+    this.writer.write(`Query: ${query}${paramsStr}`);
+  }
+};
+_a2 = entityKind, __publicField(DefaultLogger, _a2, "DefaultLogger");
+var _a3, NoopLogger = class {
+  logQuery() {
+  }
+};
+_a3 = entityKind, __publicField(NoopLogger, _a3, "NoopLogger");
 
-// ../../node_modules/drizzle-orm/table.js
-var TableName = Symbol.for("drizzle:Name"), Schema = Symbol.for("drizzle:Schema"), Columns = Symbol.for("drizzle:Columns"), OriginalName = Symbol.for("drizzle:OriginalName"), BaseName = Symbol.for("drizzle:BaseName"), IsAlias = Symbol.for("drizzle:IsAlias"), ExtraConfigBuilder = Symbol.for("drizzle:ExtraConfigBuilder"), IsDrizzleTable = Symbol.for("drizzle:IsDrizzleTable"), _a2, Table = class {
+// ../../node_modules/.pnpm/drizzle-orm@0.29.1_@cloudflare+workers-types@4.20231218.0/node_modules/drizzle-orm/table.js
+var TableName = Symbol.for("drizzle:Name"), Schema = Symbol.for("drizzle:Schema"), Columns = Symbol.for("drizzle:Columns"), OriginalName = Symbol.for("drizzle:OriginalName"), BaseName = Symbol.for("drizzle:BaseName"), IsAlias = Symbol.for("drizzle:IsAlias"), ExtraConfigBuilder = Symbol.for("drizzle:ExtraConfigBuilder"), IsDrizzleTable = Symbol.for("drizzle:IsDrizzleTable"), _a4, Table = class {
   /**
    * @internal
    * Can be changed if the table is aliased.
    */
-  [(_a2 = entityKind, TableName)];
+  [(_a4 = entityKind, TableName)];
   /**
    * @internal
    * Used to store the original name of the table, before any aliasing.
@@ -32593,7 +33253,7 @@ var TableName = Symbol.for("drizzle:Name"), Schema = Symbol.for("drizzle:Schema"
     this[TableName] = this[OriginalName] = name, this[Schema] = schema, this[BaseName] = baseName;
   }
 };
-__publicField(Table, _a2, "Table"), /** @internal */
+__publicField(Table, _a4, "Table"), /** @internal */
 __publicField(Table, "Symbol", {
   Name: TableName,
   Schema,
@@ -32610,20 +33270,47 @@ function getTableName(table) {
   return table[TableName];
 }
 
-// ../../node_modules/drizzle-orm/pg-core/table.js
-var InlineForeignKeys = Symbol.for("drizzle:PgInlineForeignKeys"), _a3, PgTable = class extends Table {
+// ../../node_modules/.pnpm/drizzle-orm@0.29.1_@cloudflare+workers-types@4.20231218.0/node_modules/drizzle-orm/column.js
+var _a5, Column = class {
+  constructor(table, config2) {
+    this.table = table, this.config = config2, this.name = config2.name, this.notNull = config2.notNull, this.default = config2.default, this.defaultFn = config2.defaultFn, this.hasDefault = config2.hasDefault, this.primary = config2.primaryKey, this.isUnique = config2.isUnique, this.uniqueName = config2.uniqueName, this.uniqueType = config2.uniqueType, this.dataType = config2.dataType, this.columnType = config2.columnType;
+  }
+  name;
+  primary;
+  notNull;
+  default;
+  defaultFn;
+  hasDefault;
+  isUnique;
+  uniqueName;
+  uniqueType;
+  dataType;
+  columnType;
+  enumValues = void 0;
+  config;
+  mapFromDriverValue(value) {
+    return value;
+  }
+  mapToDriverValue(value) {
+    return value;
+  }
+};
+_a5 = entityKind, __publicField(Column, _a5, "Column");
+
+// ../../node_modules/.pnpm/drizzle-orm@0.29.1_@cloudflare+workers-types@4.20231218.0/node_modules/drizzle-orm/pg-core/table.js
+var InlineForeignKeys = Symbol.for("drizzle:PgInlineForeignKeys"), _a6, PgTable = class extends Table {
   /**@internal */
-  [(_a3 = entityKind, InlineForeignKeys)] = [];
+  [(_a6 = entityKind, InlineForeignKeys)] = [];
   /** @internal */
   [Table.Symbol.ExtraConfigBuilder] = void 0;
 };
-__publicField(PgTable, _a3, "PgTable"), /** @internal */
+__publicField(PgTable, _a6, "PgTable"), /** @internal */
 __publicField(PgTable, "Symbol", Object.assign({}, Table.Symbol, {
   InlineForeignKeys
 }));
 
-// ../../node_modules/drizzle-orm/pg-core/primary-keys.js
-var _a4, PrimaryKeyBuilder = class {
+// ../../node_modules/.pnpm/drizzle-orm@0.29.1_@cloudflare+workers-types@4.20231218.0/node_modules/drizzle-orm/pg-core/primary-keys.js
+var _a7, PrimaryKeyBuilder = class {
   /** @internal */
   columns;
   /** @internal */
@@ -32636,8 +33323,8 @@ var _a4, PrimaryKeyBuilder = class {
     return new PrimaryKey(table, this.columns, this.name);
   }
 };
-_a4 = entityKind, __publicField(PrimaryKeyBuilder, _a4, "PgPrimaryKeyBuilder");
-var _a5, PrimaryKey = class {
+_a7 = entityKind, __publicField(PrimaryKeyBuilder, _a7, "PgPrimaryKeyBuilder");
+var _a8, PrimaryKey = class {
   constructor(table, columns, name) {
     this.table = table, this.columns = columns, this.name = name;
   }
@@ -32647,309 +33334,12 @@ var _a5, PrimaryKey = class {
     return this.name ?? `${this.table[PgTable.Symbol.Name]}_${this.columns.map((column) => column.name).join("_")}_pk`;
   }
 };
-_a5 = entityKind, __publicField(PrimaryKey, _a5, "PgPrimaryKey");
+_a8 = entityKind, __publicField(PrimaryKey, _a8, "PgPrimaryKey");
 
-// ../../node_modules/drizzle-orm/sql/expressions/conditions.js
-function bindIfParam(value, column) {
-  return isDriverValueEncoder(column) && !isSQLWrapper(value) && !is(value, Param) && !is(value, Placeholder) && !is(value, Column) && !is(value, Table) && !is(value, View) ? new Param(value, column) : value;
-}
-var eq = (left, right) => sql`${left} = ${bindIfParam(right, left)}`, ne = (left, right) => sql`${left} <> ${bindIfParam(right, left)}`;
-function and(...unfilteredConditions) {
-  let conditions = unfilteredConditions.filter(
-    (c5) => c5 !== void 0
-  );
-  if (conditions.length !== 0)
-    return conditions.length === 1 ? new SQL(conditions) : new SQL([
-      new StringChunk("("),
-      sql.join(conditions, new StringChunk(" and ")),
-      new StringChunk(")")
-    ]);
-}
-function or(...unfilteredConditions) {
-  let conditions = unfilteredConditions.filter(
-    (c5) => c5 !== void 0
-  );
-  if (conditions.length !== 0)
-    return conditions.length === 1 ? new SQL(conditions) : new SQL([
-      new StringChunk("("),
-      sql.join(conditions, new StringChunk(" or ")),
-      new StringChunk(")")
-    ]);
-}
-function not(condition) {
-  return sql`not ${condition}`;
-}
-var gt = (left, right) => sql`${left} > ${bindIfParam(right, left)}`, gte = (left, right) => sql`${left} >= ${bindIfParam(right, left)}`, lt = (left, right) => sql`${left} < ${bindIfParam(right, left)}`, lte = (left, right) => sql`${left} <= ${bindIfParam(right, left)}`;
-function inArray(column, values) {
-  if (Array.isArray(values)) {
-    if (values.length === 0)
-      throw new Error("inArray requires at least one value");
-    return sql`${column} in ${values.map((v7) => bindIfParam(v7, column))}`;
-  }
-  return sql`${column} in ${bindIfParam(values, column)}`;
-}
-function notInArray(column, values) {
-  if (Array.isArray(values)) {
-    if (values.length === 0)
-      throw new Error("notInArray requires at least one value");
-    return sql`${column} not in ${values.map((v7) => bindIfParam(v7, column))}`;
-  }
-  return sql`${column} not in ${bindIfParam(values, column)}`;
-}
-function isNull(value) {
-  return sql`${value} is null`;
-}
-function isNotNull(value) {
-  return sql`${value} is not null`;
-}
-function exists(subquery) {
-  return sql`exists (${subquery})`;
-}
-function notExists(subquery) {
-  return sql`not exists (${subquery})`;
-}
-function between(column, min, max) {
-  return sql`${column} between ${bindIfParam(min, column)} and ${bindIfParam(
-    max,
-    column
-  )}`;
-}
-function notBetween(column, min, max) {
-  return sql`${column} not between ${bindIfParam(
-    min,
-    column
-  )} and ${bindIfParam(max, column)}`;
-}
-function like(column, value) {
-  return sql`${column} like ${value}`;
-}
-function notLike(column, value) {
-  return sql`${column} not like ${value}`;
-}
-function ilike(column, value) {
-  return sql`${column} ilike ${value}`;
-}
-function notIlike(column, value) {
-  return sql`${column} not ilike ${value}`;
-}
-
-// ../../node_modules/drizzle-orm/sql/expressions/select.js
-function asc(column) {
-  return sql`${column} asc`;
-}
-function desc(column) {
-  return sql`${column} desc`;
-}
-
-// ../../node_modules/drizzle-orm/relations.js
-var _a6, Relation = class {
-  constructor(sourceTable, referencedTable, relationName) {
-    this.sourceTable = sourceTable, this.referencedTable = referencedTable, this.relationName = relationName, this.referencedTableName = referencedTable[Table.Symbol.Name];
-  }
-  referencedTableName;
-  fieldName;
-};
-_a6 = entityKind, __publicField(Relation, _a6, "Relation");
-var _a7, Relations = class {
-  constructor(table, config2) {
-    this.table = table, this.config = config2;
-  }
-};
-_a7 = entityKind, __publicField(Relations, _a7, "Relations");
-var _a8, _One = class extends Relation {
-  constructor(sourceTable, referencedTable, config2, isNullable) {
-    super(sourceTable, referencedTable, config2?.relationName), this.config = config2, this.isNullable = isNullable;
-  }
-  withFieldName(fieldName) {
-    let relation = new _One(
-      this.sourceTable,
-      this.referencedTable,
-      this.config,
-      this.isNullable
-    );
-    return relation.fieldName = fieldName, relation;
-  }
-}, One = _One;
-_a8 = entityKind, __publicField(One, _a8, "One");
-var _a9, _Many = class extends Relation {
-  constructor(sourceTable, referencedTable, config2) {
-    super(sourceTable, referencedTable, config2?.relationName), this.config = config2;
-  }
-  withFieldName(fieldName) {
-    let relation = new _Many(
-      this.sourceTable,
-      this.referencedTable,
-      this.config
-    );
-    return relation.fieldName = fieldName, relation;
-  }
-}, Many = _Many;
-_a9 = entityKind, __publicField(Many, _a9, "Many");
-function getOperators() {
-  return {
-    and,
-    between,
-    eq,
-    exists,
-    gt,
-    gte,
-    ilike,
-    inArray,
-    isNull,
-    isNotNull,
-    like,
-    lt,
-    lte,
-    ne,
-    not,
-    notBetween,
-    notExists,
-    notLike,
-    notIlike,
-    notInArray,
-    or,
-    sql
-  };
-}
-function getOrderByOperators() {
-  return {
-    sql,
-    asc,
-    desc
-  };
-}
-function extractTablesRelationalConfig(schema, configHelpers) {
-  Object.keys(schema).length === 1 && "default" in schema && !is(schema.default, Table) && (schema = schema.default);
-  let tableNamesMap = {}, relationsBuffer = {}, tablesConfig = {};
-  for (let [key, value] of Object.entries(schema))
-    if (isTable(value)) {
-      let dbName = value[Table.Symbol.Name], bufferedRelations = relationsBuffer[dbName];
-      tableNamesMap[dbName] = key, tablesConfig[key] = {
-        tsName: key,
-        dbName: value[Table.Symbol.Name],
-        schema: value[Table.Symbol.Schema],
-        columns: value[Table.Symbol.Columns],
-        relations: bufferedRelations?.relations ?? {},
-        primaryKey: bufferedRelations?.primaryKey ?? []
-      };
-      for (let column of Object.values(
-        value[Table.Symbol.Columns]
-      ))
-        column.primary && tablesConfig[key].primaryKey.push(column);
-      let extraConfig = value[Table.Symbol.ExtraConfigBuilder]?.(value);
-      if (extraConfig)
-        for (let configEntry of Object.values(extraConfig))
-          is(configEntry, PrimaryKeyBuilder) && tablesConfig[key].primaryKey.push(...configEntry.columns);
-    } else if (is(value, Relations)) {
-      let dbName = value.table[Table.Symbol.Name], tableName = tableNamesMap[dbName], relations2 = value.config(
-        configHelpers(value.table)
-      ), primaryKey2;
-      for (let [relationName, relation] of Object.entries(relations2))
-        if (tableName) {
-          let tableConfig = tablesConfig[tableName];
-          tableConfig.relations[relationName] = relation, primaryKey2 && tableConfig.primaryKey.push(...primaryKey2);
-        } else
-          dbName in relationsBuffer || (relationsBuffer[dbName] = {
-            relations: {},
-            primaryKey: primaryKey2
-          }), relationsBuffer[dbName].relations[relationName] = relation;
-    }
-  return { tables: tablesConfig, tableNamesMap };
-}
-function createOne(sourceTable) {
-  return function(table, config2) {
-    return new One(
-      sourceTable,
-      table,
-      config2,
-      config2?.fields.reduce((res, f6) => res && f6.notNull, !0) ?? !1
-    );
-  };
-}
-function createMany(sourceTable) {
-  return function(referencedTable, config2) {
-    return new Many(sourceTable, referencedTable, config2);
-  };
-}
-function normalizeRelation(schema, tableNamesMap, relation) {
-  if (is(relation, One) && relation.config)
-    return {
-      fields: relation.config.fields,
-      references: relation.config.references
-    };
-  let referencedTableTsName = tableNamesMap[relation.referencedTable[Table.Symbol.Name]];
-  if (!referencedTableTsName)
-    throw new Error(
-      `Table "${relation.referencedTable[Table.Symbol.Name]}" not found in schema`
-    );
-  let referencedTableConfig = schema[referencedTableTsName];
-  if (!referencedTableConfig)
-    throw new Error(`Table "${referencedTableTsName}" not found in schema`);
-  let sourceTable = relation.sourceTable, sourceTableTsName = tableNamesMap[sourceTable[Table.Symbol.Name]];
-  if (!sourceTableTsName)
-    throw new Error(
-      `Table "${sourceTable[Table.Symbol.Name]}" not found in schema`
-    );
-  let reverseRelations = [];
-  for (let referencedTableRelation of Object.values(
-    referencedTableConfig.relations
-  ))
-    (relation.relationName && relation !== referencedTableRelation && referencedTableRelation.relationName === relation.relationName || !relation.relationName && referencedTableRelation.referencedTable === relation.sourceTable) && reverseRelations.push(referencedTableRelation);
-  if (reverseRelations.length > 1)
-    throw relation.relationName ? new Error(
-      `There are multiple relations with name "${relation.relationName}" in table "${referencedTableTsName}"`
-    ) : new Error(
-      `There are multiple relations between "${referencedTableTsName}" and "${relation.sourceTable[Table.Symbol.Name]}". Please specify relation name`
-    );
-  if (reverseRelations[0] && is(reverseRelations[0], One) && reverseRelations[0].config)
-    return {
-      fields: reverseRelations[0].config.references,
-      references: reverseRelations[0].config.fields
-    };
-  throw new Error(
-    `There is not enough information to infer relation "${sourceTableTsName}.${relation.fieldName}"`
-  );
-}
-function createTableRelationsHelpers(sourceTable) {
-  return {
-    one: createOne(sourceTable),
-    many: createMany(sourceTable)
-  };
-}
-function mapRelationalRow(tablesConfig, tableConfig, row, buildQueryResultSelection, mapColumnValue = (value) => value) {
-  let result = {};
-  for (let [
-    selectionItemIndex,
-    selectionItem
-  ] of buildQueryResultSelection.entries())
-    if (selectionItem.isJson) {
-      let relation = tableConfig.relations[selectionItem.tsKey], rawSubRows = row[selectionItemIndex], subRows = typeof rawSubRows == "string" ? JSON.parse(rawSubRows) : rawSubRows;
-      result[selectionItem.tsKey] = is(relation, One) ? subRows && mapRelationalRow(
-        tablesConfig,
-        tablesConfig[selectionItem.relationTableTsKey],
-        subRows,
-        selectionItem.selection,
-        mapColumnValue
-      ) : subRows.map(
-        (subRow) => mapRelationalRow(
-          tablesConfig,
-          tablesConfig[selectionItem.relationTableTsKey],
-          subRow,
-          selectionItem.selection,
-          mapColumnValue
-        )
-      );
-    } else {
-      let value = mapColumnValue(row[selectionItemIndex]), field = selectionItem.field, decoder;
-      is(field, Column) ? decoder = field : is(field, SQL) ? decoder = field.decoder : decoder = field.sql.decoder, result[selectionItem.tsKey] = value === null ? null : decoder.mapFromDriverValue(value);
-    }
-  return result;
-}
-
-// ../../node_modules/drizzle-orm/subquery.js
-var SubqueryConfig = Symbol.for("drizzle:SubqueryConfig"), _a10, Subquery = class {
+// ../../node_modules/.pnpm/drizzle-orm@0.29.1_@cloudflare+workers-types@4.20231218.0/node_modules/drizzle-orm/subquery.js
+var SubqueryConfig = Symbol.for("drizzle:SubqueryConfig"), _a9, Subquery = class {
   /** @internal */
-  [(_a10 = entityKind, SubqueryConfig)];
+  [(_a9 = entityKind, SubqueryConfig)];
   constructor(sql2, selection, alias, isWith = !1) {
     this[SubqueryConfig] = {
       sql: sql2,
@@ -32962,20 +33352,20 @@ var SubqueryConfig = Symbol.for("drizzle:SubqueryConfig"), _a10, Subquery = clas
   // 	return new SQL([this]);
   // }
 };
-__publicField(Subquery, _a10, "Subquery");
-var _a11, WithSubquery = class extends Subquery {
+__publicField(Subquery, _a9, "Subquery");
+var _a10, WithSubquery = class extends Subquery {
 };
-_a11 = entityKind, __publicField(WithSubquery, _a11, "WithSubquery");
+_a10 = entityKind, __publicField(WithSubquery, _a10, "WithSubquery");
 
-// ../../node_modules/drizzle-orm/tracing-utils.js
+// ../../node_modules/.pnpm/drizzle-orm@0.29.1_@cloudflare+workers-types@4.20231218.0/node_modules/drizzle-orm/tracing-utils.js
 function iife(fn, ...args) {
   return fn(...args);
 }
 
-// ../../node_modules/drizzle-orm/version.js
-var version = "0.29.0";
+// ../../node_modules/.pnpm/drizzle-orm@0.29.1_@cloudflare+workers-types@4.20231218.0/node_modules/drizzle-orm/version.js
+var version = "0.29.1";
 
-// ../../node_modules/drizzle-orm/tracing.js
+// ../../node_modules/.pnpm/drizzle-orm@0.29.1_@cloudflare+workers-types@4.20231218.0/node_modules/drizzle-orm/tracing.js
 var otel, rawTracer, tracer = {
   startActiveSpan(name, fn) {
     return otel ? (rawTracer || (rawTracer = otel.trace.getTracer("drizzle-orm", version)), iife(
@@ -33001,13 +33391,13 @@ var otel, rawTracer, tracer = {
   }
 };
 
-// ../../node_modules/drizzle-orm/view-common.js
+// ../../node_modules/.pnpm/drizzle-orm@0.29.1_@cloudflare+workers-types@4.20231218.0/node_modules/drizzle-orm/view-common.js
 var ViewBaseConfig = Symbol.for("drizzle:ViewBaseConfig");
 
-// ../../node_modules/drizzle-orm/sql/sql.js
-var _a12, FakePrimitiveParam = class {
+// ../../node_modules/.pnpm/drizzle-orm@0.29.1_@cloudflare+workers-types@4.20231218.0/node_modules/drizzle-orm/sql/sql.js
+var _a11, FakePrimitiveParam = class {
 };
-_a12 = entityKind, __publicField(FakePrimitiveParam, _a12, "FakePrimitiveParam");
+_a11 = entityKind, __publicField(FakePrimitiveParam, _a11, "FakePrimitiveParam");
 function isSQLWrapper(value) {
   return typeof value == "object" && value !== null && "getSQL" in value && typeof value.getSQL == "function";
 }
@@ -33017,7 +33407,7 @@ function mergeQueries(queries) {
     result.sql += query.sql, result.params.push(...query.params), query.typings?.length && (result.typings || (result.typings = []), result.typings.push(...query.typings));
   return result;
 }
-var _a13, StringChunk = class {
+var _a12, StringChunk = class {
   value;
   constructor(value) {
     this.value = Array.isArray(value) ? value : [value];
@@ -33026,8 +33416,8 @@ var _a13, StringChunk = class {
     return new SQL([this]);
   }
 };
-_a13 = entityKind, __publicField(StringChunk, _a13, "StringChunk");
-var _a14, _SQL = class {
+_a12 = entityKind, __publicField(StringChunk, _a12, "StringChunk");
+var _a13, _SQL = class {
   constructor(queryChunks) {
     this.queryChunks = queryChunks;
   }
@@ -33142,8 +33532,8 @@ var _a14, _SQL = class {
     return this.shouldInlineParams = !0, this;
   }
 }, SQL = _SQL;
-_a14 = entityKind, __publicField(SQL, _a14, "SQL");
-var _a15, Name = class {
+_a13 = entityKind, __publicField(SQL, _a13, "SQL");
+var _a14, Name = class {
   constructor(value) {
     this.value = value;
   }
@@ -33152,7 +33542,7 @@ var _a15, Name = class {
     return new SQL([this]);
   }
 };
-_a15 = entityKind, __publicField(Name, _a15, "Name");
+_a14 = entityKind, __publicField(Name, _a14, "Name");
 function isDriverValueEncoder(value) {
   return typeof value == "object" && value !== null && "mapToDriverValue" in value && typeof value.mapToDriverValue == "function";
 }
@@ -33163,7 +33553,7 @@ var noopDecoder = {
 }, noopMapper = {
   ...noopDecoder,
   ...noopEncoder
-}, _a16, Param = class {
+}, _a15, Param = class {
   /**
    * @param value - Parameter value
    * @param encoder - Encoder to convert the value to a driver parameter
@@ -33176,7 +33566,7 @@ var noopDecoder = {
     return new SQL([this]);
   }
 };
-_a16 = entityKind, __publicField(Param, _a16, "Param");
+_a15 = entityKind, __publicField(Param, _a15, "Param");
 function sql(strings, ...params) {
   let queryChunks = [];
   (params.length > 0 || strings.length > 0 && strings[0] !== "") && queryChunks.push(new StringChunk(strings[0]));
@@ -33235,7 +33625,7 @@ function sql(strings, ...params) {
   }
   SQL2.Aliased = Aliased;
 })(SQL || (SQL = {}));
-var _a17, Placeholder = class {
+var _a16, Placeholder = class {
   constructor(name2) {
     this.name = name2;
   }
@@ -33243,7 +33633,7 @@ var _a17, Placeholder = class {
     return new SQL([this]);
   }
 };
-_a17 = entityKind, __publicField(Placeholder, _a17, "Placeholder");
+_a16 = entityKind, __publicField(Placeholder, _a16, "Placeholder");
 function fillPlaceholders(params, values) {
   return params.map((p5) => {
     if (is(p5, Placeholder)) {
@@ -33254,9 +33644,9 @@ function fillPlaceholders(params, values) {
     return p5;
   });
 }
-var _a18, View = class {
+var _a17, View = class {
   /** @internal */
-  [(_a18 = entityKind, ViewBaseConfig)];
+  [(_a17 = entityKind, ViewBaseConfig)];
   constructor({ name: name2, schema, selectedFields, query }) {
     this[ViewBaseConfig] = {
       name: name2,
@@ -33272,7 +33662,7 @@ var _a18, View = class {
     return new SQL([this]);
   }
 };
-__publicField(View, _a18, "View");
+__publicField(View, _a17, "View");
 Column.prototype.getSQL = function() {
   return new SQL([this]);
 };
@@ -33283,8 +33673,305 @@ Subquery.prototype.getSQL = function() {
   return new SQL([this]);
 };
 
-// ../../node_modules/drizzle-orm/alias.js
-var _a19, ColumnAliasProxyHandler = class {
+// ../../node_modules/.pnpm/drizzle-orm@0.29.1_@cloudflare+workers-types@4.20231218.0/node_modules/drizzle-orm/sql/expressions/conditions.js
+function bindIfParam(value, column) {
+  return isDriverValueEncoder(column) && !isSQLWrapper(value) && !is(value, Param) && !is(value, Placeholder) && !is(value, Column) && !is(value, Table) && !is(value, View) ? new Param(value, column) : value;
+}
+var eq = (left, right) => sql`${left} = ${bindIfParam(right, left)}`, ne = (left, right) => sql`${left} <> ${bindIfParam(right, left)}`;
+function and(...unfilteredConditions) {
+  let conditions = unfilteredConditions.filter(
+    (c4) => c4 !== void 0
+  );
+  if (conditions.length !== 0)
+    return conditions.length === 1 ? new SQL(conditions) : new SQL([
+      new StringChunk("("),
+      sql.join(conditions, new StringChunk(" and ")),
+      new StringChunk(")")
+    ]);
+}
+function or(...unfilteredConditions) {
+  let conditions = unfilteredConditions.filter(
+    (c4) => c4 !== void 0
+  );
+  if (conditions.length !== 0)
+    return conditions.length === 1 ? new SQL(conditions) : new SQL([
+      new StringChunk("("),
+      sql.join(conditions, new StringChunk(" or ")),
+      new StringChunk(")")
+    ]);
+}
+function not(condition) {
+  return sql`not ${condition}`;
+}
+var gt = (left, right) => sql`${left} > ${bindIfParam(right, left)}`, gte = (left, right) => sql`${left} >= ${bindIfParam(right, left)}`, lt = (left, right) => sql`${left} < ${bindIfParam(right, left)}`, lte = (left, right) => sql`${left} <= ${bindIfParam(right, left)}`;
+function inArray(column, values) {
+  if (Array.isArray(values)) {
+    if (values.length === 0)
+      throw new Error("inArray requires at least one value");
+    return sql`${column} in ${values.map((v7) => bindIfParam(v7, column))}`;
+  }
+  return sql`${column} in ${bindIfParam(values, column)}`;
+}
+function notInArray(column, values) {
+  if (Array.isArray(values)) {
+    if (values.length === 0)
+      throw new Error("notInArray requires at least one value");
+    return sql`${column} not in ${values.map((v7) => bindIfParam(v7, column))}`;
+  }
+  return sql`${column} not in ${bindIfParam(values, column)}`;
+}
+function isNull(value) {
+  return sql`${value} is null`;
+}
+function isNotNull(value) {
+  return sql`${value} is not null`;
+}
+function exists(subquery) {
+  return sql`exists (${subquery})`;
+}
+function notExists(subquery) {
+  return sql`not exists (${subquery})`;
+}
+function between(column, min, max) {
+  return sql`${column} between ${bindIfParam(min, column)} and ${bindIfParam(
+    max,
+    column
+  )}`;
+}
+function notBetween(column, min, max) {
+  return sql`${column} not between ${bindIfParam(
+    min,
+    column
+  )} and ${bindIfParam(max, column)}`;
+}
+function like(column, value) {
+  return sql`${column} like ${value}`;
+}
+function notLike(column, value) {
+  return sql`${column} not like ${value}`;
+}
+function ilike(column, value) {
+  return sql`${column} ilike ${value}`;
+}
+function notIlike(column, value) {
+  return sql`${column} not ilike ${value}`;
+}
+
+// ../../node_modules/.pnpm/drizzle-orm@0.29.1_@cloudflare+workers-types@4.20231218.0/node_modules/drizzle-orm/sql/expressions/select.js
+function asc(column) {
+  return sql`${column} asc`;
+}
+function desc(column) {
+  return sql`${column} desc`;
+}
+
+// ../../node_modules/.pnpm/drizzle-orm@0.29.1_@cloudflare+workers-types@4.20231218.0/node_modules/drizzle-orm/relations.js
+var _a18, Relation = class {
+  constructor(sourceTable, referencedTable, relationName) {
+    this.sourceTable = sourceTable, this.referencedTable = referencedTable, this.relationName = relationName, this.referencedTableName = referencedTable[Table.Symbol.Name];
+  }
+  referencedTableName;
+  fieldName;
+};
+_a18 = entityKind, __publicField(Relation, _a18, "Relation");
+var _a19, Relations = class {
+  constructor(table, config2) {
+    this.table = table, this.config = config2;
+  }
+};
+_a19 = entityKind, __publicField(Relations, _a19, "Relations");
+var _a20, _One = class extends Relation {
+  constructor(sourceTable, referencedTable, config2, isNullable) {
+    super(sourceTable, referencedTable, config2?.relationName), this.config = config2, this.isNullable = isNullable;
+  }
+  withFieldName(fieldName) {
+    let relation = new _One(
+      this.sourceTable,
+      this.referencedTable,
+      this.config,
+      this.isNullable
+    );
+    return relation.fieldName = fieldName, relation;
+  }
+}, One = _One;
+_a20 = entityKind, __publicField(One, _a20, "One");
+var _a21, _Many = class extends Relation {
+  constructor(sourceTable, referencedTable, config2) {
+    super(sourceTable, referencedTable, config2?.relationName), this.config = config2;
+  }
+  withFieldName(fieldName) {
+    let relation = new _Many(
+      this.sourceTable,
+      this.referencedTable,
+      this.config
+    );
+    return relation.fieldName = fieldName, relation;
+  }
+}, Many = _Many;
+_a21 = entityKind, __publicField(Many, _a21, "Many");
+function getOperators() {
+  return {
+    and,
+    between,
+    eq,
+    exists,
+    gt,
+    gte,
+    ilike,
+    inArray,
+    isNull,
+    isNotNull,
+    like,
+    lt,
+    lte,
+    ne,
+    not,
+    notBetween,
+    notExists,
+    notLike,
+    notIlike,
+    notInArray,
+    or,
+    sql
+  };
+}
+function getOrderByOperators() {
+  return {
+    sql,
+    asc,
+    desc
+  };
+}
+function extractTablesRelationalConfig(schema, configHelpers) {
+  Object.keys(schema).length === 1 && "default" in schema && !is(schema.default, Table) && (schema = schema.default);
+  let tableNamesMap = {}, relationsBuffer = {}, tablesConfig = {};
+  for (let [key, value] of Object.entries(schema))
+    if (isTable(value)) {
+      let dbName = value[Table.Symbol.Name], bufferedRelations = relationsBuffer[dbName];
+      tableNamesMap[dbName] = key, tablesConfig[key] = {
+        tsName: key,
+        dbName: value[Table.Symbol.Name],
+        schema: value[Table.Symbol.Schema],
+        columns: value[Table.Symbol.Columns],
+        relations: bufferedRelations?.relations ?? {},
+        primaryKey: bufferedRelations?.primaryKey ?? []
+      };
+      for (let column of Object.values(
+        value[Table.Symbol.Columns]
+      ))
+        column.primary && tablesConfig[key].primaryKey.push(column);
+      let extraConfig = value[Table.Symbol.ExtraConfigBuilder]?.(value);
+      if (extraConfig)
+        for (let configEntry of Object.values(extraConfig))
+          is(configEntry, PrimaryKeyBuilder) && tablesConfig[key].primaryKey.push(...configEntry.columns);
+    } else if (is(value, Relations)) {
+      let dbName = value.table[Table.Symbol.Name], tableName = tableNamesMap[dbName], relations2 = value.config(
+        configHelpers(value.table)
+      ), primaryKey;
+      for (let [relationName, relation] of Object.entries(relations2))
+        if (tableName) {
+          let tableConfig = tablesConfig[tableName];
+          tableConfig.relations[relationName] = relation, primaryKey && tableConfig.primaryKey.push(...primaryKey);
+        } else
+          dbName in relationsBuffer || (relationsBuffer[dbName] = {
+            relations: {},
+            primaryKey
+          }), relationsBuffer[dbName].relations[relationName] = relation;
+    }
+  return { tables: tablesConfig, tableNamesMap };
+}
+function createOne(sourceTable) {
+  return function(table, config2) {
+    return new One(
+      sourceTable,
+      table,
+      config2,
+      config2?.fields.reduce((res, f6) => res && f6.notNull, !0) ?? !1
+    );
+  };
+}
+function createMany(sourceTable) {
+  return function(referencedTable, config2) {
+    return new Many(sourceTable, referencedTable, config2);
+  };
+}
+function normalizeRelation(schema, tableNamesMap, relation) {
+  if (is(relation, One) && relation.config)
+    return {
+      fields: relation.config.fields,
+      references: relation.config.references
+    };
+  let referencedTableTsName = tableNamesMap[relation.referencedTable[Table.Symbol.Name]];
+  if (!referencedTableTsName)
+    throw new Error(
+      `Table "${relation.referencedTable[Table.Symbol.Name]}" not found in schema`
+    );
+  let referencedTableConfig = schema[referencedTableTsName];
+  if (!referencedTableConfig)
+    throw new Error(`Table "${referencedTableTsName}" not found in schema`);
+  let sourceTable = relation.sourceTable, sourceTableTsName = tableNamesMap[sourceTable[Table.Symbol.Name]];
+  if (!sourceTableTsName)
+    throw new Error(
+      `Table "${sourceTable[Table.Symbol.Name]}" not found in schema`
+    );
+  let reverseRelations = [];
+  for (let referencedTableRelation of Object.values(
+    referencedTableConfig.relations
+  ))
+    (relation.relationName && relation !== referencedTableRelation && referencedTableRelation.relationName === relation.relationName || !relation.relationName && referencedTableRelation.referencedTable === relation.sourceTable) && reverseRelations.push(referencedTableRelation);
+  if (reverseRelations.length > 1)
+    throw relation.relationName ? new Error(
+      `There are multiple relations with name "${relation.relationName}" in table "${referencedTableTsName}"`
+    ) : new Error(
+      `There are multiple relations between "${referencedTableTsName}" and "${relation.sourceTable[Table.Symbol.Name]}". Please specify relation name`
+    );
+  if (reverseRelations[0] && is(reverseRelations[0], One) && reverseRelations[0].config)
+    return {
+      fields: reverseRelations[0].config.references,
+      references: reverseRelations[0].config.fields
+    };
+  throw new Error(
+    `There is not enough information to infer relation "${sourceTableTsName}.${relation.fieldName}"`
+  );
+}
+function createTableRelationsHelpers(sourceTable) {
+  return {
+    one: createOne(sourceTable),
+    many: createMany(sourceTable)
+  };
+}
+function mapRelationalRow(tablesConfig, tableConfig, row, buildQueryResultSelection, mapColumnValue = (value) => value) {
+  let result = {};
+  for (let [
+    selectionItemIndex,
+    selectionItem
+  ] of buildQueryResultSelection.entries())
+    if (selectionItem.isJson) {
+      let relation = tableConfig.relations[selectionItem.tsKey], rawSubRows = row[selectionItemIndex], subRows = typeof rawSubRows == "string" ? JSON.parse(rawSubRows) : rawSubRows;
+      result[selectionItem.tsKey] = is(relation, One) ? subRows && mapRelationalRow(
+        tablesConfig,
+        tablesConfig[selectionItem.relationTableTsKey],
+        subRows,
+        selectionItem.selection,
+        mapColumnValue
+      ) : subRows.map(
+        (subRow) => mapRelationalRow(
+          tablesConfig,
+          tablesConfig[selectionItem.relationTableTsKey],
+          subRow,
+          selectionItem.selection,
+          mapColumnValue
+        )
+      );
+    } else {
+      let value = mapColumnValue(row[selectionItemIndex]), field = selectionItem.field, decoder;
+      is(field, Column) ? decoder = field : is(field, SQL) ? decoder = field.decoder : decoder = field.sql.decoder, result[selectionItem.tsKey] = value === null ? null : decoder.mapFromDriverValue(value);
+    }
+  return result;
+}
+
+// ../../node_modules/.pnpm/drizzle-orm@0.29.1_@cloudflare+workers-types@4.20231218.0/node_modules/drizzle-orm/alias.js
+var _a22, ColumnAliasProxyHandler = class {
   constructor(table) {
     this.table = table;
   }
@@ -33292,8 +33979,8 @@ var _a19, ColumnAliasProxyHandler = class {
     return prop === "table" ? this.table : columnObj[prop];
   }
 };
-_a19 = entityKind, __publicField(ColumnAliasProxyHandler, _a19, "ColumnAliasProxyHandler");
-var _a20, TableAliasProxyHandler = class {
+_a22 = entityKind, __publicField(ColumnAliasProxyHandler, _a22, "ColumnAliasProxyHandler");
+var _a23, TableAliasProxyHandler = class {
   constructor(alias, replaceOriginalName) {
     this.alias = alias, this.replaceOriginalName = replaceOriginalName;
   }
@@ -33326,8 +34013,8 @@ var _a20, TableAliasProxyHandler = class {
     return is(value, Column) ? new Proxy(value, new ColumnAliasProxyHandler(new Proxy(target, this))) : value;
   }
 };
-_a20 = entityKind, __publicField(TableAliasProxyHandler, _a20, "TableAliasProxyHandler");
-var _a21, RelationTableAliasProxyHandler = class {
+_a23 = entityKind, __publicField(TableAliasProxyHandler, _a23, "TableAliasProxyHandler");
+var _a24, RelationTableAliasProxyHandler = class {
   constructor(alias) {
     this.alias = alias;
   }
@@ -33335,7 +34022,7 @@ var _a21, RelationTableAliasProxyHandler = class {
     return prop === "sourceTable" ? aliasedTable(target.sourceTable, this.alias) : target[prop];
   }
 };
-_a21 = entityKind, __publicField(RelationTableAliasProxyHandler, _a21, "RelationTableAliasProxyHandler");
+_a24 = entityKind, __publicField(RelationTableAliasProxyHandler, _a24, "RelationTableAliasProxyHandler");
 function aliasedTable(table, tableAlias) {
   return new Proxy(table, new TableAliasProxyHandler(tableAlias, !1));
 }
@@ -33349,11 +34036,377 @@ function mapColumnsInAliasedSQLToAlias(query, alias) {
   return new SQL.Aliased(mapColumnsInSQLToAlias(query.sql, alias), query.fieldAlias);
 }
 function mapColumnsInSQLToAlias(query, alias) {
-  return sql.join(query.queryChunks.map((c5) => is(c5, Column) ? aliasedTableColumn(c5, alias) : is(c5, SQL) ? mapColumnsInSQLToAlias(c5, alias) : is(c5, SQL.Aliased) ? mapColumnsInAliasedSQLToAlias(c5, alias) : c5));
+  return sql.join(query.queryChunks.map((c4) => is(c4, Column) ? aliasedTableColumn(c4, alias) : is(c4, SQL) ? mapColumnsInSQLToAlias(c4, alias) : is(c4, SQL.Aliased) ? mapColumnsInAliasedSQLToAlias(c4, alias) : c4));
 }
 
-// ../../node_modules/drizzle-orm/column-builder.js
-var _a22, ColumnBuilder = class {
+// ../../node_modules/.pnpm/drizzle-orm@0.29.1_@cloudflare+workers-types@4.20231218.0/node_modules/drizzle-orm/selection-proxy.js
+var _a25, _SelectionProxyHandler = class {
+  config;
+  constructor(config2) {
+    this.config = { ...config2 };
+  }
+  get(subquery, prop) {
+    if (prop === SubqueryConfig)
+      return {
+        ...subquery[SubqueryConfig],
+        selection: new Proxy(
+          subquery[SubqueryConfig].selection,
+          this
+        )
+      };
+    if (prop === ViewBaseConfig)
+      return {
+        ...subquery[ViewBaseConfig],
+        selectedFields: new Proxy(
+          subquery[ViewBaseConfig].selectedFields,
+          this
+        )
+      };
+    if (typeof prop == "symbol")
+      return subquery[prop];
+    let value = (is(subquery, Subquery) ? subquery[SubqueryConfig].selection : is(subquery, View) ? subquery[ViewBaseConfig].selectedFields : subquery)[prop];
+    if (is(value, SQL.Aliased)) {
+      if (this.config.sqlAliasedBehavior === "sql" && !value.isSelectionField)
+        return value.sql;
+      let newValue = value.clone();
+      return newValue.isSelectionField = !0, newValue;
+    }
+    if (is(value, SQL)) {
+      if (this.config.sqlBehavior === "sql")
+        return value;
+      throw new Error(
+        `You tried to reference "${prop}" field from a subquery, which is a raw SQL field, but it doesn't have an alias declared. Please add an alias to the field using ".as('alias')" method.`
+      );
+    }
+    return is(value, Column) ? this.config.alias ? new Proxy(
+      value,
+      new ColumnAliasProxyHandler(
+        new Proxy(
+          value.table,
+          new TableAliasProxyHandler(this.config.alias, this.config.replaceOriginalName ?? !1)
+        )
+      )
+    ) : value : typeof value != "object" || value === null ? value : new Proxy(value, new _SelectionProxyHandler(this.config));
+  }
+}, SelectionProxyHandler = _SelectionProxyHandler;
+_a25 = entityKind, __publicField(SelectionProxyHandler, _a25, "SelectionProxyHandler");
+
+// ../../node_modules/.pnpm/drizzle-orm@0.29.1_@cloudflare+workers-types@4.20231218.0/node_modules/drizzle-orm/query-promise.js
+var _a26, QueryPromise = class {
+  [(_a26 = entityKind, Symbol.toStringTag)] = "QueryPromise";
+  catch(onRejected) {
+    return this.then(void 0, onRejected);
+  }
+  finally(onFinally) {
+    return this.then(
+      (value) => (onFinally?.(), value),
+      (reason) => {
+        throw onFinally?.(), reason;
+      }
+    );
+  }
+  then(onFulfilled, onRejected) {
+    return this.execute().then(onFulfilled, onRejected);
+  }
+};
+__publicField(QueryPromise, _a26, "QueryPromise");
+
+// ../../node_modules/.pnpm/drizzle-orm@0.29.1_@cloudflare+workers-types@4.20231218.0/node_modules/drizzle-orm/sqlite-core/table.js
+var InlineForeignKeys2 = Symbol.for("drizzle:SQLiteInlineForeignKeys"), _a27, SQLiteTable = class extends Table {
+  /** @internal */
+  [(_a27 = entityKind, Table.Symbol.Columns)];
+  /** @internal */
+  [InlineForeignKeys2] = [];
+  /** @internal */
+  [Table.Symbol.ExtraConfigBuilder] = void 0;
+};
+__publicField(SQLiteTable, _a27, "SQLiteTable"), /** @internal */
+__publicField(SQLiteTable, "Symbol", Object.assign({}, Table.Symbol, {
+  InlineForeignKeys: InlineForeignKeys2
+}));
+function sqliteTableBase(name, columns, extraConfig, schema, baseName = name) {
+  let rawTable = new SQLiteTable(name, schema, baseName), builtColumns = Object.fromEntries(
+    Object.entries(columns).map(([name2, colBuilderBase]) => {
+      let colBuilder = colBuilderBase, column = colBuilder.build(rawTable);
+      return rawTable[InlineForeignKeys2].push(...colBuilder.buildForeignKeys(column, rawTable)), [name2, column];
+    })
+  ), table = Object.assign(rawTable, builtColumns);
+  return table[Table.Symbol.Columns] = builtColumns, extraConfig && (table[SQLiteTable.Symbol.ExtraConfigBuilder] = extraConfig), table;
+}
+var sqliteTable = (name, columns, extraConfig) => sqliteTableBase(name, columns, extraConfig);
+
+// ../../node_modules/.pnpm/drizzle-orm@0.29.1_@cloudflare+workers-types@4.20231218.0/node_modules/drizzle-orm/utils.js
+function mapResultRow(columns, row, joinsNotNullableMap) {
+  let nullifyMap = {}, result = columns.reduce(
+    (result2, { path, field }, columnIndex) => {
+      let decoder;
+      is(field, Column) ? decoder = field : is(field, SQL) ? decoder = field.decoder : decoder = field.sql.decoder;
+      let node = result2;
+      for (let [pathChunkIndex, pathChunk] of path.entries())
+        if (pathChunkIndex < path.length - 1)
+          pathChunk in node || (node[pathChunk] = {}), node = node[pathChunk];
+        else {
+          let rawValue = row[columnIndex], value = node[pathChunk] = rawValue === null ? null : decoder.mapFromDriverValue(rawValue);
+          if (joinsNotNullableMap && is(field, Column) && path.length === 2) {
+            let objectName = path[0];
+            objectName in nullifyMap ? typeof nullifyMap[objectName] == "string" && nullifyMap[objectName] !== getTableName(field.table) && (nullifyMap[objectName] = !1) : nullifyMap[objectName] = value === null ? getTableName(field.table) : !1;
+          }
+        }
+      return result2;
+    },
+    {}
+  );
+  if (joinsNotNullableMap && Object.keys(nullifyMap).length > 0)
+    for (let [objectName, tableName] of Object.entries(nullifyMap))
+      typeof tableName == "string" && !joinsNotNullableMap[tableName] && (result[objectName] = null);
+  return result;
+}
+function orderSelectedFields(fields, pathPrefix) {
+  return Object.entries(fields).reduce((result, [name, field]) => {
+    if (typeof name != "string")
+      return result;
+    let newPath = pathPrefix ? [...pathPrefix, name] : [name];
+    return is(field, Column) || is(field, SQL) || is(field, SQL.Aliased) ? result.push({ path: newPath, field }) : is(field, Table) ? result.push(...orderSelectedFields(field[Table.Symbol.Columns], newPath)) : result.push(...orderSelectedFields(field, newPath)), result;
+  }, []);
+}
+function haveSameKeys(left, right) {
+  let leftKeys = Object.keys(left), rightKeys = Object.keys(right);
+  if (leftKeys.length !== rightKeys.length)
+    return !1;
+  for (let [index2, key] of leftKeys.entries())
+    if (key !== rightKeys[index2])
+      return !1;
+  return !0;
+}
+function mapUpdateSet(table, values) {
+  let entries = Object.entries(values).filter(([, value]) => value !== void 0).map(([key, value]) => is(value, SQL) ? [key, value] : [key, new Param(value, table[Table.Symbol.Columns][key])]);
+  if (entries.length === 0)
+    throw new Error("No values to set");
+  return Object.fromEntries(entries);
+}
+function applyMixins(baseClass, extendedClasses) {
+  for (let extendedClass of extendedClasses)
+    for (let name of Object.getOwnPropertyNames(extendedClass.prototype))
+      Object.defineProperty(
+        baseClass.prototype,
+        name,
+        Object.getOwnPropertyDescriptor(extendedClass.prototype, name) || /* @__PURE__ */ Object.create(null)
+      );
+}
+function getTableColumns(table) {
+  return table[Table.Symbol.Columns];
+}
+function getTableLikeName(table) {
+  return is(table, Subquery) ? table[SubqueryConfig].alias : is(table, View) ? table[ViewBaseConfig].name : is(table, SQL) ? void 0 : table[Table.Symbol.IsAlias] ? table[Table.Symbol.Name] : table[Table.Symbol.BaseName];
+}
+
+// ../../node_modules/.pnpm/drizzle-orm@0.29.1_@cloudflare+workers-types@4.20231218.0/node_modules/drizzle-orm/sqlite-core/query-builders/delete.js
+var _a28, SQLiteDeleteBase = class extends QueryPromise {
+  constructor(table, session, dialect) {
+    super(), this.table = table, this.session = session, this.dialect = dialect, this.config = { table };
+  }
+  /** @internal */
+  config;
+  /** 
+   * Adds a `where` clause to the query.
+   * 
+   * Calling this method will delete only those rows that fulfill a specified condition.
+   * 
+   * See docs: {@link https://orm.drizzle.team/docs/delete}
+   * 
+   * @param where the `where` clause.
+   * 
+   * @example
+   * You can use conditional operators and `sql function` to filter the rows to be deleted.
+   * 
+   * ```ts
+   * // Delete all cars with green color
+   * db.delete(cars).where(eq(cars.color, 'green'));
+   * // or
+   * db.delete(cars).where(sql`${cars.color} = 'green'`)
+   * ```
+   * 
+   * You can logically combine conditional operators with `and()` and `or()` operators:
+   * 
+   * ```ts
+   * // Delete all BMW cars with a green color
+   * db.delete(cars).where(and(eq(cars.color, 'green'), eq(cars.brand, 'BMW')));
+   * 
+   * // Delete all cars with the green or blue color
+   * db.delete(cars).where(or(eq(cars.color, 'green'), eq(cars.color, 'blue')));
+   * ```
+  */
+  where(where) {
+    return this.config.where = where, this;
+  }
+  returning(fields = this.table[SQLiteTable.Symbol.Columns]) {
+    return this.config.returning = orderSelectedFields(fields), this;
+  }
+  /** @internal */
+  getSQL() {
+    return this.dialect.buildDeleteQuery(this.config);
+  }
+  toSQL() {
+    let { typings: _typings, ...rest } = this.dialect.sqlToQuery(this.getSQL());
+    return rest;
+  }
+  prepare(isOneTimeQuery) {
+    return this.session[isOneTimeQuery ? "prepareOneTimeQuery" : "prepareQuery"](
+      this.dialect.sqlToQuery(this.getSQL()),
+      this.config.returning,
+      this.config.returning ? "all" : "run"
+    );
+  }
+  run = (placeholderValues) => this.prepare(!0).run(placeholderValues);
+  all = (placeholderValues) => this.prepare(!0).all(placeholderValues);
+  get = (placeholderValues) => this.prepare(!0).get(placeholderValues);
+  values = (placeholderValues) => this.prepare(!0).values(placeholderValues);
+  async execute(placeholderValues) {
+    return this.prepare(!0).execute(placeholderValues);
+  }
+  $dynamic() {
+    return this;
+  }
+};
+_a28 = entityKind, __publicField(SQLiteDeleteBase, _a28, "SQLiteDelete");
+
+// ../../node_modules/.pnpm/drizzle-orm@0.29.1_@cloudflare+workers-types@4.20231218.0/node_modules/drizzle-orm/sqlite-core/query-builders/insert.js
+var _a29, SQLiteInsertBuilder = class {
+  constructor(table, session, dialect) {
+    this.table = table, this.session = session, this.dialect = dialect;
+  }
+  values(values) {
+    if (values = Array.isArray(values) ? values : [values], values.length === 0)
+      throw new Error("values() must be called with at least one value");
+    let mappedValues = values.map((entry2) => {
+      let result = {}, cols = this.table[Table.Symbol.Columns];
+      for (let colKey of Object.keys(entry2)) {
+        let colValue = entry2[colKey];
+        result[colKey] = is(colValue, SQL) ? colValue : new Param(colValue, cols[colKey]);
+      }
+      return result;
+    });
+    return new SQLiteInsertBase(this.table, mappedValues, this.session, this.dialect);
+  }
+};
+_a29 = entityKind, __publicField(SQLiteInsertBuilder, _a29, "SQLiteInsertBuilder");
+var _a30, SQLiteInsertBase = class extends QueryPromise {
+  constructor(table, values, session, dialect) {
+    super(), this.session = session, this.dialect = dialect, this.config = { table, values };
+  }
+  /** @internal */
+  config;
+  returning(fields = this.config.table[SQLiteTable.Symbol.Columns]) {
+    return this.config.returning = orderSelectedFields(fields), this;
+  }
+  /**
+   * Adds an `on conflict do nothing` clause to the query.
+   * 
+   * Calling this method simply avoids inserting a row as its alternative action.
+   * 
+   * See docs: {@link https://orm.drizzle.team/docs/insert#on-conflict-do-nothing}
+   * 
+   * @param config The `target` and `where` clauses.
+   * 
+   * @example
+   * ```ts
+   * // Insert one row and cancel the insert if there's a conflict
+   * await db.insert(cars)
+   *   .values({ id: 1, brand: 'BMW' })
+   *   .onConflictDoNothing();
+   * 
+   * // Explicitly specify conflict target
+   * await db.insert(cars)
+   *   .values({ id: 1, brand: 'BMW' })
+   *   .onConflictDoNothing({ target: cars.id });
+   * ```
+   */
+  onConflictDoNothing(config2 = {}) {
+    if (config2.target === void 0)
+      this.config.onConflict = sql`do nothing`;
+    else {
+      let targetSql = Array.isArray(config2.target) ? sql`${config2.target}` : sql`${[config2.target]}`, whereSql = config2.where ? sql` where ${config2.where}` : sql``;
+      this.config.onConflict = sql`${targetSql} do nothing${whereSql}`;
+    }
+    return this;
+  }
+  /**
+   * Adds an `on conflict do update` clause to the query.
+   * 
+   * Calling this method will update the existing row that conflicts with the row proposed for insertion as its alternative action.
+   * 
+   * See docs: {@link https://orm.drizzle.team/docs/insert#upserts-and-conflicts} 
+   * 
+   * @param config The `target`, `set` and `where` clauses.
+   * 
+   * @example
+   * ```ts
+   * // Update the row if there's a conflict
+   * await db.insert(cars)
+   *   .values({ id: 1, brand: 'BMW' })
+   *   .onConflictDoUpdate({ 
+   *     target: cars.id, 
+   *     set: { brand: 'Porsche' } 
+   *   });
+   * 
+   * // Upsert with 'where' clause
+   * await db.insert(cars)
+   *   .values({ id: 1, brand: 'BMW' })
+   *   .onConflictDoUpdate({
+   *     target: cars.id,
+   *     set: { brand: 'newBMW' },
+   *     where: sql`${cars.createdAt} > '2023-01-01'::date`,
+   *   });
+   * ```
+   */
+  onConflictDoUpdate(config2) {
+    let targetSql = Array.isArray(config2.target) ? sql`${config2.target}` : sql`${[config2.target]}`, whereSql = config2.where ? sql` where ${config2.where}` : sql``, setSql = this.dialect.buildUpdateSet(this.config.table, mapUpdateSet(this.config.table, config2.set));
+    return this.config.onConflict = sql`${targetSql} do update set ${setSql}${whereSql}`, this;
+  }
+  /** @internal */
+  getSQL() {
+    return this.dialect.buildInsertQuery(this.config);
+  }
+  toSQL() {
+    let { typings: _typings, ...rest } = this.dialect.sqlToQuery(this.getSQL());
+    return rest;
+  }
+  prepare(isOneTimeQuery) {
+    return this.session[isOneTimeQuery ? "prepareOneTimeQuery" : "prepareQuery"](
+      this.dialect.sqlToQuery(this.getSQL()),
+      this.config.returning,
+      this.config.returning ? "all" : "run"
+    );
+  }
+  run = (placeholderValues) => this.prepare(!0).run(placeholderValues);
+  all = (placeholderValues) => this.prepare(!0).all(placeholderValues);
+  get = (placeholderValues) => this.prepare(!0).get(placeholderValues);
+  values = (placeholderValues) => this.prepare(!0).values(placeholderValues);
+  async execute() {
+    return this.config.returning ? this.all() : this.run();
+  }
+  $dynamic() {
+    return this;
+  }
+};
+_a30 = entityKind, __publicField(SQLiteInsertBase, _a30, "SQLiteInsert");
+
+// ../../node_modules/.pnpm/drizzle-orm@0.29.1_@cloudflare+workers-types@4.20231218.0/node_modules/drizzle-orm/errors.js
+var _a31, DrizzleError = class extends Error {
+  constructor({ message, cause }) {
+    super(message), this.name = "DrizzleError", this.cause = cause;
+  }
+};
+_a31 = entityKind, __publicField(DrizzleError, _a31, "DrizzleError");
+var _a32, TransactionRollbackError = class extends DrizzleError {
+  constructor() {
+    super({ message: "Rollback" });
+  }
+};
+_a32 = entityKind, __publicField(TransactionRollbackError, _a32, "TransactionRollbackError");
+
+// ../../node_modules/.pnpm/drizzle-orm@0.29.1_@cloudflare+workers-types@4.20231218.0/node_modules/drizzle-orm/column-builder.js
+var _a33, ColumnBuilder = class {
   config;
   constructor(name, dataType, columnType) {
     this.config = {
@@ -33423,34 +34476,10 @@ var _a22, ColumnBuilder = class {
     return this.config.primaryKey = !0, this.config.notNull = !0, this;
   }
 };
-_a22 = entityKind, __publicField(ColumnBuilder, _a22, "ColumnBuilder");
+_a33 = entityKind, __publicField(ColumnBuilder, _a33, "ColumnBuilder");
 
-// ../../node_modules/drizzle-orm/sqlite-core/table.js
-var InlineForeignKeys2 = Symbol.for("drizzle:SQLiteInlineForeignKeys"), _a23, SQLiteTable = class extends Table {
-  /** @internal */
-  [(_a23 = entityKind, Table.Symbol.Columns)];
-  /** @internal */
-  [InlineForeignKeys2] = [];
-  /** @internal */
-  [Table.Symbol.ExtraConfigBuilder] = void 0;
-};
-__publicField(SQLiteTable, _a23, "SQLiteTable"), /** @internal */
-__publicField(SQLiteTable, "Symbol", Object.assign({}, Table.Symbol, {
-  InlineForeignKeys: InlineForeignKeys2
-}));
-function sqliteTableBase(name, columns, extraConfig, schema, baseName = name) {
-  let rawTable = new SQLiteTable(name, schema, baseName), builtColumns = Object.fromEntries(
-    Object.entries(columns).map(([name2, colBuilderBase]) => {
-      let colBuilder = colBuilderBase, column = colBuilder.build(rawTable);
-      return rawTable[InlineForeignKeys2].push(...colBuilder.buildForeignKeys(column, rawTable)), [name2, column];
-    })
-  ), table = Object.assign(rawTable, builtColumns);
-  return table[Table.Symbol.Columns] = builtColumns, extraConfig && (table[SQLiteTable.Symbol.ExtraConfigBuilder] = extraConfig), table;
-}
-var sqliteTable = (name, columns, extraConfig) => sqliteTableBase(name, columns, extraConfig);
-
-// ../../node_modules/drizzle-orm/sqlite-core/foreign-keys.js
-var _a24, ForeignKeyBuilder = class {
+// ../../node_modules/.pnpm/drizzle-orm@0.29.1_@cloudflare+workers-types@4.20231218.0/node_modules/drizzle-orm/sqlite-core/foreign-keys.js
+var _a34, ForeignKeyBuilder = class {
   /** @internal */
   reference;
   /** @internal */
@@ -33474,8 +34503,8 @@ var _a24, ForeignKeyBuilder = class {
     return new ForeignKey(table, this);
   }
 };
-_a24 = entityKind, __publicField(ForeignKeyBuilder, _a24, "SQLiteForeignKeyBuilder");
-var _a25, ForeignKey = class {
+_a34 = entityKind, __publicField(ForeignKeyBuilder, _a34, "SQLiteForeignKeyBuilder");
+var _a35, ForeignKey = class {
   constructor(table, builder) {
     this.table = table, this.reference = builder.reference, this.onUpdate = builder._onUpdate, this.onDelete = builder._onDelete;
   }
@@ -33492,13 +34521,13 @@ var _a25, ForeignKey = class {
     return name ?? `${chunks.join("_")}_fk`;
   }
 };
-_a25 = entityKind, __publicField(ForeignKey, _a25, "SQLiteForeignKey");
+_a35 = entityKind, __publicField(ForeignKey, _a35, "SQLiteForeignKey");
 
-// ../../node_modules/drizzle-orm/sqlite-core/unique-constraint.js
+// ../../node_modules/.pnpm/drizzle-orm@0.29.1_@cloudflare+workers-types@4.20231218.0/node_modules/drizzle-orm/sqlite-core/unique-constraint.js
 function uniqueKeyName(table, columns) {
   return `${table[SQLiteTable.Symbol.Name]}_${columns.join("_")}_unique`;
 }
-var _a26, UniqueConstraintBuilder = class {
+var _a36, UniqueConstraintBuilder = class {
   constructor(columns, name) {
     this.name = name, this.columns = columns;
   }
@@ -33509,8 +34538,8 @@ var _a26, UniqueConstraintBuilder = class {
     return new UniqueConstraint(table, this.columns, this.name);
   }
 };
-_a26 = entityKind, __publicField(UniqueConstraintBuilder, _a26, "SQLiteUniqueConstraintBuilder");
-var _a27, UniqueOnConstraintBuilder = class {
+_a36 = entityKind, __publicField(UniqueConstraintBuilder, _a36, "SQLiteUniqueConstraintBuilder");
+var _a37, UniqueOnConstraintBuilder = class {
   /** @internal */
   name;
   constructor(name) {
@@ -33520,8 +34549,8 @@ var _a27, UniqueOnConstraintBuilder = class {
     return new UniqueConstraintBuilder(columns, this.name);
   }
 };
-_a27 = entityKind, __publicField(UniqueOnConstraintBuilder, _a27, "SQLiteUniqueOnConstraintBuilder");
-var _a28, UniqueConstraint = class {
+_a37 = entityKind, __publicField(UniqueOnConstraintBuilder, _a37, "SQLiteUniqueOnConstraintBuilder");
+var _a38, UniqueConstraint = class {
   constructor(table, columns, name) {
     this.table = table, this.columns = columns, this.name = name ?? uniqueKeyName(this.table, this.columns.map((column) => column.name));
   }
@@ -33531,10 +34560,10 @@ var _a28, UniqueConstraint = class {
     return this.name;
   }
 };
-_a28 = entityKind, __publicField(UniqueConstraint, _a28, "SQLiteUniqueConstraint");
+_a38 = entityKind, __publicField(UniqueConstraint, _a38, "SQLiteUniqueConstraint");
 
-// ../../node_modules/drizzle-orm/sqlite-core/columns/common.js
-var _a29, SQLiteColumnBuilder = class extends ColumnBuilder {
+// ../../node_modules/.pnpm/drizzle-orm@0.29.1_@cloudflare+workers-types@4.20231218.0/node_modules/drizzle-orm/sqlite-core/columns/common.js
+var _a39, SQLiteColumnBuilder = class extends ColumnBuilder {
   foreignKeyConfigs = [];
   references(ref, actions = {}) {
     return this.foreignKeyConfigs.push({ ref, actions }), this;
@@ -33553,16 +34582,16 @@ var _a29, SQLiteColumnBuilder = class extends ColumnBuilder {
     })(ref, actions));
   }
 };
-_a29 = entityKind, __publicField(SQLiteColumnBuilder, _a29, "SQLiteColumnBuilder");
-var _a30, SQLiteColumn = class extends Column {
+_a39 = entityKind, __publicField(SQLiteColumnBuilder, _a39, "SQLiteColumnBuilder");
+var _a40, SQLiteColumn = class extends Column {
   constructor(table, config2) {
     config2.uniqueName || (config2.uniqueName = uniqueKeyName(table, [config2.name])), super(table, config2), this.table = table;
   }
 };
-_a30 = entityKind, __publicField(SQLiteColumn, _a30, "SQLiteColumn");
+_a40 = entityKind, __publicField(SQLiteColumn, _a40, "SQLiteColumn");
 
-// ../../node_modules/drizzle-orm/sqlite-core/columns/integer.js
-var _a31, SQLiteBaseIntegerBuilder = class extends SQLiteColumnBuilder {
+// ../../node_modules/.pnpm/drizzle-orm@0.29.1_@cloudflare+workers-types@4.20231218.0/node_modules/drizzle-orm/sqlite-core/columns/integer.js
+var _a41, SQLiteBaseIntegerBuilder = class extends SQLiteColumnBuilder {
   constructor(name, dataType, columnType) {
     super(name, dataType, columnType), this.config.autoIncrement = !1;
   }
@@ -33570,15 +34599,15 @@ var _a31, SQLiteBaseIntegerBuilder = class extends SQLiteColumnBuilder {
     return config2?.autoIncrement && (this.config.autoIncrement = !0), this.config.hasDefault = !0, super.primaryKey();
   }
 };
-_a31 = entityKind, __publicField(SQLiteBaseIntegerBuilder, _a31, "SQLiteBaseIntegerBuilder");
-var _a32, SQLiteBaseInteger = class extends SQLiteColumn {
+_a41 = entityKind, __publicField(SQLiteBaseIntegerBuilder, _a41, "SQLiteBaseIntegerBuilder");
+var _a42, SQLiteBaseInteger = class extends SQLiteColumn {
   autoIncrement = this.config.autoIncrement;
   getSQLType() {
     return "integer";
   }
 };
-_a32 = entityKind, __publicField(SQLiteBaseInteger, _a32, "SQLiteBaseInteger");
-var _a33, SQLiteIntegerBuilder = class extends SQLiteBaseIntegerBuilder {
+_a42 = entityKind, __publicField(SQLiteBaseInteger, _a42, "SQLiteBaseInteger");
+var _a43, SQLiteIntegerBuilder = class extends SQLiteBaseIntegerBuilder {
   constructor(name) {
     super(name, "number", "SQLiteInteger");
   }
@@ -33589,11 +34618,11 @@ var _a33, SQLiteIntegerBuilder = class extends SQLiteBaseIntegerBuilder {
     );
   }
 };
-_a33 = entityKind, __publicField(SQLiteIntegerBuilder, _a33, "SQLiteIntegerBuilder");
-var _a34, SQLiteInteger = class extends SQLiteBaseInteger {
+_a43 = entityKind, __publicField(SQLiteIntegerBuilder, _a43, "SQLiteIntegerBuilder");
+var _a44, SQLiteInteger = class extends SQLiteBaseInteger {
 };
-_a34 = entityKind, __publicField(SQLiteInteger, _a34, "SQLiteInteger");
-var _a35, SQLiteTimestampBuilder = class extends SQLiteBaseIntegerBuilder {
+_a44 = entityKind, __publicField(SQLiteInteger, _a44, "SQLiteInteger");
+var _a45, SQLiteTimestampBuilder = class extends SQLiteBaseIntegerBuilder {
   constructor(name, mode2) {
     super(name, "date", "SQLiteTimestamp"), this.config.mode = mode2;
   }
@@ -33612,8 +34641,8 @@ var _a35, SQLiteTimestampBuilder = class extends SQLiteBaseIntegerBuilder {
     );
   }
 };
-_a35 = entityKind, __publicField(SQLiteTimestampBuilder, _a35, "SQLiteTimestampBuilder");
-var _a36, SQLiteTimestamp = class extends SQLiteBaseInteger {
+_a45 = entityKind, __publicField(SQLiteTimestampBuilder, _a45, "SQLiteTimestampBuilder");
+var _a46, SQLiteTimestamp = class extends SQLiteBaseInteger {
   mode = this.config.mode;
   mapFromDriverValue(value) {
     return this.config.mode === "timestamp" ? new Date(value * 1e3) : new Date(value);
@@ -33623,8 +34652,8 @@ var _a36, SQLiteTimestamp = class extends SQLiteBaseInteger {
     return this.config.mode === "timestamp" ? Math.floor(unix / 1e3) : unix;
   }
 };
-_a36 = entityKind, __publicField(SQLiteTimestamp, _a36, "SQLiteTimestamp");
-var _a37, SQLiteBooleanBuilder = class extends SQLiteBaseIntegerBuilder {
+_a46 = entityKind, __publicField(SQLiteTimestamp, _a46, "SQLiteTimestamp");
+var _a47, SQLiteBooleanBuilder = class extends SQLiteBaseIntegerBuilder {
   constructor(name, mode2) {
     super(name, "boolean", "SQLiteBoolean"), this.config.mode = mode2;
   }
@@ -33635,8 +34664,8 @@ var _a37, SQLiteBooleanBuilder = class extends SQLiteBaseIntegerBuilder {
     );
   }
 };
-_a37 = entityKind, __publicField(SQLiteBooleanBuilder, _a37, "SQLiteBooleanBuilder");
-var _a38, SQLiteBoolean = class extends SQLiteBaseInteger {
+_a47 = entityKind, __publicField(SQLiteBooleanBuilder, _a47, "SQLiteBooleanBuilder");
+var _a48, SQLiteBoolean = class extends SQLiteBaseInteger {
   mode = this.config.mode;
   mapFromDriverValue(value) {
     return Number(value) === 1;
@@ -33645,13 +34674,34 @@ var _a38, SQLiteBoolean = class extends SQLiteBaseInteger {
     return value ? 1 : 0;
   }
 };
-_a38 = entityKind, __publicField(SQLiteBoolean, _a38, "SQLiteBoolean");
+_a48 = entityKind, __publicField(SQLiteBoolean, _a48, "SQLiteBoolean");
 function integer(name, config2) {
   return config2?.mode === "timestamp" || config2?.mode === "timestamp_ms" ? new SQLiteTimestampBuilder(name, config2.mode) : config2?.mode === "boolean" ? new SQLiteBooleanBuilder(name, config2.mode) : new SQLiteIntegerBuilder(name);
 }
 
-// ../../node_modules/drizzle-orm/sqlite-core/columns/text.js
-var _a39, SQLiteTextBuilder = class extends SQLiteColumnBuilder {
+// ../../node_modules/.pnpm/drizzle-orm@0.29.1_@cloudflare+workers-types@4.20231218.0/node_modules/drizzle-orm/sqlite-core/columns/real.js
+var _a49, SQLiteRealBuilder = class extends SQLiteColumnBuilder {
+  constructor(name) {
+    super(name, "number", "SQLiteReal");
+  }
+  /** @internal */
+  build(table) {
+    return new SQLiteReal(table, this.config);
+  }
+};
+_a49 = entityKind, __publicField(SQLiteRealBuilder, _a49, "SQLiteRealBuilder");
+var _a50, SQLiteReal = class extends SQLiteColumn {
+  getSQLType() {
+    return "real";
+  }
+};
+_a50 = entityKind, __publicField(SQLiteReal, _a50, "SQLiteReal");
+function real(name) {
+  return new SQLiteRealBuilder(name);
+}
+
+// ../../node_modules/.pnpm/drizzle-orm@0.29.1_@cloudflare+workers-types@4.20231218.0/node_modules/drizzle-orm/sqlite-core/columns/text.js
+var _a51, SQLiteTextBuilder = class extends SQLiteColumnBuilder {
   constructor(name, config2) {
     super(name, "string", "SQLiteText"), this.config.enumValues = config2.enum, this.config.length = config2.length;
   }
@@ -33660,8 +34710,8 @@ var _a39, SQLiteTextBuilder = class extends SQLiteColumnBuilder {
     return new SQLiteText(table, this.config);
   }
 };
-_a39 = entityKind, __publicField(SQLiteTextBuilder, _a39, "SQLiteTextBuilder");
-var _a40, SQLiteText = class extends SQLiteColumn {
+_a51 = entityKind, __publicField(SQLiteTextBuilder, _a51, "SQLiteTextBuilder");
+var _a52, SQLiteText = class extends SQLiteColumn {
   enumValues = this.config.enumValues;
   length = this.config.length;
   constructor(table, config2) {
@@ -33671,8 +34721,8 @@ var _a40, SQLiteText = class extends SQLiteColumn {
     return `text${this.config.length ? `(${this.config.length})` : ""}`;
   }
 };
-_a40 = entityKind, __publicField(SQLiteText, _a40, "SQLiteText");
-var _a41, SQLiteTextJsonBuilder = class extends SQLiteColumnBuilder {
+_a52 = entityKind, __publicField(SQLiteText, _a52, "SQLiteText");
+var _a53, SQLiteTextJsonBuilder = class extends SQLiteColumnBuilder {
   constructor(name) {
     super(name, "json", "SQLiteTextJson");
   }
@@ -33684,8 +34734,8 @@ var _a41, SQLiteTextJsonBuilder = class extends SQLiteColumnBuilder {
     );
   }
 };
-_a41 = entityKind, __publicField(SQLiteTextJsonBuilder, _a41, "SQLiteTextJsonBuilder");
-var _a42, SQLiteTextJson = class extends SQLiteColumn {
+_a53 = entityKind, __publicField(SQLiteTextJsonBuilder, _a53, "SQLiteTextJsonBuilder");
+var _a54, SQLiteTextJson = class extends SQLiteColumn {
   getSQLType() {
     return "text";
   }
@@ -33696,228 +34746,18 @@ var _a42, SQLiteTextJson = class extends SQLiteColumn {
     return JSON.stringify(value);
   }
 };
-_a42 = entityKind, __publicField(SQLiteTextJson, _a42, "SQLiteTextJson");
+_a54 = entityKind, __publicField(SQLiteTextJson, _a54, "SQLiteTextJson");
 function text(name, config2 = {}) {
   return config2.mode === "json" ? new SQLiteTextJsonBuilder(name) : new SQLiteTextBuilder(name, config2);
 }
 
-// ../../node_modules/drizzle-orm/query-promise.js
-var _a43, QueryPromise = class {
-  [(_a43 = entityKind, Symbol.toStringTag)] = "QueryPromise";
-  catch(onRejected) {
-    return this.then(void 0, onRejected);
-  }
-  finally(onFinally) {
-    return this.then(
-      (value) => (onFinally?.(), value),
-      (reason) => {
-        throw onFinally?.(), reason;
-      }
-    );
-  }
-  then(onFulfilled, onRejected) {
-    return this.execute().then(onFulfilled, onRejected);
-  }
+// ../../node_modules/.pnpm/drizzle-orm@0.29.1_@cloudflare+workers-types@4.20231218.0/node_modules/drizzle-orm/sqlite-core/view-base.js
+var _a55, SQLiteViewBase = class extends View {
 };
-__publicField(QueryPromise, _a43, "QueryPromise");
+_a55 = entityKind, __publicField(SQLiteViewBase, _a55, "SQLiteViewBase");
 
-// ../../node_modules/drizzle-orm/utils.js
-function mapResultRow(columns, row, joinsNotNullableMap) {
-  let nullifyMap = {}, result = columns.reduce(
-    (result2, { path, field }, columnIndex) => {
-      let decoder;
-      is(field, Column) ? decoder = field : is(field, SQL) ? decoder = field.decoder : decoder = field.sql.decoder;
-      let node = result2;
-      for (let [pathChunkIndex, pathChunk] of path.entries())
-        if (pathChunkIndex < path.length - 1)
-          pathChunk in node || (node[pathChunk] = {}), node = node[pathChunk];
-        else {
-          let rawValue = row[columnIndex], value = node[pathChunk] = rawValue === null ? null : decoder.mapFromDriverValue(rawValue);
-          if (joinsNotNullableMap && is(field, Column) && path.length === 2) {
-            let objectName = path[0];
-            objectName in nullifyMap ? typeof nullifyMap[objectName] == "string" && nullifyMap[objectName] !== getTableName(field.table) && (nullifyMap[objectName] = !1) : nullifyMap[objectName] = value === null ? getTableName(field.table) : !1;
-          }
-        }
-      return result2;
-    },
-    {}
-  );
-  if (joinsNotNullableMap && Object.keys(nullifyMap).length > 0)
-    for (let [objectName, tableName] of Object.entries(nullifyMap))
-      typeof tableName == "string" && !joinsNotNullableMap[tableName] && (result[objectName] = null);
-  return result;
-}
-function orderSelectedFields(fields, pathPrefix) {
-  return Object.entries(fields).reduce((result, [name, field]) => {
-    if (typeof name != "string")
-      return result;
-    let newPath = pathPrefix ? [...pathPrefix, name] : [name];
-    return is(field, Column) || is(field, SQL) || is(field, SQL.Aliased) ? result.push({ path: newPath, field }) : is(field, Table) ? result.push(...orderSelectedFields(field[Table.Symbol.Columns], newPath)) : result.push(...orderSelectedFields(field, newPath)), result;
-  }, []);
-}
-function haveSameKeys(left, right) {
-  let leftKeys = Object.keys(left), rightKeys = Object.keys(right);
-  if (leftKeys.length !== rightKeys.length)
-    return !1;
-  for (let [index, key] of leftKeys.entries())
-    if (key !== rightKeys[index])
-      return !1;
-  return !0;
-}
-function mapUpdateSet(table, values) {
-  let entries = Object.entries(values).filter(([, value]) => value !== void 0).map(([key, value]) => is(value, SQL) ? [key, value] : [key, new Param(value, table[Table.Symbol.Columns][key])]);
-  if (entries.length === 0)
-    throw new Error("No values to set");
-  return Object.fromEntries(entries);
-}
-function applyMixins(baseClass, extendedClasses) {
-  for (let extendedClass of extendedClasses)
-    for (let name of Object.getOwnPropertyNames(extendedClass.prototype))
-      Object.defineProperty(
-        baseClass.prototype,
-        name,
-        Object.getOwnPropertyDescriptor(extendedClass.prototype, name) || /* @__PURE__ */ Object.create(null)
-      );
-}
-function getTableColumns(table) {
-  return table[Table.Symbol.Columns];
-}
-function getTableLikeName(table) {
-  return is(table, Subquery) ? table[SubqueryConfig].alias : is(table, View) ? table[ViewBaseConfig].name : is(table, SQL) ? void 0 : table[Table.Symbol.IsAlias] ? table[Table.Symbol.Name] : table[Table.Symbol.BaseName];
-}
-
-// ../../node_modules/drizzle-orm/sqlite-core/query-builders/delete.js
-var _a44, SQLiteDeleteBase = class extends QueryPromise {
-  constructor(table, session, dialect) {
-    super(), this.table = table, this.session = session, this.dialect = dialect, this.config = { table };
-  }
-  /** @internal */
-  config;
-  where(where) {
-    return this.config.where = where, this;
-  }
-  returning(fields = this.table[SQLiteTable.Symbol.Columns]) {
-    return this.config.returning = orderSelectedFields(fields), this;
-  }
-  /** @internal */
-  getSQL() {
-    return this.dialect.buildDeleteQuery(this.config);
-  }
-  toSQL() {
-    let { typings: _typings, ...rest } = this.dialect.sqlToQuery(this.getSQL());
-    return rest;
-  }
-  prepare(isOneTimeQuery) {
-    return this.session[isOneTimeQuery ? "prepareOneTimeQuery" : "prepareQuery"](
-      this.dialect.sqlToQuery(this.getSQL()),
-      this.config.returning,
-      this.config.returning ? "all" : "run"
-    );
-  }
-  run = (placeholderValues) => this.prepare(!0).run(placeholderValues);
-  all = (placeholderValues) => this.prepare(!0).all(placeholderValues);
-  get = (placeholderValues) => this.prepare(!0).get(placeholderValues);
-  values = (placeholderValues) => this.prepare(!0).values(placeholderValues);
-  async execute(placeholderValues) {
-    return this.prepare(!0).execute(placeholderValues);
-  }
-  $dynamic() {
-    return this;
-  }
-};
-_a44 = entityKind, __publicField(SQLiteDeleteBase, _a44, "SQLiteDelete");
-
-// ../../node_modules/drizzle-orm/sqlite-core/query-builders/insert.js
-var _a45, SQLiteInsertBuilder = class {
-  constructor(table, session, dialect) {
-    this.table = table, this.session = session, this.dialect = dialect;
-  }
-  values(values) {
-    if (values = Array.isArray(values) ? values : [values], values.length === 0)
-      throw new Error("values() must be called with at least one value");
-    let mappedValues = values.map((entry2) => {
-      let result = {}, cols = this.table[Table.Symbol.Columns];
-      for (let colKey of Object.keys(entry2)) {
-        let colValue = entry2[colKey];
-        result[colKey] = is(colValue, SQL) ? colValue : new Param(colValue, cols[colKey]);
-      }
-      return result;
-    });
-    return new SQLiteInsertBase(this.table, mappedValues, this.session, this.dialect);
-  }
-};
-_a45 = entityKind, __publicField(SQLiteInsertBuilder, _a45, "SQLiteInsertBuilder");
-var _a46, SQLiteInsertBase = class extends QueryPromise {
-  constructor(table, values, session, dialect) {
-    super(), this.session = session, this.dialect = dialect, this.config = { table, values };
-  }
-  /** @internal */
-  config;
-  returning(fields = this.config.table[SQLiteTable.Symbol.Columns]) {
-    return this.config.returning = orderSelectedFields(fields), this;
-  }
-  onConflictDoNothing(config2 = {}) {
-    if (config2.target === void 0)
-      this.config.onConflict = sql`do nothing`;
-    else {
-      let targetSql = Array.isArray(config2.target) ? sql`${config2.target}` : sql`${[config2.target]}`, whereSql = config2.where ? sql` where ${config2.where}` : sql``;
-      this.config.onConflict = sql`${targetSql} do nothing${whereSql}`;
-    }
-    return this;
-  }
-  onConflictDoUpdate(config2) {
-    let targetSql = Array.isArray(config2.target) ? sql`${config2.target}` : sql`${[config2.target]}`, whereSql = config2.where ? sql` where ${config2.where}` : sql``, setSql = this.dialect.buildUpdateSet(this.config.table, mapUpdateSet(this.config.table, config2.set));
-    return this.config.onConflict = sql`${targetSql} do update set ${setSql}${whereSql}`, this;
-  }
-  /** @internal */
-  getSQL() {
-    return this.dialect.buildInsertQuery(this.config);
-  }
-  toSQL() {
-    let { typings: _typings, ...rest } = this.dialect.sqlToQuery(this.getSQL());
-    return rest;
-  }
-  prepare(isOneTimeQuery) {
-    return this.session[isOneTimeQuery ? "prepareOneTimeQuery" : "prepareQuery"](
-      this.dialect.sqlToQuery(this.getSQL()),
-      this.config.returning,
-      this.config.returning ? "all" : "run"
-    );
-  }
-  run = (placeholderValues) => this.prepare(!0).run(placeholderValues);
-  all = (placeholderValues) => this.prepare(!0).all(placeholderValues);
-  get = (placeholderValues) => this.prepare(!0).get(placeholderValues);
-  values = (placeholderValues) => this.prepare(!0).values(placeholderValues);
-  async execute() {
-    return this.config.returning ? this.all() : this.run();
-  }
-  $dynamic() {
-    return this;
-  }
-};
-_a46 = entityKind, __publicField(SQLiteInsertBase, _a46, "SQLiteInsert");
-
-// ../../node_modules/drizzle-orm/errors.js
-var _a47, DrizzleError = class extends Error {
-  constructor({ message, cause }) {
-    super(message), this.name = "DrizzleError", this.cause = cause;
-  }
-};
-_a47 = entityKind, __publicField(DrizzleError, _a47, "DrizzleError");
-var _a48, TransactionRollbackError = class extends DrizzleError {
-  constructor() {
-    super({ message: "Rollback" });
-  }
-};
-_a48 = entityKind, __publicField(TransactionRollbackError, _a48, "TransactionRollbackError");
-
-// ../../node_modules/drizzle-orm/sqlite-core/view-base.js
-var _a49, SQLiteViewBase = class extends View {
-};
-_a49 = entityKind, __publicField(SQLiteViewBase, _a49, "SQLiteViewBase");
-
-// ../../node_modules/drizzle-orm/sqlite-core/dialect.js
-var _a50, SQLiteDialect = class {
+// ../../node_modules/.pnpm/drizzle-orm@0.29.1_@cloudflare+workers-types@4.20231218.0/node_modules/drizzle-orm/sqlite-core/dialect.js
+var _a56, SQLiteDialect = class {
   escapeName(name) {
     return `"${name}"`;
   }
@@ -33964,7 +34804,7 @@ var _a50, SQLiteDialect = class {
         let query = is(field, SQL.Aliased) ? field.sql : field;
         isSingleTable ? chunk.push(
           new SQL(
-            query.queryChunks.map((c5) => is(c5, Column) ? sql.identifier(c5.name) : c5)
+            query.queryChunks.map((c4) => is(c4, Column) ? sql.identifier(c4.name) : c4)
           )
         ) : chunk.push(query), is(field, SQL.Aliased) && chunk.push(sql` as ${sql.identifier(field.fieldAlias)}`);
       } else if (is(field, Column)) {
@@ -34003,14 +34843,14 @@ var _a50, SQLiteDialect = class {
     let isSingleTable = !joins || joins.length === 0, withSql;
     if (withList?.length) {
       let withSqlChunks = [sql`with `];
-      for (let [i4, w2] of withList.entries())
-        withSqlChunks.push(sql`${sql.identifier(w2[SubqueryConfig].alias)} as (${w2[SubqueryConfig].sql})`), i4 < withList.length - 1 && withSqlChunks.push(sql`, `);
+      for (let [i4, w3] of withList.entries())
+        withSqlChunks.push(sql`${sql.identifier(w3[SubqueryConfig].alias)} as (${w3[SubqueryConfig].sql})`), i4 < withList.length - 1 && withSqlChunks.push(sql`, `);
       withSqlChunks.push(sql` `), withSql = sql.join(withSqlChunks);
     }
     let distinctSql = distinct ? sql` distinct` : void 0, selection = this.buildSelection(fieldsList, { isSingleTable }), tableSql = (() => is(table, Table) && table[Table.Symbol.OriginalName] !== table[Table.Symbol.Name] ? sql`${sql.identifier(table[Table.Symbol.OriginalName])} ${sql.identifier(table[Table.Symbol.Name])}` : table)(), joinsArray = [];
     if (joins)
-      for (let [index, joinMeta] of joins.entries()) {
-        index === 0 && joinsArray.push(sql` `);
+      for (let [index2, joinMeta] of joins.entries()) {
+        index2 === 0 && joinsArray.push(sql` `);
         let table2 = joinMeta.table;
         if (is(table2, SQLiteTable)) {
           let tableName = table2[SQLiteTable.Symbol.Name], tableSchema = table2[SQLiteTable.Symbol.Schema], origTableName = table2[SQLiteTable.Symbol.OriginalName], alias = tableName === origTableName ? void 0 : joinMeta.alias;
@@ -34021,16 +34861,16 @@ var _a50, SQLiteDialect = class {
           joinsArray.push(
             sql`${sql.raw(joinMeta.joinType)} join ${table2} on ${joinMeta.on}`
           );
-        index < joins.length - 1 && joinsArray.push(sql` `);
+        index2 < joins.length - 1 && joinsArray.push(sql` `);
       }
     let joinsSql = sql.join(joinsArray), whereSql = where ? sql` where ${where}` : void 0, havingSql = having ? sql` having ${having}` : void 0, orderByList = [];
     if (orderBy)
-      for (let [index, orderByValue] of orderBy.entries())
-        orderByList.push(orderByValue), index < orderBy.length - 1 && orderByList.push(sql`, `);
+      for (let [index2, orderByValue] of orderBy.entries())
+        orderByList.push(orderByValue), index2 < orderBy.length - 1 && orderByList.push(sql`, `);
     let groupByList = [];
     if (groupBy)
-      for (let [index, groupByValue] of groupBy.entries())
-        groupByList.push(groupByValue), index < groupBy.length - 1 && groupByList.push(sql`, `);
+      for (let [index2, groupByValue] of groupBy.entries())
+        groupByList.push(groupByValue), index2 < groupBy.length - 1 && groupByList.push(sql`, `);
     let groupBySql = groupByList.length > 0 ? sql` group by ${sql.join(groupByList)}` : void 0, orderBySql = orderByList.length > 0 ? sql` order by ${sql.join(orderByList)}` : void 0, limitSql = limit ? sql` limit ${limit}` : void 0, offsetSql = offset ? sql` offset ${offset}` : void 0, finalQuery = sql`${withSql}select${distinctSql} ${selection} from ${tableSql}${joinsSql}${whereSql}${groupBySql}${havingSql}${orderBySql}${limitSql}${offsetSql}`;
     return setOperators.length > 0 ? this.buildSetOperations(finalQuery, setOperators) : finalQuery;
   }
@@ -34131,7 +34971,7 @@ var _a50, SQLiteDialect = class {
         let isIncludeMode = !1;
         for (let [field, value] of Object.entries(config2.columns))
           value !== void 0 && field in tableConfig.columns && (!isIncludeMode && value === !0 && (isIncludeMode = !0), selectedColumns.push(field));
-        selectedColumns.length > 0 && (selectedColumns = isIncludeMode ? selectedColumns.filter((c5) => config2.columns?.[c5] === !0) : Object.keys(tableConfig.columns).filter((key) => !selectedColumns.includes(key)));
+        selectedColumns.length > 0 && (selectedColumns = isIncludeMode ? selectedColumns.filter((c4) => config2.columns?.[c4] === !0) : Object.keys(tableConfig.columns).filter((key) => !selectedColumns.includes(key)));
       } else
         selectedColumns = Object.keys(tableConfig.columns);
       for (let field of selectedColumns) {
@@ -34264,8 +35104,8 @@ var _a50, SQLiteDialect = class {
     };
   }
 };
-_a50 = entityKind, __publicField(SQLiteDialect, _a50, "SQLiteDialect");
-var _a51, SQLiteSyncDialect = class extends SQLiteDialect {
+_a56 = entityKind, __publicField(SQLiteDialect, _a56, "SQLiteDialect");
+var _a57, SQLiteSyncDialect = class extends SQLiteDialect {
   migrate(migrations, session) {
     let migrationTableCreate = sql`
 			CREATE TABLE IF NOT EXISTS "__drizzle_migrations" (
@@ -34294,8 +35134,8 @@ var _a51, SQLiteSyncDialect = class extends SQLiteDialect {
     }
   }
 };
-_a51 = entityKind, __publicField(SQLiteSyncDialect, _a51, "SQLiteSyncDialect");
-var _a52, SQLiteAsyncDialect = class extends SQLiteDialect {
+_a57 = entityKind, __publicField(SQLiteSyncDialect, _a57, "SQLiteSyncDialect");
+var _a58, SQLiteAsyncDialect = class extends SQLiteDialect {
   async migrate(migrations, session) {
     let migrationTableCreate = sql`
 			CREATE TABLE IF NOT EXISTS "__drizzle_migrations" (
@@ -34320,71 +35160,19 @@ var _a52, SQLiteAsyncDialect = class extends SQLiteDialect {
     });
   }
 };
-_a52 = entityKind, __publicField(SQLiteAsyncDialect, _a52, "SQLiteAsyncDialect");
+_a58 = entityKind, __publicField(SQLiteAsyncDialect, _a58, "SQLiteAsyncDialect");
 
-// ../../node_modules/drizzle-orm/query-builders/query-builder.js
-var _a53, TypedQueryBuilder = class {
+// ../../node_modules/.pnpm/drizzle-orm@0.29.1_@cloudflare+workers-types@4.20231218.0/node_modules/drizzle-orm/query-builders/query-builder.js
+var _a59, TypedQueryBuilder = class {
   /** @internal */
   getSelectedFields() {
     return this._.selectedFields;
   }
 };
-_a53 = entityKind, __publicField(TypedQueryBuilder, _a53, "TypedQueryBuilder");
+_a59 = entityKind, __publicField(TypedQueryBuilder, _a59, "TypedQueryBuilder");
 
-// ../../node_modules/drizzle-orm/selection-proxy.js
-var _a54, _SelectionProxyHandler = class {
-  config;
-  constructor(config2) {
-    this.config = { ...config2 };
-  }
-  get(subquery, prop) {
-    if (prop === SubqueryConfig)
-      return {
-        ...subquery[SubqueryConfig],
-        selection: new Proxy(
-          subquery[SubqueryConfig].selection,
-          this
-        )
-      };
-    if (prop === ViewBaseConfig)
-      return {
-        ...subquery[ViewBaseConfig],
-        selectedFields: new Proxy(
-          subquery[ViewBaseConfig].selectedFields,
-          this
-        )
-      };
-    if (typeof prop == "symbol")
-      return subquery[prop];
-    let value = (is(subquery, Subquery) ? subquery[SubqueryConfig].selection : is(subquery, View) ? subquery[ViewBaseConfig].selectedFields : subquery)[prop];
-    if (is(value, SQL.Aliased)) {
-      if (this.config.sqlAliasedBehavior === "sql" && !value.isSelectionField)
-        return value.sql;
-      let newValue = value.clone();
-      return newValue.isSelectionField = !0, newValue;
-    }
-    if (is(value, SQL)) {
-      if (this.config.sqlBehavior === "sql")
-        return value;
-      throw new Error(
-        `You tried to reference "${prop}" field from a subquery, which is a raw SQL field, but it doesn't have an alias declared. Please add an alias to the field using ".as('alias')" method.`
-      );
-    }
-    return is(value, Column) ? this.config.alias ? new Proxy(
-      value,
-      new ColumnAliasProxyHandler(
-        new Proxy(
-          value.table,
-          new TableAliasProxyHandler(this.config.alias, this.config.replaceOriginalName ?? !1)
-        )
-      )
-    ) : value : typeof value != "object" || value === null ? value : new Proxy(value, new _SelectionProxyHandler(this.config));
-  }
-}, SelectionProxyHandler = _SelectionProxyHandler;
-_a54 = entityKind, __publicField(SelectionProxyHandler, _a54, "SelectionProxyHandler");
-
-// ../../node_modules/drizzle-orm/sqlite-core/query-builders/select.js
-var _a55, SQLiteSelectBuilder = class {
+// ../../node_modules/.pnpm/drizzle-orm@0.29.1_@cloudflare+workers-types@4.20231218.0/node_modules/drizzle-orm/sqlite-core/query-builders/select.js
+var _a60, SQLiteSelectBuilder = class {
   fields;
   session;
   dialect;
@@ -34408,8 +35196,8 @@ var _a55, SQLiteSelectBuilder = class {
     });
   }
 };
-_a55 = entityKind, __publicField(SQLiteSelectBuilder, _a55, "SQLiteSelectBuilder");
-var _a56, SQLiteSelectQueryBuilderBase = class extends TypedQueryBuilder {
+_a60 = entityKind, __publicField(SQLiteSelectBuilder, _a60, "SQLiteSelectBuilder");
+var _a61, SQLiteSelectQueryBuilderBase = class extends TypedQueryBuilder {
   _;
   /** @internal */
   config;
@@ -34471,9 +35259,117 @@ var _a56, SQLiteSelectQueryBuilderBase = class extends TypedQueryBuilder {
       return this;
     };
   }
+  /**
+   * Executes a `left join` operation by adding another table to the current query.
+   * 
+   * Calling this method associates each row of the table with the corresponding row from the joined table, if a match is found. If no matching row exists, it sets all columns of the joined table to null.
+   * 
+   * See docs: {@link https://orm.drizzle.team/docs/joins#left-join}
+   * 
+   * @param table the table to join.
+   * @param on the `on` clause.
+   * 
+   * @example
+   * 
+   * ```ts
+   * // Select all users and their pets
+   * const usersWithPets: { user: User; pets: Pet | null }[] = await db.select()
+   *   .from(users)
+   *   .leftJoin(pets, eq(users.id, pets.ownerId))
+   * 
+   * // Select userId and petId
+   * const usersIdsAndPetIds: { userId: number; petId: number | null }[] = await db.select({
+   *   userId: users.id,
+   *   petId: pets.id,
+   * })
+   *   .from(users)
+   *   .leftJoin(pets, eq(users.id, pets.ownerId))
+   * ```
+   */
   leftJoin = this.createJoin("left");
+  /**
+   * Executes a `right join` operation by adding another table to the current query.
+   * 
+   * Calling this method associates each row of the joined table with the corresponding row from the main table, if a match is found. If no matching row exists, it sets all columns of the main table to null.
+   * 
+   * See docs: {@link https://orm.drizzle.team/docs/joins#right-join}
+   * 
+   * @param table the table to join.
+   * @param on the `on` clause.
+   * 
+   * @example
+   * 
+   * ```ts
+   * // Select all users and their pets
+   * const usersWithPets: { user: User | null; pets: Pet }[] = await db.select()
+   *   .from(users)
+   *   .rightJoin(pets, eq(users.id, pets.ownerId))
+   * 
+   * // Select userId and petId
+   * const usersIdsAndPetIds: { userId: number | null; petId: number }[] = await db.select({
+   *   userId: users.id,
+   *   petId: pets.id,
+   * })
+   *   .from(users)
+   *   .rightJoin(pets, eq(users.id, pets.ownerId))
+   * ```
+   */
   rightJoin = this.createJoin("right");
+  /**
+   * Executes an `inner join` operation, creating a new table by combining rows from two tables that have matching values.
+   * 
+   * Calling this method retrieves rows that have corresponding entries in both joined tables. Rows without matching entries in either table are excluded, resulting in a table that includes only matching pairs.
+   * 
+   * See docs: {@link https://orm.drizzle.team/docs/joins#inner-join}
+   * 
+   * @param table the table to join.
+   * @param on the `on` clause.
+   * 
+   * @example
+   * 
+   * ```ts
+   * // Select all users and their pets
+   * const usersWithPets: { user: User; pets: Pet }[] = await db.select()
+   *   .from(users)
+   *   .innerJoin(pets, eq(users.id, pets.ownerId))
+   * 
+   * // Select userId and petId
+   * const usersIdsAndPetIds: { userId: number; petId: number }[] = await db.select({
+   *   userId: users.id,
+   *   petId: pets.id,
+   * })
+   *   .from(users)
+   *   .innerJoin(pets, eq(users.id, pets.ownerId))
+   * ```
+   */
   innerJoin = this.createJoin("inner");
+  /**
+   * Executes a `full join` operation by combining rows from two tables into a new table.
+   * 
+   * Calling this method retrieves all rows from both main and joined tables, merging rows with matching values and filling in `null` for non-matching columns.
+   * 
+   * See docs: {@link https://orm.drizzle.team/docs/joins#full-join}
+   * 
+   * @param table the table to join.
+   * @param on the `on` clause.
+   * 
+   * @example
+   * 
+   * ```ts
+   * // Select all users and their pets
+   * const usersWithPets: { user: User | null; pets: Pet | null }[] = await db.select()
+   *   .from(users)
+   *   .fullJoin(pets, eq(users.id, pets.ownerId))
+   * 
+   * // Select userId and petId
+   * const usersIdsAndPetIds: { userId: number | null; petId: number | null }[] = await db.select({
+   *   userId: users.id,
+   *   petId: pets.id,
+   * })
+   *   .from(users)
+   *   .fullJoin(pets, eq(users.id, pets.ownerId))
+   * ```
+   */
   fullJoin = this.createJoin("full");
   createSetOperator(type, isAll) {
     return (rightSelection) => {
@@ -34485,14 +35381,143 @@ var _a56, SQLiteSelectQueryBuilderBase = class extends TypedQueryBuilder {
       return this.config.setOperators.push({ type, isAll, rightSelect }), this;
     };
   }
+  /**
+   * Adds `union` set operator to the query.
+   * 
+   * Calling this method will combine the result sets of the `select` statements and remove any duplicate rows that appear across them.
+   * 
+   * See docs: {@link https://orm.drizzle.team/docs/set-operations#union}
+   * 
+   * @example
+   * 
+   * ```ts
+   * // Select all unique names from customers and users tables
+   * await db.select({ name: users.name })
+   *   .from(users)
+   *   .union(
+   *     db.select({ name: customers.name }).from(customers)
+   *   );
+   * // or
+   * import { union } from 'drizzle-orm/sqlite-core'
+   * 
+   * await union(
+   *   db.select({ name: users.name }).from(users), 
+   *   db.select({ name: customers.name }).from(customers)
+   * );
+   * ```
+   */
   union = this.createSetOperator("union", !1);
+  /**
+   * Adds `union all` set operator to the query.
+   * 
+   * Calling this method will combine the result-set of the `select` statements and keep all duplicate rows that appear across them.
+   * 
+   * See docs: {@link https://orm.drizzle.team/docs/set-operations#union-all}
+   * 
+   * @example
+   * 
+   * ```ts
+   * // Select all transaction ids from both online and in-store sales
+   * await db.select({ transaction: onlineSales.transactionId })
+   *   .from(onlineSales)
+   *   .unionAll(
+   *     db.select({ transaction: inStoreSales.transactionId }).from(inStoreSales)
+   *   );
+   * // or
+   * import { unionAll } from 'drizzle-orm/sqlite-core'
+   * 
+   * await unionAll(
+   *   db.select({ transaction: onlineSales.transactionId }).from(onlineSales),
+   *   db.select({ transaction: inStoreSales.transactionId }).from(inStoreSales)
+   * );
+   * ```
+   */
   unionAll = this.createSetOperator("union", !0);
+  /**
+   * Adds `intersect` set operator to the query.
+   * 
+   * Calling this method will retain only the rows that are present in both result sets and eliminate duplicates.
+   * 
+   * See docs: {@link https://orm.drizzle.team/docs/set-operations#intersect}
+   * 
+   * @example
+   * 
+   * ```ts
+   * // Select course names that are offered in both departments A and B
+   * await db.select({ courseName: depA.courseName })
+   *   .from(depA)
+   *   .intersect(
+   *     db.select({ courseName: depB.courseName }).from(depB)
+   *   );
+   * // or
+   * import { intersect } from 'drizzle-orm/sqlite-core'
+   * 
+   * await intersect(
+   *   db.select({ courseName: depA.courseName }).from(depA),
+   *   db.select({ courseName: depB.courseName }).from(depB)
+   * );
+   * ```
+   */
   intersect = this.createSetOperator("intersect", !1);
+  /**
+   * Adds `except` set operator to the query.
+   * 
+   * Calling this method will retrieve all unique rows from the left query, except for the rows that are present in the result set of the right query.
+   * 
+   * See docs: {@link https://orm.drizzle.team/docs/set-operations#except}
+   * 
+   * @example
+   * 
+   * ```ts
+   * // Select all courses offered in department A but not in department B
+   * await db.select({ courseName: depA.courseName })
+   *   .from(depA)
+   *   .except(
+   *     db.select({ courseName: depB.courseName }).from(depB)
+   *   );
+   * // or
+   * import { except } from 'drizzle-orm/sqlite-core'
+   * 
+   * await except(
+   *   db.select({ courseName: depA.courseName }).from(depA),
+   *   db.select({ courseName: depB.courseName }).from(depB)
+   * );
+   * ```
+   */
   except = this.createSetOperator("except", !1);
   /** @internal */
   addSetOperators(setOperators) {
     return this.config.setOperators.push(...setOperators), this;
   }
+  /** 
+   * Adds a `where` clause to the query.
+   * 
+   * Calling this method will select only those rows that fulfill a specified condition.
+   * 
+   * See docs: {@link https://orm.drizzle.team/docs/select#filtering}
+   * 
+   * @param where the `where` clause.
+   * 
+   * @example
+   * You can use conditional operators and `sql function` to filter the rows to be selected.
+   * 
+   * ```ts
+   * // Select all cars with green color
+   * await db.select().from(cars).where(eq(cars.color, 'green'));
+   * // or
+   * await db.select().from(cars).where(sql`${cars.color} = 'green'`)
+   * ```
+   * 
+   * You can logically combine conditional operators with `and()` and `or()` operators:
+   * 
+   * ```ts
+   * // Select all BMW cars with a green color
+   * await db.select().from(cars).where(and(eq(cars.color, 'green'), eq(cars.brand, 'BMW')));
+   * 
+   * // Select all cars with the green or blue color
+   * await db.select().from(cars).where(or(eq(cars.color, 'green'), eq(cars.color, 'blue')));
+   * ```
+  */
   where(where) {
     return typeof where == "function" && (where = where(
       new Proxy(
@@ -34501,6 +35526,28 @@ var _a56, SQLiteSelectQueryBuilderBase = class extends TypedQueryBuilder {
       )
     )), this.config.where = where, this;
   }
+  /**
+   * Adds a `having` clause to the query.
+   * 
+   * Calling this method will select only those rows that fulfill a specified condition. It is typically used with aggregate functions to filter the aggregated data based on a specified condition.
+   * 
+   * See docs: {@link https://orm.drizzle.team/docs/select#aggregations}
+   * 
+   * @param having the `having` clause.
+   * 
+   * @example
+   * 
+   * ```ts
+   * // Select all brands with more than one car
+   * await db.select({
+   * 	brand: cars.brand,
+   * 	count: sql<number>`cast(count(${cars.id}) as int)`,
+   * })
+   *   .from(cars)
+   *   .groupBy(cars.brand)
+   *   .having(({ count }) => gt(count, 1));
+   * ```
+   */
   having(having) {
     return typeof having == "function" && (having = having(
       new Proxy(
@@ -34537,9 +35584,41 @@ var _a56, SQLiteSelectQueryBuilderBase = class extends TypedQueryBuilder {
     }
     return this;
   }
+  /**
+   * Adds a `limit` clause to the query.
+   * 
+   * Calling this method will set the maximum number of rows that will be returned by this query.
+   *
+   * See docs: {@link https://orm.drizzle.team/docs/select#limit--offset}
+   * 
+   * @param limit the `limit` clause.
+   * 
+   * @example
+   *
+   * ```ts
+   * // Get the first 10 people from this query.
+   * await db.select().from(people).limit(10);
+   * ```
+   */
   limit(limit) {
     return this.config.setOperators.length > 0 ? this.config.setOperators.at(-1).limit = limit : this.config.limit = limit, this;
   }
+  /**
+   * Adds an `offset` clause to the query.
+   * 
+   * Calling this method will skip a number of rows when returning results from this query.
+   * 
+   * See docs: {@link https://orm.drizzle.team/docs/select#limit--offset}
+   * 
+   * @param offset the `offset` clause.
+   * 
+   * @example
+   *
+   * ```ts
+   * // Get the 10th-20th people from this query.
+   * await db.select().from(people).offset(10).limit(10);
+   * ```
+   */
   offset(offset) {
     return this.config.setOperators.length > 0 ? this.config.setOperators.at(-1).offset = offset : this.config.offset = offset, this;
   }
@@ -34568,8 +35647,8 @@ var _a56, SQLiteSelectQueryBuilderBase = class extends TypedQueryBuilder {
     return this;
   }
 };
-_a56 = entityKind, __publicField(SQLiteSelectQueryBuilderBase, _a56, "SQLiteSelectQueryBuilder");
-var _a57, SQLiteSelectBase = class extends SQLiteSelectQueryBuilderBase {
+_a61 = entityKind, __publicField(SQLiteSelectQueryBuilderBase, _a61, "SQLiteSelectQueryBuilder");
+var _a62, SQLiteSelectBase = class extends SQLiteSelectQueryBuilderBase {
   prepare(isOneTimeQuery) {
     if (!this.session)
       throw new Error("Cannot execute a query on a query builder. Please use a database instance instead.");
@@ -34588,7 +35667,7 @@ var _a57, SQLiteSelectBase = class extends SQLiteSelectQueryBuilderBase {
     return this.all();
   }
 };
-_a57 = entityKind, __publicField(SQLiteSelectBase, _a57, "SQLiteSelect");
+_a62 = entityKind, __publicField(SQLiteSelectBase, _a62, "SQLiteSelect");
 applyMixins(SQLiteSelectBase, [QueryPromise]);
 function createSetOperator(type, isAll) {
   return (leftSelect, rightSelect, ...restSelects) => {
@@ -34612,8 +35691,8 @@ var getSQLiteSetOperators = () => ({
   except
 }), union = createSetOperator("union", !1), unionAll = createSetOperator("union", !0), intersect = createSetOperator("intersect", !1), except = createSetOperator("except", !1);
 
-// ../../node_modules/drizzle-orm/sqlite-core/query-builders/query-builder.js
-var _a58, QueryBuilder = class {
+// ../../node_modules/.pnpm/drizzle-orm@0.29.1_@cloudflare+workers-types@4.20231218.0/node_modules/drizzle-orm/sqlite-core/query-builders/query-builder.js
+var _a63, QueryBuilder = class {
   dialect;
   $with(alias) {
     let queryBuilder = this;
@@ -34663,10 +35742,10 @@ var _a58, QueryBuilder = class {
     return this.dialect || (this.dialect = new SQLiteSyncDialect()), this.dialect;
   }
 };
-_a58 = entityKind, __publicField(QueryBuilder, _a58, "SQLiteQueryBuilder");
+_a63 = entityKind, __publicField(QueryBuilder, _a63, "SQLiteQueryBuilder");
 
-// ../../node_modules/drizzle-orm/sqlite-core/query-builders/update.js
-var _a59, SQLiteUpdateBuilder = class {
+// ../../node_modules/.pnpm/drizzle-orm@0.29.1_@cloudflare+workers-types@4.20231218.0/node_modules/drizzle-orm/sqlite-core/query-builders/update.js
+var _a64, SQLiteUpdateBuilder = class {
   constructor(table, session, dialect) {
     this.table = table, this.session = session, this.dialect = dialect;
   }
@@ -34674,13 +35753,46 @@ var _a59, SQLiteUpdateBuilder = class {
     return new SQLiteUpdateBase(this.table, mapUpdateSet(this.table, values), this.session, this.dialect);
   }
 };
-_a59 = entityKind, __publicField(SQLiteUpdateBuilder, _a59, "SQLiteUpdateBuilder");
-var _a60, SQLiteUpdateBase = class extends QueryPromise {
+_a64 = entityKind, __publicField(SQLiteUpdateBuilder, _a64, "SQLiteUpdateBuilder");
+var _a65, SQLiteUpdateBase = class extends QueryPromise {
   constructor(table, set, session, dialect) {
     super(), this.session = session, this.dialect = dialect, this.config = { set, table };
   }
   /** @internal */
   config;
+  /**
+   * Adds a 'where' clause to the query.
+   * 
+   * Calling this method will update only those rows that fulfill a specified condition.
+   * 
+   * See docs: {@link https://orm.drizzle.team/docs/update}
+   * 
+   * @param where the 'where' clause.
+   * 
+   * @example
+   * You can use conditional operators and `sql function` to filter the rows to be updated.
+   * 
+   * ```ts
+   * // Update all cars with green color
+   * db.update(cars).set({ color: 'red' })
+   *   .where(eq(cars.color, 'green'));
+   * // or
+   * db.update(cars).set({ color: 'red' })
+   *   .where(sql`${cars.color} = 'green'`)
+   * ```
+   * 
+   * You can logically combine conditional operators with `and()` and `or()` operators:
+   * 
+   * ```ts
+   * // Update all BMW cars with a green color
+   * db.update(cars).set({ color: 'red' })
+   *   .where(and(eq(cars.color, 'green'), eq(cars.brand, 'BMW')));
+   * 
+   * // Update all cars with the green or blue color
+   * db.update(cars).set({ color: 'red' })
+   *   .where(or(eq(cars.color, 'green'), eq(cars.color, 'blue')));
+   * ```
+   */
   where(where) {
     return this.config.where = where, this;
   }
@@ -34713,10 +35825,10 @@ var _a60, SQLiteUpdateBase = class extends QueryPromise {
     return this;
   }
 };
-_a60 = entityKind, __publicField(SQLiteUpdateBase, _a60, "SQLiteUpdate");
+_a65 = entityKind, __publicField(SQLiteUpdateBase, _a65, "SQLiteUpdate");
 
-// ../../node_modules/drizzle-orm/sqlite-core/query-builders/query.js
-var _a61, RelationalQueryBuilder = class {
+// ../../node_modules/.pnpm/drizzle-orm@0.29.1_@cloudflare+workers-types@4.20231218.0/node_modules/drizzle-orm/sqlite-core/query-builders/query.js
+var _a66, RelationalQueryBuilder = class {
   constructor(mode2, fullSchema, schema, tableNamesMap, table, tableConfig, dialect, session) {
     this.mode = mode2, this.fullSchema = fullSchema, this.schema = schema, this.tableNamesMap = tableNamesMap, this.table = table, this.tableConfig = tableConfig, this.dialect = dialect, this.session = session;
   }
@@ -34767,8 +35879,8 @@ var _a61, RelationalQueryBuilder = class {
     );
   }
 };
-_a61 = entityKind, __publicField(RelationalQueryBuilder, _a61, "SQLiteAsyncRelationalQueryBuilder");
-var _a62, SQLiteRelationalQuery = class extends QueryPromise {
+_a66 = entityKind, __publicField(RelationalQueryBuilder, _a66, "SQLiteAsyncRelationalQueryBuilder");
+var _a67, SQLiteRelationalQuery = class extends QueryPromise {
   constructor(fullSchema, schema, tableNamesMap, table, tableConfig, dialect, session, config2, mode2) {
     super(), this.fullSchema = fullSchema, this.schema = schema, this.tableNamesMap = tableNamesMap, this.table = table, this.tableConfig = tableConfig, this.dialect = dialect, this.session = session, this.config = config2, this.mode = mode2;
   }
@@ -34823,16 +35935,16 @@ var _a62, SQLiteRelationalQuery = class extends QueryPromise {
     return this.executeRaw();
   }
 };
-_a62 = entityKind, __publicField(SQLiteRelationalQuery, _a62, "SQLiteAsyncRelationalQuery");
-var _a63, SQLiteSyncRelationalQuery = class extends SQLiteRelationalQuery {
+_a67 = entityKind, __publicField(SQLiteRelationalQuery, _a67, "SQLiteAsyncRelationalQuery");
+var _a68, SQLiteSyncRelationalQuery = class extends SQLiteRelationalQuery {
   sync() {
     return this.executeRaw();
   }
 };
-_a63 = entityKind, __publicField(SQLiteSyncRelationalQuery, _a63, "SQLiteSyncRelationalQuery");
+_a68 = entityKind, __publicField(SQLiteSyncRelationalQuery, _a68, "SQLiteSyncRelationalQuery");
 
-// ../../node_modules/drizzle-orm/sqlite-core/query-builders/raw.js
-var _a64, SQLiteRaw = class extends QueryPromise {
+// ../../node_modules/.pnpm/drizzle-orm@0.29.1_@cloudflare+workers-types@4.20231218.0/node_modules/drizzle-orm/sqlite-core/query-builders/raw.js
+var _a69, SQLiteRaw = class extends QueryPromise {
   constructor(cb, getSQLCb, action3, dialect, mapBatchResult) {
     super(), this.cb = cb, this.getSQLCb = getSQLCb, this.dialect = dialect, this.mapBatchResult = mapBatchResult, this.config = { action: action3 };
   }
@@ -34852,10 +35964,10 @@ var _a64, SQLiteRaw = class extends QueryPromise {
     };
   }
 };
-_a64 = entityKind, __publicField(SQLiteRaw, _a64, "SQLiteRaw");
+_a69 = entityKind, __publicField(SQLiteRaw, _a69, "SQLiteRaw");
 
-// ../../node_modules/drizzle-orm/sqlite-core/db.js
-var _a65, BaseSQLiteDatabase = class {
+// ../../node_modules/.pnpm/drizzle-orm@0.29.1_@cloudflare+workers-types@4.20231218.0/node_modules/drizzle-orm/sqlite-core/db.js
+var _a70, BaseSQLiteDatabase = class {
   constructor(resultKind, dialect, session, schema) {
     if (this.resultKind = resultKind, this.dialect = dialect, this.session = session, this._ = schema ? { schema: schema.schema, tableNamesMap: schema.tableNamesMap } : { schema: void 0, tableNamesMap: {} }, this.query = {}, this._.schema)
       for (let [tableName, columns] of Object.entries(this._.schema))
@@ -34871,6 +35983,38 @@ var _a65, BaseSQLiteDatabase = class {
         );
   }
   query;
+  /**
+   * Creates a subquery that defines a temporary named result set as a CTE.
+   * 
+   * It is useful for breaking down complex queries into simpler parts and for reusing the result set in subsequent parts of the query.
+   * 
+   * See docs: {@link https://orm.drizzle.team/docs/select#with-clause}
+   * 
+   * @param alias The alias for the subquery.
+   * 
+   * Failure to provide an alias will result in a DrizzleTypeError, preventing the subquery from being referenced in other queries.
+   * 
+   * @example
+   * 
+   * ```ts
+   * // Create a subquery with alias 'sq' and use it in the select query
+   * const sq = db.$with('sq').as(db.select().from(users).where(eq(users.id, 42)));
+   * 
+   * const result = await db.with(sq).select().from(sq);
+   * ```
+   * 
+   * To select arbitrary SQL values as fields in a CTE and reference them in other CTEs or in the main query, you need to add aliases to them:
+   * 
+   * ```ts
+   * // Select an arbitrary SQL value as a field in a CTE and reference it in the main query
+   * const sq = db.$with('sq').as(db.select({
+   *   name: sql<string>`upper(${users.name})`.as('name'),
+   * })
+   * .from(users));
+   * 
+   * const result = await db.with(sq).select({ name: sq.name }).from(sq);
+   * ```
+   */
   $with(alias) {
     return {
       as(qb) {
@@ -34881,6 +36025,25 @@ var _a65, BaseSQLiteDatabase = class {
       }
     };
   }
+  /**
+   * Incorporates a previously defined CTE (using `$with`) into the main query.
+   * 
+   * This method allows the main query to reference a temporary named result set.
+   * 
+   * See docs: {@link https://orm.drizzle.team/docs/select#with-clause}
+   * 
+   * @param queries The CTEs to incorporate into the main query.
+   * 
+   * @example
+   * 
+   * ```ts
+   * // Define a subquery 'sq' as a CTE using $with
+   * const sq = db.$with('sq').as(db.select().from(users).where(eq(users.id, 42)));
+   * 
+   * // Incorporate the CTE 'sq' into the main query and select from it
+   * const result = await db.with(sq).select().from(sq);
+   * ```
+   */
   with(...queries) {
     let self = this;
     function select(fields) {
@@ -34913,12 +36076,87 @@ var _a65, BaseSQLiteDatabase = class {
       distinct: !0
     });
   }
+  /**
+   * Creates an update query.
+   * 
+   * Calling this method without `.where()` clause will update all rows in a table. The `.where()` clause specifies which rows should be updated.
+   * 
+   * Use `.set()` method to specify which values to update.
+   * 
+   * See docs: {@link https://orm.drizzle.team/docs/update} 
+   * 
+   * @param table The table to update.
+   * 
+   * @example
+   * 
+   * ```ts
+   * // Update all rows in the 'cars' table
+   * await db.update(cars).set({ color: 'red' });
+   * 
+   * // Update rows with filters and conditions
+   * await db.update(cars).set({ color: 'red' }).where(eq(cars.brand, 'BMW'));
+   * 
+   * // Update with returning clause
+   * const updatedCar: Car[] = await db.update(cars)
+   *   .set({ color: 'red' })
+   *   .where(eq(cars.id, 1))
+   *   .returning();
+   * ```
+   */
   update(table) {
     return new SQLiteUpdateBuilder(table, this.session, this.dialect);
   }
+  /**
+   * Creates an insert query.
+   * 
+   * Calling this method will create new rows in a table. Use `.values()` method to specify which values to insert.
+   * 
+   * See docs: {@link https://orm.drizzle.team/docs/insert} 
+   * 
+   * @param table The table to insert into.
+   * 
+   * @example
+   * 
+   * ```ts
+   * // Insert one row
+   * await db.insert(cars).values({ brand: 'BMW' });
+   * 
+   * // Insert multiple rows
+   * await db.insert(cars).values([{ brand: 'BMW' }, { brand: 'Porsche' }]);
+   * 
+   * // Insert with returning clause
+   * const insertedCar: Car[] = await db.insert(cars)
+   *   .values({ brand: 'BMW' })
+   *   .returning();
+   * ```
+   */
   insert(into) {
     return new SQLiteInsertBuilder(into, this.session, this.dialect);
   }
+  /**
+   * Creates a delete query.
+   * 
+   * Calling this method without `.where()` clause will delete all rows in a table. The `.where()` clause specifies which rows should be deleted. 
+   * 
+   * See docs: {@link https://orm.drizzle.team/docs/delete}
+   *  
+   * @param table The table to delete from.
+   * 
+   * @example
+   * 
+   * ```ts
+   * // Delete all rows in the 'cars' table
+   * await db.delete(cars);
+   * 
+   * // Delete rows with filters and conditions
+   * await db.delete(cars).where(eq(cars.color, 'green'));
+   * 
+   * // Delete with returning clause
+   * const deletedCar: Car[] = await db.delete(cars)
+   *   .where(eq(cars.id, 1))
+   *   .returning();
+   * ```
+   */
   delete(from) {
     return new SQLiteDeleteBase(from, this.session, this.dialect);
   }
@@ -34966,70 +36204,57 @@ var _a65, BaseSQLiteDatabase = class {
     return this.session.transaction(transaction, config2);
   }
 };
-_a65 = entityKind, __publicField(BaseSQLiteDatabase, _a65, "BaseSQLiteDatabase");
+_a70 = entityKind, __publicField(BaseSQLiteDatabase, _a70, "BaseSQLiteDatabase");
 
-// ../../node_modules/drizzle-orm/sqlite-core/primary-keys.js
-function primaryKey(...config2) {
-  return config2[0].columns ? new PrimaryKeyBuilder2(config2[0].columns, config2[0].name) : new PrimaryKeyBuilder2(config2);
-}
-var _a66, PrimaryKeyBuilder2 = class {
+// ../../node_modules/.pnpm/drizzle-orm@0.29.1_@cloudflare+workers-types@4.20231218.0/node_modules/drizzle-orm/sqlite-core/indexes.js
+var _a71, IndexBuilderOn = class {
+  constructor(name, unique) {
+    this.name = name, this.unique = unique;
+  }
+  on(...columns) {
+    return new IndexBuilder(this.name, columns, this.unique);
+  }
+};
+_a71 = entityKind, __publicField(IndexBuilderOn, _a71, "SQLiteIndexBuilderOn");
+var _a72, IndexBuilder = class {
   /** @internal */
-  columns;
-  /** @internal */
-  name;
-  constructor(columns, name) {
-    this.columns = columns, this.name = name;
+  config;
+  constructor(name, columns, unique) {
+    this.config = {
+      name,
+      columns,
+      unique,
+      where: void 0
+    };
+  }
+  /**
+   * Condition for partial index.
+   */
+  where(condition) {
+    return this.config.where = condition, this;
   }
   /** @internal */
   build(table) {
-    return new PrimaryKey2(table, this.columns, this.name);
+    return new Index(this.config, table);
   }
 };
-_a66 = entityKind, __publicField(PrimaryKeyBuilder2, _a66, "SQLitePrimaryKeyBuilder");
-var _a67, PrimaryKey2 = class {
-  constructor(table, columns, name) {
-    this.table = table, this.columns = columns, this.name = name;
-  }
-  columns;
-  name;
-  getName() {
-    return this.name ?? `${this.table[SQLiteTable.Symbol.Name]}_${this.columns.map((column) => column.name).join("_")}_pk`;
+_a72 = entityKind, __publicField(IndexBuilder, _a72, "SQLiteIndexBuilder");
+var _a73, Index = class {
+  config;
+  constructor(config2, table) {
+    this.config = { ...config2, table };
   }
 };
-_a67 = entityKind, __publicField(PrimaryKey2, _a67, "SQLitePrimaryKey");
+_a73 = entityKind, __publicField(Index, _a73, "SQLiteIndex");
+function index(name) {
+  return new IndexBuilderOn(name, !1);
+}
+function uniqueIndex(name) {
+  return new IndexBuilderOn(name, !0);
+}
 
-// ../../node_modules/drizzle-orm/logger.js
-var _a68, ConsoleLogWriter = class {
-  write(message) {
-    console.log(message);
-  }
-};
-_a68 = entityKind, __publicField(ConsoleLogWriter, _a68, "ConsoleLogWriter");
-var _a69, DefaultLogger = class {
-  writer;
-  constructor(config2) {
-    this.writer = config2?.writer ?? new ConsoleLogWriter();
-  }
-  logQuery(query, params) {
-    let stringifiedParams = params.map((p5) => {
-      try {
-        return JSON.stringify(p5);
-      } catch {
-        return String(p5);
-      }
-    }), paramsStr = stringifiedParams.length ? ` -- params: [${stringifiedParams.join(", ")}]` : "";
-    this.writer.write(`Query: ${query}${paramsStr}`);
-  }
-};
-_a69 = entityKind, __publicField(DefaultLogger, _a69, "DefaultLogger");
-var _a70, NoopLogger = class {
-  logQuery() {
-  }
-};
-_a70 = entityKind, __publicField(NoopLogger, _a70, "NoopLogger");
-
-// ../../node_modules/drizzle-orm/sqlite-core/session.js
-var _a71, ExecuteResultSync = class extends QueryPromise {
+// ../../node_modules/.pnpm/drizzle-orm@0.29.1_@cloudflare+workers-types@4.20231218.0/node_modules/drizzle-orm/sqlite-core/session.js
+var _a74, ExecuteResultSync = class extends QueryPromise {
   constructor(resultCb) {
     super(), this.resultCb = resultCb;
   }
@@ -35040,8 +36265,8 @@ var _a71, ExecuteResultSync = class extends QueryPromise {
     return this.resultCb();
   }
 };
-_a71 = entityKind, __publicField(ExecuteResultSync, _a71, "ExecuteResultSync");
-var _a72, SQLitePreparedQuery = class {
+_a74 = entityKind, __publicField(ExecuteResultSync, _a74, "ExecuteResultSync");
+var _a75, SQLitePreparedQuery = class {
   constructor(mode2, executeMethod, query) {
     this.mode = mode2, this.executeMethod = executeMethod, this.query = query;
   }
@@ -35073,8 +36298,8 @@ var _a72, SQLitePreparedQuery = class {
     }
   }
 };
-_a72 = entityKind, __publicField(SQLitePreparedQuery, _a72, "PreparedQuery");
-var _a73, SQLiteSession = class {
+_a75 = entityKind, __publicField(SQLitePreparedQuery, _a75, "PreparedQuery");
+var _a76, SQLiteSession = class {
   constructor(dialect) {
     this.dialect = dialect;
   }
@@ -35115,8 +36340,8 @@ var _a73, SQLiteSession = class {
     throw new Error("Not implemented");
   }
 };
-_a73 = entityKind, __publicField(SQLiteSession, _a73, "SQLiteSession");
-var _a74, SQLiteTransaction = class extends BaseSQLiteDatabase {
+_a76 = entityKind, __publicField(SQLiteSession, _a76, "SQLiteSession");
+var _a77, SQLiteTransaction = class extends BaseSQLiteDatabase {
   constructor(resultType, dialect, session, schema, nestedIndex = 0) {
     super(resultType, dialect, session, schema), this.schema = schema, this.nestedIndex = nestedIndex;
   }
@@ -35124,24 +36349,176 @@ var _a74, SQLiteTransaction = class extends BaseSQLiteDatabase {
     throw new TransactionRollbackError();
   }
 };
-_a74 = entityKind, __publicField(SQLiteTransaction, _a74, "SQLiteTransaction");
+_a77 = entityKind, __publicField(SQLiteTransaction, _a77, "SQLiteTransaction");
 
-// ../../node_modules/drizzle-orm/mysql-core/table.js
-var InlineForeignKeys3 = Symbol.for("drizzle:MySqlInlineForeignKeys"), _a75, MySqlTable = class extends Table {
+// ../../node_modules/.pnpm/drizzle-orm@0.29.1_@cloudflare+workers-types@4.20231218.0/node_modules/drizzle-orm/d1/session.js
+var _a78, SQLiteD1Session = class extends SQLiteSession {
+  constructor(client, dialect, schema, options2 = {}) {
+    super(dialect), this.client = client, this.schema = schema, this.options = options2, this.logger = options2.logger ?? new NoopLogger();
+  }
+  logger;
+  prepareQuery(query, fields, executeMethod, customResultMapper) {
+    let stmt = this.client.prepare(query.sql);
+    return new D1PreparedQuery(stmt, query, this.logger, fields, executeMethod, customResultMapper);
+  }
+  /*override */
+  async batch(queries) {
+    let preparedQueries = [], builtQueries = [];
+    for (let query of queries) {
+      let preparedQuery = query.prepare(), builtQuery = preparedQuery.getQuery();
+      if (preparedQueries.push(preparedQuery), builtQuery.params.length > 0)
+        builtQueries.push(preparedQuery.stmt.bind(...builtQuery.params));
+      else {
+        let builtQuery2 = preparedQuery.getQuery();
+        builtQueries.push(
+          this.client.prepare(builtQuery2.sql).bind(...builtQuery2.params)
+        );
+      }
+    }
+    return (await this.client.batch(builtQueries)).map((result, i4) => preparedQueries[i4].mapResult(result, !0));
+  }
+  extractRawAllValueFromBatchResult(_result) {
+    return _result.results;
+  }
+  extractRawGetValueFromBatchResult(result) {
+    return result.results[0];
+  }
+  extractRawValuesValueFromBatchResult(result) {
+    return d1ToRawMapping(result.results);
+  }
+  async transaction(transaction, config2) {
+    let tx = new D1Transaction("async", this.dialect, this, this.schema);
+    await this.run(sql.raw(`begin${config2?.behavior ? " " + config2.behavior : ""}`));
+    try {
+      let result = await transaction(tx);
+      return await this.run(sql`commit`), result;
+    } catch (err) {
+      throw await this.run(sql`rollback`), err;
+    }
+  }
+};
+_a78 = entityKind, __publicField(SQLiteD1Session, _a78, "SQLiteD1Session");
+var _a79, _D1Transaction = class extends SQLiteTransaction {
+  async transaction(transaction) {
+    let savepointName = `sp${this.nestedIndex}`, tx = new _D1Transaction("async", this.dialect, this.session, this.schema, this.nestedIndex + 1);
+    await this.session.run(sql.raw(`savepoint ${savepointName}`));
+    try {
+      let result = await transaction(tx);
+      return await this.session.run(sql.raw(`release savepoint ${savepointName}`)), result;
+    } catch (err) {
+      throw await this.session.run(sql.raw(`rollback to savepoint ${savepointName}`)), err;
+    }
+  }
+}, D1Transaction = _D1Transaction;
+_a79 = entityKind, __publicField(D1Transaction, _a79, "D1Transaction");
+function d1ToRawMapping(results) {
+  let rows = [];
+  for (let row of results) {
+    let entry2 = Object.keys(row).map((k2) => row[k2]);
+    rows.push(entry2);
+  }
+  return rows;
+}
+var _a80, D1PreparedQuery = class extends SQLitePreparedQuery {
+  constructor(stmt, query, logger, fields, executeMethod, customResultMapper) {
+    super("async", executeMethod, query), this.logger = logger, this.customResultMapper = customResultMapper, this.fields = fields, this.stmt = stmt;
+  }
   /** @internal */
-  [(_a75 = entityKind, Table.Symbol.Columns)];
+  customResultMapper;
+  /** @internal */
+  fields;
+  /** @internal */
+  stmt;
+  run(placeholderValues) {
+    let params = fillPlaceholders(this.query.params, placeholderValues ?? {});
+    return this.logger.logQuery(this.query.sql, params), this.stmt.bind(...params).run();
+  }
+  async all(placeholderValues) {
+    let { fields, query, logger, stmt, customResultMapper } = this;
+    if (!fields && !customResultMapper) {
+      let params = fillPlaceholders(query.params, placeholderValues ?? {});
+      return logger.logQuery(query.sql, params), stmt.bind(...params).all().then(({ results }) => this.mapAllResult(results));
+    }
+    let rows = await this.values(placeholderValues);
+    return this.mapAllResult(rows);
+  }
+  mapAllResult(rows, isFromBatch) {
+    return isFromBatch && (rows = d1ToRawMapping(rows.results)), !this.fields && !this.customResultMapper ? rows : this.customResultMapper ? this.customResultMapper(rows) : rows.map((row) => mapResultRow(this.fields, row, this.joinsNotNullableMap));
+  }
+  async get(placeholderValues) {
+    let { fields, joinsNotNullableMap, query, logger, stmt, customResultMapper } = this;
+    if (!fields && !customResultMapper) {
+      let params = fillPlaceholders(query.params, placeholderValues ?? {});
+      return logger.logQuery(query.sql, params), stmt.bind(...params).all().then(({ results }) => results[0]);
+    }
+    let rows = await this.values(placeholderValues);
+    if (rows[0])
+      return customResultMapper ? customResultMapper(rows) : mapResultRow(fields, rows[0], joinsNotNullableMap);
+  }
+  mapGetResult(result, isFromBatch) {
+    return isFromBatch && (result = d1ToRawMapping(result.results)[0]), !this.fields && !this.customResultMapper ? result : this.customResultMapper ? this.customResultMapper([result]) : mapResultRow(this.fields, result, this.joinsNotNullableMap);
+  }
+  values(placeholderValues) {
+    let params = fillPlaceholders(this.query.params, placeholderValues ?? {});
+    return this.logger.logQuery(this.query.sql, params), this.stmt.bind(...params).raw();
+  }
+};
+_a80 = entityKind, __publicField(D1PreparedQuery, _a80, "D1PreparedQuery");
+
+// ../../node_modules/.pnpm/drizzle-orm@0.29.1_@cloudflare+workers-types@4.20231218.0/node_modules/drizzle-orm/d1/driver.js
+var _a81, DrizzleD1Database = class extends BaseSQLiteDatabase {
+  async batch(batch) {
+    return this.session.batch(batch);
+  }
+};
+_a81 = entityKind, __publicField(DrizzleD1Database, _a81, "LibSQLDatabase");
+function drizzle(client, config2 = {}) {
+  let dialect = new SQLiteAsyncDialect(), logger;
+  config2.logger === !0 ? logger = new DefaultLogger() : config2.logger !== !1 && (logger = config2.logger);
+  let schema;
+  if (config2.schema) {
+    let tablesConfig = extractTablesRelationalConfig(
+      config2.schema,
+      createTableRelationsHelpers
+    );
+    schema = {
+      fullSchema: config2.schema,
+      schema: tablesConfig.tables,
+      tableNamesMap: tablesConfig.tableNamesMap
+    };
+  }
+  let session = new SQLiteD1Session(client, dialect, schema, { logger });
+  return new DrizzleD1Database("async", dialect, session, schema);
+}
+
+// ../../packages/db-schema/src/schema.ts
+var schema_exports = {};
+__export(schema_exports, {
+  locations: () => locations,
+  nodes: () => nodes,
+  profiles: () => profiles,
+  profiles_tenants: () => profiles_tenants,
+  selectLocationSchema: () => selectLocationSchema,
+  tenants: () => tenants
+});
+var import_cuid2 = __toESM(require_cuid2());
+
+// ../../node_modules/.pnpm/drizzle-orm@0.29.1_@cloudflare+workers-types@4.20231218.0/node_modules/drizzle-orm/mysql-core/table.js
+var InlineForeignKeys3 = Symbol.for("drizzle:MySqlInlineForeignKeys"), _a82, MySqlTable = class extends Table {
+  /** @internal */
+  [(_a82 = entityKind, Table.Symbol.Columns)];
   /** @internal */
   [InlineForeignKeys3] = [];
   /** @internal */
   [Table.Symbol.ExtraConfigBuilder] = void 0;
 };
-__publicField(MySqlTable, _a75, "MySqlTable"), /** @internal */
+__publicField(MySqlTable, _a82, "MySqlTable"), /** @internal */
 __publicField(MySqlTable, "Symbol", Object.assign({}, Table.Symbol, {
   InlineForeignKeys: InlineForeignKeys3
 }));
 
-// ../../node_modules/drizzle-orm/mysql-core/foreign-keys.js
-var _a76, ForeignKeyBuilder2 = class {
+// ../../node_modules/.pnpm/drizzle-orm@0.29.1_@cloudflare+workers-types@4.20231218.0/node_modules/drizzle-orm/mysql-core/foreign-keys.js
+var _a83, ForeignKeyBuilder2 = class {
   /** @internal */
   reference;
   /** @internal */
@@ -35165,8 +36542,8 @@ var _a76, ForeignKeyBuilder2 = class {
     return new ForeignKey2(table, this);
   }
 };
-_a76 = entityKind, __publicField(ForeignKeyBuilder2, _a76, "MySqlForeignKeyBuilder");
-var _a77, ForeignKey2 = class {
+_a83 = entityKind, __publicField(ForeignKeyBuilder2, _a83, "MySqlForeignKeyBuilder");
+var _a84, ForeignKey2 = class {
   constructor(table, builder) {
     this.table = table, this.reference = builder.reference, this.onUpdate = builder._onUpdate, this.onDelete = builder._onDelete;
   }
@@ -35183,13 +36560,13 @@ var _a77, ForeignKey2 = class {
     return name ?? `${chunks.join("_")}_fk`;
   }
 };
-_a77 = entityKind, __publicField(ForeignKey2, _a77, "MySqlForeignKey");
+_a84 = entityKind, __publicField(ForeignKey2, _a84, "MySqlForeignKey");
 
-// ../../node_modules/drizzle-orm/mysql-core/unique-constraint.js
+// ../../node_modules/.pnpm/drizzle-orm@0.29.1_@cloudflare+workers-types@4.20231218.0/node_modules/drizzle-orm/mysql-core/unique-constraint.js
 function uniqueKeyName2(table, columns) {
   return `${table[MySqlTable.Symbol.Name]}_${columns.join("_")}_unique`;
 }
-var _a78, UniqueConstraintBuilder2 = class {
+var _a85, UniqueConstraintBuilder2 = class {
   constructor(columns, name) {
     this.name = name, this.columns = columns;
   }
@@ -35200,8 +36577,8 @@ var _a78, UniqueConstraintBuilder2 = class {
     return new UniqueConstraint2(table, this.columns, this.name);
   }
 };
-_a78 = entityKind, __publicField(UniqueConstraintBuilder2, _a78, "MySqlUniqueConstraintBuilder");
-var _a79, UniqueOnConstraintBuilder2 = class {
+_a85 = entityKind, __publicField(UniqueConstraintBuilder2, _a85, "MySqlUniqueConstraintBuilder");
+var _a86, UniqueOnConstraintBuilder2 = class {
   /** @internal */
   name;
   constructor(name) {
@@ -35211,8 +36588,8 @@ var _a79, UniqueOnConstraintBuilder2 = class {
     return new UniqueConstraintBuilder2(columns, this.name);
   }
 };
-_a79 = entityKind, __publicField(UniqueOnConstraintBuilder2, _a79, "MySqlUniqueOnConstraintBuilder");
-var _a80, UniqueConstraint2 = class {
+_a86 = entityKind, __publicField(UniqueOnConstraintBuilder2, _a86, "MySqlUniqueOnConstraintBuilder");
+var _a87, UniqueConstraint2 = class {
   constructor(table, columns, name) {
     this.table = table, this.columns = columns, this.name = name ?? uniqueKeyName2(this.table, this.columns.map((column) => column.name));
   }
@@ -35223,10 +36600,10 @@ var _a80, UniqueConstraint2 = class {
     return this.name;
   }
 };
-_a80 = entityKind, __publicField(UniqueConstraint2, _a80, "MySqlUniqueConstraint");
+_a87 = entityKind, __publicField(UniqueConstraint2, _a87, "MySqlUniqueConstraint");
 
-// ../../node_modules/drizzle-orm/mysql-core/columns/common.js
-var _a81, MySqlColumnBuilder = class extends ColumnBuilder {
+// ../../node_modules/.pnpm/drizzle-orm@0.29.1_@cloudflare+workers-types@4.20231218.0/node_modules/drizzle-orm/mysql-core/columns/common.js
+var _a88, MySqlColumnBuilder = class extends ColumnBuilder {
   foreignKeyConfigs = [];
   references(ref, actions = {}) {
     return this.foreignKeyConfigs.push({ ref, actions }), this;
@@ -35245,14 +36622,14 @@ var _a81, MySqlColumnBuilder = class extends ColumnBuilder {
     })(ref, actions));
   }
 };
-_a81 = entityKind, __publicField(MySqlColumnBuilder, _a81, "MySqlColumnBuilder");
-var _a82, MySqlColumn = class extends Column {
+_a88 = entityKind, __publicField(MySqlColumnBuilder, _a88, "MySqlColumnBuilder");
+var _a89, MySqlColumn = class extends Column {
   constructor(table, config2) {
     config2.uniqueName || (config2.uniqueName = uniqueKeyName2(table, [config2.name])), super(table, config2), this.table = table;
   }
 };
-_a82 = entityKind, __publicField(MySqlColumn, _a82, "MySqlColumn");
-var _a83, MySqlColumnBuilderWithAutoIncrement = class extends MySqlColumnBuilder {
+_a89 = entityKind, __publicField(MySqlColumn, _a89, "MySqlColumn");
+var _a90, MySqlColumnBuilderWithAutoIncrement = class extends MySqlColumnBuilder {
   constructor(name, dataType, columnType) {
     super(name, dataType, columnType), this.config.autoIncrement = !1;
   }
@@ -35260,14 +36637,14 @@ var _a83, MySqlColumnBuilderWithAutoIncrement = class extends MySqlColumnBuilder
     return this.config.autoIncrement = !0, this.config.hasDefault = !0, this;
   }
 };
-_a83 = entityKind, __publicField(MySqlColumnBuilderWithAutoIncrement, _a83, "MySqlColumnBuilderWithAutoIncrement");
-var _a84, MySqlColumnWithAutoIncrement = class extends MySqlColumn {
+_a90 = entityKind, __publicField(MySqlColumnBuilderWithAutoIncrement, _a90, "MySqlColumnBuilderWithAutoIncrement");
+var _a91, MySqlColumnWithAutoIncrement = class extends MySqlColumn {
   autoIncrement = this.config.autoIncrement;
 };
-_a84 = entityKind, __publicField(MySqlColumnWithAutoIncrement, _a84, "MySqlColumnWithAutoIncrement");
+_a91 = entityKind, __publicField(MySqlColumnWithAutoIncrement, _a91, "MySqlColumnWithAutoIncrement");
 
-// ../../node_modules/drizzle-orm/mysql-core/columns/char.js
-var _a85, MySqlCharBuilder = class extends MySqlColumnBuilder {
+// ../../node_modules/.pnpm/drizzle-orm@0.29.1_@cloudflare+workers-types@4.20231218.0/node_modules/drizzle-orm/mysql-core/columns/char.js
+var _a92, MySqlCharBuilder = class extends MySqlColumnBuilder {
   constructor(name, config2) {
     super(name, "string", "MySqlChar"), this.config.length = config2.length, this.config.enum = config2.enum;
   }
@@ -35279,18 +36656,18 @@ var _a85, MySqlCharBuilder = class extends MySqlColumnBuilder {
     );
   }
 };
-_a85 = entityKind, __publicField(MySqlCharBuilder, _a85, "MySqlCharBuilder");
-var _a86, MySqlChar = class extends MySqlColumn {
+_a92 = entityKind, __publicField(MySqlCharBuilder, _a92, "MySqlCharBuilder");
+var _a93, MySqlChar = class extends MySqlColumn {
   length = this.config.length;
   enumValues = this.config.enum;
   getSQLType() {
     return this.length === void 0 ? "char" : `char(${this.length})`;
   }
 };
-_a86 = entityKind, __publicField(MySqlChar, _a86, "MySqlChar");
+_a93 = entityKind, __publicField(MySqlChar, _a93, "MySqlChar");
 
-// ../../node_modules/drizzle-orm/mysql-core/columns/varbinary.js
-var _a87, MySqlVarBinaryBuilder = class extends MySqlColumnBuilder {
+// ../../node_modules/.pnpm/drizzle-orm@0.29.1_@cloudflare+workers-types@4.20231218.0/node_modules/drizzle-orm/mysql-core/columns/varbinary.js
+var _a94, MySqlVarBinaryBuilder = class extends MySqlColumnBuilder {
   /** @internal */
   constructor(name, config2) {
     super(name, "string", "MySqlVarBinary"), this.config.length = config2?.length;
@@ -35303,17 +36680,17 @@ var _a87, MySqlVarBinaryBuilder = class extends MySqlColumnBuilder {
     );
   }
 };
-_a87 = entityKind, __publicField(MySqlVarBinaryBuilder, _a87, "MySqlVarBinaryBuilder");
-var _a88, MySqlVarBinary = class extends MySqlColumn {
+_a94 = entityKind, __publicField(MySqlVarBinaryBuilder, _a94, "MySqlVarBinaryBuilder");
+var _a95, MySqlVarBinary = class extends MySqlColumn {
   length = this.config.length;
   getSQLType() {
     return this.length === void 0 ? "varbinary" : `varbinary(${this.length})`;
   }
 };
-_a88 = entityKind, __publicField(MySqlVarBinary, _a88, "MySqlVarBinary");
+_a95 = entityKind, __publicField(MySqlVarBinary, _a95, "MySqlVarBinary");
 
-// ../../node_modules/drizzle-orm/mysql-core/columns/varchar.js
-var _a89, MySqlVarCharBuilder = class extends MySqlColumnBuilder {
+// ../../node_modules/.pnpm/drizzle-orm@0.29.1_@cloudflare+workers-types@4.20231218.0/node_modules/drizzle-orm/mysql-core/columns/varchar.js
+var _a96, MySqlVarCharBuilder = class extends MySqlColumnBuilder {
   /** @internal */
   constructor(name, config2) {
     super(name, "string", "MySqlVarChar"), this.config.length = config2.length, this.config.enum = config2.enum;
@@ -35326,18 +36703,18 @@ var _a89, MySqlVarCharBuilder = class extends MySqlColumnBuilder {
     );
   }
 };
-_a89 = entityKind, __publicField(MySqlVarCharBuilder, _a89, "MySqlVarCharBuilder");
-var _a90, MySqlVarChar = class extends MySqlColumn {
+_a96 = entityKind, __publicField(MySqlVarCharBuilder, _a96, "MySqlVarCharBuilder");
+var _a97, MySqlVarChar = class extends MySqlColumn {
   length = this.config.length;
   enumValues = this.config.enum;
   getSQLType() {
     return this.length === void 0 ? "varchar" : `varchar(${this.length})`;
   }
 };
-_a90 = entityKind, __publicField(MySqlVarChar, _a90, "MySqlVarChar");
+_a97 = entityKind, __publicField(MySqlVarChar, _a97, "MySqlVarChar");
 
-// ../../node_modules/drizzle-orm/pg-core/foreign-keys.js
-var _a91, ForeignKeyBuilder3 = class {
+// ../../node_modules/.pnpm/drizzle-orm@0.29.1_@cloudflare+workers-types@4.20231218.0/node_modules/drizzle-orm/pg-core/foreign-keys.js
+var _a98, ForeignKeyBuilder3 = class {
   /** @internal */
   reference;
   /** @internal */
@@ -35361,8 +36738,8 @@ var _a91, ForeignKeyBuilder3 = class {
     return new ForeignKey3(table, this);
   }
 };
-_a91 = entityKind, __publicField(ForeignKeyBuilder3, _a91, "PgForeignKeyBuilder");
-var _a92, ForeignKey3 = class {
+_a98 = entityKind, __publicField(ForeignKeyBuilder3, _a98, "PgForeignKeyBuilder");
+var _a99, ForeignKey3 = class {
   constructor(table, builder) {
     this.table = table, this.reference = builder.reference, this.onUpdate = builder._onUpdate, this.onDelete = builder._onDelete;
   }
@@ -35379,13 +36756,13 @@ var _a92, ForeignKey3 = class {
     return name ?? `${chunks.join("_")}_fk`;
   }
 };
-_a92 = entityKind, __publicField(ForeignKey3, _a92, "PgForeignKey");
+_a99 = entityKind, __publicField(ForeignKey3, _a99, "PgForeignKey");
 
-// ../../node_modules/drizzle-orm/pg-core/unique-constraint.js
+// ../../node_modules/.pnpm/drizzle-orm@0.29.1_@cloudflare+workers-types@4.20231218.0/node_modules/drizzle-orm/pg-core/unique-constraint.js
 function uniqueKeyName3(table, columns) {
   return `${table[PgTable.Symbol.Name]}_${columns.join("_")}_unique`;
 }
-var _a93, UniqueConstraintBuilder3 = class {
+var _a100, UniqueConstraintBuilder3 = class {
   constructor(columns, name) {
     this.name = name, this.columns = columns;
   }
@@ -35401,8 +36778,8 @@ var _a93, UniqueConstraintBuilder3 = class {
     return new UniqueConstraint3(table, this.columns, this.nullsNotDistinctConfig, this.name);
   }
 };
-_a93 = entityKind, __publicField(UniqueConstraintBuilder3, _a93, "PgUniqueConstraintBuilder");
-var _a94, UniqueOnConstraintBuilder3 = class {
+_a100 = entityKind, __publicField(UniqueConstraintBuilder3, _a100, "PgUniqueConstraintBuilder");
+var _a101, UniqueOnConstraintBuilder3 = class {
   /** @internal */
   name;
   constructor(name) {
@@ -35412,8 +36789,8 @@ var _a94, UniqueOnConstraintBuilder3 = class {
     return new UniqueConstraintBuilder3(columns, this.name);
   }
 };
-_a94 = entityKind, __publicField(UniqueOnConstraintBuilder3, _a94, "PgUniqueOnConstraintBuilder");
-var _a95, UniqueConstraint3 = class {
+_a101 = entityKind, __publicField(UniqueOnConstraintBuilder3, _a101, "PgUniqueOnConstraintBuilder");
+var _a102, UniqueConstraint3 = class {
   constructor(table, columns, nullsNotDistinct, name) {
     this.table = table, this.columns = columns, this.name = name ?? uniqueKeyName3(this.table, this.columns.map((column) => column.name)), this.nullsNotDistinct = nullsNotDistinct;
   }
@@ -35424,9 +36801,9 @@ var _a95, UniqueConstraint3 = class {
     return this.name;
   }
 };
-_a95 = entityKind, __publicField(UniqueConstraint3, _a95, "PgUniqueConstraint");
+_a102 = entityKind, __publicField(UniqueConstraint3, _a102, "PgUniqueConstraint");
 
-// ../../node_modules/drizzle-orm/pg-core/utils/array.js
+// ../../node_modules/.pnpm/drizzle-orm@0.29.1_@cloudflare+workers-types@4.20231218.0/node_modules/drizzle-orm/pg-core/utils/array.js
 function parsePgArrayValue(arrayString, startFrom, inQuotes) {
   for (let i4 = startFrom; i4 < arrayString.length; i4++) {
     let char = arrayString[i4];
@@ -35478,8 +36855,8 @@ function makePgArray(array) {
   return `{${array.map((item) => Array.isArray(item) ? makePgArray(item) : typeof item == "string" && item.includes(",") ? `"${item.replace(/"/g, '\\"')}"` : `${item}`).join(",")}}`;
 }
 
-// ../../node_modules/drizzle-orm/pg-core/columns/common.js
-var _a96, PgColumnBuilder = class extends ColumnBuilder {
+// ../../node_modules/.pnpm/drizzle-orm@0.29.1_@cloudflare+workers-types@4.20231218.0/node_modules/drizzle-orm/pg-core/columns/common.js
+var _a103, PgColumnBuilder = class extends ColumnBuilder {
   foreignKeyConfigs = [];
   array(size) {
     return new PgArrayBuilder(this.config.name, this, size);
@@ -35505,14 +36882,14 @@ var _a96, PgColumnBuilder = class extends ColumnBuilder {
     ));
   }
 };
-_a96 = entityKind, __publicField(PgColumnBuilder, _a96, "PgColumnBuilder");
-var _a97, PgColumn = class extends Column {
+_a103 = entityKind, __publicField(PgColumnBuilder, _a103, "PgColumnBuilder");
+var _a104, PgColumn = class extends Column {
   constructor(table, config2) {
     config2.uniqueName || (config2.uniqueName = uniqueKeyName3(table, [config2.name])), super(table, config2), this.table = table;
   }
 };
-_a97 = entityKind, __publicField(PgColumn, _a97, "PgColumn");
-var _a98, PgArrayBuilder = class extends PgColumnBuilder {
+_a104 = entityKind, __publicField(PgColumn, _a104, "PgColumn");
+var _a105, PgArrayBuilder = class extends PgColumnBuilder {
   constructor(name, baseBuilder, size) {
     super(name, "array", "PgArray"), this.config.baseBuilder = baseBuilder, this.config.size = size;
   }
@@ -35526,8 +36903,8 @@ var _a98, PgArrayBuilder = class extends PgColumnBuilder {
     );
   }
 };
-_a98 = entityKind, __publicField(PgArrayBuilder, _a98, "PgArrayBuilder");
-var _a99, _PgArray = class extends PgColumn {
+_a105 = entityKind, __publicField(PgArrayBuilder, _a105, "PgArrayBuilder");
+var _a106, _PgArray = class extends PgColumn {
   constructor(table, config2, baseColumn, range) {
     super(table, config2), this.baseColumn = baseColumn, this.range = range, this.size = config2.size;
   }
@@ -35545,10 +36922,10 @@ var _a99, _PgArray = class extends PgColumn {
     return isNestedArray ? a4 : makePgArray(a4);
   }
 }, PgArray = _PgArray;
-_a99 = entityKind, __publicField(PgArray, _a99, "PgArray");
+_a106 = entityKind, __publicField(PgArray, _a106, "PgArray");
 
-// ../../node_modules/drizzle-orm/pg-core/columns/char.js
-var _a100, PgCharBuilder = class extends PgColumnBuilder {
+// ../../node_modules/.pnpm/drizzle-orm@0.29.1_@cloudflare+workers-types@4.20231218.0/node_modules/drizzle-orm/pg-core/columns/char.js
+var _a107, PgCharBuilder = class extends PgColumnBuilder {
   constructor(name, config2) {
     super(name, "string", "PgChar"), this.config.length = config2.length, this.config.enumValues = config2.enum;
   }
@@ -35557,18 +36934,18 @@ var _a100, PgCharBuilder = class extends PgColumnBuilder {
     return new PgChar(table, this.config);
   }
 };
-_a100 = entityKind, __publicField(PgCharBuilder, _a100, "PgCharBuilder");
-var _a101, PgChar = class extends PgColumn {
+_a107 = entityKind, __publicField(PgCharBuilder, _a107, "PgCharBuilder");
+var _a108, PgChar = class extends PgColumn {
   length = this.config.length;
   enumValues = this.config.enumValues;
   getSQLType() {
     return this.length === void 0 ? "char" : `char(${this.length})`;
   }
 };
-_a101 = entityKind, __publicField(PgChar, _a101, "PgChar");
+_a108 = entityKind, __publicField(PgChar, _a108, "PgChar");
 
-// ../../node_modules/drizzle-orm/pg-core/columns/uuid.js
-var _a102, PgUUIDBuilder = class extends PgColumnBuilder {
+// ../../node_modules/.pnpm/drizzle-orm@0.29.1_@cloudflare+workers-types@4.20231218.0/node_modules/drizzle-orm/pg-core/columns/uuid.js
+var _a109, PgUUIDBuilder = class extends PgColumnBuilder {
   constructor(name) {
     super(name, "string", "PgUUID");
   }
@@ -35583,16 +36960,16 @@ var _a102, PgUUIDBuilder = class extends PgColumnBuilder {
     return new PgUUID(table, this.config);
   }
 };
-_a102 = entityKind, __publicField(PgUUIDBuilder, _a102, "PgUUIDBuilder");
-var _a103, PgUUID = class extends PgColumn {
+_a109 = entityKind, __publicField(PgUUIDBuilder, _a109, "PgUUIDBuilder");
+var _a110, PgUUID = class extends PgColumn {
   getSQLType() {
     return "uuid";
   }
 };
-_a103 = entityKind, __publicField(PgUUID, _a103, "PgUUID");
+_a110 = entityKind, __publicField(PgUUID, _a110, "PgUUID");
 
-// ../../node_modules/drizzle-orm/pg-core/columns/varchar.js
-var _a104, PgVarcharBuilder = class extends PgColumnBuilder {
+// ../../node_modules/.pnpm/drizzle-orm@0.29.1_@cloudflare+workers-types@4.20231218.0/node_modules/drizzle-orm/pg-core/columns/varchar.js
+var _a111, PgVarcharBuilder = class extends PgColumnBuilder {
   constructor(name, config2) {
     super(name, "string", "PgVarchar"), this.config.length = config2.length, this.config.enumValues = config2.enum;
   }
@@ -35601,17 +36978,17 @@ var _a104, PgVarcharBuilder = class extends PgColumnBuilder {
     return new PgVarchar(table, this.config);
   }
 };
-_a104 = entityKind, __publicField(PgVarcharBuilder, _a104, "PgVarcharBuilder");
-var _a105, PgVarchar = class extends PgColumn {
+_a111 = entityKind, __publicField(PgVarcharBuilder, _a111, "PgVarcharBuilder");
+var _a112, PgVarchar = class extends PgColumn {
   length = this.config.length;
   enumValues = this.config.enumValues;
   getSQLType() {
     return this.length === void 0 ? "varchar" : `varchar(${this.length})`;
   }
 };
-_a105 = entityKind, __publicField(PgVarchar, _a105, "PgVarchar");
+_a112 = entityKind, __publicField(PgVarchar, _a112, "PgVarchar");
 
-// ../../node_modules/zod/lib/index.mjs
+// ../../node_modules/.pnpm/zod@3.22.4/node_modules/zod/lib/index.mjs
 var util;
 (function(util2) {
   util2.assertEqual = (val) => val;
@@ -35985,11 +37362,11 @@ var ZodType = class {
     throw result.error;
   }
   safeParse(data, params) {
-    var _a110;
+    var _a113;
     let ctx = {
       common: {
         issues: [],
-        async: (_a110 = params?.async) !== null && _a110 !== void 0 ? _a110 : !1,
+        async: (_a113 = params?.async) !== null && _a113 !== void 0 ? _a113 : !1,
         contextualErrorMap: params?.errorMap
       },
       path: params?.path || [],
@@ -36284,7 +37661,7 @@ var ZodString = class extends ZodType {
     return this._addCheck({ kind: "ip", ...errorUtil.errToObj(options2) });
   }
   datetime(options2) {
-    var _a110;
+    var _a113;
     return typeof options2 == "string" ? this._addCheck({
       kind: "datetime",
       precision: null,
@@ -36293,7 +37670,7 @@ var ZodString = class extends ZodType {
     }) : this._addCheck({
       kind: "datetime",
       precision: typeof options2?.precision > "u" ? null : options2?.precision,
-      offset: (_a110 = options2?.offset) !== null && _a110 !== void 0 ? _a110 : !1,
+      offset: (_a113 = options2?.offset) !== null && _a113 !== void 0 ? _a113 : !1,
       ...errorUtil.errToObj(options2?.message)
     });
   }
@@ -36413,11 +37790,11 @@ var ZodString = class extends ZodType {
   }
 };
 ZodString.create = (params) => {
-  var _a110;
+  var _a113;
   return new ZodString({
     checks: [],
     typeName: ZodFirstPartyTypeKind.ZodString,
-    coerce: (_a110 = params?.coerce) !== null && _a110 !== void 0 ? _a110 : !1,
+    coerce: (_a113 = params?.coerce) !== null && _a113 !== void 0 ? _a113 : !1,
     ...processCreateParams(params)
   });
 };
@@ -36715,11 +38092,11 @@ var ZodBigInt = class extends ZodType {
   }
 };
 ZodBigInt.create = (params) => {
-  var _a110;
+  var _a113;
   return new ZodBigInt({
     checks: [],
     typeName: ZodFirstPartyTypeKind.ZodBigInt,
-    coerce: (_a110 = params?.coerce) !== null && _a110 !== void 0 ? _a110 : !1,
+    coerce: (_a113 = params?.coerce) !== null && _a113 !== void 0 ? _a113 : !1,
     ...processCreateParams(params)
   });
 };
@@ -37097,8 +38474,8 @@ var ZodObject = class extends ZodType {
       unknownKeys: "strict",
       ...message !== void 0 ? {
         errorMap: (issue, ctx) => {
-          var _a110, _b, _c, _d;
-          let defaultError = (_c = (_b = (_a110 = this._def).errorMap) === null || _b === void 0 ? void 0 : _b.call(_a110, issue, ctx).message) !== null && _c !== void 0 ? _c : ctx.defaultError;
+          var _a113, _b, _c, _d;
+          let defaultError = (_c = (_b = (_a113 = this._def).errorMap) === null || _b === void 0 ? void 0 : _b.call(_a113, issue, ctx).message) !== null && _c !== void 0 ? _c : ctx.defaultError;
           return issue.code === "unrecognized_keys" ? {
             message: (_d = errorUtil.errToObj(message).message) !== null && _d !== void 0 ? _d : defaultError
           } : {
@@ -37221,10 +38598,10 @@ var ZodObject = class extends ZodType {
   //   }) as any;
   //   return merged;
   // }
-  catchall(index) {
+  catchall(index2) {
     return new ZodObject({
       ...this._def,
-      catchall: index
+      catchall: index2
     });
   }
   pick(mask) {
@@ -37453,8 +38830,8 @@ function mergeValues(a4, b5) {
     if (a4.length !== b5.length)
       return { valid: !1 };
     let newArray = [];
-    for (let index = 0; index < a4.length; index++) {
-      let itemA = a4[index], itemB = b5[index], sharedValue = mergeValues(itemA, itemB);
+    for (let index2 = 0; index2 < a4.length; index2++) {
+      let itemA = a4[index2], itemB = b5[index2], sharedValue = mergeValues(itemA, itemB);
       if (!sharedValue.valid)
         return { valid: !1 };
       newArray.push(sharedValue.data);
@@ -37605,9 +38982,9 @@ var ZodRecord = class extends ZodType {
         expected: ZodParsedType.map,
         received: ctx.parsedType
       }), INVALID;
-    let keyType = this._def.keyType, valueType = this._def.valueType, pairs = [...ctx.data.entries()].map(([key, value], index) => ({
-      key: keyType._parse(new ParseInputLazyPath(ctx, key, ctx.path, [index, "key"])),
-      value: valueType._parse(new ParseInputLazyPath(ctx, value, ctx.path, [index, "value"]))
+    let keyType = this._def.keyType, valueType = this._def.valueType, pairs = [...ctx.data.entries()].map(([key, value], index2) => ({
+      key: keyType._parse(new ParseInputLazyPath(ctx, key, ctx.path, [index2, "key"])),
+      value: valueType._parse(new ParseInputLazyPath(ctx, value, ctx.path, [index2, "value"]))
     }));
     if (ctx.common.async) {
       let finalMap = /* @__PURE__ */ new Map();
@@ -38195,9 +39572,9 @@ ZodReadonly.create = (type, params) => new ZodReadonly({
   ...processCreateParams(params)
 });
 var custom = (check, params = {}, fatal) => check ? ZodAny.create().superRefine((data, ctx) => {
-  var _a110, _b;
+  var _a113, _b;
   if (!check(data)) {
-    let p5 = typeof params == "function" ? params(data) : typeof params == "string" ? { message: params } : params, _fatal = (_b = (_a110 = p5.fatal) !== null && _a110 !== void 0 ? _a110 : fatal) !== null && _b !== void 0 ? _b : !0, p22 = typeof p5 == "string" ? { message: p5 } : p5;
+    let p5 = typeof params == "function" ? params(data) : typeof params == "string" ? { message: params } : params, _fatal = (_b = (_a113 = p5.fatal) !== null && _a113 !== void 0 ? _a113 : fatal) !== null && _b !== void 0 ? _b : !0, p22 = typeof p5 == "string" ? { message: p5 } : p5;
     ctx.addIssue({ code: "custom", ...p22, fatal: _fatal });
   }
 }) : ZodAny.create(), late = {
@@ -38333,15 +39710,8 @@ var instanceOfType = (cls, params = {
   ZodError
 });
 
-// ../../node_modules/drizzle-zod/index.mjs
+// ../../node_modules/.pnpm/drizzle-zod@0.5.1_drizzle-orm@0.29.1_zod@3.22.4/node_modules/drizzle-zod/index.mjs
 var m2 = z.union([z.string(), z.number(), z.boolean(), z.null()]), f2 = z.lazy(() => z.union([m2, z.array(f2), z.record(f2)]));
-function c2(t3, n3) {
-  let r5 = getTableColumns(t3), o4 = Object.entries(r5), i4 = Object.fromEntries(o4.map(([e3, t4]) => [e3, p2(t4)]));
-  n3 && (i4 = Object.assign(i4, Object.fromEntries(Object.entries(n3).map(([e3, t4]) => [e3, typeof t4 == "function" ? t4(i4) : t4]))));
-  for (let [e3, t4] of o4)
-    t4.notNull ? t4.hasDefault && (i4[e3] = i4[e3].optional()) : i4[e3] = i4[e3].nullable().optional();
-  return z.object(i4);
-}
 function b2(t3, n3) {
   let r5 = getTableColumns(t3), o4 = Object.entries(r5), i4 = Object.fromEntries(o4.map(([e3, t4]) => [e3, p2(t4)]));
   n3 && (i4 = Object.assign(i4, Object.fromEntries(Object.entries(n3).map(([e3, t4]) => [e3, typeof t4 == "function" ? t4(i4) : t4]))));
@@ -38378,338 +39748,152 @@ function p2(e3) {
   return m4 || (m4 = z.any()), m4;
 }
 
-// app/db/schema/db.ts
-var users = sqliteTable("users", {
-  id: text("id").notNull().primaryKey(),
-  name: text("name").notNull(),
-  email: text("email").notNull().unique(),
-  emailVerified: integer("email_verified", { mode: "boolean" }).notNull(),
-  photo: text("photo"),
-  preferences: text("preferences", { mode: "json" }).$type()
-}), usersInsertSchema = c2(users), selectUserSchema = b2(users), accounts = sqliteTable(
-  "accounts",
+// ../../packages/db-schema/src/common.ts
+var commonTime = {
+  createdAt: integer("created_at", { mode: "timestamp_ms" }).notNull().default(sql`CURRENT_TIMESTAMP`),
+  updatedAt: integer("updated_at", { mode: "timestamp_ms" }),
+  deletedAt: integer("deleted_at", { mode: "timestamp_ms" })
+};
+
+// ../../packages/db-schema/src/schema.ts
+var profiles = sqliteTable(
+  "profiles",
   {
-    userId: text("userId").notNull().references(() => users.id, { onDelete: "cascade" }).unique(),
-    provider: text("provider").notNull(),
-    providerAccountId: text("providerAccountId").notNull(),
-    refresh_token: text("refresh_token"),
-    access_token: text("access_token"),
-    expires_at: integer("expires_at"),
-    token_type: text("token_type"),
-    scope: text("scope"),
-    id_token: text("id_token"),
-    session_state: text("session_state")
+    id: text("id").primaryKey().$defaultFn(() => (0, import_cuid2.createId)()),
+    authId: text("auth_id").notNull(),
+    authTenantId: text("auth_tenant_id").notNull(),
+    authProvider: text("auth_provider").notNull(),
+    email: text("email").notNull().unique(),
+    emailVerified: integer("email_verified", { mode: "boolean" }).notNull().default(!1),
+    photo: text("photo"),
+    idpGroups: text("idp_groups", { mode: "json" }).$type(),
+    displayName: text("display_name").notNull(),
+    ...commonTime
   },
-  (account) => ({
-    compoundKey: primaryKey({ name: "id", columns: [account.provider, account.providerAccountId] })
+  (profiles2) => ({
+    userEmailIdx: uniqueIndex("users_email_idx").on(profiles2.email),
+    providerIdx: index("provider_idx").on(profiles2.authProvider)
   })
-), verificationTokens = sqliteTable(
-  "verificationTokens",
+), tenants = sqliteTable(
+  "tenants",
   {
-    identifier: text("identifier").notNull(),
-    token: text("token").notNull(),
-    expires: integer("expires", { mode: "timestamp_ms" }).notNull()
+    id: text("id").primaryKey().unique(),
+    name: text("name").notNull(),
+    sanitizedName: text("sanitized_name").notNull(),
+    status: integer("status", { mode: "boolean" }),
+    ...commonTime
   },
-  (vt) => ({
-    compoundKey: primaryKey({ columns: [vt.identifier, vt.token] })
+  (tenants2) => ({
+    tenantNameIdx: uniqueIndex("tenant_name_idx").on(tenants2.sanitizedName)
+  })
+), profiles_tenants = sqliteTable("profiles_tenants", {
+  id: integer("id").primaryKey({ autoIncrement: !0 }),
+  profileId: text("profile_id").notNull(),
+  tenantId: text("tenant_id").notNull()
+}), locations = sqliteTable(
+  "locations",
+  {
+    addressCity: text("address_city"),
+    addressEmail: text("address_email"),
+    addressLine1: text("address_line1"),
+    addressLine2: text("address_line2"),
+    addressName: text("address_name"),
+    addressState: text("address_state"),
+    addressTypeId: integer("address_type_id"),
+    addressZipCode: text("address_zip_code"),
+    cdpLocId: text("cdp_loc_id"),
+    mwanSiteId: text("mwan_site_id"),
+    cfGatewayId: text("cf_gateway_id"),
+    cfTunnelId: text("cf_tunnel_id"),
+    chain: text("chain"),
+    channel: text("channel"),
+    code: text("code").notNull().unique(),
+    countryId: integer("country_id"),
+    district: text("district"),
+    id: text("id").primaryKey().unique(),
+    ipPrimaryCidr: text("ip_primary_cidr"),
+    ipSchema: text("ip_schema"),
+    itOpsStatus: text("it_ops_status"),
+    kind: text("kind"),
+    latitude: real("latitude"),
+    locationTypeLabel: text("location_type_label"),
+    longitude: real("longitude"),
+    mainFlag: text("main_flag"),
+    name: text("name").notNull(),
+    parentType: integer("parent_type"),
+    region: text("region"),
+    status: text("status"),
+    tenantId: text("tenant_id").references(() => tenants.id, {
+      onDelete: "set null"
+    }),
+    ...commonTime
+  },
+  (locations2) => ({
+    locNameIdx: index("location_name_idx").on(locations2.name),
+    locDistrictIdx: index("location_district_idx").on(locations2.district),
+    locRegionIdx: index("location_region_idx").on(locations2.region),
+    locCodeIdx: uniqueIndex("location_code_idx").on(locations2.code)
+  })
+), selectLocationSchema = b2(locations), nodes = sqliteTable(
+  "nodes",
+  {
+    firstSeen: integer("first_seen", { mode: "timestamp_ms" }),
+    id: text("id").notNull().primaryKey().unique(),
+    kind: text("kind").notNull(),
+    lastSeen: integer("last_seen", { mode: "timestamp_ms" }),
+    locationId: text("location_id").references(() => locations.id, {
+      onUpdate: "cascade",
+      onDelete: "set null"
+    }),
+    mac: text("mac").notNull().unique(),
+    manufacturer: text("manufacturer"),
+    model: text("model"),
+    name: text("name").notNull(),
+    serial: text("serial").notNull().unique(),
+    status: integer("status", { mode: "boolean" }),
+    tenantId: text("tenant_id").references(() => tenants.id, {
+      onUpdate: "cascade",
+      onDelete: "set null"
+    }),
+    xiq_nodeId: text("xiq_node_id"),
+    ...commonTime
+  },
+  (nodes2) => ({
+    nodeNameIdx: uniqueIndex("node_name_idx").on(nodes2.name),
+    serialIdx: uniqueIndex("serial_idx").on(nodes2.serial),
+    manufacturerIdx: index("manu_idx").on(nodes2.manufacturer),
+    modelIdx: index("model_idx").on(nodes2.model)
   })
 );
 
-// ../../node_modules/drizzle-orm/d1/session.js
-var _a106, SQLiteD1Session = class extends SQLiteSession {
-  constructor(client, dialect, schema, options2 = {}) {
-    super(dialect), this.client = client, this.schema = schema, this.options = options2, this.logger = options2.logger ?? new NoopLogger();
-  }
-  logger;
-  prepareQuery(query, fields, executeMethod, customResultMapper) {
-    let stmt = this.client.prepare(query.sql);
-    return new D1PreparedQuery(stmt, query, this.logger, fields, executeMethod, customResultMapper);
-  }
-  /*override */
-  async batch(queries) {
-    let preparedQueries = [], builtQueries = [];
-    for (let query of queries) {
-      let preparedQuery = query.prepare(), builtQuery = preparedQuery.getQuery();
-      if (preparedQueries.push(preparedQuery), builtQuery.params.length > 0)
-        builtQueries.push(preparedQuery.stmt.bind(...builtQuery.params));
-      else {
-        let builtQuery2 = preparedQuery.getQuery();
-        builtQueries.push(
-          this.client.prepare(builtQuery2.sql).bind(...builtQuery2.params)
-        );
-      }
-    }
-    return (await this.client.batch(builtQueries)).map((result, i4) => preparedQueries[i4].mapResult(result, !0));
-  }
-  extractRawAllValueFromBatchResult(_result) {
-    return _result.results;
-  }
-  extractRawGetValueFromBatchResult(result) {
-    return result.results[0];
-  }
-  extractRawValuesValueFromBatchResult(result) {
-    return d1ToRawMapping(result.results);
-  }
-  async transaction(transaction, config2) {
-    let tx = new D1Transaction("async", this.dialect, this, this.schema);
-    await this.run(sql.raw(`begin${config2?.behavior ? " " + config2.behavior : ""}`));
-    try {
-      let result = await transaction(tx);
-      return await this.run(sql`commit`), result;
-    } catch (err) {
-      throw await this.run(sql`rollback`), err;
-    }
-  }
-};
-_a106 = entityKind, __publicField(SQLiteD1Session, _a106, "SQLiteD1Session");
-var _a107, _D1Transaction = class extends SQLiteTransaction {
-  async transaction(transaction) {
-    let savepointName = `sp${this.nestedIndex}`, tx = new _D1Transaction("async", this.dialect, this.session, this.schema, this.nestedIndex + 1);
-    await this.session.run(sql.raw(`savepoint ${savepointName}`));
-    try {
-      let result = await transaction(tx);
-      return await this.session.run(sql.raw(`release savepoint ${savepointName}`)), result;
-    } catch (err) {
-      throw await this.session.run(sql.raw(`rollback to savepoint ${savepointName}`)), err;
-    }
-  }
-}, D1Transaction = _D1Transaction;
-_a107 = entityKind, __publicField(D1Transaction, _a107, "D1Transaction");
-function d1ToRawMapping(results) {
-  let rows = [];
-  for (let row of results) {
-    let entry2 = Object.keys(row).map((k2) => row[k2]);
-    rows.push(entry2);
-  }
-  return rows;
-}
-var _a108, D1PreparedQuery = class extends SQLitePreparedQuery {
-  constructor(stmt, query, logger, fields, executeMethod, customResultMapper) {
-    super("async", executeMethod, query), this.logger = logger, this.customResultMapper = customResultMapper, this.fields = fields, this.stmt = stmt;
-  }
-  /** @internal */
-  customResultMapper;
-  /** @internal */
-  fields;
-  /** @internal */
-  stmt;
-  run(placeholderValues) {
-    let params = fillPlaceholders(this.query.params, placeholderValues ?? {});
-    return this.logger.logQuery(this.query.sql, params), this.stmt.bind(...params).run();
-  }
-  async all(placeholderValues) {
-    let { fields, query, logger, stmt, customResultMapper } = this;
-    if (!fields && !customResultMapper) {
-      let params = fillPlaceholders(query.params, placeholderValues ?? {});
-      return logger.logQuery(query.sql, params), stmt.bind(...params).all().then(({ results }) => this.mapAllResult(results));
-    }
-    let rows = await this.values(placeholderValues);
-    return this.mapAllResult(rows);
-  }
-  mapAllResult(rows, isFromBatch) {
-    return isFromBatch && (rows = d1ToRawMapping(rows.results)), !this.fields && !this.customResultMapper ? rows : this.customResultMapper ? this.customResultMapper(rows) : rows.map((row) => mapResultRow(this.fields, row, this.joinsNotNullableMap));
-  }
-  async get(placeholderValues) {
-    let { fields, joinsNotNullableMap, query, logger, stmt, customResultMapper } = this;
-    if (!fields && !customResultMapper) {
-      let params = fillPlaceholders(query.params, placeholderValues ?? {});
-      return logger.logQuery(query.sql, params), stmt.bind(...params).all().then(({ results }) => results[0]);
-    }
-    let rows = await this.values(placeholderValues);
-    if (rows[0])
-      return customResultMapper ? customResultMapper(rows) : mapResultRow(fields, rows[0], joinsNotNullableMap);
-  }
-  mapGetResult(result, isFromBatch) {
-    return isFromBatch && (result = d1ToRawMapping(result.results)[0]), !this.fields && !this.customResultMapper ? result : this.customResultMapper ? this.customResultMapper([result]) : mapResultRow(this.fields, result, this.joinsNotNullableMap);
-  }
-  values(placeholderValues) {
-    let params = fillPlaceholders(this.query.params, placeholderValues ?? {});
-    return this.logger.logQuery(this.query.sql, params), this.stmt.bind(...params).raw();
-  }
-};
-_a108 = entityKind, __publicField(D1PreparedQuery, _a108, "D1PreparedQuery");
-
-// ../../node_modules/drizzle-orm/d1/driver.js
-var _a109, DrizzleD1Database = class extends BaseSQLiteDatabase {
-  async batch(batch) {
-    return this.session.batch(batch);
-  }
-};
-_a109 = entityKind, __publicField(DrizzleD1Database, _a109, "LibSQLDatabase");
-function drizzle(client, config2 = {}) {
-  let dialect = new SQLiteAsyncDialect(), logger;
-  config2.logger === !0 ? logger = new DefaultLogger() : config2.logger !== !1 && (logger = config2.logger);
-  let schema;
-  if (config2.schema) {
-    let tablesConfig = extractTablesRelationalConfig(
-      config2.schema,
-      createTableRelationsHelpers
-    );
-    schema = {
-      fullSchema: config2.schema,
-      schema: tablesConfig.tables,
-      tableNamesMap: tablesConfig.tableNamesMap
-    };
-  }
-  let session = new SQLiteD1Session(client, dialect, schema, { logger });
-  return new DrizzleD1Database("async", dialect, session, schema);
-}
-
-// app/db/db.server.ts
-var findOrCreateAccount = async ({
-  userId,
-  db,
-  profile,
-  accessToken
-}) => {
-  let DB = drizzle(db), account = await DB.select().from(accounts).where(eq(accounts.userId, userId)).all(), acct = {
-    access_token: accessToken,
-    provider: profile.provider,
-    providerAccountId: profile.id.split("|")[1],
-    userId: account.length <= 0 ? userId : account[0].userId
-  };
-  await DB.insert(accounts).values(acct).onConflictDoUpdate({
-    target: accounts.userId,
-    set: acct
-  }).returning();
-};
-
-// ../../node_modules/ip-regex/index.js
-var word = "[a-fA-F\\d:]", boundry = (options2) => options2 && options2.includeBoundaries ? `(?:(?<=\\s|^)(?=${word})|(?<=${word})(?=\\s|$))` : "", v4 = "(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)(?:\\.(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)){3}", v6segment = "[a-fA-F\\d]{1,4}", v6 = `
-(?:
-(?:${v6segment}:){7}(?:${v6segment}|:)|                                    // 1:2:3:4:5:6:7::  1:2:3:4:5:6:7:8
-(?:${v6segment}:){6}(?:${v4}|:${v6segment}|:)|                             // 1:2:3:4:5:6::    1:2:3:4:5:6::8   1:2:3:4:5:6::8  1:2:3:4:5:6::1.2.3.4
-(?:${v6segment}:){5}(?::${v4}|(?::${v6segment}){1,2}|:)|                   // 1:2:3:4:5::      1:2:3:4:5::7:8   1:2:3:4:5::8    1:2:3:4:5::7:1.2.3.4
-(?:${v6segment}:){4}(?:(?::${v6segment}){0,1}:${v4}|(?::${v6segment}){1,3}|:)| // 1:2:3:4::        1:2:3:4::6:7:8   1:2:3:4::8      1:2:3:4::6:7:1.2.3.4
-(?:${v6segment}:){3}(?:(?::${v6segment}){0,2}:${v4}|(?::${v6segment}){1,4}|:)| // 1:2:3::          1:2:3::5:6:7:8   1:2:3::8        1:2:3::5:6:7:1.2.3.4
-(?:${v6segment}:){2}(?:(?::${v6segment}){0,3}:${v4}|(?::${v6segment}){1,5}|:)| // 1:2::            1:2::4:5:6:7:8   1:2::8          1:2::4:5:6:7:1.2.3.4
-(?:${v6segment}:){1}(?:(?::${v6segment}){0,4}:${v4}|(?::${v6segment}){1,6}|:)| // 1::              1::3:4:5:6:7:8   1::8            1::3:4:5:6:7:1.2.3.4
-(?::(?:(?::${v6segment}){0,5}:${v4}|(?::${v6segment}){1,7}|:))             // ::2:3:4:5:6:7:8  ::2:3:4:5:6:7:8  ::8             ::1.2.3.4
-)(?:%[0-9a-zA-Z]{1,})?                                             // %eth0            %1
-`.replace(/\s*\/\/.*$/gm, "").replace(/\n/g, "").trim(), v46Exact = new RegExp(`(?:^${v4}$)|(?:^${v6}$)`), v4exact = new RegExp(`^${v4}$`), v6exact = new RegExp(`^${v6}$`), ipRegex = (options2) => options2 && options2.exact ? v46Exact : new RegExp(`(?:${boundry(options2)}${v4}${boundry(options2)})|(?:${boundry(options2)}${v6}${boundry(options2)})`, "g");
-ipRegex.v4 = (options2) => options2 && options2.exact ? v4exact : new RegExp(`${boundry(options2)}${v4}${boundry(options2)}`, "g");
-ipRegex.v6 = (options2) => options2 && options2.exact ? v6exact : new RegExp(`${boundry(options2)}${v6}${boundry(options2)}`, "g");
-var ip_regex_default = ipRegex;
-
-// ../../node_modules/function-timeout/browser.js
-function functionTimeout(function_) {
-  let wrappedFunction = (...arguments_) => function_(...arguments_);
-  return Object.defineProperty(wrappedFunction, "name", {
-    value: `functionTimeout(${function_.name || "<anonymous>"})`,
-    configurable: !0
-  }), wrappedFunction;
-}
-function isTimeoutError() {
-  return !1;
-}
-
-// ../../node_modules/is-regexp/index.js
-var { toString } = Object.prototype;
-function isRegexp(value) {
-  return toString.call(value) === "[object RegExp]";
-}
-
-// ../../node_modules/clone-regexp/index.js
-var flagMap = {
-  global: "g",
-  ignoreCase: "i",
-  multiline: "m",
-  dotAll: "s",
-  sticky: "y",
-  unicode: "u"
-};
-function clonedRegexp(regexp, options2 = {}) {
-  if (!isRegexp(regexp))
-    throw new TypeError("Expected a RegExp instance");
-  let flags2 = Object.keys(flagMap).map((flag) => (typeof options2[flag] == "boolean" ? options2[flag] : regexp[flag]) ? flagMap[flag] : "").join(""), clonedRegexp2 = new RegExp(options2.source || regexp.source, flags2);
-  return clonedRegexp2.lastIndex = typeof options2.lastIndex == "number" ? options2.lastIndex : regexp.lastIndex, clonedRegexp2;
-}
-
-// ../../node_modules/super-regex/index.js
-function isMatch(regex, string, { timeout } = {}) {
-  try {
-    return functionTimeout(() => clonedRegexp(regex).test(string), { timeout })();
-  } catch (error) {
-    if (isTimeoutError(error))
-      return !1;
-    throw error;
-  }
-}
-
-// ../../node_modules/is-ip/index.js
-var maxIPv6Length = 45, options = {
-  timeout: 400
-};
-function isIP(string) {
-  return string.length > maxIPv6Length ? !1 : isMatch(ip_regex_default({ exact: !0 }), string, options);
-}
-
-// ../../node_modules/remix-utils/build/server/get-headers.js
-function getHeaders(requestOrHeaders) {
-  return requestOrHeaders instanceof Request ? requestOrHeaders.headers : requestOrHeaders;
-}
-
-// ../../node_modules/remix-utils/build/server/get-client-ip-address.js
-var headerNames = Object.freeze([
-  "X-Client-IP",
-  "X-Forwarded-For",
-  "HTTP-X-Forwarded-For",
-  "Fly-Client-IP",
-  "CF-Connecting-IP",
-  "Fastly-Client-Ip",
-  "True-Client-Ip",
-  "X-Real-IP",
-  "X-Cluster-Client-IP",
-  "X-Forwarded",
-  "Forwarded-For",
-  "Forwarded",
-  "DO-Connecting-IP",
-  "oxygen-buyer-ip"
-]);
-function getClientIPAddress(requestOrHeaders) {
-  let headers = getHeaders(requestOrHeaders);
-  return headerNames.flatMap((headerName) => {
-    let value = headers.get(headerName);
-    return headerName === "Forwarded" ? parseForwardedHeader(value) : value?.includes(",") ? value.split(",").map((ip) => ip.trim()) : value;
-  }).find((ip) => ip === null ? !1 : isIP(ip)) ?? null;
-}
-function parseForwardedHeader(value) {
-  if (!value)
-    return null;
-  for (let part of value.split(";"))
-    if (part.startsWith("for="))
-      return part.slice(4);
-  return null;
-}
-
-// app/utils/index.ts
-var import_ulid_workers = __toESM(require_dist2(), 1);
-var getIPAddress = async (req, ctx) => {
-  let cIP = getClientIPAddress(req.headers);
-  if (!cIP) {
-    let q = await fetch("https://api.ipify.org?format=json"), { ip } = await q.json();
-    cIP = ip;
-  }
-  return cIP;
-}, ulid = (0, import_ulid_workers.ulidFactory)();
-
-// app/db/users.server.ts
-var findOrCreateUser = async ({
-  db,
+// app/services/db.server.ts
+var findOrCreateProfile = async ({
+  d1DB,
   profile
 }) => {
-  let DB = drizzle(db), dbUser = await DB.select().from(users).where(eq(users.email, profile.emails[0].value)).get(), user = {
-    id: typeof dbUser > "u" ? ulid() : dbUser.id,
-    name: profile.displayName ?? "",
-    email: profile.emails[0].value,
-    emailVerified: profile._json.email_verified ? profile._json.email_verified : !1,
-    photo: profile.photos[0].value,
-    preferences: typeof dbUser > "u" ? { theme: config.appDefaultTheme } : dbUser.preferences
-  };
-  return await DB.insert(users).values(user).onConflictDoUpdate({
-    target: users.id,
-    set: user
-  }).returning(), user;
+  let db = drizzle(d1DB, { schema: schema_exports });
+  if (await db.query.profiles.findFirst({
+    with: {
+      tenants: !0
+    }
+  })) {
+    let [upd_profile] = await db.update(profiles).set({}).returning();
+    if (!upd_profile)
+      throw new Response("Something went wrong", { status: 500 });
+    return upd_profile;
+  } else {
+    let [new_profile] = await db.insert(profiles).values({
+      email: profile.emails[0].value.toLowerCase(),
+      authId: profile.id,
+      authTenantId: profile.organizationId,
+      authProvider: profile.provider,
+      displayName: profile.displayName,
+      updatedAt: sql`CURRENT_TIMESTAMP`
+    }).returning();
+    if (!new_profile)
+      throw new Response("Something went wrong", { status: 500 });
+    return new_profile;
+  }
 };
 
 // app/services/auth.server.ts
@@ -38719,10 +39903,7 @@ var import_remix_auth = __toESM(require_build(), 1), import_remix_auth_auth0 = _
     clientID: context.env.AUTH_AUTH0_ID,
     clientSecret: context.env.AUTH_AUTH0_SECRET,
     domain: context.env.AUTH_AUTH0_DOMAIN
-  }, auth0Strategy = new import_remix_auth_auth0.Auth0Strategy(authConfig, async ({ accessToken, refreshToken, profile }) => {
-    let user = await findOrCreateUser({ db: context.env.DB, profile });
-    return await findOrCreateAccount({ userId: user.id, db: context.env.DB, profile, accessToken }), { id: user.id, name: user.name, email: user.email, emailVerified: user.emailVerified, accessToken };
-  }), authenticator = new import_remix_auth.Authenticator(sessionStorage2, { throwOnError: !0 });
+  }, auth0Strategy = new import_remix_auth_auth0.Auth0Strategy(authConfig, async ({ profile }) => await findOrCreateProfile({ d1DB: context.env.DB, profile })), authenticator = new import_remix_auth.Authenticator(sessionStorage2, { throwOnError: !0 });
   return authenticator.use(auth0Strategy), authenticator;
 };
 
@@ -38761,14 +39942,29 @@ var loader = async ({ context, request }) => {
   });
 };
 
-// app/routes/_appLayout._index/route.tsx
-var route_exports3 = {};
-__export(route_exports3, {
+// app/routes/_app.dashboard/route.tsx
+var route_exports6 = {};
+__export(route_exports6, {
+  default: () => DashboardView,
+  meta: () => meta3
+});
+var import_jsx_dev_runtime6 = __toESM(require_jsx_dev_runtime(), 1), meta3 = () => [{ title: "HELIOS | Dashboard" }, { description: "Helios management app." }];
+function DashboardView() {
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime6.jsxDEV)(import_jsx_dev_runtime6.Fragment, {}, void 0, !1, {
+    fileName: "app/routes/_app.dashboard/route.tsx",
+    lineNumber: 7,
+    columnNumber: 10
+  }, this);
+}
+
+// app/routes/_app._index/route.tsx
+var route_exports7 = {};
+__export(route_exports7, {
   default: () => LandingView,
-  meta: () => meta2
+  meta: () => meta4
 });
 
-// ../../node_modules/react-daisyui/dist/react-daisyui.modern.js
+// ../../node_modules/.pnpm/react-daisyui@4.1.2_daisyui@4.4.23_react-dom@18.2.0_react@18.2.0_tailwindcss@3.4.0/node_modules/react-daisyui/dist/react-daisyui.modern.js
 var import_jsx_runtime = __toESM(require_jsx_runtime(), 1), import_react4 = __toESM(require_react(), 1);
 function _extends5() {
   return _extends5 = Object.assign ? Object.assign.bind() : function(target) {
@@ -38811,8 +40007,8 @@ function clsx() {
   return n3;
 }
 function twJoin() {
-  for (var index = 0, argument, resolvedValue, string = ""; index < arguments.length; )
-    (argument = arguments[index++]) && (resolvedValue = toValue(argument)) && (string && (string += " "), string += resolvedValue);
+  for (var index2 = 0, argument, resolvedValue, string = ""; index2 < arguments.length; )
+    (argument = arguments[index2++]) && (resolvedValue = toValue(argument)) && (string && (string += " "), string += resolvedValue);
   return string;
 }
 function toValue(mix) {
@@ -38946,15 +40142,15 @@ var IMPORTANT_MODIFIER = "!";
 function createSplitModifiers(config2) {
   var separator = config2.separator || ":", isSeparatorSingleCharacter = separator.length === 1, firstSeparatorCharacter = separator[0], separatorLength = separator.length;
   return function(className) {
-    for (var modifiers = [], bracketDepth = 0, modifierStart = 0, postfixModifierPosition, index = 0; index < className.length; index++) {
-      var currentCharacter = className[index];
+    for (var modifiers = [], bracketDepth = 0, modifierStart = 0, postfixModifierPosition, index2 = 0; index2 < className.length; index2++) {
+      var currentCharacter = className[index2];
       if (bracketDepth === 0) {
-        if (currentCharacter === firstSeparatorCharacter && (isSeparatorSingleCharacter || className.slice(index, index + separatorLength) === separator)) {
-          modifiers.push(className.slice(modifierStart, index)), modifierStart = index + separatorLength;
+        if (currentCharacter === firstSeparatorCharacter && (isSeparatorSingleCharacter || className.slice(index2, index2 + separatorLength) === separator)) {
+          modifiers.push(className.slice(modifierStart, index2)), modifierStart = index2 + separatorLength;
           continue;
         }
         if (currentCharacter === "/") {
-          postfixModifierPosition = index;
+          postfixModifierPosition = index2;
           continue;
         }
       }
@@ -41735,7 +42931,7 @@ var _excluded$1e = ["className"], CardActions = /* @__PURE__ */ import_react4.de
     innerRef,
     src,
     alt,
-    index = 0,
+    index: index2 = 0,
     width,
     hasButtons,
     buttonStyle,
@@ -41766,7 +42962,7 @@ var _excluded$1e = ["className"], CardActions = /* @__PURE__ */ import_react4.de
     })]
   });
   return (0, import_jsx_runtime.jsxs)("div", _extends5({}, props, {
-    id: `item${index}`,
+    id: `item${index2}`,
     ref: innerRef,
     className: classes,
     children: [src ? (0, import_jsx_runtime.jsx)("img", {
@@ -41800,13 +42996,13 @@ var _excluded$1e = ["className"], CardActions = /* @__PURE__ */ import_react4.de
       newRefs.push(/* @__PURE__ */ (0, import_react4.createRef)());
     }), setItemRefs(newRefs);
   }, [children]);
-  let scrollToIndex = (index) => {
+  let scrollToIndex = (index2) => {
     var _itemRefs$index$curre;
-    (_itemRefs$index$curre = itemRefs[index].current) == null || _itemRefs$index$curre.scrollIntoView({
+    (_itemRefs$index$curre = itemRefs[index2].current) == null || _itemRefs$index$curre.scrollIntoView({
       behavior: "smooth",
       block: "nearest",
       inline: snap
-    }), setActiveIndex(index);
+    }), setActiveIndex(index2);
   };
   return (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, {
     children: [(0, import_jsx_runtime.jsx)("div", _extends5({
@@ -42468,14 +43664,14 @@ var RatingItem = (_ref) => {
       className: clsx(classes, "hidden"),
       checked: !0,
       readOnly: !0
-    }), import_react4.default.Children.map(children, (child, index) => {
+    }), import_react4.default.Children.map(children, (child, index2) => {
       let childComponent = child;
       return /* @__PURE__ */ import_react4.default.cloneElement(childComponent, {
-        key: index + value,
-        checked: value === index + 1,
+        key: index2 + value,
+        checked: value === index2 + 1,
         readOnly: onChange == null,
         onChange: () => {
-          onChange?.(index + 1);
+          onChange?.(index2 + 1);
         }
       });
     })]
@@ -43269,7 +44465,7 @@ var _excluded$8 = ["children", "value", "color", "dataTheme", "className"], Step
   }, props, {
     "data-theme": dataTheme,
     className: classes,
-    children: children.map((child, index) => /* @__PURE__ */ (0, import_react4.cloneElement)(child, {
+    children: children.map((child, index2) => /* @__PURE__ */ (0, import_react4.cloneElement)(child, {
       key: child.props.value,
       variant,
       size,
@@ -43327,10 +44523,10 @@ var _excluded$3 = ["dataTheme", "className", "children"], CodeMockup = /* @__PUR
     "data-theme": dataTheme,
     className: classes,
     ref,
-    children: import_react4.default.Children.map(children, (child, index) => {
+    children: import_react4.default.Children.map(children, (child, index2) => {
       let childComponent = child;
       return /* @__PURE__ */ import_react4.default.cloneElement(childComponent, {
-        key: index
+        key: index2
       });
     })
   }));
@@ -43422,23 +44618,23 @@ var _excluded$1 = ["border", "borderColor", "backgroundColor", "frameColor", "da
 });
 WindowMockup.displayName = "WindowMockup";
 
-// app/routes/_appLayout._index/route.tsx
-var import_jsx_dev_runtime5 = __toESM(require_jsx_dev_runtime(), 1), meta2 = () => [{ title: "OLYMPUS | Helios" }, { description: "Helios system management application." }];
+// app/routes/_app._index/route.tsx
+var import_jsx_dev_runtime7 = __toESM(require_jsx_dev_runtime(), 1), meta4 = () => [{ title: "OLYMPUS | Helios" }, { description: "Helios system management application." }];
 function LandingView() {
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("main", { children: /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "flex min-h-[550vh] max-w-[100vw] flex-col items-center justify-start xl:flex-row xl:items-start xl:justify-between", children: [
-    /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "shrink xl:w-1/2", children: /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "flex min-h-[calc(100vh-4rem)] items-center justify-center px-2 py-10 text-center xl:justify-start xl:pl-10 xl:pr-0 xl:text-left", children: /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { children: /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("h1", { className: "font-title text-center text-[clamp(2rem,6vw,4.2rem)] font-black leading-[1.1] xl:text-left [:root[dir=rtl]_&]:leading-[1.35]", children: [
-      /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("span", { className: "brightness-150 contrast-150 [&::selection]:bg-blue-700/20 [&::selection]:text-base-content", children: "The" }, void 0, !1, {
-        fileName: "app/routes/_appLayout._index/route.tsx",
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("main", { children: /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("div", { className: "flex min-h-[550vh] max-w-[100vw] flex-col items-center justify-start xl:flex-row xl:items-start xl:justify-between", children: [
+    /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("div", { className: "shrink xl:w-1/2", children: /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("div", { className: "flex min-h-[calc(100vh-4rem)] items-center justify-center px-2 py-10 text-center xl:justify-start xl:pl-10 xl:pr-0 xl:text-left", children: /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("div", { children: /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("h1", { className: "font-title text-center text-[clamp(2rem,6vw,4.2rem)] font-black leading-[1.1] xl:text-left [:root[dir=rtl]_&]:leading-[1.35]", children: [
+      /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("span", { className: "brightness-150 contrast-150 [&::selection]:bg-blue-700/20 [&::selection]:text-base-content", children: "The" }, void 0, !1, {
+        fileName: "app/routes/_app._index/route.tsx",
         lineNumber: 16,
         columnNumber: 17
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("br", {}, void 0, !1, {
-        fileName: "app/routes/_appLayout._index/route.tsx",
+      /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("br", {}, void 0, !1, {
+        fileName: "app/routes/_app._index/route.tsx",
         lineNumber: 19,
         columnNumber: 17
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("span", { className: "inline-grid", children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(
+      /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("span", { className: "inline-grid", children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(
           "span",
           {
             className: "pointer-events-none col-start-1 row-start-1 bg-[linear-gradient(90deg,theme(colors.error)_0%,theme(colors.secondary)_9%,theme(colors.secondary)_42%,theme(colors.primary)_47%,theme(colors.accent)_100%)] bg-clip-text blur-2xl [-webkit-text-fill-color:transparent] [transform:translate3d(0,0,0)] [@supports(color:oklch(0_0_0))]:bg-[linear-gradient(90deg,oklch(var(--s))_4%,color-mix(in_oklch,oklch(var(--s)),oklch(var(--er)))_22%,oklch(var(--p))_45%,color-mix(in_oklch,oklch(var(--p)),oklch(var(--a)))_67%,oklch(var(--a))_100.2%)]",
@@ -43448,185 +44644,185 @@ function LandingView() {
           void 0,
           !1,
           {
-            fileName: "app/routes/_appLayout._index/route.tsx",
+            fileName: "app/routes/_app._index/route.tsx",
             lineNumber: 21,
             columnNumber: 19
           },
           this
         ),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("span", { className: "relative col-start-1 row-start-1 bg-[linear-gradient(90deg,theme(colors.error)_0%,theme(colors.secondary)_9%,theme(colors.secondary)_42%,theme(colors.primary)_47%,theme(colors.accent)_100%)] bg-clip-text [-webkit-text-fill-color:transparent] [&::selection]:bg-blue-700/20 [&::selection]:text-base-content [@supports(color:oklch(0_0_0))]:bg-[linear-gradient(90deg,oklch(var(--s))_4%,color-mix(in_oklch,oklch(var(--s)),oklch(var(--er)))_22%,oklch(var(--p))_45%,color-mix(in_oklch,oklch(var(--p)),oklch(var(--a)))_67%,oklch(var(--a))_100.2%)]", children: "system administration" }, void 0, !1, {
-          fileName: "app/routes/_appLayout._index/route.tsx",
+        /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("span", { className: "relative col-start-1 row-start-1 bg-[linear-gradient(90deg,theme(colors.error)_0%,theme(colors.secondary)_9%,theme(colors.secondary)_42%,theme(colors.primary)_47%,theme(colors.accent)_100%)] bg-clip-text [-webkit-text-fill-color:transparent] [&::selection]:bg-blue-700/20 [&::selection]:text-base-content [@supports(color:oklch(0_0_0))]:bg-[linear-gradient(90deg,oklch(var(--s))_4%,color-mix(in_oklch,oklch(var(--s)),oklch(var(--er)))_22%,oklch(var(--p))_45%,color-mix(in_oklch,oklch(var(--p)),oklch(var(--a)))_67%,oklch(var(--a))_100.2%)]", children: "system administration" }, void 0, !1, {
+          fileName: "app/routes/_app._index/route.tsx",
           lineNumber: 27,
           columnNumber: 19
         }, this)
       ] }, void 0, !0, {
-        fileName: "app/routes/_appLayout._index/route.tsx",
+        fileName: "app/routes/_app._index/route.tsx",
         lineNumber: 20,
         columnNumber: 17
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("br", {}, void 0, !1, {
-        fileName: "app/routes/_appLayout._index/route.tsx",
+      /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("br", {}, void 0, !1, {
+        fileName: "app/routes/_app._index/route.tsx",
         lineNumber: 31,
         columnNumber: 17
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("span", { className: "brightness-150 contrast-150 [&::selection]:bg-blue-700/20 [&::selection]:text-base-content", children: "application." }, void 0, !1, {
-        fileName: "app/routes/_appLayout._index/route.tsx",
+      /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("span", { className: "brightness-150 contrast-150 [&::selection]:bg-blue-700/20 [&::selection]:text-base-content", children: "application." }, void 0, !1, {
+        fileName: "app/routes/_app._index/route.tsx",
         lineNumber: 32,
         columnNumber: 17
       }, this)
     ] }, void 0, !0, {
-      fileName: "app/routes/_appLayout._index/route.tsx",
+      fileName: "app/routes/_app._index/route.tsx",
       lineNumber: 15,
       columnNumber: 15
     }, this) }, void 0, !1, {
-      fileName: "app/routes/_appLayout._index/route.tsx",
+      fileName: "app/routes/_app._index/route.tsx",
       lineNumber: 14,
       columnNumber: 13
     }, this) }, void 0, !1, {
-      fileName: "app/routes/_appLayout._index/route.tsx",
+      fileName: "app/routes/_app._index/route.tsx",
       lineNumber: 13,
       columnNumber: 11
     }, this) }, void 0, !1, {
-      fileName: "app/routes/_appLayout._index/route.tsx",
+      fileName: "app/routes/_app._index/route.tsx",
       lineNumber: 12,
       columnNumber: 9
     }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "invisible sticky bottom-4 flex w-[calc(100%-2rem)] shrink duration-700 xl:visible xl:-right-32 xl:bottom-auto xl:top-16 xl:w-auto xl:!transform-none xl:overflow-x-hidden xl:overflow-y-clip xl:bg-transparent xl:pb-16 xl:pt-16", children: /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(WindowMockup, { className: "mx-auto origin-top overflow-visible bg-base-200/90 pb-4 backdrop-blur will-change-auto [transform:rotateX(20deg)rotateZ(-20deg)skewY(8deg)scale(1)] max-[1280px]:![transform:translate3d(0,0,0)] xl:-right-20 xl:-mr-10 xl:h-[32rem] xl:w-[50rem] xl:rounded-r-none xl:bg-base-200 xl:pr-4 xl:shadow-[-0.05rem_0.1rem_0rem_#00000014] xl:backdrop-blur-0", children: /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "grid", children: /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "invisible z-[1] col-start-1 row-start-1 grid overflow-y-hidden overflow-x-scroll [scrollbar-width:none] xl:visible xl:overflow-x-visible xl:overflow-y-visible [&::-webkit-scrollbar]:hidden", children: /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "col-start-1 row-start-1 mx-6 flex items-end gap-6 xl:mx-0 xl:items-start xl:gap-0", children: [
-      /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "flex gap-6 xl:w-60 xl:flex-col xl:gap-0", children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(
+    /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("div", { className: "invisible sticky bottom-4 flex w-[calc(100%-2rem)] shrink duration-700 xl:visible xl:-right-32 xl:bottom-auto xl:top-16 xl:w-auto xl:!transform-none xl:overflow-x-hidden xl:overflow-y-clip xl:bg-transparent xl:pb-16 xl:pt-16", children: /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(WindowMockup, { className: "mx-auto origin-top overflow-visible bg-base-200/90 pb-4 backdrop-blur will-change-auto [transform:rotateX(20deg)rotateZ(-20deg)skewY(8deg)scale(1)] max-[1280px]:![transform:translate3d(0,0,0)] xl:-right-20 xl:-mr-10 xl:h-[32rem] xl:w-[50rem] xl:rounded-r-none xl:bg-base-200 xl:pr-4 xl:shadow-[-0.05rem_0.1rem_0rem_#00000014] xl:backdrop-blur-0", children: /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("div", { className: "grid", children: /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("div", { className: "invisible z-[1] col-start-1 row-start-1 grid overflow-y-hidden overflow-x-scroll [scrollbar-width:none] xl:visible xl:overflow-x-visible xl:overflow-y-visible [&::-webkit-scrollbar]:hidden", children: /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("div", { className: "col-start-1 row-start-1 mx-6 flex items-end gap-6 xl:mx-0 xl:items-start xl:gap-0", children: [
+      /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("div", { className: "flex gap-6 xl:w-60 xl:flex-col xl:gap-0", children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(
           "div",
           {
             className: "relative z-[1] w-80 will-change-auto motion-reduce:!transform-none max-[1280px]:![transform:translate3d(0,0,0)] xl:-left-6 xl:w-auto xl:[filter:drop-shadow(-1rem_3rem_1rem_#00000012)]",
             style: { transform: "translate(0px,0px)" },
             children: [
-              /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(Tabs$1, { size: "xs", variant: "lifted", value: 0, children: [
-                /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(Tabs$1.Tab, { value: 0, className: "text-xs", children: "Features" }, void 0, !1, {
-                  fileName: "app/routes/_appLayout._index/route.tsx",
+              /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(Tabs$1, { size: "xs", variant: "lifted", value: 0, children: [
+                /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(Tabs$1.Tab, { value: 0, className: "text-xs", children: "Features" }, void 0, !1, {
+                  fileName: "app/routes/_app._index/route.tsx",
                   lineNumber: 50,
                   columnNumber: 25
                 }, this),
-                /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(Tabs$1.Tab, { value: 1, className: "text-xs", children: "Links" }, void 0, !1, {
-                  fileName: "app/routes/_appLayout._index/route.tsx",
+                /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(Tabs$1.Tab, { value: 1, className: "text-xs", children: "Links" }, void 0, !1, {
+                  fileName: "app/routes/_app._index/route.tsx",
                   lineNumber: 53,
                   columnNumber: 25
                 }, this),
-                /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(Tabs$1.Tab, { value: 2, className: "text-xs", children: "Message" }, void 0, !1, {
-                  fileName: "app/routes/_appLayout._index/route.tsx",
+                /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(Tabs$1.Tab, { value: 2, className: "text-xs", children: "Message" }, void 0, !1, {
+                  fileName: "app/routes/_app._index/route.tsx",
                   lineNumber: 56,
                   columnNumber: 25
                 }, this)
               ] }, void 0, !0, {
-                fileName: "app/routes/_appLayout._index/route.tsx",
+                fileName: "app/routes/_app._index/route.tsx",
                 lineNumber: 49,
                 columnNumber: 23
               }, this),
-              /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "h-60 shrink-0 rounded-b-box rounded-tr-box bg-base-100", children: /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "flex flex-col items-stretch p-6", children: [
-                /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "form-control", children: /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("label", { className: "label cursor-pointer", children: [
-                  /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("span", { className: "label-text text-xs", children: "Faster development" }, void 0, !1, {
-                    fileName: "app/routes/_appLayout._index/route.tsx",
+              /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("div", { className: "h-60 shrink-0 rounded-b-box rounded-tr-box bg-base-100", children: /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("div", { className: "flex flex-col items-stretch p-6", children: [
+                /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("div", { className: "form-control", children: /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("label", { className: "label cursor-pointer", children: [
+                  /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("span", { className: "label-text text-xs", children: "Faster development" }, void 0, !1, {
+                    fileName: "app/routes/_app._index/route.tsx",
                     lineNumber: 64,
                     columnNumber: 31
                   }, this),
-                  /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(Toggle, { name: "toggle", color: "primary", size: "sm", defaultChecked: !0 }, void 0, !1, {
-                    fileName: "app/routes/_appLayout._index/route.tsx",
+                  /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(Toggle, { name: "toggle", color: "primary", size: "sm", defaultChecked: !0 }, void 0, !1, {
+                    fileName: "app/routes/_app._index/route.tsx",
                     lineNumber: 65,
                     columnNumber: 31
                   }, this)
                 ] }, void 0, !0, {
-                  fileName: "app/routes/_appLayout._index/route.tsx",
+                  fileName: "app/routes/_app._index/route.tsx",
                   lineNumber: 63,
                   columnNumber: 29
                 }, this) }, void 0, !1, {
-                  fileName: "app/routes/_appLayout._index/route.tsx",
+                  fileName: "app/routes/_app._index/route.tsx",
                   lineNumber: 62,
                   columnNumber: 27
                 }, this),
-                /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "form-control", children: /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("label", { className: "label cursor-pointer", children: [
-                  /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("span", { className: "label-text text-xs", children: "Cleaner HTML" }, void 0, !1, {
-                    fileName: "app/routes/_appLayout._index/route.tsx",
+                /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("div", { className: "form-control", children: /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("label", { className: "label cursor-pointer", children: [
+                  /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("span", { className: "label-text text-xs", children: "Cleaner HTML" }, void 0, !1, {
+                    fileName: "app/routes/_app._index/route.tsx",
                     lineNumber: 70,
                     columnNumber: 31
                   }, this),
-                  /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(Toggle, { name: "toggle", color: "secondary", size: "sm", defaultChecked: !0 }, void 0, !1, {
-                    fileName: "app/routes/_appLayout._index/route.tsx",
+                  /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(Toggle, { name: "toggle", color: "secondary", size: "sm", defaultChecked: !0 }, void 0, !1, {
+                    fileName: "app/routes/_app._index/route.tsx",
                     lineNumber: 71,
                     columnNumber: 31
                   }, this)
                 ] }, void 0, !0, {
-                  fileName: "app/routes/_appLayout._index/route.tsx",
+                  fileName: "app/routes/_app._index/route.tsx",
                   lineNumber: 69,
                   columnNumber: 29
                 }, this) }, void 0, !1, {
-                  fileName: "app/routes/_appLayout._index/route.tsx",
+                  fileName: "app/routes/_app._index/route.tsx",
                   lineNumber: 68,
                   columnNumber: 27
                 }, this),
-                /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "form-control", children: /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("label", { className: "label cursor-pointer", children: [
-                  /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("span", { className: "label-text text-xs", children: "Customizable" }, void 0, !1, {
-                    fileName: "app/routes/_appLayout._index/route.tsx",
+                /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("div", { className: "form-control", children: /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("label", { className: "label cursor-pointer", children: [
+                  /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("span", { className: "label-text text-xs", children: "Customizable" }, void 0, !1, {
+                    fileName: "app/routes/_app._index/route.tsx",
                     lineNumber: 76,
                     columnNumber: 31
                   }, this),
-                  /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(Toggle, { name: "toggle", color: "accent", size: "sm", defaultChecked: !0 }, void 0, !1, {
-                    fileName: "app/routes/_appLayout._index/route.tsx",
+                  /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(Toggle, { name: "toggle", color: "accent", size: "sm", defaultChecked: !0 }, void 0, !1, {
+                    fileName: "app/routes/_app._index/route.tsx",
                     lineNumber: 77,
                     columnNumber: 31
                   }, this)
                 ] }, void 0, !0, {
-                  fileName: "app/routes/_appLayout._index/route.tsx",
+                  fileName: "app/routes/_app._index/route.tsx",
                   lineNumber: 75,
                   columnNumber: 29
                 }, this) }, void 0, !1, {
-                  fileName: "app/routes/_appLayout._index/route.tsx",
+                  fileName: "app/routes/_app._index/route.tsx",
                   lineNumber: 74,
                   columnNumber: 27
                 }, this),
-                /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "form-control", children: /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("label", { className: "label cursor-pointer", children: [
-                  /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("span", { className: "label-text text-xs", children: "Themeable" }, void 0, !1, {
-                    fileName: "app/routes/_appLayout._index/route.tsx",
+                /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("div", { className: "form-control", children: /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("label", { className: "label cursor-pointer", children: [
+                  /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("span", { className: "label-text text-xs", children: "Themeable" }, void 0, !1, {
+                    fileName: "app/routes/_app._index/route.tsx",
                     lineNumber: 82,
                     columnNumber: 31
                   }, this),
-                  /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(Toggle, { name: "toggle", color: "success", size: "sm", defaultChecked: !0 }, void 0, !1, {
-                    fileName: "app/routes/_appLayout._index/route.tsx",
+                  /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(Toggle, { name: "toggle", color: "success", size: "sm", defaultChecked: !0 }, void 0, !1, {
+                    fileName: "app/routes/_app._index/route.tsx",
                     lineNumber: 83,
                     columnNumber: 31
                   }, this)
                 ] }, void 0, !0, {
-                  fileName: "app/routes/_appLayout._index/route.tsx",
+                  fileName: "app/routes/_app._index/route.tsx",
                   lineNumber: 81,
                   columnNumber: 29
                 }, this) }, void 0, !1, {
-                  fileName: "app/routes/_appLayout._index/route.tsx",
+                  fileName: "app/routes/_app._index/route.tsx",
                   lineNumber: 80,
                   columnNumber: 27
                 }, this),
-                /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "form-control", children: /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("label", { className: "label cursor-pointer", children: [
-                  /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("span", { className: "label-text text-xs", children: "Pure CSS" }, void 0, !1, {
-                    fileName: "app/routes/_appLayout._index/route.tsx",
+                /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("div", { className: "form-control", children: /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("label", { className: "label cursor-pointer", children: [
+                  /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("span", { className: "label-text text-xs", children: "Pure CSS" }, void 0, !1, {
+                    fileName: "app/routes/_app._index/route.tsx",
                     lineNumber: 88,
                     columnNumber: 31
                   }, this),
-                  /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(Toggle, { name: "toggle", size: "sm", defaultChecked: !0 }, void 0, !1, {
-                    fileName: "app/routes/_appLayout._index/route.tsx",
+                  /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(Toggle, { name: "toggle", size: "sm", defaultChecked: !0 }, void 0, !1, {
+                    fileName: "app/routes/_app._index/route.tsx",
                     lineNumber: 89,
                     columnNumber: 31
                   }, this)
                 ] }, void 0, !0, {
-                  fileName: "app/routes/_appLayout._index/route.tsx",
+                  fileName: "app/routes/_app._index/route.tsx",
                   lineNumber: 87,
                   columnNumber: 29
                 }, this) }, void 0, !1, {
-                  fileName: "app/routes/_appLayout._index/route.tsx",
+                  fileName: "app/routes/_app._index/route.tsx",
                   lineNumber: 86,
                   columnNumber: 27
                 }, this)
               ] }, void 0, !0, {
-                fileName: "app/routes/_appLayout._index/route.tsx",
+                fileName: "app/routes/_app._index/route.tsx",
                 lineNumber: 61,
                 columnNumber: 25
               }, this) }, void 0, !1, {
-                fileName: "app/routes/_appLayout._index/route.tsx",
+                fileName: "app/routes/_app._index/route.tsx",
                 lineNumber: 60,
                 columnNumber: 23
               }, this)
@@ -43635,27 +44831,27 @@ function LandingView() {
           void 0,
           !0,
           {
-            fileName: "app/routes/_appLayout._index/route.tsx",
+            fileName: "app/routes/_app._index/route.tsx",
             lineNumber: 45,
             columnNumber: 21
           },
           this
         ),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "flex w-60 flex-col justify-end gap-4 xl:w-auto xl:justify-normal xl:p-6", children: [
-          /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(
+        /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("div", { className: "flex w-60 flex-col justify-end gap-4 xl:w-auto xl:justify-normal xl:p-6", children: [
+          /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(
             "div",
             {
               className: "alert border border-base-300 will-change-auto motion-reduce:!transform-none motion-reduce:!shadow-none max-[1280px]:![transform:translate3d(0,0,0)]",
               style: { boxShadow: "0rem 0rem 0rem #00000012", transform: "translate(0px,0px)" },
               children: [
-                /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(
+                /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(
                   "svg",
                   {
                     xmlns: "http://www.w3.org/2000/svg",
                     viewBox: "0 0 20 20",
                     fill: "currentColor",
                     className: "h-5 w-5 shrink-0",
-                    children: /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(
+                    children: /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(
                       "path",
                       {
                         fillRule: "evenodd",
@@ -43665,7 +44861,7 @@ function LandingView() {
                       void 0,
                       !1,
                       {
-                        fileName: "app/routes/_appLayout._index/route.tsx",
+                        fileName: "app/routes/_app._index/route.tsx",
                         lineNumber: 106,
                         columnNumber: 27
                       },
@@ -43675,22 +44871,22 @@ function LandingView() {
                   void 0,
                   !1,
                   {
-                    fileName: "app/routes/_appLayout._index/route.tsx",
+                    fileName: "app/routes/_app._index/route.tsx",
                     lineNumber: 100,
                     columnNumber: 25
                   },
                   this
                 ),
-                /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("span", { className: "text-xs", children: [
+                /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("span", { className: "text-xs", children: [
                   "Pure CSS. ",
-                  /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("br", {}, void 0, !1, {
-                    fileName: "app/routes/_appLayout._index/route.tsx",
+                  /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("br", {}, void 0, !1, {
+                    fileName: "app/routes/_app._index/route.tsx",
                     lineNumber: 113,
                     columnNumber: 37
                   }, this),
                   "No JS dependency"
                 ] }, void 0, !0, {
-                  fileName: "app/routes/_appLayout._index/route.tsx",
+                  fileName: "app/routes/_app._index/route.tsx",
                   lineNumber: 112,
                   columnNumber: 25
                 }, this)
@@ -43699,27 +44895,27 @@ function LandingView() {
             void 0,
             !0,
             {
-              fileName: "app/routes/_appLayout._index/route.tsx",
+              fileName: "app/routes/_app._index/route.tsx",
               lineNumber: 96,
               columnNumber: 23
             },
             this
           ),
-          /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(
+          /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(
             "div",
             {
               className: "alert border border-base-300 will-change-auto motion-reduce:!transform-none motion-reduce:!shadow-none max-[1280px]:![transform:translate3d(0,0,0)]",
               style: { boxShadow: "0rem 0rem 0rem #00000012", transform: "translate(0px,0px)" },
               children: [
-                /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(
+                /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(
                   "svg",
                   {
                     xmlns: "http://www.w3.org/2000/svg",
                     viewBox: "0 0 20 20",
                     fill: "currentColor",
                     className: "h-5 w-5 shrink-0",
-                    children: /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("path", { d: "M15.98 1.804a1 1 0 00-1.96 0l-.24 1.192a1 1 0 01-.784.785l-1.192.238a1 1 0 000 1.962l1.192.238a1 1 0 01.785.785l.238 1.192a1 1 0 001.962 0l.238-1.192a1 1 0 01.785-.785l1.192-.238a1 1 0 000-1.962l-1.192-.238a1 1 0 01-.785-.785l-.238-1.192zM6.949 5.684a1 1 0 00-1.898 0l-.683 2.051a1 1 0 01-.633.633l-2.051.683a1 1 0 000 1.898l2.051.684a1 1 0 01.633.632l.683 2.051a1 1 0 001.898 0l.683-2.051a1 1 0 01.633-.633l2.051-.683a1 1 0 000-1.898l-2.051-.683a1 1 0 01-.633-.633L6.95 5.684zM13.949 13.684a1 1 0 00-1.898 0l-.184.551a1 1 0 01-.632.633l-.551.183a1 1 0 000 1.898l.551.183a1 1 0 01.633.633l.183.551a1 1 0 001.898 0l.184-.551a1 1 0 01.632-.633l.551-.183a1 1 0 000-1.898l-.551-.184a1 1 0 01-.633-.632l-.183-.551z" }, void 0, !1, {
-                      fileName: "app/routes/_appLayout._index/route.tsx",
+                    children: /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("path", { d: "M15.98 1.804a1 1 0 00-1.96 0l-.24 1.192a1 1 0 01-.784.785l-1.192.238a1 1 0 000 1.962l1.192.238a1 1 0 01.785.785l.238 1.192a1 1 0 001.962 0l.238-1.192a1 1 0 01.785-.785l1.192-.238a1 1 0 000-1.962l-1.192-.238a1 1 0 01-.785-.785l-.238-1.192zM6.949 5.684a1 1 0 00-1.898 0l-.683 2.051a1 1 0 01-.633.633l-2.051.683a1 1 0 000 1.898l2.051.684a1 1 0 01.633.632l.683 2.051a1 1 0 001.898 0l.683-2.051a1 1 0 01.633-.633l2.051-.683a1 1 0 000-1.898l-2.051-.683a1 1 0 01-.633-.633L6.95 5.684zM13.949 13.684a1 1 0 00-1.898 0l-.184.551a1 1 0 01-.632.633l-.551.183a1 1 0 000 1.898l.551.183a1 1 0 01.633.633l.183.551a1 1 0 001.898 0l.184-.551a1 1 0 01.632-.633l.551-.183a1 1 0 000-1.898l-.551-.184a1 1 0 01-.633-.632l-.183-.551z" }, void 0, !1, {
+                      fileName: "app/routes/_app._index/route.tsx",
                       lineNumber: 127,
                       columnNumber: 27
                     }, this)
@@ -43727,14 +44923,14 @@ function LandingView() {
                   void 0,
                   !1,
                   {
-                    fileName: "app/routes/_appLayout._index/route.tsx",
+                    fileName: "app/routes/_app._index/route.tsx",
                     lineNumber: 121,
                     columnNumber: 25
                   },
                   this
                 ),
-                /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("span", { className: "text-xs", children: "Works on all frameworks" }, void 0, !1, {
-                  fileName: "app/routes/_appLayout._index/route.tsx",
+                /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("span", { className: "text-xs", children: "Works on all frameworks" }, void 0, !1, {
+                  fileName: "app/routes/_app._index/route.tsx",
                   lineNumber: 129,
                   columnNumber: 25
                 }, this)
@@ -43743,24 +44939,24 @@ function LandingView() {
             void 0,
             !0,
             {
-              fileName: "app/routes/_appLayout._index/route.tsx",
+              fileName: "app/routes/_app._index/route.tsx",
               lineNumber: 117,
               columnNumber: 23
             },
             this
           )
         ] }, void 0, !0, {
-          fileName: "app/routes/_appLayout._index/route.tsx",
+          fileName: "app/routes/_app._index/route.tsx",
           lineNumber: 95,
           columnNumber: 21
         }, this)
       ] }, void 0, !0, {
-        fileName: "app/routes/_appLayout._index/route.tsx",
+        fileName: "app/routes/_app._index/route.tsx",
         lineNumber: 44,
         columnNumber: 19
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "flex shrink-0 gap-6 pr-4 xl:flex-col xl:pr-0", children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(
+      /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("div", { className: "flex shrink-0 gap-6 pr-4 xl:flex-col xl:pr-0", children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(
           "div",
           {
             className: "card bg-base-100 shadow-sm will-change-auto motion-reduce:!transform-none motion-reduce:!shadow-sm max-[1280px]:![transform:translate3d(0,0,0)]",
@@ -43768,154 +44964,154 @@ function LandingView() {
               ["--tw-shadow"]: "0 1px 2px 0 rgb(0 0 0 / 0.05), 0rem 0rem 0rem #00000012",
               transform: "translate(0px,0px)"
             },
-            children: /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "card-body", children: [
-              /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("h2", { className: "card-title mb-4 text-sm", children: "Design system" }, void 0, !1, {
-                fileName: "app/routes/_appLayout._index/route.tsx",
+            children: /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("div", { className: "card-body", children: [
+              /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("h2", { className: "card-title mb-4 text-sm", children: "Design system" }, void 0, !1, {
+                fileName: "app/routes/_app._index/route.tsx",
                 lineNumber: 142,
                 columnNumber: 25
               }, this),
-              /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "grid grid-cols-4 items-end gap-4", children: [
-                /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("label", { className: "flex cursor-pointer flex-col items-center gap-1", children: [
-                  /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(Checkbox, { size: "xs", tabIndex: -1 }, void 0, !1, {
-                    fileName: "app/routes/_appLayout._index/route.tsx",
+              /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("div", { className: "grid grid-cols-4 items-end gap-4", children: [
+                /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("label", { className: "flex cursor-pointer flex-col items-center gap-1", children: [
+                  /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(Checkbox, { size: "xs", tabIndex: -1 }, void 0, !1, {
+                    fileName: "app/routes/_app._index/route.tsx",
                     lineNumber: 145,
                     columnNumber: 29
                   }, this),
-                  /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("span", { className: "text-[.6rem] text-base-content/60", children: "checkbox-xs" }, void 0, !1, {
-                    fileName: "app/routes/_appLayout._index/route.tsx",
+                  /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("span", { className: "text-[.6rem] text-base-content/60", children: "checkbox-xs" }, void 0, !1, {
+                    fileName: "app/routes/_app._index/route.tsx",
                     lineNumber: 146,
                     columnNumber: 29
                   }, this)
                 ] }, void 0, !0, {
-                  fileName: "app/routes/_appLayout._index/route.tsx",
+                  fileName: "app/routes/_app._index/route.tsx",
                   lineNumber: 144,
                   columnNumber: 27
                 }, this),
-                /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("label", { className: "flex cursor-pointer flex-col items-center gap-1", children: [
-                  /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(Checkbox, { size: "sm" }, void 0, !1, {
-                    fileName: "app/routes/_appLayout._index/route.tsx",
+                /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("label", { className: "flex cursor-pointer flex-col items-center gap-1", children: [
+                  /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(Checkbox, { size: "sm" }, void 0, !1, {
+                    fileName: "app/routes/_app._index/route.tsx",
                     lineNumber: 149,
                     columnNumber: 29
                   }, this),
-                  /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("span", { className: "text-[.6rem] text-base-content/60", children: "checkbox-sm" }, void 0, !1, {
-                    fileName: "app/routes/_appLayout._index/route.tsx",
+                  /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("span", { className: "text-[.6rem] text-base-content/60", children: "checkbox-sm" }, void 0, !1, {
+                    fileName: "app/routes/_app._index/route.tsx",
                     lineNumber: 150,
                     columnNumber: 29
                   }, this)
                 ] }, void 0, !0, {
-                  fileName: "app/routes/_appLayout._index/route.tsx",
+                  fileName: "app/routes/_app._index/route.tsx",
                   lineNumber: 148,
                   columnNumber: 27
                 }, this),
-                /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("label", { className: "flex cursor-pointer flex-col items-center gap-1", children: [
-                  /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(Checkbox, { size: "md" }, void 0, !1, {
-                    fileName: "app/routes/_appLayout._index/route.tsx",
+                /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("label", { className: "flex cursor-pointer flex-col items-center gap-1", children: [
+                  /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(Checkbox, { size: "md" }, void 0, !1, {
+                    fileName: "app/routes/_app._index/route.tsx",
                     lineNumber: 153,
                     columnNumber: 29
                   }, this),
-                  /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("span", { className: "text-[.6rem] text-base-content/60", children: "checkbox-md" }, void 0, !1, {
-                    fileName: "app/routes/_appLayout._index/route.tsx",
+                  /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("span", { className: "text-[.6rem] text-base-content/60", children: "checkbox-md" }, void 0, !1, {
+                    fileName: "app/routes/_app._index/route.tsx",
                     lineNumber: 154,
                     columnNumber: 29
                   }, this)
                 ] }, void 0, !0, {
-                  fileName: "app/routes/_appLayout._index/route.tsx",
+                  fileName: "app/routes/_app._index/route.tsx",
                   lineNumber: 152,
                   columnNumber: 27
                 }, this),
-                /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("label", { className: "flex cursor-pointer flex-col items-center gap-1", children: [
-                  /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(Checkbox, { size: "lg" }, void 0, !1, {
-                    fileName: "app/routes/_appLayout._index/route.tsx",
+                /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("label", { className: "flex cursor-pointer flex-col items-center gap-1", children: [
+                  /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(Checkbox, { size: "lg" }, void 0, !1, {
+                    fileName: "app/routes/_app._index/route.tsx",
                     lineNumber: 157,
                     columnNumber: 29
                   }, this),
-                  /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("span", { className: "text-[.6rem] text-base-content/60", children: "checkbox-lg" }, void 0, !1, {
-                    fileName: "app/routes/_appLayout._index/route.tsx",
+                  /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("span", { className: "text-[.6rem] text-base-content/60", children: "checkbox-lg" }, void 0, !1, {
+                    fileName: "app/routes/_app._index/route.tsx",
                     lineNumber: 158,
                     columnNumber: 29
                   }, this)
                 ] }, void 0, !0, {
-                  fileName: "app/routes/_appLayout._index/route.tsx",
+                  fileName: "app/routes/_app._index/route.tsx",
                   lineNumber: 156,
                   columnNumber: 27
                 }, this)
               ] }, void 0, !0, {
-                fileName: "app/routes/_appLayout._index/route.tsx",
+                fileName: "app/routes/_app._index/route.tsx",
                 lineNumber: 143,
                 columnNumber: 25
               }, this),
-              /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "grid grid-cols-4 items-end gap-4", children: [
-                /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("label", { className: "flex cursor-pointer flex-col items-center gap-1", children: [
-                  /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(Radio, { size: "xs", tabIndex: -1 }, void 0, !1, {
-                    fileName: "app/routes/_appLayout._index/route.tsx",
+              /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("div", { className: "grid grid-cols-4 items-end gap-4", children: [
+                /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("label", { className: "flex cursor-pointer flex-col items-center gap-1", children: [
+                  /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(Radio, { size: "xs", tabIndex: -1 }, void 0, !1, {
+                    fileName: "app/routes/_app._index/route.tsx",
                     lineNumber: 163,
                     columnNumber: 29
                   }, this),
-                  /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("span", { className: "text-[.6rem] text-base-content/60", children: "radio-xs" }, void 0, !1, {
-                    fileName: "app/routes/_appLayout._index/route.tsx",
+                  /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("span", { className: "text-[.6rem] text-base-content/60", children: "radio-xs" }, void 0, !1, {
+                    fileName: "app/routes/_app._index/route.tsx",
                     lineNumber: 164,
                     columnNumber: 29
                   }, this)
                 ] }, void 0, !0, {
-                  fileName: "app/routes/_appLayout._index/route.tsx",
+                  fileName: "app/routes/_app._index/route.tsx",
                   lineNumber: 162,
                   columnNumber: 27
                 }, this),
-                /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("label", { className: "flex cursor-pointer flex-col items-center gap-1", children: [
-                  /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(Radio, { size: "sm", tabIndex: -1 }, void 0, !1, {
-                    fileName: "app/routes/_appLayout._index/route.tsx",
+                /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("label", { className: "flex cursor-pointer flex-col items-center gap-1", children: [
+                  /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(Radio, { size: "sm", tabIndex: -1 }, void 0, !1, {
+                    fileName: "app/routes/_app._index/route.tsx",
                     lineNumber: 167,
                     columnNumber: 29
                   }, this),
-                  /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("span", { className: "text-[.6rem] text-base-content/60", children: "radio-sm" }, void 0, !1, {
-                    fileName: "app/routes/_appLayout._index/route.tsx",
+                  /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("span", { className: "text-[.6rem] text-base-content/60", children: "radio-sm" }, void 0, !1, {
+                    fileName: "app/routes/_app._index/route.tsx",
                     lineNumber: 168,
                     columnNumber: 29
                   }, this)
                 ] }, void 0, !0, {
-                  fileName: "app/routes/_appLayout._index/route.tsx",
+                  fileName: "app/routes/_app._index/route.tsx",
                   lineNumber: 166,
                   columnNumber: 27
                 }, this),
-                /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("label", { className: "flex cursor-pointer flex-col items-center gap-1", children: [
-                  /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(Radio, { size: "md", tabIndex: -1 }, void 0, !1, {
-                    fileName: "app/routes/_appLayout._index/route.tsx",
+                /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("label", { className: "flex cursor-pointer flex-col items-center gap-1", children: [
+                  /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(Radio, { size: "md", tabIndex: -1 }, void 0, !1, {
+                    fileName: "app/routes/_app._index/route.tsx",
                     lineNumber: 171,
                     columnNumber: 29
                   }, this),
-                  /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("span", { className: "text-[.6rem] text-base-content/60", children: "radio-md" }, void 0, !1, {
-                    fileName: "app/routes/_appLayout._index/route.tsx",
+                  /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("span", { className: "text-[.6rem] text-base-content/60", children: "radio-md" }, void 0, !1, {
+                    fileName: "app/routes/_app._index/route.tsx",
                     lineNumber: 172,
                     columnNumber: 29
                   }, this)
                 ] }, void 0, !0, {
-                  fileName: "app/routes/_appLayout._index/route.tsx",
+                  fileName: "app/routes/_app._index/route.tsx",
                   lineNumber: 170,
                   columnNumber: 27
                 }, this),
-                /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("label", { className: "flex cursor-pointer flex-col items-center gap-1", children: [
-                  /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(Radio, { size: "lg", tabIndex: -1 }, void 0, !1, {
-                    fileName: "app/routes/_appLayout._index/route.tsx",
+                /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("label", { className: "flex cursor-pointer flex-col items-center gap-1", children: [
+                  /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(Radio, { size: "lg", tabIndex: -1 }, void 0, !1, {
+                    fileName: "app/routes/_app._index/route.tsx",
                     lineNumber: 175,
                     columnNumber: 29
                   }, this),
-                  /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("span", { className: "text-[.6rem] text-base-content/60", children: "radio-lg" }, void 0, !1, {
-                    fileName: "app/routes/_appLayout._index/route.tsx",
+                  /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("span", { className: "text-[.6rem] text-base-content/60", children: "radio-lg" }, void 0, !1, {
+                    fileName: "app/routes/_app._index/route.tsx",
                     lineNumber: 176,
                     columnNumber: 29
                   }, this)
                 ] }, void 0, !0, {
-                  fileName: "app/routes/_appLayout._index/route.tsx",
+                  fileName: "app/routes/_app._index/route.tsx",
                   lineNumber: 174,
                   columnNumber: 27
                 }, this)
               ] }, void 0, !0, {
-                fileName: "app/routes/_appLayout._index/route.tsx",
+                fileName: "app/routes/_app._index/route.tsx",
                 lineNumber: 161,
                 columnNumber: 25
               }, this)
             ] }, void 0, !0, {
-              fileName: "app/routes/_appLayout._index/route.tsx",
+              fileName: "app/routes/_app._index/route.tsx",
               lineNumber: 141,
               columnNumber: 23
             }, this)
@@ -43923,13 +45119,13 @@ function LandingView() {
           void 0,
           !1,
           {
-            fileName: "app/routes/_appLayout._index/route.tsx",
+            fileName: "app/routes/_app._index/route.tsx",
             lineNumber: 134,
             columnNumber: 21
           },
           this
         ),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(
+        /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(
           "div",
           {
             className: "card bg-base-100 shadow-sm will-change-auto motion-reduce:!transform-none motion-reduce:!shadow-sm max-[1280px]:![transform:translate3d(0,0,0)]",
@@ -43937,148 +45133,148 @@ function LandingView() {
               ["--tw-shadow"]: "0 1px 2px 0 rgb(0 0 0 / 0.05), 0rem 0rem 0rem #00000012",
               transform: "translate(0px,0px)"
             },
-            children: /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "card-body", children: [
-              /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("h2", { className: "card-title mb-4 text-sm", children: "Semantic colors" }, void 0, !1, {
-                fileName: "app/routes/_appLayout._index/route.tsx",
+            children: /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("div", { className: "card-body", children: [
+              /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("h2", { className: "card-title mb-4 text-sm", children: "Semantic colors" }, void 0, !1, {
+                fileName: "app/routes/_app._index/route.tsx",
                 lineNumber: 189,
                 columnNumber: 25
               }, this),
-              /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "grid grid-cols-4 gap-4", children: [
-                /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "flex flex-col items-center gap-1", children: [
-                  /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "aspect-square w-10 rounded-btn bg-primary" }, void 0, !1, {
-                    fileName: "app/routes/_appLayout._index/route.tsx",
+              /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("div", { className: "grid grid-cols-4 gap-4", children: [
+                /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("div", { className: "flex flex-col items-center gap-1", children: [
+                  /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("div", { className: "aspect-square w-10 rounded-btn bg-primary" }, void 0, !1, {
+                    fileName: "app/routes/_app._index/route.tsx",
                     lineNumber: 192,
                     columnNumber: 29
                   }, this),
-                  /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "text-[.6rem] text-base-content/60", children: "primary" }, void 0, !1, {
-                    fileName: "app/routes/_appLayout._index/route.tsx",
+                  /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("div", { className: "text-[.6rem] text-base-content/60", children: "primary" }, void 0, !1, {
+                    fileName: "app/routes/_app._index/route.tsx",
                     lineNumber: 193,
                     columnNumber: 29
                   }, this)
                 ] }, void 0, !0, {
-                  fileName: "app/routes/_appLayout._index/route.tsx",
+                  fileName: "app/routes/_app._index/route.tsx",
                   lineNumber: 191,
                   columnNumber: 27
                 }, this),
-                /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "flex flex-col items-center gap-1", children: [
-                  /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "aspect-square w-10 rounded-btn bg-secondary" }, void 0, !1, {
-                    fileName: "app/routes/_appLayout._index/route.tsx",
+                /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("div", { className: "flex flex-col items-center gap-1", children: [
+                  /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("div", { className: "aspect-square w-10 rounded-btn bg-secondary" }, void 0, !1, {
+                    fileName: "app/routes/_app._index/route.tsx",
                     lineNumber: 196,
                     columnNumber: 29
                   }, this),
-                  /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "text-[.6rem] text-base-content/60", children: "secondary" }, void 0, !1, {
-                    fileName: "app/routes/_appLayout._index/route.tsx",
+                  /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("div", { className: "text-[.6rem] text-base-content/60", children: "secondary" }, void 0, !1, {
+                    fileName: "app/routes/_app._index/route.tsx",
                     lineNumber: 197,
                     columnNumber: 29
                   }, this)
                 ] }, void 0, !0, {
-                  fileName: "app/routes/_appLayout._index/route.tsx",
+                  fileName: "app/routes/_app._index/route.tsx",
                   lineNumber: 195,
                   columnNumber: 27
                 }, this),
-                /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "flex flex-col items-center gap-1", children: [
-                  /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "aspect-square w-10 rounded-btn bg-accent" }, void 0, !1, {
-                    fileName: "app/routes/_appLayout._index/route.tsx",
+                /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("div", { className: "flex flex-col items-center gap-1", children: [
+                  /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("div", { className: "aspect-square w-10 rounded-btn bg-accent" }, void 0, !1, {
+                    fileName: "app/routes/_app._index/route.tsx",
                     lineNumber: 200,
                     columnNumber: 29
                   }, this),
-                  /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "text-[.6rem] text-base-content/60", children: "accent" }, void 0, !1, {
-                    fileName: "app/routes/_appLayout._index/route.tsx",
+                  /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("div", { className: "text-[.6rem] text-base-content/60", children: "accent" }, void 0, !1, {
+                    fileName: "app/routes/_app._index/route.tsx",
                     lineNumber: 201,
                     columnNumber: 29
                   }, this)
                 ] }, void 0, !0, {
-                  fileName: "app/routes/_appLayout._index/route.tsx",
+                  fileName: "app/routes/_app._index/route.tsx",
                   lineNumber: 199,
                   columnNumber: 27
                 }, this),
-                /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "flex flex-col items-center gap-1", children: [
-                  /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "aspect-square w-10 rounded-btn bg-neutral" }, void 0, !1, {
-                    fileName: "app/routes/_appLayout._index/route.tsx",
+                /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("div", { className: "flex flex-col items-center gap-1", children: [
+                  /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("div", { className: "aspect-square w-10 rounded-btn bg-neutral" }, void 0, !1, {
+                    fileName: "app/routes/_app._index/route.tsx",
                     lineNumber: 204,
                     columnNumber: 29
                   }, this),
-                  /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "text-[.6rem] text-base-content/60", children: "neutral" }, void 0, !1, {
-                    fileName: "app/routes/_appLayout._index/route.tsx",
+                  /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("div", { className: "text-[.6rem] text-base-content/60", children: "neutral" }, void 0, !1, {
+                    fileName: "app/routes/_app._index/route.tsx",
                     lineNumber: 205,
                     columnNumber: 29
                   }, this)
                 ] }, void 0, !0, {
-                  fileName: "app/routes/_appLayout._index/route.tsx",
+                  fileName: "app/routes/_app._index/route.tsx",
                   lineNumber: 203,
                   columnNumber: 27
                 }, this),
-                /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "flex flex-col items-center gap-1", children: [
-                  /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "aspect-square w-10 rounded-btn bg-info" }, void 0, !1, {
-                    fileName: "app/routes/_appLayout._index/route.tsx",
+                /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("div", { className: "flex flex-col items-center gap-1", children: [
+                  /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("div", { className: "aspect-square w-10 rounded-btn bg-info" }, void 0, !1, {
+                    fileName: "app/routes/_app._index/route.tsx",
                     lineNumber: 208,
                     columnNumber: 29
                   }, this),
-                  /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "text-[.6rem] text-base-content/60", children: "info" }, void 0, !1, {
-                    fileName: "app/routes/_appLayout._index/route.tsx",
+                  /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("div", { className: "text-[.6rem] text-base-content/60", children: "info" }, void 0, !1, {
+                    fileName: "app/routes/_app._index/route.tsx",
                     lineNumber: 209,
                     columnNumber: 29
                   }, this)
                 ] }, void 0, !0, {
-                  fileName: "app/routes/_appLayout._index/route.tsx",
+                  fileName: "app/routes/_app._index/route.tsx",
                   lineNumber: 207,
                   columnNumber: 27
                 }, this),
-                /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "flex flex-col items-center gap-1", children: [
-                  /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "aspect-square w-10 rounded-btn bg-success" }, void 0, !1, {
-                    fileName: "app/routes/_appLayout._index/route.tsx",
+                /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("div", { className: "flex flex-col items-center gap-1", children: [
+                  /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("div", { className: "aspect-square w-10 rounded-btn bg-success" }, void 0, !1, {
+                    fileName: "app/routes/_app._index/route.tsx",
                     lineNumber: 212,
                     columnNumber: 29
                   }, this),
-                  /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "text-[.6rem] text-base-content/60", children: "success" }, void 0, !1, {
-                    fileName: "app/routes/_appLayout._index/route.tsx",
+                  /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("div", { className: "text-[.6rem] text-base-content/60", children: "success" }, void 0, !1, {
+                    fileName: "app/routes/_app._index/route.tsx",
                     lineNumber: 213,
                     columnNumber: 29
                   }, this)
                 ] }, void 0, !0, {
-                  fileName: "app/routes/_appLayout._index/route.tsx",
+                  fileName: "app/routes/_app._index/route.tsx",
                   lineNumber: 211,
                   columnNumber: 27
                 }, this),
-                /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "flex flex-col items-center gap-1", children: [
-                  /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "aspect-square w-10 rounded-btn bg-warning" }, void 0, !1, {
-                    fileName: "app/routes/_appLayout._index/route.tsx",
+                /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("div", { className: "flex flex-col items-center gap-1", children: [
+                  /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("div", { className: "aspect-square w-10 rounded-btn bg-warning" }, void 0, !1, {
+                    fileName: "app/routes/_app._index/route.tsx",
                     lineNumber: 216,
                     columnNumber: 29
                   }, this),
-                  /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "text-[.6rem] text-base-content/60", children: "warning" }, void 0, !1, {
-                    fileName: "app/routes/_appLayout._index/route.tsx",
+                  /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("div", { className: "text-[.6rem] text-base-content/60", children: "warning" }, void 0, !1, {
+                    fileName: "app/routes/_app._index/route.tsx",
                     lineNumber: 217,
                     columnNumber: 29
                   }, this)
                 ] }, void 0, !0, {
-                  fileName: "app/routes/_appLayout._index/route.tsx",
+                  fileName: "app/routes/_app._index/route.tsx",
                   lineNumber: 215,
                   columnNumber: 27
                 }, this),
-                /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "flex flex-col items-center gap-1", children: [
-                  /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "aspect-square w-10 rounded-btn bg-error" }, void 0, !1, {
-                    fileName: "app/routes/_appLayout._index/route.tsx",
+                /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("div", { className: "flex flex-col items-center gap-1", children: [
+                  /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("div", { className: "aspect-square w-10 rounded-btn bg-error" }, void 0, !1, {
+                    fileName: "app/routes/_app._index/route.tsx",
                     lineNumber: 220,
                     columnNumber: 29
                   }, this),
-                  /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { className: "text-[.6rem] text-base-content/60", children: "error" }, void 0, !1, {
-                    fileName: "app/routes/_appLayout._index/route.tsx",
+                  /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("div", { className: "text-[.6rem] text-base-content/60", children: "error" }, void 0, !1, {
+                    fileName: "app/routes/_app._index/route.tsx",
                     lineNumber: 221,
                     columnNumber: 29
                   }, this)
                 ] }, void 0, !0, {
-                  fileName: "app/routes/_appLayout._index/route.tsx",
+                  fileName: "app/routes/_app._index/route.tsx",
                   lineNumber: 219,
                   columnNumber: 27
                 }, this)
               ] }, void 0, !0, {
-                fileName: "app/routes/_appLayout._index/route.tsx",
+                fileName: "app/routes/_app._index/route.tsx",
                 lineNumber: 190,
                 columnNumber: 25
               }, this)
             ] }, void 0, !0, {
-              fileName: "app/routes/_appLayout._index/route.tsx",
+              fileName: "app/routes/_app._index/route.tsx",
               lineNumber: 188,
               columnNumber: 23
             }, this)
@@ -44086,82 +45282,52 @@ function LandingView() {
           void 0,
           !1,
           {
-            fileName: "app/routes/_appLayout._index/route.tsx",
+            fileName: "app/routes/_app._index/route.tsx",
             lineNumber: 181,
             columnNumber: 21
           },
           this
         )
       ] }, void 0, !0, {
-        fileName: "app/routes/_appLayout._index/route.tsx",
+        fileName: "app/routes/_app._index/route.tsx",
         lineNumber: 133,
         columnNumber: 19
       }, this)
     ] }, void 0, !0, {
-      fileName: "app/routes/_appLayout._index/route.tsx",
+      fileName: "app/routes/_app._index/route.tsx",
       lineNumber: 43,
       columnNumber: 17
     }, this) }, void 0, !1, {
-      fileName: "app/routes/_appLayout._index/route.tsx",
+      fileName: "app/routes/_app._index/route.tsx",
       lineNumber: 42,
       columnNumber: 15
     }, this) }, void 0, !1, {
-      fileName: "app/routes/_appLayout._index/route.tsx",
+      fileName: "app/routes/_app._index/route.tsx",
       lineNumber: 41,
       columnNumber: 13
     }, this) }, void 0, !1, {
-      fileName: "app/routes/_appLayout._index/route.tsx",
+      fileName: "app/routes/_app._index/route.tsx",
       lineNumber: 40,
       columnNumber: 11
     }, this) }, void 0, !1, {
-      fileName: "app/routes/_appLayout._index/route.tsx",
+      fileName: "app/routes/_app._index/route.tsx",
       lineNumber: 39,
       columnNumber: 9
     }, this)
   ] }, void 0, !0, {
-    fileName: "app/routes/_appLayout._index/route.tsx",
+    fileName: "app/routes/_app._index/route.tsx",
     lineNumber: 11,
     columnNumber: 7
   }, this) }, void 0, !1, {
-    fileName: "app/routes/_appLayout._index/route.tsx",
+    fileName: "app/routes/_app._index/route.tsx",
     lineNumber: 10,
     columnNumber: 5
   }, this);
 }
 
-// app/routes/_appLayout.media/route.tsx
-var route_exports4 = {};
-__export(route_exports4, {
-  default: () => MediaView,
-  meta: () => meta3
-});
-var import_jsx_dev_runtime6 = __toESM(require_jsx_dev_runtime(), 1), meta3 = () => [{ title: "HELIOS | Media" }, { description: "Helios media management app." }];
-function MediaView() {
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime6.jsxDEV)(import_jsx_dev_runtime6.Fragment, {}, void 0, !1, {
-    fileName: "app/routes/_appLayout.media/route.tsx",
-    lineNumber: 7,
-    columnNumber: 10
-  }, this);
-}
-
-// app/routes/_appLayout.nodes/route.tsx
-var route_exports5 = {};
-__export(route_exports5, {
-  default: () => NodesView,
-  meta: () => meta4
-});
-var import_jsx_dev_runtime7 = __toESM(require_jsx_dev_runtime(), 1), meta4 = () => [{ title: "HELIOS | Nodes" }, { description: "Helios node management app." }];
-function NodesView() {
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(import_jsx_dev_runtime7.Fragment, {}, void 0, !1, {
-    fileName: "app/routes/_appLayout.nodes/route.tsx",
-    lineNumber: 7,
-    columnNumber: 10
-  }, this);
-}
-
 // app/routes/auth.logout/route.tsx
-var route_exports6 = {};
-__export(route_exports6, {
+var route_exports8 = {};
+__export(route_exports8, {
   action: () => action
 });
 var import_cloudflare3 = __toESM(require_dist(), 1);
@@ -44179,32 +45345,203 @@ var action = async ({ request, context }) => {
   });
 };
 
-// app/routes/_app.tsx
-var appLayout_exports = {};
-__export(appLayout_exports, {
-  ErrorBoundary: () => ErrorBoundary2,
-  default: () => AppLayout,
+// app/routes/blog._index/route.tsx
+var route_exports9 = {};
+
+// app/routes/_app.media/route.tsx
+var route_exports10 = {};
+__export(route_exports10, {
+  default: () => MediaView,
+  meta: () => meta5
+});
+var import_jsx_dev_runtime8 = __toESM(require_jsx_dev_runtime(), 1), meta5 = () => [{ title: "HELIOS | Media" }, { description: "Helios media management app." }];
+function MediaView() {
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime8.jsxDEV)(import_jsx_dev_runtime8.Fragment, {}, void 0, !1, {
+    fileName: "app/routes/_app.media/route.tsx",
+    lineNumber: 7,
+    columnNumber: 10
+  }, this);
+}
+
+// app/routes/auth.auth0/route.tsx
+var route_exports11 = {};
+__export(route_exports11, {
+  action: () => action2,
   loader: () => loader2
 });
-var import_react17 = __toESM(require_react(), 1);
 var import_cloudflare4 = __toESM(require_dist(), 1);
+var loader2 = () => (0, import_cloudflare4.redirect)("/auth/login"), action2 = async ({ context, request }) => {
+  let sessionConfig = {
+    kv: context.env.KV,
+    node_env: context.env.NODE_ENV,
+    secrets: context.env.AUTH_SECRET.split(","),
+    tag: config.cookieTag
+  }, sessionStorage2 = await appSessionStorage(sessionConfig);
+  return (await getAuthenticator(context, sessionStorage2)).authenticate("auth0", request);
+};
+
+// app/routes/auth.login/route.tsx
+var route_exports12 = {};
+__export(route_exports12, {
+  default: () => LoginView
+});
+var import_jsx_dev_runtime9 = __toESM(require_jsx_dev_runtime(), 1);
+function LoginView() {
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)(import_jsx_dev_runtime9.Fragment, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("div", { className: "flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8", children: [
+    /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("div", { className: "sm:mx-auto sm:w-full sm:max-w-md", children: [
+      /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("div", { className: "flex justify-center", children: /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("div", { className: "inline-flex text-lg font-bold md:text-2xl", children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("span", { className: "lowercase", children: "helios" }, void 0, !1, {
+          fileName: "app/routes/auth.login/route.tsx",
+          lineNumber: 13,
+          columnNumber: 15
+        }, this),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("span", { className: "uppercase text-accent", children: "UI" }, void 0, !1, {
+          fileName: "app/routes/auth.login/route.tsx",
+          lineNumber: 14,
+          columnNumber: 15
+        }, this)
+      ] }, void 0, !0, {
+        fileName: "app/routes/auth.login/route.tsx",
+        lineNumber: 12,
+        columnNumber: 13
+      }, this) }, void 0, !1, {
+        fileName: "app/routes/auth.login/route.tsx",
+        lineNumber: 11,
+        columnNumber: 11
+      }, this),
+      /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("h2", { className: "mt-6 text-center text-2xl leading-9 tracking-tight", children: "Sign in to your account" }, void 0, !1, {
+        fileName: "app/routes/auth.login/route.tsx",
+        lineNumber: 17,
+        columnNumber: 11
+      }, this)
+    ] }, void 0, !0, {
+      fileName: "app/routes/auth.login/route.tsx",
+      lineNumber: 10,
+      columnNumber: 9
+    }, this),
+    /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("div", { className: "mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]", children: /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("div", { className: "border border-opacity-50 px-6 py-12 shadow sm:rounded-lg sm:px-12", children: /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)(Form, { className: "space-y-6", action: "/auth/auth0", method: "POST", children: /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)(
+      Button,
+      {
+        type: "submit",
+        fullWidth: !0,
+        startIcon: /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)(
+          "svg",
+          {
+            xmlns: "http://www.w3.org/2000/svg",
+            "aria-label": "Auth0",
+            role: "img",
+            viewBox: "0 0 512 512",
+            width: "24",
+            height: "24",
+            fill: "#000000",
+            children: [
+              /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("g", { id: "SVGRepo_bgCarrier", strokeWidth: "0" }, void 0, !1, {
+                fileName: "app/routes/auth.login/route.tsx",
+                lineNumber: 35,
+                columnNumber: 21
+              }, this),
+              /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("g", { id: "SVGRepo_tracerCarrier", strokeLinecap: "round", strokeLinejoin: "round" }, void 0, !1, {
+                fileName: "app/routes/auth.login/route.tsx",
+                lineNumber: 36,
+                columnNumber: 21
+              }, this),
+              /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("g", { id: "SVGRepo_iconCarrier", children: [
+                /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("rect", { width: "512", height: "512", rx: "15%" }, void 0, !1, {
+                  fileName: "app/routes/auth.login/route.tsx",
+                  lineNumber: 38,
+                  columnNumber: 23
+                }, this),
+                /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)(
+                  "path",
+                  {
+                    d: "M358.1 378.8L319.6 260L420.5 186.9H295.7l-38.6-118.7l-.01-.03h124.8l38.6 118.7v-.003l0.03-.02c22.4 68.8-.7 147 -62.4 192zm-201.9 0l-.036 .03L257.13 452.2L358.09 378.84L257.17 305.51ZM93.85 186.85c-23.57 72.57 3.79 149.46 62.36 192l0.01-.036L194.77 260.17L93.89 186.87H218.6L257.15 68.2L257.2 68.2H132.4Z",
+                    fill: "#eb5424"
+                  },
+                  void 0,
+                  !1,
+                  {
+                    fileName: "app/routes/auth.login/route.tsx",
+                    lineNumber: 39,
+                    columnNumber: 23
+                  },
+                  this
+                )
+              ] }, void 0, !0, {
+                fileName: "app/routes/auth.login/route.tsx",
+                lineNumber: 37,
+                columnNumber: 21
+              }, this)
+            ]
+          },
+          void 0,
+          !0,
+          {
+            fileName: "app/routes/auth.login/route.tsx",
+            lineNumber: 26,
+            columnNumber: 19
+          },
+          this
+        ),
+        children: "Sign with Auth0"
+      },
+      void 0,
+      !1,
+      {
+        fileName: "app/routes/auth.login/route.tsx",
+        lineNumber: 22,
+        columnNumber: 15
+      },
+      this
+    ) }, void 0, !1, {
+      fileName: "app/routes/auth.login/route.tsx",
+      lineNumber: 21,
+      columnNumber: 13
+    }, this) }, void 0, !1, {
+      fileName: "app/routes/auth.login/route.tsx",
+      lineNumber: 20,
+      columnNumber: 11
+    }, this) }, void 0, !1, {
+      fileName: "app/routes/auth.login/route.tsx",
+      lineNumber: 19,
+      columnNumber: 9
+    }, this)
+  ] }, void 0, !0, {
+    fileName: "app/routes/auth.login/route.tsx",
+    lineNumber: 9,
+    columnNumber: 7
+  }, this) }, void 0, !1, {
+    fileName: "app/routes/auth.login/route.tsx",
+    lineNumber: 8,
+    columnNumber: 5
+  }, this);
+}
+
+// app/routes/_app.tsx
+var app_exports = {};
+__export(app_exports, {
+  ErrorBoundary: () => ErrorBoundary2,
+  default: () => AppLayout,
+  loader: () => loader3
+});
+var import_react18 = __toESM(require_react(), 1);
+var import_cloudflare5 = __toESM(require_dist(), 1);
 
 // app/components/ui/NavBar.tsx
-var import_react10 = __toESM(require_react(), 1);
+var import_react11 = __toESM(require_react(), 1);
 
-// ../../node_modules/react-icons/lib/esm/iconBase.js
-var import_react6 = __toESM(require_react());
+// ../../node_modules/.pnpm/react-icons@4.12.0_react@18.2.0/node_modules/react-icons/lib/esm/iconBase.js
+var import_react7 = __toESM(require_react());
 
-// ../../node_modules/react-icons/lib/esm/iconContext.js
-var import_react5 = __toESM(require_react()), DefaultContext = {
+// ../../node_modules/.pnpm/react-icons@4.12.0_react@18.2.0/node_modules/react-icons/lib/esm/iconContext.js
+var import_react6 = __toESM(require_react()), DefaultContext = {
   color: void 0,
   size: void 0,
   className: void 0,
   style: void 0,
   attr: void 0
-}, IconContext = import_react5.default.createContext && import_react5.default.createContext(DefaultContext);
+}, IconContext = import_react6.default.createContext && import_react6.default.createContext(DefaultContext);
 
-// ../../node_modules/react-icons/lib/esm/iconBase.js
+// ../../node_modules/.pnpm/react-icons@4.12.0_react@18.2.0/node_modules/react-icons/lib/esm/iconBase.js
 var __assign = function() {
   return __assign = Object.assign || function(t3) {
     for (var s4, i4 = 1, n3 = arguments.length; i4 < n3; i4++) {
@@ -44225,14 +45562,14 @@ var __assign = function() {
 };
 function Tree2Element(tree) {
   return tree && tree.map(function(node, i4) {
-    return import_react6.default.createElement(node.tag, __assign({
+    return import_react7.default.createElement(node.tag, __assign({
       key: i4
     }, node.attr), Tree2Element(node.child));
   });
 }
 function GenIcon(data) {
   return function(props) {
-    return import_react6.default.createElement(IconBase, __assign({
+    return import_react7.default.createElement(IconBase, __assign({
       attr: __assign({}, data.attr)
     }, props), Tree2Element(data.child));
   };
@@ -44240,7 +45577,7 @@ function GenIcon(data) {
 function IconBase(props) {
   var elem = function(conf) {
     var attr = props.attr, size = props.size, title = props.title, svgProps = __rest(props, ["attr", "size", "title"]), computedSize = size || conf.size || "1em", className;
-    return conf.className && (className = conf.className), props.className && (className = (className ? className + " " : "") + props.className), import_react6.default.createElement("svg", __assign({
+    return conf.className && (className = conf.className), props.className && (className = (className ? className + " " : "") + props.className), import_react7.default.createElement("svg", __assign({
       stroke: "currentColor",
       fill: "currentColor",
       strokeWidth: "0"
@@ -44252,14 +45589,14 @@ function IconBase(props) {
       height: computedSize,
       width: computedSize,
       xmlns: "http://www.w3.org/2000/svg"
-    }), title && import_react6.default.createElement("title", null, title), props.children);
+    }), title && import_react7.default.createElement("title", null, title), props.children);
   };
-  return IconContext !== void 0 ? import_react6.default.createElement(IconContext.Consumer, null, function(conf) {
+  return IconContext !== void 0 ? import_react7.default.createElement(IconContext.Consumer, null, function(conf) {
     return elem(conf);
   }) : elem(DefaultContext);
 }
 
-// ../../node_modules/react-icons/ri/index.esm.js
+// ../../node_modules/.pnpm/react-icons@4.12.0_react@18.2.0/node_modules/react-icons/ri/index.esm.js
 function RiLoginBoxLine(props) {
   return GenIcon({ tag: "svg", attr: { viewBox: "0 0 24 24" }, child: [{ tag: "path", attr: { d: "M4 15H6V20H18V4H6V9H4V3C4 2.44772 4.44772 2 5 2H19C19.5523 2 20 2.44772 20 3V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V15ZM10 11V8L15 12L10 16V13H2V11H10Z" } }] })(props);
 }
@@ -44271,9 +45608,9 @@ function RiSettings4Line(props) {
 }
 
 // app/components/Search.tsx
-var import_jsx_dev_runtime8 = __toESM(require_jsx_dev_runtime(), 1);
+var import_jsx_dev_runtime10 = __toESM(require_jsx_dev_runtime(), 1);
 function Search() {
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime8.jsxDEV)(import_jsx_dev_runtime8.Fragment, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime8.jsxDEV)("div", { className: "hidden w-full max-w-sm lg:flex", children: /* @__PURE__ */ (0, import_jsx_dev_runtime8.jsxDEV)(
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(import_jsx_dev_runtime10.Fragment, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)("div", { className: "hidden w-full max-w-sm lg:flex", children: /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(
     Input,
     {
       className: "searchbox relative mx-3 w-full",
@@ -44301,7 +45638,7 @@ function Search() {
   }, this);
 }
 
-// ../../node_modules/clsx/dist/clsx.mjs
+// ../../node_modules/.pnpm/clsx@2.0.0/node_modules/clsx/dist/clsx.mjs
 function r3(e3) {
   var t3, f6, n3 = "";
   if (typeof e3 == "string" || typeof e3 == "number")
@@ -44323,10 +45660,10 @@ function clsx2() {
 var clsx_default = clsx2;
 
 // app/components/ui/Logo.tsx
-var import_jsx_dev_runtime9 = __toESM(require_jsx_dev_runtime(), 1);
+var import_jsx_dev_runtime11 = __toESM(require_jsx_dev_runtime(), 1);
 function Logo({ hideLogoOnLargeScreen = !1, showVersion = !0, version: version3 }) {
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)(import_jsx_dev_runtime9.Fragment, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("div", { className: "flex items-center gap-2", children: [
-    /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)(
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime11.jsxDEV)(import_jsx_dev_runtime11.Fragment, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime11.jsxDEV)("div", { className: "flex items-center gap-2", children: [
+    /* @__PURE__ */ (0, import_jsx_dev_runtime11.jsxDEV)(
       NavLink2,
       {
         className: clsx_default("flex-0 btn btn-ghost gap-1 px-2 md:gap-2", { "lg:hidden": !hideLogoOnLargeScreen }),
@@ -44334,13 +45671,13 @@ function Logo({ hideLogoOnLargeScreen = !1, showVersion = !0, version: version3 
         "aria-label": "heliosUI",
         "aria-current": "page",
         end: !0,
-        children: /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("div", { className: "font-title inline-flex text-lg md:text-2xl", children: [
-          /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("span", { className: "lowercase", children: "helios" }, void 0, !1, {
+        children: /* @__PURE__ */ (0, import_jsx_dev_runtime11.jsxDEV)("div", { className: "font-title inline-flex text-lg md:text-2xl", children: [
+          /* @__PURE__ */ (0, import_jsx_dev_runtime11.jsxDEV)("span", { className: "lowercase", children: "helios" }, void 0, !1, {
             fileName: "app/components/ui/Logo.tsx",
             lineNumber: 21,
             columnNumber: 13
           }, this),
-          /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("span", { className: "uppercase text-accent", children: "UI" }, void 0, !1, {
+          /* @__PURE__ */ (0, import_jsx_dev_runtime11.jsxDEV)("span", { className: "uppercase text-accent", children: "UI" }, void 0, !1, {
             fileName: "app/components/ui/Logo.tsx",
             lineNumber: 22,
             columnNumber: 13
@@ -44360,7 +45697,7 @@ function Logo({ hideLogoOnLargeScreen = !1, showVersion = !0, version: version3 
       },
       this
     ),
-    showVersion && /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("div", { className: "font-mono text-xs", children: version3 }, void 0, !1, {
+    showVersion && /* @__PURE__ */ (0, import_jsx_dev_runtime11.jsxDEV)("div", { className: "font-mono text-xs", children: version3 }, void 0, !1, {
       fileName: "app/components/ui/Logo.tsx",
       lineNumber: 25,
       columnNumber: 25
@@ -44377,11 +45714,11 @@ function Logo({ hideLogoOnLargeScreen = !1, showVersion = !0, version: version3 
 }
 
 // app/components/ui/ThemeToggle.tsx
-var import_jsx_dev_runtime10 = __toESM(require_jsx_dev_runtime(), 1);
+var import_jsx_dev_runtime12 = __toESM(require_jsx_dev_runtime(), 1);
 function ThemeToggle({ resolvedTheme, setTheme, themes }) {
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(import_jsx_dev_runtime10.Fragment, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(Dropdown$1, { end: !0, title: "Change Theme", children: [
-    /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(Dropdown$1.Toggle, { button: !1, className: "inline-flex items-center justify-center space-x-1.5 normal-case", children: [
-      /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)(import_jsx_dev_runtime12.Fragment, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)(Dropdown$1, { end: !0, title: "Change Theme", dataTheme: resolvedTheme, children: [
+    /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)(Dropdown$1.Toggle, { button: !1, className: "inline-flex items-center justify-center space-x-1.5 normal-case", children: [
+      /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)(
         "svg",
         {
           width: "20",
@@ -44390,7 +45727,7 @@ function ThemeToggle({ resolvedTheme, setTheme, themes }) {
           fill: "none",
           viewBox: "0 0 24 24",
           className: "h-5 w-5 stroke-current md:hidden",
-          children: /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(
+          children: /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)(
             "path",
             {
               strokeLinecap: "round",
@@ -44417,12 +45754,12 @@ function ThemeToggle({ resolvedTheme, setTheme, themes }) {
         },
         this
       ),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)("span", { className: "hidden font-normal md:inline", children: "Theme" }, void 0, !1, {
+      /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)("span", { className: "hidden font-normal md:inline", children: "Theme" }, void 0, !1, {
         fileName: "app/components/ui/ThemeToggle.tsx",
         lineNumber: 29,
         columnNumber: 11
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(
+      /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)(
         "svg",
         {
           width: "12px",
@@ -44430,7 +45767,7 @@ function ThemeToggle({ resolvedTheme, setTheme, themes }) {
           className: "hidden h-2 w-2 fill-current opacity-60 sm:inline-block",
           xmlns: "http://www.w3.org/2000/svg",
           viewBox: "0 0 2048 2048",
-          children: /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)("path", { d: "M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z" }, void 0, !1, {
+          children: /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)("path", { d: "M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z" }, void 0, !1, {
             fileName: "app/components/ui/ThemeToggle.tsx",
             lineNumber: 37,
             columnNumber: 13
@@ -44450,7 +45787,7 @@ function ThemeToggle({ resolvedTheme, setTheme, themes }) {
       lineNumber: 13,
       columnNumber: 9
     }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(Dropdown$1.Menu, { children: themes.map((t3, i4) => /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(Dropdown$1.Item, { "aria-label": "Theme select", tabIndex: i4, onClick: () => setTheme(t3), children: t3 }, i4, !1, {
+    /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)(Dropdown$1.Menu, { children: themes.map((t3, i4) => /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)(Dropdown$1.Item, { "aria-label": "Theme select", tabIndex: i4, onClick: () => setTheme(t3), children: t3 }, i4, !1, {
       fileName: "app/components/ui/ThemeToggle.tsx",
       lineNumber: 42,
       columnNumber: 13
@@ -44471,11 +45808,11 @@ function ThemeToggle({ resolvedTheme, setTheme, themes }) {
 }
 
 // app/components/ui/UserMenu.tsx
-var import_jsx_dev_runtime11 = __toESM(require_jsx_dev_runtime(), 1);
+var import_jsx_dev_runtime13 = __toESM(require_jsx_dev_runtime(), 1);
 function UserMenu({ user }) {
-  let letters = typeof user.name > "u" || user.name == "" ? "HU" : user.name.split(" ")[0].substring(0, 1) + user.name.split(" ")[1].substring(0, 1);
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime11.jsxDEV)(import_jsx_dev_runtime11.Fragment, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime11.jsxDEV)(Dropdown$1, { hover: !0, end: !0, className: "ml-4 mr-2", children: [
-    /* @__PURE__ */ (0, import_jsx_dev_runtime11.jsxDEV)(Dropdown$1.Toggle, { button: !1, children: /* @__PURE__ */ (0, import_jsx_dev_runtime11.jsxDEV)(
+  let letters = typeof user.displayName > "u" || user.displayName == "" ? "HU" : user.displayName.split(" ")[0].substring(0, 1) + user.displayName.split(" ")[1].substring(0, 1);
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime13.jsxDEV)(import_jsx_dev_runtime13.Fragment, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime13.jsxDEV)(Dropdown$1, { hover: !0, end: !0, className: "ml-4 mr-2", children: [
+    /* @__PURE__ */ (0, import_jsx_dev_runtime13.jsxDEV)(Dropdown$1.Toggle, { button: !1, children: /* @__PURE__ */ (0, import_jsx_dev_runtime13.jsxDEV)(
       Avatar$1,
       {
         innerClassName: "rounded",
@@ -44498,7 +45835,7 @@ function UserMenu({ user }) {
       lineNumber: 15,
       columnNumber: 9
     }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime11.jsxDEV)(Dropdown$1.Menu, { className: "mt-4 w-52" }, void 0, !1, {
+    /* @__PURE__ */ (0, import_jsx_dev_runtime13.jsxDEV)(Dropdown$1.Menu, { className: "mt-4 w-52" }, void 0, !1, {
       fileName: "app/components/ui/UserMenu.tsx",
       lineNumber: 25,
       columnNumber: 9
@@ -44519,7 +45856,7 @@ var DEFAULTOPTIONS = {
   alerts: "no",
   days: 3,
   q: "10001"
-}, getNextHours = (w2, d4, n3 = 5) => w2.forecast.forecastday[0].hour.filter((el) => Date.parse(el.time) > Date.parse(d4)).slice(0, n3), formatDate = () => {
+}, getNextHours = (w3, d4, n3 = 5) => w3.forecast.forecastday[0].hour.filter((el) => Date.parse(el.time) > Date.parse(d4)).slice(0, n3), formatDate = () => {
   let d4 = /* @__PURE__ */ new Date();
   return `${d4.getFullYear()}-${String(d4.getMonth() + 1).padStart(2, "0")}-${String(d4.getDate()).padStart(
     2,
@@ -44527,7 +45864,7 @@ var DEFAULTOPTIONS = {
   )} ${String(d4.getHours()).padStart(2, "0")}:${String(d4.getMinutes()).padStart(2, "0")}`;
 };
 
-// ../../node_modules/react-icons/wi/index.esm.js
+// ../../node_modules/.pnpm/react-icons@4.12.0_react@18.2.0/node_modules/react-icons/wi/index.esm.js
 function WiDayCloudy(props) {
   return GenIcon({ tag: "svg", attr: { version: "1.1", id: "Layer_1", x: "0px", y: "0px", viewBox: "0 0 30 30", style: "enable-background:new 0 0 30 30;" }, child: [{ tag: "path", attr: { d: `M1.56,16.9c0,0.9,0.22,1.73,0.66,2.49s1.04,1.36,1.8,1.8c0.76,0.44,1.58,0.66,2.47,0.66h10.83c0.89,0,1.72-0.22,2.48-0.66
 	c0.76-0.44,1.37-1.04,1.81-1.8c0.44-0.76,0.67-1.59,0.67-2.49c0-0.66-0.14-1.33-0.42-2C22.62,13.98,23,12.87,23,11.6
@@ -44947,7 +46284,7 @@ function WiWindy(props) {
 	c-0.23,0-0.42-0.07-0.57-0.22C19.33,15.9,19.26,15.72,19.26,15.5z` } }] })(props);
 }
 
-// ../../node_modules/tailwind-merge/dist/bundle-mjs.mjs
+// ../../node_modules/.pnpm/tailwind-merge@2.2.0/node_modules/tailwind-merge/dist/bundle-mjs.mjs
 var CLASS_PART_SEPARATOR2 = "-";
 function createClassUtils2(config2) {
   let classMap = createClassMap2(config2), {
@@ -45071,15 +46408,15 @@ function createSplitModifiers2(config2) {
   let separator = config2.separator, isSeparatorSingleCharacter = separator.length === 1, firstSeparatorCharacter = separator[0], separatorLength = separator.length;
   return function(className) {
     let modifiers = [], bracketDepth = 0, modifierStart = 0, postfixModifierPosition;
-    for (let index = 0; index < className.length; index++) {
-      let currentCharacter = className[index];
+    for (let index2 = 0; index2 < className.length; index2++) {
+      let currentCharacter = className[index2];
       if (bracketDepth === 0) {
-        if (currentCharacter === firstSeparatorCharacter && (isSeparatorSingleCharacter || className.slice(index, index + separatorLength) === separator)) {
-          modifiers.push(className.slice(modifierStart, index)), modifierStart = index + separatorLength;
+        if (currentCharacter === firstSeparatorCharacter && (isSeparatorSingleCharacter || className.slice(index2, index2 + separatorLength) === separator)) {
+          modifiers.push(className.slice(modifierStart, index2)), modifierStart = index2 + separatorLength;
           continue;
         }
         if (currentCharacter === "/") {
-          postfixModifierPosition = index;
+          postfixModifierPosition = index2;
           continue;
         }
       }
@@ -45156,9 +46493,9 @@ function mergeClassList2(classList, configUtils) {
   }).reverse().map((parsed) => parsed.originalClassName).join(" ");
 }
 function twJoin2() {
-  let index = 0, argument, resolvedValue, string = "";
-  for (; index < arguments.length; )
-    (argument = arguments[index++]) && (resolvedValue = toValue2(argument)) && (string && (string += " "), string += resolvedValue);
+  let index2 = 0, argument, resolvedValue, string = "";
+  for (; index2 < arguments.length; )
+    (argument = arguments[index2++]) && (resolvedValue = toValue2(argument)) && (string && (string += " "), string += resolvedValue);
   return string;
 }
 function toValue2(mix) {
@@ -45346,14 +46683,14 @@ function getDefaultConfig2() {
        * @see https://tailwindcss.com/docs/float
        */
       float: [{
-        float: ["right", "left", "none"]
+        float: ["right", "left", "none", "start", "end"]
       }],
       /**
        * Clear
        * @see https://tailwindcss.com/docs/clear
        */
       clear: [{
-        clear: ["left", "right", "both", "none"]
+        clear: ["left", "right", "both", "none", "start", "end"]
       }],
       /**
        * Isolation
@@ -45868,44 +47205,51 @@ function getDefaultConfig2() {
        * @see https://tailwindcss.com/docs/width
        */
       w: [{
-        w: ["auto", "min", "max", "fit", isArbitraryValue2, spacing]
+        w: ["auto", "min", "max", "fit", "svw", "lvw", "dvw", isArbitraryValue2, spacing]
       }],
       /**
        * Min-Width
        * @see https://tailwindcss.com/docs/min-width
        */
       "min-w": [{
-        "min-w": ["min", "max", "fit", isArbitraryValue2, isLength2]
+        "min-w": [isArbitraryValue2, spacing, "min", "max", "fit"]
       }],
       /**
        * Max-Width
        * @see https://tailwindcss.com/docs/max-width
        */
       "max-w": [{
-        "max-w": ["0", "none", "full", "min", "max", "fit", "prose", {
+        "max-w": [isArbitraryValue2, spacing, "none", "full", "min", "max", "fit", "prose", {
           screen: [isTshirtSize2]
-        }, isTshirtSize2, isArbitraryValue2]
+        }, isTshirtSize2]
       }],
       /**
        * Height
        * @see https://tailwindcss.com/docs/height
        */
       h: [{
-        h: [isArbitraryValue2, spacing, "auto", "min", "max", "fit"]
+        h: [isArbitraryValue2, spacing, "auto", "min", "max", "fit", "svh", "lvh", "dvh"]
       }],
       /**
        * Min-Height
        * @see https://tailwindcss.com/docs/min-height
        */
       "min-h": [{
-        "min-h": ["min", "max", "fit", isLength2, isArbitraryValue2]
+        "min-h": [isArbitraryValue2, spacing, "min", "max", "fit", "svh", "lvh", "dvh"]
       }],
       /**
        * Max-Height
        * @see https://tailwindcss.com/docs/max-height
        */
       "max-h": [{
-        "max-h": [isArbitraryValue2, spacing, "min", "max", "fit"]
+        "max-h": [isArbitraryValue2, spacing, "min", "max", "fit", "svh", "lvh", "dvh"]
+      }],
+      /**
+       * Size
+       * @see https://tailwindcss.com/docs/size
+       */
+      size: [{
+        size: [isArbitraryValue2, spacing, "auto", "min", "max", "fit"]
       }],
       // Typography
       /**
@@ -46090,6 +47434,13 @@ function getDefaultConfig2() {
        * @see https://tailwindcss.com/docs/text-overflow
        */
       "text-overflow": ["truncate", "text-ellipsis", "text-clip"],
+      /**
+       * Text Wrap
+       * @see https://tailwindcss.com/docs/text-wrap
+       */
+      "text-wrap": [{
+        text: ["wrap", "nowrap", "balance", "pretty"]
+      }],
       /**
        * Text Indent
        * @see https://tailwindcss.com/docs/text-indent
@@ -46929,7 +48280,9 @@ function getDefaultConfig2() {
        * Appearance
        * @see https://tailwindcss.com/docs/appearance
        */
-      appearance: ["appearance-none"],
+      appearance: [{
+        appearance: ["none", "auto"]
+      }],
       /**
        * Cursor
        * @see https://tailwindcss.com/docs/cursor
@@ -47186,7 +48539,14 @@ function getDefaultConfig2() {
        * Screen Readers
        * @see https://tailwindcss.com/docs/screen-readers
        */
-      sr: ["sr-only", "not-sr-only"]
+      sr: ["sr-only", "not-sr-only"],
+      /**
+       * Forced Color Adjust
+       * @see https://tailwindcss.com/docs/forced-color-adjust
+       */
+      "forced-color-adjust": [{
+        "forced-color-adjust": ["auto", "none"]
+      }]
     },
     conflictingClassGroups: {
       overflow: ["overflow-x", "overflow-y"],
@@ -47202,6 +48562,7 @@ function getDefaultConfig2() {
       m: ["mx", "my", "ms", "me", "mt", "mr", "mb", "ml"],
       mx: ["mr", "ml"],
       my: ["mt", "mb"],
+      size: ["w", "h"],
       "font-size": ["leading"],
       "fvn-normal": ["fvn-ordinal", "fvn-slashed-zero", "fvn-figure", "fvn-spacing", "fvn-fraction"],
       "fvn-ordinal": ["fvn-normal"],
@@ -47209,6 +48570,7 @@ function getDefaultConfig2() {
       "fvn-figure": ["fvn-normal"],
       "fvn-spacing": ["fvn-normal"],
       "fvn-fraction": ["fvn-normal"],
+      "line-clamp": ["display", "overflow"],
       rounded: ["rounded-s", "rounded-e", "rounded-t", "rounded-r", "rounded-b", "rounded-l", "rounded-ss", "rounded-se", "rounded-ee", "rounded-es", "rounded-tl", "rounded-tr", "rounded-br", "rounded-bl"],
       "rounded-s": ["rounded-ss", "rounded-es"],
       "rounded-e": ["rounded-se", "rounded-ee"],
@@ -47242,329 +48604,329 @@ function getDefaultConfig2() {
 var twMerge2 = /* @__PURE__ */ createTailwindMerge2(getDefaultConfig2);
 
 // app/components/WeatherData/Weather.tsx
-var import_jsx_dev_runtime12 = __toESM(require_jsx_dev_runtime(), 1), weatherIcon = ({ code, size = "lg", is_day }) => {
+var import_jsx_dev_runtime14 = __toESM(require_jsx_dev_runtime(), 1), weatherIcon = ({ code, size = "lg", is_day }) => {
   let iSize = size == "lg" ? "108" : "56";
   if (code === 1e3 && is_day)
-    return /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)(WiDaySunny, { size: iSize }, void 0, !1, {
+    return /* @__PURE__ */ (0, import_jsx_dev_runtime14.jsxDEV)(WiDaySunny, { size: iSize }, void 0, !1, {
       fileName: "app/components/WeatherData/Weather.tsx",
       lineNumber: 29,
       columnNumber: 12
     }, this);
   if (code == 1e3 && !is_day)
-    return /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)(WiNightClear, { size: iSize }, void 0, !1, {
+    return /* @__PURE__ */ (0, import_jsx_dev_runtime14.jsxDEV)(WiNightClear, { size: iSize }, void 0, !1, {
       fileName: "app/components/WeatherData/Weather.tsx",
       lineNumber: 31,
       columnNumber: 12
     }, this);
   if (code == 1003 && is_day)
-    return /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)(WiDayCloudy, { size: iSize }, void 0, !1, {
+    return /* @__PURE__ */ (0, import_jsx_dev_runtime14.jsxDEV)(WiDayCloudy, { size: iSize }, void 0, !1, {
       fileName: "app/components/WeatherData/Weather.tsx",
       lineNumber: 33,
       columnNumber: 12
     }, this);
   if (code == 1003 && !is_day)
-    return /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)(WiNightAltPartlyCloudy, { size: iSize }, void 0, !1, {
+    return /* @__PURE__ */ (0, import_jsx_dev_runtime14.jsxDEV)(WiNightAltPartlyCloudy, { size: iSize }, void 0, !1, {
       fileName: "app/components/WeatherData/Weather.tsx",
       lineNumber: 35,
       columnNumber: 12
     }, this);
   if (code == 1006 && is_day)
-    return /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)(WiDayCloudy, { size: iSize }, void 0, !1, {
+    return /* @__PURE__ */ (0, import_jsx_dev_runtime14.jsxDEV)(WiDayCloudy, { size: iSize }, void 0, !1, {
       fileName: "app/components/WeatherData/Weather.tsx",
       lineNumber: 37,
       columnNumber: 12
     }, this);
   if (code == 1006 && !is_day)
-    return /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)(WiNightAltCloudy, { size: iSize }, void 0, !1, {
+    return /* @__PURE__ */ (0, import_jsx_dev_runtime14.jsxDEV)(WiNightAltCloudy, { size: iSize }, void 0, !1, {
       fileName: "app/components/WeatherData/Weather.tsx",
       lineNumber: 39,
       columnNumber: 12
     }, this);
   if (code == 1009 && is_day)
-    return /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)(WiDaySunnyOvercast, { size: iSize }, void 0, !1, {
+    return /* @__PURE__ */ (0, import_jsx_dev_runtime14.jsxDEV)(WiDaySunnyOvercast, { size: iSize }, void 0, !1, {
       fileName: "app/components/WeatherData/Weather.tsx",
       lineNumber: 41,
       columnNumber: 12
     }, this);
   if (code == 1009 && !is_day)
-    return /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)(WiNightCloudyHigh, { size: iSize }, void 0, !1, {
+    return /* @__PURE__ */ (0, import_jsx_dev_runtime14.jsxDEV)(WiNightCloudyHigh, { size: iSize }, void 0, !1, {
       fileName: "app/components/WeatherData/Weather.tsx",
       lineNumber: 43,
       columnNumber: 12
     }, this);
   if (code == 1030 && is_day)
-    return /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)(WiDayHaze, { size: iSize }, void 0, !1, {
+    return /* @__PURE__ */ (0, import_jsx_dev_runtime14.jsxDEV)(WiDayHaze, { size: iSize }, void 0, !1, {
       fileName: "app/components/WeatherData/Weather.tsx",
       lineNumber: 45,
       columnNumber: 12
     }, this);
   if (code == 1030 && !is_day)
-    return /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)(WiNightFog, { size: iSize }, void 0, !1, {
+    return /* @__PURE__ */ (0, import_jsx_dev_runtime14.jsxDEV)(WiNightFog, { size: iSize }, void 0, !1, {
       fileName: "app/components/WeatherData/Weather.tsx",
       lineNumber: 47,
       columnNumber: 12
     }, this);
   if (code == 1063 && is_day)
-    return /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)(WiDayShowers, { size: iSize }, void 0, !1, {
+    return /* @__PURE__ */ (0, import_jsx_dev_runtime14.jsxDEV)(WiDayShowers, { size: iSize }, void 0, !1, {
       fileName: "app/components/WeatherData/Weather.tsx",
       lineNumber: 49,
       columnNumber: 12
     }, this);
   if (code == 1063 && !is_day)
-    return /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)(WiNightAltShowers, { size: iSize }, void 0, !1, {
+    return /* @__PURE__ */ (0, import_jsx_dev_runtime14.jsxDEV)(WiNightAltShowers, { size: iSize }, void 0, !1, {
       fileName: "app/components/WeatherData/Weather.tsx",
       lineNumber: 51,
       columnNumber: 12
     }, this);
   if (code == 1066 && is_day)
-    return /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)(WiDaySnow, { size: iSize }, void 0, !1, {
+    return /* @__PURE__ */ (0, import_jsx_dev_runtime14.jsxDEV)(WiDaySnow, { size: iSize }, void 0, !1, {
       fileName: "app/components/WeatherData/Weather.tsx",
       lineNumber: 53,
       columnNumber: 12
     }, this);
   if (code == 1066 && !is_day)
-    return /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)(WiNightAltSnow, { size: iSize }, void 0, !1, {
+    return /* @__PURE__ */ (0, import_jsx_dev_runtime14.jsxDEV)(WiNightAltSnow, { size: iSize }, void 0, !1, {
       fileName: "app/components/WeatherData/Weather.tsx",
       lineNumber: 55,
       columnNumber: 12
     }, this);
   if (code == 1183)
-    return /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)(WiRain, { size: iSize }, void 0, !1, {
+    return /* @__PURE__ */ (0, import_jsx_dev_runtime14.jsxDEV)(WiRain, { size: iSize }, void 0, !1, {
       fileName: "app/components/WeatherData/Weather.tsx",
       lineNumber: 57,
       columnNumber: 12
     }, this);
   if ((code == 1030 || code == 1135) && is_day)
-    return /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)(WiDayFog, { size: iSize }, void 0, !1, {
+    return /* @__PURE__ */ (0, import_jsx_dev_runtime14.jsxDEV)(WiDayFog, { size: iSize }, void 0, !1, {
       fileName: "app/components/WeatherData/Weather.tsx",
       lineNumber: 59,
       columnNumber: 12
     }, this);
   if ((code == 1030 || code == 1135) && !is_day)
-    return /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)(WiNightFog, { size: iSize }, void 0, !1, {
+    return /* @__PURE__ */ (0, import_jsx_dev_runtime14.jsxDEV)(WiNightFog, { size: iSize }, void 0, !1, {
       fileName: "app/components/WeatherData/Weather.tsx",
       lineNumber: 61,
       columnNumber: 12
     }, this);
-}, Weather = ({ apiKey, size = "lg", className, data, ...props }) => {
+}, Weather = ({ size = "lg", className, data, ...props }) => {
   let wData = {
     w: data,
     h: getNextHours(data, formatDate())
   };
   if (typeof wData > "u")
-    return /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)(import_jsx_dev_runtime12.Fragment, {}, void 0, !1, {
+    return /* @__PURE__ */ (0, import_jsx_dev_runtime14.jsxDEV)(import_jsx_dev_runtime14.Fragment, {}, void 0, !1, {
       fileName: "app/components/WeatherData/Weather.tsx",
       lineNumber: 69,
       columnNumber: 43
     }, this);
-  let code = wData.w.current.condition.code, is_day = wData.w.current.is_day === 1, classes = twMerge2(className);
+  let code = wData.w.current.condition.code, is_day = wData.w.current.is_day === 1, classes = twMerge2(className), todayForecast = wData.w.forecast.forecastday[0];
   if (size == "sm")
-    return /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)("div", { ...props, className: classes, children: /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)("div", { className: "flex flex-row space-x-2 px-2", children: [
-      /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)("div", { className: "flex items-center justify-center", children: /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)("span", { className: "h-12 w-12", children: weatherIcon({ code, is_day, size }) }, void 0, !1, {
+    return /* @__PURE__ */ (0, import_jsx_dev_runtime14.jsxDEV)("div", { ...props, className: classes, children: /* @__PURE__ */ (0, import_jsx_dev_runtime14.jsxDEV)("div", { className: "flex flex-row space-x-2 px-2", children: [
+      /* @__PURE__ */ (0, import_jsx_dev_runtime14.jsxDEV)("div", { className: "flex items-center justify-center", children: /* @__PURE__ */ (0, import_jsx_dev_runtime14.jsxDEV)("span", { className: "h-12 w-12", children: weatherIcon({ code, is_day, size }) }, void 0, !1, {
         fileName: "app/components/WeatherData/Weather.tsx",
-        lineNumber: 79,
+        lineNumber: 80,
         columnNumber: 13
       }, this) }, void 0, !1, {
         fileName: "app/components/WeatherData/Weather.tsx",
-        lineNumber: 78,
+        lineNumber: 79,
         columnNumber: 11
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)("div", { className: "grid grid-rows-2 items-center justify-end", children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)("div", { className: "row-span-1 flex flex-col items-end text-xs font-thin", children: /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)("span", { children: wData.w.location.name }, void 0, !1, {
+      /* @__PURE__ */ (0, import_jsx_dev_runtime14.jsxDEV)("div", { className: "grid grid-rows-2 items-center justify-end", children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime14.jsxDEV)("div", { className: "row-span-1 flex flex-col items-end text-xs font-thin", children: /* @__PURE__ */ (0, import_jsx_dev_runtime14.jsxDEV)("span", { children: wData.w.location.name }, void 0, !1, {
           fileName: "app/components/WeatherData/Weather.tsx",
-          lineNumber: 83,
+          lineNumber: 84,
           columnNumber: 15
         }, this) }, void 0, !1, {
           fileName: "app/components/WeatherData/Weather.tsx",
-          lineNumber: 82,
+          lineNumber: 83,
           columnNumber: 13
         }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)("div", { className: "row-span-1 flex flex-col items-end text-xs font-thin", children: /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)("div", { className: "flex flex-row space-x-2", children: [
-          /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)("span", { children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime14.jsxDEV)("div", { className: "row-span-1 flex flex-col items-end text-xs font-thin", children: /* @__PURE__ */ (0, import_jsx_dev_runtime14.jsxDEV)("div", { className: "flex flex-row space-x-2", children: [
+          /* @__PURE__ */ (0, import_jsx_dev_runtime14.jsxDEV)("span", { children: [
             "Today: ",
-            /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)("span", { className: "text-accent", children: [
+            /* @__PURE__ */ (0, import_jsx_dev_runtime14.jsxDEV)("span", { className: "text-accent", children: [
               Math.round(wData.w.current.temp_f),
               "\xB0F"
             ] }, void 0, !0, {
               fileName: "app/components/WeatherData/Weather.tsx",
-              lineNumber: 88,
+              lineNumber: 89,
               columnNumber: 26
             }, this)
           ] }, void 0, !0, {
             fileName: "app/components/WeatherData/Weather.tsx",
-            lineNumber: 87,
+            lineNumber: 88,
             columnNumber: 17
           }, this),
-          /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)("span", { children: [
-            Math.round(wData.w.forecast.forecastday[0].day.maxtemp_f),
+          /* @__PURE__ */ (0, import_jsx_dev_runtime14.jsxDEV)("span", { children: [
+            Math.round(todayForecast.day.maxtemp_f),
             "\xB0F/",
-            Math.round(wData.w.forecast.forecastday[0].day.mintemp_f),
+            Math.round(todayForecast.day.mintemp_f),
             "\xB0F"
           ] }, void 0, !0, {
             fileName: "app/components/WeatherData/Weather.tsx",
-            lineNumber: 90,
+            lineNumber: 91,
             columnNumber: 17
           }, this)
         ] }, void 0, !0, {
           fileName: "app/components/WeatherData/Weather.tsx",
-          lineNumber: 86,
+          lineNumber: 87,
           columnNumber: 15
         }, this) }, void 0, !1, {
           fileName: "app/components/WeatherData/Weather.tsx",
-          lineNumber: 85,
+          lineNumber: 86,
           columnNumber: 13
         }, this)
       ] }, void 0, !0, {
         fileName: "app/components/WeatherData/Weather.tsx",
-        lineNumber: 81,
+        lineNumber: 82,
         columnNumber: 11
       }, this)
     ] }, void 0, !0, {
       fileName: "app/components/WeatherData/Weather.tsx",
-      lineNumber: 77,
+      lineNumber: 78,
       columnNumber: 9
     }, this) }, void 0, !1, {
       fileName: "app/components/WeatherData/Weather.tsx",
-      lineNumber: 76,
+      lineNumber: 77,
       columnNumber: 7
     }, this);
   let precipIndicator;
-  return wData.w.forecast.forecastday[0].day.daily_will_it_rain === 1 ? precipIndicator = /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)(import_jsx_dev_runtime12.Fragment, { children: [
-    /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)(WiRain, { size: "24" }, void 0, !1, {
+  return todayForecast.day.daily_will_it_rain === 1 ? precipIndicator = /* @__PURE__ */ (0, import_jsx_dev_runtime14.jsxDEV)(import_jsx_dev_runtime14.Fragment, { children: [
+    /* @__PURE__ */ (0, import_jsx_dev_runtime14.jsxDEV)(WiRain, { size: "24" }, void 0, !1, {
       fileName: "app/components/WeatherData/Weather.tsx",
-      lineNumber: 105,
+      lineNumber: 106,
       columnNumber: 9
     }, this),
-    wData.w.forecast.forecastday[0].day.daily_chance_of_rain,
+    todayForecast.day.daily_chance_of_rain,
     "%"
   ] }, void 0, !0, {
     fileName: "app/components/WeatherData/Weather.tsx",
-    lineNumber: 104,
+    lineNumber: 105,
     columnNumber: 7
-  }, this) : wData.w.forecast.forecastday[0].day.daily_will_it_snow === 1 && (precipIndicator = /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)(import_jsx_dev_runtime12.Fragment, { children: [
-    /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)(WiSnow, { size: "24" }, void 0, !1, {
+  }, this) : todayForecast.day.daily_will_it_snow === 1 && (precipIndicator = /* @__PURE__ */ (0, import_jsx_dev_runtime14.jsxDEV)(import_jsx_dev_runtime14.Fragment, { children: [
+    /* @__PURE__ */ (0, import_jsx_dev_runtime14.jsxDEV)(WiSnow, { size: "24" }, void 0, !1, {
       fileName: "app/components/WeatherData/Weather.tsx",
-      lineNumber: 112,
+      lineNumber: 113,
       columnNumber: 9
     }, this),
-    wData.w.forecast.forecastday[0].day.daily_chance_of_snow,
+    todayForecast.day.daily_chance_of_snow,
     "%"
   ] }, void 0, !0, {
     fileName: "app/components/WeatherData/Weather.tsx",
-    lineNumber: 111,
+    lineNumber: 112,
     columnNumber: 7
-  }, this)), /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)("div", { ...props, className: classes, children: [
-    /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)("div", { className: "flex justify-between", children: [
-      /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)("div", { className: "flex flex-col", children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)("span", { className: "text-7xl font-bold", children: [
+  }, this)), /* @__PURE__ */ (0, import_jsx_dev_runtime14.jsxDEV)("div", { ...props, className: classes, children: [
+    /* @__PURE__ */ (0, import_jsx_dev_runtime14.jsxDEV)("div", { className: "flex justify-between", children: [
+      /* @__PURE__ */ (0, import_jsx_dev_runtime14.jsxDEV)("div", { className: "flex flex-col", children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime14.jsxDEV)("span", { className: "text-7xl font-bold", children: [
           Math.round(wData.w.current.temp_f),
           "\xB0F"
         ] }, void 0, !0, {
           fileName: "app/components/WeatherData/Weather.tsx",
-          lineNumber: 121,
+          lineNumber: 122,
           columnNumber: 11
         }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)("span", { className: "mt-1 font-semibold text-gray-500", children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime14.jsxDEV)("span", { className: "mt-1 font-semibold text-gray-500", children: [
           wData.w.location.name,
           ", ",
           wData.w.location.region
         ] }, void 0, !0, {
           fileName: "app/components/WeatherData/Weather.tsx",
-          lineNumber: 122,
+          lineNumber: 123,
           columnNumber: 11
         }, this)
       ] }, void 0, !0, {
         fileName: "app/components/WeatherData/Weather.tsx",
-        lineNumber: 120,
+        lineNumber: 121,
         columnNumber: 9
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)("div", { className: "grid grid-cols-2 items-center justify-end", children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)("span", { className: "col-span-1 justify-self-start", children: weatherIcon({ code, is_day, size }) }, void 0, !1, {
+      /* @__PURE__ */ (0, import_jsx_dev_runtime14.jsxDEV)("div", { className: "grid grid-cols-2 items-center justify-end", children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime14.jsxDEV)("span", { className: "col-span-1 justify-self-start", children: weatherIcon({ code, is_day, size }) }, void 0, !1, {
           fileName: "app/components/WeatherData/Weather.tsx",
-          lineNumber: 127,
+          lineNumber: 128,
           columnNumber: 11
         }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)("div", { className: "col-span-1 flex flex-col items-end", children: [
-          /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)("span", { className: "items-center text-sm", children: wData.w.forecast.forecastday[0].day.condition.text }, void 0, !1, {
-            fileName: "app/components/WeatherData/Weather.tsx",
-            lineNumber: 129,
-            columnNumber: 13
-          }, this),
-          /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)("span", { className: "items-center text-xs font-semibold lg:text-sm", children: [
-            "H: ",
-            Math.round(wData.w.forecast.forecastday[0].day.maxtemp_f),
-            "\xB0F L: ",
-            Math.round(wData.w.forecast.forecastday[0].day.mintemp_f),
-            "\xB0F"
-          ] }, void 0, !0, {
+        /* @__PURE__ */ (0, import_jsx_dev_runtime14.jsxDEV)("div", { className: "col-span-1 flex flex-col items-end", children: [
+          /* @__PURE__ */ (0, import_jsx_dev_runtime14.jsxDEV)("span", { className: "items-center text-sm", children: todayForecast.day.condition.text }, void 0, !1, {
             fileName: "app/components/WeatherData/Weather.tsx",
             lineNumber: 130,
             columnNumber: 13
           }, this),
-          /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)("span", { className: "ml-1 mt-1 flex items-center text-sm font-semibold", children: [
-            /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)(WiHumidity, { size: "24" }, void 0, !1, {
-              fileName: "app/components/WeatherData/Weather.tsx",
-              lineNumber: 136,
-              columnNumber: 15
-            }, this),
-            Math.round(wData.w.forecast.forecastday[0].day.avghumidity)
+          /* @__PURE__ */ (0, import_jsx_dev_runtime14.jsxDEV)("span", { className: "items-center text-xs font-semibold lg:text-sm", children: [
+            "H: ",
+            Math.round(todayForecast.day.maxtemp_f),
+            "\xB0F L: ",
+            Math.round(todayForecast.day.mintemp_f),
+            "\xB0F"
           ] }, void 0, !0, {
             fileName: "app/components/WeatherData/Weather.tsx",
-            lineNumber: 135,
+            lineNumber: 131,
             columnNumber: 13
           }, this),
-          /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)("span", { className: "ml-1 mt-1 flex items-center text-sm font-semibold", children: [
-            /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)(WiWindy, { size: "24" }, void 0, !1, {
+          /* @__PURE__ */ (0, import_jsx_dev_runtime14.jsxDEV)("span", { className: "ml-1 mt-1 flex items-center text-sm font-semibold", children: [
+            /* @__PURE__ */ (0, import_jsx_dev_runtime14.jsxDEV)(WiHumidity, { size: "24" }, void 0, !1, {
               fileName: "app/components/WeatherData/Weather.tsx",
-              lineNumber: 140,
+              lineNumber: 137,
               columnNumber: 15
             }, this),
-            Math.round(wData.w.forecast.forecastday[0].day.maxwind_mph)
+            Math.round(todayForecast.day.avghumidity)
           ] }, void 0, !0, {
             fileName: "app/components/WeatherData/Weather.tsx",
-            lineNumber: 139,
+            lineNumber: 136,
             columnNumber: 13
           }, this),
-          /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)("span", { className: "ml-1 flex items-center text-sm font-semibold", children: precipIndicator }, void 0, !1, {
+          /* @__PURE__ */ (0, import_jsx_dev_runtime14.jsxDEV)("span", { className: "ml-1 mt-1 flex items-center text-sm font-semibold", children: [
+            /* @__PURE__ */ (0, import_jsx_dev_runtime14.jsxDEV)(WiWindy, { size: "24" }, void 0, !1, {
+              fileName: "app/components/WeatherData/Weather.tsx",
+              lineNumber: 141,
+              columnNumber: 15
+            }, this),
+            Math.round(todayForecast.day.maxwind_mph)
+          ] }, void 0, !0, {
             fileName: "app/components/WeatherData/Weather.tsx",
-            lineNumber: 143,
+            lineNumber: 140,
+            columnNumber: 13
+          }, this),
+          /* @__PURE__ */ (0, import_jsx_dev_runtime14.jsxDEV)("span", { className: "ml-1 flex items-center text-sm font-semibold", children: precipIndicator }, void 0, !1, {
+            fileName: "app/components/WeatherData/Weather.tsx",
+            lineNumber: 144,
             columnNumber: 13
           }, this)
         ] }, void 0, !0, {
           fileName: "app/components/WeatherData/Weather.tsx",
-          lineNumber: 128,
+          lineNumber: 129,
           columnNumber: 11
         }, this)
       ] }, void 0, !0, {
         fileName: "app/components/WeatherData/Weather.tsx",
-        lineNumber: 126,
+        lineNumber: 127,
         columnNumber: 9
       }, this)
     ] }, void 0, !0, {
       fileName: "app/components/WeatherData/Weather.tsx",
-      lineNumber: 119,
+      lineNumber: 120,
       columnNumber: 7
     }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)("div", { className: "mt-4 flex items-baseline justify-end text-sm", children: /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)("h5", { children: [
+    /* @__PURE__ */ (0, import_jsx_dev_runtime14.jsxDEV)("div", { className: "mt-4 flex items-baseline justify-end text-sm", children: /* @__PURE__ */ (0, import_jsx_dev_runtime14.jsxDEV)("h5", { children: [
       "Powered by",
       " ",
-      /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)("a", { rel: "noreferrer", target: "_blank", href: "https://www.weatherapi.com/", title: "Weather API", children: "WeatherAPI.com" }, void 0, !1, {
+      /* @__PURE__ */ (0, import_jsx_dev_runtime14.jsxDEV)("a", { rel: "noreferrer", target: "_blank", href: "https://www.weatherapi.com/", title: "Weather API", children: "WeatherAPI.com" }, void 0, !1, {
         fileName: "app/components/WeatherData/Weather.tsx",
-        lineNumber: 150,
+        lineNumber: 151,
         columnNumber: 11
       }, this)
     ] }, void 0, !0, {
       fileName: "app/components/WeatherData/Weather.tsx",
-      lineNumber: 148,
+      lineNumber: 149,
       columnNumber: 9
     }, this) }, void 0, !1, {
       fileName: "app/components/WeatherData/Weather.tsx",
-      lineNumber: 147,
+      lineNumber: 148,
       columnNumber: 7
     }, this)
   ] }, void 0, !0, {
     fileName: "app/components/WeatherData/Weather.tsx",
-    lineNumber: 118,
+    lineNumber: 119,
     columnNumber: 5
   }, this);
 }, Weather_default = Weather;
@@ -47573,16 +48935,16 @@ var import_jsx_dev_runtime12 = __toESM(require_jsx_dev_runtime(), 1), weatherIco
 var WeatherData_default = Weather_default;
 
 // app/hooks/useScroll.ts
-var import_react8 = __toESM(require_react(), 1);
+var import_react9 = __toESM(require_react(), 1);
 function useScroll(threshold) {
-  let [scrolled, setScrolled] = (0, import_react8.useState)(!1), onScroll = (0, import_react8.useCallback)(() => {
+  let [scrolled, setScrolled] = (0, import_react9.useState)(!1), onScroll = (0, import_react9.useCallback)(() => {
     setScrolled(window.scrollY > threshold);
   }, [threshold]);
-  return (0, import_react8.useEffect)(() => (window.addEventListener("scroll", onScroll), () => window.removeEventListener("scroll", onScroll)), [onScroll]), scrolled;
+  return (0, import_react9.useEffect)(() => (window.addEventListener("scroll", onScroll), () => window.removeEventListener("scroll", onScroll)), [onScroll]), scrolled;
 }
 
 // app/components/ui/NavBar.tsx
-var import_jsx_dev_runtime13 = __toESM(require_jsx_dev_runtime(), 1);
+var import_jsx_dev_runtime15 = __toESM(require_jsx_dev_runtime(), 1);
 function NavBar({
   toggleVisible,
   apiKey,
@@ -47595,8 +48957,10 @@ function NavBar({
   showUserMenu = !1,
   hideLogoOnLargeScreen = !1
 }) {
-  let scrolled = useScroll(50), { resolvedTheme, setTheme } = y();
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime13.jsxDEV)(import_jsx_dev_runtime13.Fragment, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime13.jsxDEV)(
+  let scrolled = useScroll(50), { resolvedTheme, setTheme } = y(), [isLoggedIn, setIsLoggedIn] = (0, import_react11.useState)(!!user);
+  return (0, import_react11.useEffect)(() => {
+    setIsLoggedIn(!!user);
+  }, [user]), /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(import_jsx_dev_runtime15.Fragment, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(
     Navbar$1,
     {
       className: clsx_default(
@@ -47604,7 +48968,7 @@ function NavBar({
         { "shadow-sm": scrolled }
       ),
       children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime13.jsxDEV)(Tooltip, { message: "Menu", position: "bottom", className: "before:text-xs before:content-[attr(data-tip)]", children: /* @__PURE__ */ (0, import_jsx_dev_runtime13.jsxDEV)(
+        /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(Tooltip, { message: "Menu", position: "bottom", className: "before:text-xs before:content-[attr(data-tip)]", children: /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(
           Button,
           {
             tag: "label",
@@ -47614,16 +48978,16 @@ function NavBar({
             "aria-label": "Open Menu",
             htmlFor: "drawer",
             className: `drawer-button ${showToggle ? "" : "lg:hidden"}`,
-            children: /* @__PURE__ */ (0, import_jsx_dev_runtime13.jsxDEV)(
+            children: /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(
               "svg",
               {
                 xmlns: "http://www.w3.org/2000/svg",
                 fill: "none",
                 viewBox: "0 0 24 24",
                 className: "inline-block h-5 w-5 stroke-current md:h-6 md:w-6",
-                children: /* @__PURE__ */ (0, import_jsx_dev_runtime13.jsxDEV)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: "2", d: "M4 6h16M4 12h16M4 18h16" }, void 0, !1, {
+                children: /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: "2", d: "M4 6h16M4 12h16M4 18h16" }, void 0, !1, {
                   fileName: "app/components/ui/NavBar.tsx",
-                  lineNumber: 70,
+                  lineNumber: 75,
                   columnNumber: 15
                 }, this)
               },
@@ -47631,7 +48995,7 @@ function NavBar({
               !1,
               {
                 fileName: "app/components/ui/NavBar.tsx",
-                lineNumber: 64,
+                lineNumber: 69,
                 columnNumber: 13
               },
               this
@@ -47641,59 +49005,60 @@ function NavBar({
           !1,
           {
             fileName: "app/components/ui/NavBar.tsx",
-            lineNumber: 55,
+            lineNumber: 60,
             columnNumber: 11
           },
           this
         ) }, void 0, !1, {
           fileName: "app/components/ui/NavBar.tsx",
-          lineNumber: 54,
+          lineNumber: 59,
           columnNumber: 9
         }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime13.jsxDEV)("div", { className: "flex flex-1 md:gap-1 lg:gap-2", children: [
-          /* @__PURE__ */ (0, import_jsx_dev_runtime13.jsxDEV)(Logo, { hideLogoOnLargeScreen, showVersion, version: version3 }, void 0, !1, {
+        /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)("div", { className: "flex flex-1 md:gap-1 lg:gap-2", children: [
+          /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(Logo, { hideLogoOnLargeScreen, showVersion, version: version3 }, void 0, !1, {
             fileName: "app/components/ui/NavBar.tsx",
-            lineNumber: 76,
+            lineNumber: 81,
             columnNumber: 11
           }, this),
-          showSearch && /* @__PURE__ */ (0, import_jsx_dev_runtime13.jsxDEV)(Search, {}, void 0, !1, {
+          showSearch && /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(Search, {}, void 0, !1, {
             fileName: "app/components/ui/NavBar.tsx",
-            lineNumber: 78,
+            lineNumber: 83,
             columnNumber: 26
           }, this)
         ] }, void 0, !0, {
           fileName: "app/components/ui/NavBar.tsx",
-          lineNumber: 75,
+          lineNumber: 80,
           columnNumber: 9
         }, this),
-        user && /* @__PURE__ */ (0, import_jsx_dev_runtime13.jsxDEV)(import_react10.Suspense, { fallback: /* @__PURE__ */ (0, import_jsx_dev_runtime13.jsxDEV)(Loading, { variant: "bars", size: "md" }, void 0, !1, {
+        user && /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(import_react11.Suspense, { fallback: /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(Loading, { variant: "bars", size: "md" }, void 0, !1, {
           fileName: "app/components/ui/NavBar.tsx",
-          lineNumber: 81,
+          lineNumber: 86,
           columnNumber: 31
-        }, this), children: /* @__PURE__ */ (0, import_jsx_dev_runtime13.jsxDEV)(Await2, { resolve: weatherData, children: (data) => /* @__PURE__ */ (0, import_jsx_dev_runtime13.jsxDEV)(WeatherData_default, { data, apiKey, size: "sm", className: "mr-2 hidden md:flex", "aria-label": "Weather" }, void 0, !1, {
+        }, this), children: /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(Await2, { resolve: weatherData, children: (data) => /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(WeatherData_default, { data, apiKey, size: "sm", className: "mr-2 hidden md:flex", "aria-label": "Weather" }, void 0, !1, {
           fileName: "app/components/ui/NavBar.tsx",
-          lineNumber: 84,
+          lineNumber: 89,
           columnNumber: 17
         }, this) }, void 0, !1, {
           fileName: "app/components/ui/NavBar.tsx",
-          lineNumber: 82,
+          lineNumber: 87,
           columnNumber: 13
         }, this) }, void 0, !1, {
           fileName: "app/components/ui/NavBar.tsx",
-          lineNumber: 81,
+          lineNumber: 86,
           columnNumber: 11
         }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime13.jsxDEV)(Join, { className: "flex-none items-center justify-center gap-x-2", children: [
-          /* @__PURE__ */ (0, import_jsx_dev_runtime13.jsxDEV)(ThemeToggle, { resolvedTheme, setTheme, themes: config.appThemes }, void 0, !1, {
+        /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(Join, { className: "flex-none items-center justify-center gap-x-2", children: [
+          /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(ThemeToggle, { resolvedTheme, setTheme, themes: config.appThemes }, void 0, !1, {
             fileName: "app/components/ui/NavBar.tsx",
-            lineNumber: 90,
+            lineNumber: 95,
             columnNumber: 11
           }, this),
-          user !== null ? showUserMenu && /* @__PURE__ */ (0, import_jsx_dev_runtime13.jsxDEV)(UserMenu, { user }, void 0, !1, {
+          isLoggedIn && showUserMenu && /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(UserMenu, { user }, void 0, !1, {
             fileName: "app/components/ui/NavBar.tsx",
-            lineNumber: 92,
-            columnNumber: 29
-          }, this) : /* @__PURE__ */ (0, import_jsx_dev_runtime13.jsxDEV)(
+            lineNumber: 96,
+            columnNumber: 42
+          }, this),
+          !isLoggedIn && /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(
             Button,
             {
               className: "ml-4",
@@ -47703,13 +49068,13 @@ function NavBar({
               "aria-label": "sign in",
               tag: "a",
               href: "/auth/login",
-              endIcon: /* @__PURE__ */ (0, import_jsx_dev_runtime13.jsxDEV)(IconContext.Provider, { value: { size: "1.5em" }, children: /* @__PURE__ */ (0, import_jsx_dev_runtime13.jsxDEV)(RiLoginBoxLine, {}, void 0, !1, {
+              endIcon: /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(IconContext.Provider, { value: { size: "1.5em" }, children: /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(RiLoginBoxLine, {}, void 0, !1, {
                 fileName: "app/components/ui/NavBar.tsx",
-                lineNumber: 104,
+                lineNumber: 108,
                 columnNumber: 19
               }, this) }, void 0, !1, {
                 fileName: "app/components/ui/NavBar.tsx",
-                lineNumber: 103,
+                lineNumber: 107,
                 columnNumber: 17
               }, this),
               children: "Sign In"
@@ -47718,14 +49083,14 @@ function NavBar({
             !1,
             {
               fileName: "app/components/ui/NavBar.tsx",
-              lineNumber: 94,
+              lineNumber: 98,
               columnNumber: 13
             },
             this
           )
         ] }, void 0, !0, {
           fileName: "app/components/ui/NavBar.tsx",
-          lineNumber: 89,
+          lineNumber: 94,
           columnNumber: 9
         }, this)
       ]
@@ -47734,19 +49099,19 @@ function NavBar({
     !0,
     {
       fileName: "app/components/ui/NavBar.tsx",
-      lineNumber: 48,
+      lineNumber: 53,
       columnNumber: 7
     },
     this
   ) }, void 0, !1, {
     fileName: "app/components/ui/NavBar.tsx",
-    lineNumber: 47,
+    lineNumber: 52,
     columnNumber: 5
   }, this);
 }
 
 // app/components/ui/AppMenu.tsx
-var import_jsx_dev_runtime14 = __toESM(require_jsx_dev_runtime(), 1);
+var import_jsx_dev_runtime16 = __toESM(require_jsx_dev_runtime(), 1);
 function AppMenu({
   className,
   innerClassName,
@@ -47757,7 +49122,7 @@ function AppMenu({
   ...props
 }) {
   let nav = config.navMenu;
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime14.jsxDEV)("div", { className: twMerge2(className, ""), children: /* @__PURE__ */ (0, import_jsx_dev_runtime14.jsxDEV)(
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)("div", { className: twMerge2(className, ""), children: /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)(
     Menu$1,
     {
       className: twMerge2("text-secondary", innerClassName),
@@ -47765,7 +49130,7 @@ function AppMenu({
       vertical,
       horizontal,
       ...props,
-      children: nav.map((i4, t3) => /* @__PURE__ */ (0, import_jsx_dev_runtime14.jsxDEV)(Menu$1.Item, { "aria-label": i4.title, onClick: toggleVisible, children: /* @__PURE__ */ (0, import_jsx_dev_runtime14.jsxDEV)(NavLink2, { to: i4.href, className: ({ isActive }) => isActive ? "text-primary" : void 0, children: i4.title }, void 0, !1, {
+      children: nav.map((i4, t3) => /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)(Menu$1.Item, { "aria-label": i4.title, onClick: toggleVisible, children: /* @__PURE__ */ (0, import_jsx_dev_runtime16.jsxDEV)(NavLink2, { to: i4.href, className: ({ isActive }) => isActive ? "text-primary" : void 0, children: i4.title }, void 0, !1, {
         fileName: "app/components/ui/AppMenu.tsx",
         lineNumber: 41,
         columnNumber: 13
@@ -47791,7 +49156,7 @@ function AppMenu({
 }
 
 // app/components/ui/SideBar.tsx
-var import_jsx_dev_runtime15 = __toESM(require_jsx_dev_runtime(), 1);
+var import_jsx_dev_runtime17 = __toESM(require_jsx_dev_runtime(), 1);
 function SideBar({
   className,
   responsive = !1,
@@ -47804,8 +49169,8 @@ function SideBar({
   version: version3,
   visible = !1
 }) {
-  let letters = !user || typeof user.name > "u" || user.name == "" ? "HU" : user.name.split(" ")[0].substring(0, 1) + user.name.split(" ")[1].substring(0, 1);
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(import_jsx_dev_runtime15.Fragment, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(
+  let letters = !user || typeof user.displayName > "u" || user.displayName == "" ? "HU" : user.displayName.split(" ")[0].substring(0, 1) + user.displayName.split(" ")[1].substring(0, 1);
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(import_jsx_dev_runtime17.Fragment, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(
     "div",
     {
       className: twMerge2(
@@ -47814,7 +49179,7 @@ function SideBar({
         clsx_default({ hidden: !visible })
       ),
       children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)("div", { className: "flex h-16 items-center justify-center", children: /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(Logo, { hideLogoOnLargeScreen, showVersion, version: version3 }, void 0, !1, {
+        /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)("div", { className: "flex h-16 items-center justify-center", children: /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(Logo, { hideLogoOnLargeScreen, showVersion, version: version3 }, void 0, !1, {
           fileName: "app/components/ui/SideBar.tsx",
           lineNumber: 50,
           columnNumber: 11
@@ -47823,9 +49188,9 @@ function SideBar({
           lineNumber: 49,
           columnNumber: 9
         }, this),
-        showUserSection && user && /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(import_jsx_dev_runtime15.Fragment, { children: [
-          /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)("div", { className: "flex w-full flex-col items-center justify-center pb-0", children: [
-            /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(
+        showUserSection && user && /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(import_jsx_dev_runtime17.Fragment, { children: [
+          /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)("div", { className: "flex w-full flex-col items-center justify-center pb-0", children: [
+            /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(
               Avatar$1,
               {
                 innerClassName: "rounded",
@@ -47844,24 +49209,24 @@ function SideBar({
               },
               this
             ),
-            /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)("span", { className: "mt-4 font-semibold", children: user.name }, void 0, !1, {
+            /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)("span", { className: "mt-4 font-semibold", children: user.displayName }, void 0, !1, {
               fileName: "app/components/ui/SideBar.tsx",
               lineNumber: 63,
               columnNumber: 15
             }, this),
-            /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)("span", { className: "text-xs font-light", children: user.email }, void 0, !1, {
+            /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)("span", { className: "text-xs font-light", children: user.email }, void 0, !1, {
               fileName: "app/components/ui/SideBar.tsx",
               lineNumber: 64,
               columnNumber: 15
             }, this),
-            /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(Form, { method: "POST", name: "userMenu", action: "/auth/logout", className: "mt-4 w-full px-2", children: /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(
+            /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(Form, { method: "POST", name: "userMenu", action: "/auth/logout", className: "mt-4 w-full px-2", children: /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(
               Button,
               {
                 type: "submit",
                 color: "secondary",
                 size: "sm",
                 fullWidth: !0,
-                startIcon: /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(IconContext.Provider, { value: { size: "1.5em" }, children: /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(RiLogoutBoxLine, {}, void 0, !1, {
+                startIcon: /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(IconContext.Provider, { value: { size: "1.5em" }, children: /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(RiLogoutBoxLine, {}, void 0, !1, {
                   fileName: "app/components/ui/SideBar.tsx",
                   lineNumber: 74,
                   columnNumber: 23
@@ -47885,7 +49250,7 @@ function SideBar({
               lineNumber: 66,
               columnNumber: 15
             }, this),
-            /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(Menu$1, { className: "mt-6", horizontal: !0, children: /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(Menu$1.Item, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(Tooltip, { message: "User settings", children: /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(NavLink2, { to: "/user/settings", children: /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(IconContext.Provider, { value: { size: "1.5em" }, children: /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(RiSettings4Line, {}, void 0, !1, {
+            /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(Menu$1, { className: "mt-6", horizontal: !0, children: /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(Menu$1.Item, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(Tooltip, { message: "User settings", children: /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(NavLink2, { to: "/user/settings", children: /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(IconContext.Provider, { value: { size: "1.5em" }, children: /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(RiSettings4Line, {}, void 0, !1, {
               fileName: "app/components/ui/SideBar.tsx",
               lineNumber: 87,
               columnNumber: 25
@@ -47915,7 +49280,7 @@ function SideBar({
             lineNumber: 54,
             columnNumber: 13
           }, this),
-          /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(Divider, {}, void 0, !1, {
+          /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(Divider, {}, void 0, !1, {
             fileName: "app/components/ui/SideBar.tsx",
             lineNumber: 94,
             columnNumber: 13
@@ -47925,7 +49290,7 @@ function SideBar({
           lineNumber: 53,
           columnNumber: 11
         }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime15.jsxDEV)(AppMenu, { responsive, vertical, toggleVisible }, void 0, !1, {
+        /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(AppMenu, { responsive, vertical, toggleVisible }, void 0, !1, {
           fileName: "app/components/ui/SideBar.tsx",
           lineNumber: 97,
           columnNumber: 9
@@ -47948,10 +49313,10 @@ function SideBar({
 }
 
 // app/hooks/useMediaQuery.ts
-var import_react13 = __toESM(require_react(), 1);
+var import_react14 = __toESM(require_react(), 1);
 function useMediaQuery() {
-  let [device, setDevice] = (0, import_react13.useState)(null), [dimensions, setDimensions] = (0, import_react13.useState)(null);
-  return (0, import_react13.useEffect)(() => {
+  let [device, setDevice] = (0, import_react14.useState)(null), [dimensions, setDimensions] = (0, import_react14.useState)(null);
+  return (0, import_react14.useEffect)(() => {
     let checkDevice = () => {
       window.matchMedia("(max-width: 640px)").matches ? setDevice("mobile") : window.matchMedia("(min-width: 641px) and (max-width: 1024px)").matches ? setDevice("tablet") : setDevice("desktop"), setDimensions({ width: window.innerWidth, height: window.innerHeight });
     };
@@ -47968,7 +49333,7 @@ function useMediaQuery() {
   };
 }
 
-// ../../node_modules/@preact/signals-core/dist/signals-core.module.js
+// ../../node_modules/.pnpm/@preact+signals-core@1.5.1/node_modules/@preact/signals-core/dist/signals-core.module.js
 function i2() {
   throw new Error("Cycle detected");
 }
@@ -47996,7 +49361,7 @@ function r4() {
 }
 var o2 = void 0;
 var f4 = void 0, v2 = 0, e2 = 0, u2 = 0;
-function c3(i4) {
+function c2(i4) {
   if (o2 !== void 0) {
     var t3 = i4.n;
     if (t3 === void 0 || t3.t !== o2)
@@ -48046,7 +49411,7 @@ d2.prototype.peek = function() {
   return this.v;
 };
 Object.defineProperty(d2.prototype, "value", { get: function() {
-  var i4 = c3(this);
+  var i4 = c2(this);
   return i4 !== void 0 && (i4.i = this.i), this.v;
 }, set: function(t3) {
   if (o2 instanceof _ && function() {
@@ -48135,7 +49500,7 @@ _.prototype.peek = function() {
 };
 Object.defineProperty(_.prototype, "value", { get: function() {
   1 & this.f && i2();
-  var t3 = c3(this);
+  var t3 = c2(this);
   if (this.h(), t3 !== void 0 && (t3.i = this.i), 16 & this.f)
     throw this.v;
   return this.v;
@@ -48200,114 +49565,260 @@ function O(i4) {
   return t3.d.bind(t3);
 }
 
-// ../../node_modules/@preact/signals-react/dist/signals.module.js
-var import_react14 = __toESM(require_react()), import_shim = __toESM(require_shim()), import_jsx_runtime2 = __toESM(require_jsx_runtime()), import_jsx_dev_runtime16 = __toESM(require_jsx_dev_runtime());
-var m3 = Symbol.for("react.element");
-Promise.prototype.then.bind(Promise.resolve());
-Object.defineProperties(d2.prototype, { $$typeof: { configurable: !0, value: m3 }, type: { configurable: !0, value: function(n3) {
-  return n3.data.value;
-} }, props: { configurable: !0, get: function() {
-  return { data: this };
-} }, ref: { configurable: !0, value: null } });
-var p4 = Symbol.for("react.element");
-function b4(e3) {
-  return typeof e3 != "function" ? e3 : function(r5, t3) {
-    if (typeof r5 == "string" && t3)
-      for (var u4 in t3) {
-        var i4 = t3[u4];
-        u4 !== "children" && i4 instanceof d2 && (t3[u4] = i4.value);
-      }
-    return e3.call.apply(e3, [e3, r5, t3].concat([].slice.call(arguments, 2)));
-  };
-}
-var g3, d3 = Symbol.dispose || Symbol.for("Symbol.dispose");
-function y3(n3) {
-  g3 && g3(), g3 = n3 && n3.effect.S();
-}
-var h2, S2 = function() {
-  return y3();
-}, j = Promise.prototype.then.bind(Promise.resolve());
-Object.defineProperties(d2.prototype, { $$typeof: { configurable: !0, value: p4 }, type: { configurable: !0, value: function(n3) {
-  return n3.data.value;
-} }, props: { configurable: !0, get: function() {
-  return { data: this };
-} }, ref: { configurable: !0, value: null } });
-var x2 = null, P = !1, $2 = null, O2 = /* @__PURE__ */ new Map();
-function k(n3) {
+// ../../node_modules/.pnpm/@preact+signals-react@1.3.8_react@18.2.0/node_modules/@preact/signals-react/dist/signals.module.js
+var import_react15 = __toESM(require_react()), import_shim = __toESM(require_shim()), import_jsx_runtime2 = __toESM(require_jsx_runtime()), import_jsx_dev_runtime18 = __toESM(require_jsx_dev_runtime()), v6 = null, m3 = !1, p4 = null, d3 = /* @__PURE__ */ new Map();
+function b4(n3) {
   if (!n3)
     return 1;
-  var e3, r5 = O2.get(n3);
-  if (r5 !== void 0)
-    return r5;
-  var t3 = n3.useCallback.toString();
+  var r5, t3 = d3.get(n3);
+  if (t3 !== void 0)
+    return t3;
+  var e3 = n3.useCallback.toString();
   if (n3.useReducer === n3.useEffect)
-    e3 = 1;
+    r5 = 1;
   else if (n3.useEffect === n3.useImperativeHandle)
-    e3 = 32;
-  else if (/Invalid/.test(t3))
-    e3 = 2;
-  else if (/updateCallback/.test(t3) || /\[0\]/.test(t3) && /\[1\]/.test(t3)) {
-    var u4 = n3.useReducer.toString();
-    /rerenderReducer/.test(u4) || /return\s*\[\w+,/.test(u4) ? e3 = 16 : e3 = 8;
+    r5 = 32;
+  else if (/Invalid/.test(e3))
+    r5 = 2;
+  else if (/updateCallback/.test(e3) || /\[0\]/.test(e3) && /\[1\]/.test(e3)) {
+    var i4 = n3.useReducer.toString();
+    /rerenderReducer/.test(i4) || /return\s*\[\w+,/.test(i4) ? r5 = 16 : r5 = 8;
   } else
-    e3 = 4;
-  return O2.set(n3, e3), e3;
+    r5 = 4;
+  return d3.set(n3, r5), r5;
 }
+var h2 = Symbol.for("react.element"), y3 = function() {
+};
+function S2(r5) {
+  return typeof r5 != "function" ? r5 : function(t3, e3) {
+    if (typeof t3 == "string" && e3)
+      for (var i4 in e3) {
+        var u4 = e3[i4];
+        i4 !== "children" && u4 instanceof d2 && (e3[i4] = u4.value);
+      }
+    return r5.call.apply(r5, [r5, t3, e3].concat([].slice.call(arguments, 2)));
+  };
+}
+var x2, j, k = Symbol.dispose || Symbol.for("Symbol.dispose");
+function w2(n3, r5) {
+  var t3 = r5.effect.S();
+  return x2 = r5, B.bind(r5, n3, t3);
+}
+function B(n3, r5) {
+  r5(), x2 = n3;
+}
+({ u: 0, effect: { s: void 0, c: function() {
+}, S: function() {
+  return y3;
+}, d: function() {
+} }, subscribe: function() {
+  return y3;
+}, getSnapshot: function() {
+  return 0;
+}, S: function() {
+}, f: function() {
+} })[k] = function() {
+};
+var O2 = Promise.prototype.then.bind(Promise.resolve());
+function P(n3) {
+  n3 === void 0 && (n3 = 0), function() {
+    j || (j = O2(function() {
+      var n4;
+      j = void 0, (n4 = x2) == null || n4.f();
+    }));
+  }();
+  var t3 = (0, import_react15.useRef)();
+  t3.current == null && (t3.current = function(n4) {
+    var t4, e4, i4, u4, f6 = 0, o4 = O(function() {
+      e4 = this;
+    });
+    return e4.c = function() {
+      f6 = f6 + 1 | 0, u4 && u4();
+    }, (t4 = { u: n4, effect: e4, subscribe: function(n5) {
+      return u4 = n5, function() {
+        f6 = f6 + 1 | 0, u4 = void 0, o4();
+      };
+    }, getSnapshot: function() {
+      return f6;
+    }, S: function() {
+      if (x2 != null) {
+        var n5 = x2.u, r5 = this.u;
+        n5 == 0 && r5 == 0 || n5 == 0 && r5 == 1 ? (x2.f(), i4 = w2(void 0, this)) : n5 == 1 && r5 == 0 || n5 == 2 && r5 == 0 || (i4 = w2(x2, this));
+      } else
+        i4 = w2(void 0, this);
+    }, f: function() {
+      i4?.(), i4 = void 0;
+    } })[k] = function() {
+      this.f();
+    }, t4;
+  }(n3));
+  var e3 = t3.current;
+  return (0, import_shim.useSyncExternalStore)(e3.subscribe, e3.getSnapshot, e3.getSnapshot), e3.S(), e3;
+}
+Object.defineProperties(d2.prototype, { $$typeof: { configurable: !0, value: h2 }, type: { configurable: !0, value: function(n3) {
+  var r5 = n3.data, t3 = P(1);
+  try {
+    return r5.value;
+  } finally {
+    t3.f();
+  }
+} }, props: { configurable: !0, get: function() {
+  return { data: this };
+} }, ref: { configurable: !0, value: null } });
 (function() {
-  Object.defineProperty(import_react14.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.ReactCurrentDispatcher, "current", { get: function() {
-    return $2;
+  Object.defineProperty(import_react15.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.ReactCurrentDispatcher, "current", { get: function() {
+    return p4;
   }, set: function(n3) {
-    if (P)
-      $2 = n3;
+    if (m3)
+      p4 = n3;
     else {
-      var e3 = k($2), r5 = k(n3);
-      if ($2 = n3, function(n4, e4) {
-        return 1 & n4 && 28 & e4 ? !0 : 2 & n4 || 2 & e4 ? !1 : !!(16 & e4);
-      }(e3, r5))
-        P = !0, x2 = function() {
-          S2(), h2 || (h2 = j(function() {
-            h2 = void 0, S2();
-          }));
-          var n4 = (0, import_react14.useRef)();
-          n4.current == null && (n4.current = function() {
-            var n5, e5, r6, u5 = 0, i4 = O(function() {
-              e5 = this;
-            });
-            return e5.c = function() {
-              u5 = u5 + 1 | 0, r6 && r6();
-            }, (n5 = { effect: e5, subscribe: function(n6) {
-              return r6 = n6, function() {
-                u5 = u5 + 1 | 0, r6 = void 0, i4();
-              };
-            }, getSnapshot: function() {
-              return u5;
-            }, f: function() {
-              S2();
-            } })[d3] = function() {
-              S2();
-            }, n5;
-          }());
-          var e4 = n4.current;
-          return (0, import_shim.useSyncExternalStore)(e4.subscribe, e4.getSnapshot, e4.getSnapshot), y3(e4), e4;
-        }(), P = !1;
-      else if (function(n4, e4) {
-        return Boolean(28 & n4 && 1 & e4);
-      }(e3, r5)) {
-        var u4;
-        (u4 = x2) == null || u4.f(), x2 = null;
+      var r5 = b4(p4), t3 = b4(n3);
+      if (p4 = n3, function(n4, r6) {
+        return 1 & n4 && 28 & r6 ? !0 : (2 & n4 || 2 & r6, !1);
+      }(r5, t3))
+        m3 = !0, v6 = P(1), m3 = !1;
+      else if (function(n4, r6) {
+        return Boolean(28 & n4 && 16 & r6);
+      }(r5, t3)) {
+        var e3;
+        (e3 = v6) == null || e3.f(), m3 = !0, v6 = P(1), m3 = !1;
+      } else if (function(n4, r6) {
+        return Boolean(28 & n4 && 1 & r6);
+      }(r5, t3)) {
+        var i4;
+        (i4 = v6) == null || i4.f(), v6 = null;
       }
     }
   } }), function() {
-    var n3 = import_jsx_runtime2.default, e3 = import_jsx_dev_runtime16.default;
-    import_react14.default.createElement = b4(import_react14.default.createElement), e3.jsx && (e3.jsx = b4(e3.jsx)), n3.jsx && (n3.jsx = b4(n3.jsx)), e3.jsxs && (e3.jsxs = b4(e3.jsxs)), n3.jsxs && (n3.jsxs = b4(n3.jsxs)), e3.jsxDEV && (e3.jsxDEV = b4(e3.jsxDEV)), n3.jsxDEV && (n3.jsxDEV = b4(n3.jsxDEV));
+    var n3 = import_jsx_runtime2.default, r5 = import_jsx_dev_runtime18.default;
+    import_react15.default.createElement = S2(import_react15.default.createElement), r5.jsx && (r5.jsx = S2(r5.jsx)), n3.jsx && (n3.jsx = S2(n3.jsx)), r5.jsxs && (r5.jsxs = S2(r5.jsxs)), n3.jsxs && (n3.jsxs = S2(n3.jsxs)), r5.jsxDEV && (r5.jsxDEV = S2(r5.jsxDEV)), n3.jsxDEV && (n3.jsxDEV = S2(n3.jsxDEV));
   }();
 })();
 
 // app/providers/AppState.tsx
-var import_react15 = __toESM(require_react(), 1), createAppState = () => ({ notifs: a2([]) }), AppState = (0, import_react15.createContext)(createAppState());
+var import_react16 = __toESM(require_react(), 1), createAppState = () => ({ notifs: a2([]) }), AppState = (0, import_react16.createContext)(createAppState());
+
+// ../../node_modules/.pnpm/ip-regex@5.0.0/node_modules/ip-regex/index.js
+var word = "[a-fA-F\\d:]", boundry = (options2) => options2 && options2.includeBoundaries ? `(?:(?<=\\s|^)(?=${word})|(?<=${word})(?=\\s|$))` : "", v42 = "(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)(?:\\.(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)){3}", v6segment = "[a-fA-F\\d]{1,4}", v62 = `
+(?:
+(?:${v6segment}:){7}(?:${v6segment}|:)|                                    // 1:2:3:4:5:6:7::  1:2:3:4:5:6:7:8
+(?:${v6segment}:){6}(?:${v42}|:${v6segment}|:)|                             // 1:2:3:4:5:6::    1:2:3:4:5:6::8   1:2:3:4:5:6::8  1:2:3:4:5:6::1.2.3.4
+(?:${v6segment}:){5}(?::${v42}|(?::${v6segment}){1,2}|:)|                   // 1:2:3:4:5::      1:2:3:4:5::7:8   1:2:3:4:5::8    1:2:3:4:5::7:1.2.3.4
+(?:${v6segment}:){4}(?:(?::${v6segment}){0,1}:${v42}|(?::${v6segment}){1,3}|:)| // 1:2:3:4::        1:2:3:4::6:7:8   1:2:3:4::8      1:2:3:4::6:7:1.2.3.4
+(?:${v6segment}:){3}(?:(?::${v6segment}){0,2}:${v42}|(?::${v6segment}){1,4}|:)| // 1:2:3::          1:2:3::5:6:7:8   1:2:3::8        1:2:3::5:6:7:1.2.3.4
+(?:${v6segment}:){2}(?:(?::${v6segment}){0,3}:${v42}|(?::${v6segment}){1,5}|:)| // 1:2::            1:2::4:5:6:7:8   1:2::8          1:2::4:5:6:7:1.2.3.4
+(?:${v6segment}:){1}(?:(?::${v6segment}){0,4}:${v42}|(?::${v6segment}){1,6}|:)| // 1::              1::3:4:5:6:7:8   1::8            1::3:4:5:6:7:1.2.3.4
+(?::(?:(?::${v6segment}){0,5}:${v42}|(?::${v6segment}){1,7}|:))             // ::2:3:4:5:6:7:8  ::2:3:4:5:6:7:8  ::8             ::1.2.3.4
+)(?:%[0-9a-zA-Z]{1,})?                                             // %eth0            %1
+`.replace(/\s*\/\/.*$/gm, "").replace(/\n/g, "").trim(), v46Exact = new RegExp(`(?:^${v42}$)|(?:^${v62}$)`), v4exact = new RegExp(`^${v42}$`), v6exact = new RegExp(`^${v62}$`), ipRegex = (options2) => options2 && options2.exact ? v46Exact : new RegExp(`(?:${boundry(options2)}${v42}${boundry(options2)})|(?:${boundry(options2)}${v62}${boundry(options2)})`, "g");
+ipRegex.v4 = (options2) => options2 && options2.exact ? v4exact : new RegExp(`${boundry(options2)}${v42}${boundry(options2)}`, "g");
+ipRegex.v6 = (options2) => options2 && options2.exact ? v6exact : new RegExp(`${boundry(options2)}${v62}${boundry(options2)}`, "g");
+var ip_regex_default = ipRegex;
+
+// ../../node_modules/.pnpm/function-timeout@0.1.1/node_modules/function-timeout/browser.js
+function functionTimeout(function_) {
+  let wrappedFunction = (...arguments_) => function_(...arguments_);
+  return Object.defineProperty(wrappedFunction, "name", {
+    value: `functionTimeout(${function_.name || "<anonymous>"})`,
+    configurable: !0
+  }), wrappedFunction;
+}
+function isTimeoutError() {
+  return !1;
+}
+
+// ../../node_modules/.pnpm/is-regexp@3.1.0/node_modules/is-regexp/index.js
+var { toString } = Object.prototype;
+function isRegexp(value) {
+  return toString.call(value) === "[object RegExp]";
+}
+
+// ../../node_modules/.pnpm/clone-regexp@3.0.0/node_modules/clone-regexp/index.js
+var flagMap = {
+  global: "g",
+  ignoreCase: "i",
+  multiline: "m",
+  dotAll: "s",
+  sticky: "y",
+  unicode: "u"
+};
+function clonedRegexp(regexp, options2 = {}) {
+  if (!isRegexp(regexp))
+    throw new TypeError("Expected a RegExp instance");
+  let flags2 = Object.keys(flagMap).map((flag) => (typeof options2[flag] == "boolean" ? options2[flag] : regexp[flag]) ? flagMap[flag] : "").join(""), clonedRegexp2 = new RegExp(options2.source || regexp.source, flags2);
+  return clonedRegexp2.lastIndex = typeof options2.lastIndex == "number" ? options2.lastIndex : regexp.lastIndex, clonedRegexp2;
+}
+
+// ../../node_modules/.pnpm/super-regex@0.2.0/node_modules/super-regex/index.js
+function isMatch(regex, string, { timeout } = {}) {
+  try {
+    return functionTimeout(() => clonedRegexp(regex).test(string), { timeout })();
+  } catch (error) {
+    if (isTimeoutError(error))
+      return !1;
+    throw error;
+  }
+}
+
+// ../../node_modules/.pnpm/is-ip@5.0.1/node_modules/is-ip/index.js
+var maxIPv6Length = 45, options = {
+  timeout: 400
+};
+function isIP(string) {
+  return string.length > maxIPv6Length ? !1 : isMatch(ip_regex_default({ exact: !0 }), string, options);
+}
+
+// ../../node_modules/.pnpm/remix-utils@7.4.0_@remix-run+cloudflare@2.4.1_@remix-run+react@2.4.1_is-ip@5.0.1_react@18.2.0_zod@3.22.4/node_modules/remix-utils/build/server/get-headers.js
+function getHeaders(requestOrHeaders) {
+  return requestOrHeaders instanceof Request ? requestOrHeaders.headers : requestOrHeaders;
+}
+
+// ../../node_modules/.pnpm/remix-utils@7.4.0_@remix-run+cloudflare@2.4.1_@remix-run+react@2.4.1_is-ip@5.0.1_react@18.2.0_zod@3.22.4/node_modules/remix-utils/build/server/get-client-ip-address.js
+var headerNames = Object.freeze([
+  "X-Client-IP",
+  "X-Forwarded-For",
+  "HTTP-X-Forwarded-For",
+  "Fly-Client-IP",
+  "CF-Connecting-IP",
+  "Fastly-Client-Ip",
+  "True-Client-Ip",
+  "X-Real-IP",
+  "X-Cluster-Client-IP",
+  "X-Forwarded",
+  "Forwarded-For",
+  "Forwarded",
+  "DO-Connecting-IP",
+  "oxygen-buyer-ip"
+]);
+function getClientIPAddress(requestOrHeaders) {
+  let headers = getHeaders(requestOrHeaders);
+  return headerNames.flatMap((headerName) => {
+    let value = headers.get(headerName);
+    return headerName === "Forwarded" ? parseForwardedHeader(value) : value?.includes(",") ? value.split(",").map((ip) => ip.trim()) : value;
+  }).find((ip) => ip === null ? !1 : isIP(ip)) ?? null;
+}
+function parseForwardedHeader(value) {
+  if (!value)
+    return null;
+  for (let part of value.split(";"))
+    if (part.startsWith("for="))
+      return part.slice(4);
+  return null;
+}
+
+// app/utils/index.ts
+var import_ulid_workers = __toESM(require_dist2(), 1);
+var getIPAddress = async (req, _ctx) => {
+  let cIP = getClientIPAddress(req.headers);
+  if (!cIP) {
+    let q = await fetch("https://api.ipify.org?format=json"), { ip } = await q.json();
+    cIP = ip;
+  }
+  return cIP;
+}, ulid = (0, import_ulid_workers.ulidFactory)();
 
 // app/routes/_app.tsx
-var import_jsx_dev_runtime17 = __toESM(require_jsx_dev_runtime(), 1), loader2 = async ({ request, context }) => {
+var import_jsx_dev_runtime19 = __toESM(require_jsx_dev_runtime(), 1), loader3 = async ({ request, context }) => {
   let req = request.clone(), { pathname } = new URL(req.url), sessionConfig = {
     kv: context.env.KV,
     node_env: context.env.NODE_ENV,
@@ -48316,7 +49827,7 @@ var import_jsx_dev_runtime17 = __toESM(require_jsx_dev_runtime(), 1), loader2 = 
   }, apiKey = context.env.WEATHERAPI_KEY, ipAddress = await getIPAddress(req, context), { days, alerts } = Object.assign(DEFAULTOPTIONS, {}), weatherDataPromise = fetch(
     `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${ipAddress}&days=${days}&aqi=no&alerts=${alerts}`
   ), sessionStorage2 = await appSessionStorage(sessionConfig), user = await (await getAuthenticator(context, sessionStorage2)).isAuthenticated(req);
-  return !user && !config.publicPages.includes(pathname) ? (0, import_cloudflare4.redirect)("/auth/login") : (0, import_cloudflare4.defer)({
+  return !user && !config.publicPages.includes(pathname) ? (0, import_cloudflare5.redirect)("/auth/login") : (0, import_cloudflare5.defer)({
     version: context.env.APP_VERSION,
     apiKey,
     user,
@@ -48324,10 +49835,10 @@ var import_jsx_dev_runtime17 = __toESM(require_jsx_dev_runtime(), 1), loader2 = 
   });
 };
 function AppLayout() {
-  let { pathname } = useLocation(), { version: version3, apiKey, weatherData, user } = useLoaderData2(), [visible, setVisible] = (0, import_react17.useState)(!1), toggleVisible = (0, import_react17.useCallback)(() => {
+  let { pathname } = useLocation(), { version: version3, apiKey, weatherData, user } = useLoaderData2(), [visible, setVisible] = (0, import_react18.useState)(!1), toggleVisible = (0, import_react18.useCallback)(() => {
     setVisible((visible2) => !visible2);
   }, []), { device } = useMediaQuery();
-  (0, import_react17.useEffect)(() => {
+  (0, import_react18.useEffect)(() => {
     document.documentElement.style.scrollPaddingTop = "5rem", document.documentElement.style.scrollBehavior = "smooth";
   }, [pathname]), Array.prototype.matchPattern = function(inputString) {
     for (let pattern of this) {
@@ -48337,8 +49848,8 @@ function AppLayout() {
     }
     return !1;
   };
-  let { Dialog, handleShow } = Modal$1.useDialog();
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(import_jsx_dev_runtime17.Fragment, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(AppThemeProvider, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(AppState.Provider, { value: createAppState(), children: /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(
+  let { Dialog } = Modal$1.useDialog();
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime19.jsxDEV)(import_jsx_dev_runtime19.Fragment, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime19.jsxDEV)(AppThemeProvider, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime19.jsxDEV)(AppState.Provider, { value: createAppState(), children: /* @__PURE__ */ (0, import_jsx_dev_runtime19.jsxDEV)(
     Drawer,
     {
       className: clsx_default("bg-base-100", {
@@ -48347,15 +49858,14 @@ function AppLayout() {
       open: visible,
       onClickOverlay: toggleVisible,
       sideClassName: "z-40",
-      side: /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)("aside", { className: "min-h-screen w-80 bg-base-100", children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(
+      side: /* @__PURE__ */ (0, import_jsx_dev_runtime19.jsxDEV)("aside", { className: "min-h-screen w-80 bg-base-100", children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime19.jsxDEV)(
           SideBar,
           {
             responsive: !1,
             version: version3,
             toggleVisible,
             hideLogoOnLargeScreen: !0,
-            showUserSettingsModal: handleShow,
             vertical: !0,
             user,
             showUserSection: !0,
@@ -48370,9 +49880,9 @@ function AppLayout() {
           },
           this
         ),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)("div", { className: "pointer-events-none sticky bottom-0 flex h-40 bg-base-100 [mask-image:linear-gradient(transparent,#000000)]" }, void 0, !1, {
+        /* @__PURE__ */ (0, import_jsx_dev_runtime19.jsxDEV)("div", { className: "pointer-events-none sticky bottom-0 flex h-40 bg-base-100 [mask-image:linear-gradient(transparent,#000000)]" }, void 0, !1, {
           fileName: "app/routes/_app.tsx",
-          lineNumber: 111,
+          lineNumber: 110,
           columnNumber: 17
         }, this)
       ] }, void 0, !0, {
@@ -48380,8 +49890,8 @@ function AppLayout() {
         lineNumber: 99,
         columnNumber: 15
       }, this),
-      children: /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(import_jsx_dev_runtime17.Fragment, { children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(
+      children: /* @__PURE__ */ (0, import_jsx_dev_runtime19.jsxDEV)(import_jsx_dev_runtime19.Fragment, { children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime19.jsxDEV)(
           NavBar,
           {
             showToggle: device !== "desktop",
@@ -48398,18 +49908,18 @@ function AppLayout() {
           !1,
           {
             fileName: "app/routes/_app.tsx",
-            lineNumber: 116,
+            lineNumber: 115,
             columnNumber: 15
           },
           this
         ),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(
+        /* @__PURE__ */ (0, import_jsx_dev_runtime19.jsxDEV)(
           "div",
           {
             className: `${config.pagesThatDontNeedSidebar.matchPattern(pathname) ? "" : "max-w-[100vw] px-6 pb-16 xl:pr-2"}`,
-            children: /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(Outlet, {}, void 0, !1, {
+            children: /* @__PURE__ */ (0, import_jsx_dev_runtime19.jsxDEV)(Outlet, {}, void 0, !1, {
               fileName: "app/routes/_app.tsx",
-              lineNumber: 132,
+              lineNumber: 131,
               columnNumber: 17
             }, this)
           },
@@ -48417,35 +49927,35 @@ function AppLayout() {
           !1,
           {
             fileName: "app/routes/_app.tsx",
-            lineNumber: 127,
+            lineNumber: 126,
             columnNumber: 15
           },
           this
         ),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(Toast, {}, void 0, !1, {
+        /* @__PURE__ */ (0, import_jsx_dev_runtime19.jsxDEV)(Toast, {}, void 0, !1, {
           fileName: "app/routes/_app.tsx",
-          lineNumber: 134,
+          lineNumber: 133,
           columnNumber: 15
         }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(Dialog, { backdrop: !0, children: [
-          /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(Modal$1.Header, { children: "User Settings" }, void 0, !1, {
+        /* @__PURE__ */ (0, import_jsx_dev_runtime19.jsxDEV)(Dialog, { backdrop: !0, children: [
+          /* @__PURE__ */ (0, import_jsx_dev_runtime19.jsxDEV)(Modal$1.Header, { children: "User Settings" }, void 0, !1, {
             fileName: "app/routes/_app.tsx",
-            lineNumber: 137,
+            lineNumber: 136,
             columnNumber: 17
           }, this),
-          /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(Modal$1.Body, { children: "User Settings" }, void 0, !1, {
+          /* @__PURE__ */ (0, import_jsx_dev_runtime19.jsxDEV)(Modal$1.Body, { children: "User Settings" }, void 0, !1, {
             fileName: "app/routes/_app.tsx",
-            lineNumber: 138,
+            lineNumber: 137,
             columnNumber: 17
           }, this)
         ] }, void 0, !0, {
           fileName: "app/routes/_app.tsx",
-          lineNumber: 136,
+          lineNumber: 135,
           columnNumber: 15
         }, this)
       ] }, void 0, !0, {
         fileName: "app/routes/_app.tsx",
-        lineNumber: 115,
+        lineNumber: 114,
         columnNumber: 13
       }, this)
     },
@@ -48473,212 +49983,59 @@ function AppLayout() {
 }
 function ErrorBoundary2() {
   let error = useRouteError(), status_code = 0, status_msg = "", msg = "";
-  return isRouteErrorResponse(error) && (status_code = error.status, status_msg = error.statusText, msg = error.data), /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(import_jsx_dev_runtime17.Fragment, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(Hero$1, { className: "not-prose min-h-screen", children: /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(Hero$1.Content, { children: [
-    /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)("div", { className: "max-w-md", children: [
-      /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)("h1", { className: "mb-5 text-5xl font-bold opacity-10 lg:text-7xl xl:text-9xl", children: [
+  return isRouteErrorResponse(error) && (status_code = error.status, status_msg = error.statusText, msg = error.data), /* @__PURE__ */ (0, import_jsx_dev_runtime19.jsxDEV)(import_jsx_dev_runtime19.Fragment, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime19.jsxDEV)(Hero$1, { className: "not-prose min-h-screen", children: /* @__PURE__ */ (0, import_jsx_dev_runtime19.jsxDEV)(Hero$1.Content, { children: [
+    /* @__PURE__ */ (0, import_jsx_dev_runtime19.jsxDEV)("div", { className: "max-w-md", children: [
+      /* @__PURE__ */ (0, import_jsx_dev_runtime19.jsxDEV)("h1", { className: "mb-5 text-5xl font-bold opacity-10 lg:text-7xl xl:text-9xl", children: [
         status_code,
         " Error!"
+      ] }, void 0, !0, {
+        fileName: "app/routes/_app.tsx",
+        lineNumber: 163,
+        columnNumber: 13
+      }, this),
+      /* @__PURE__ */ (0, import_jsx_dev_runtime19.jsxDEV)("p", { className: "mb-5", children: [
+        " ",
+        status_msg
       ] }, void 0, !0, {
         fileName: "app/routes/_app.tsx",
         lineNumber: 164,
         columnNumber: 13
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)("p", { className: "mb-5", children: [
-        " ",
-        status_msg
-      ] }, void 0, !0, {
+      /* @__PURE__ */ (0, import_jsx_dev_runtime19.jsxDEV)("p", { className: "mb-5", children: msg }, void 0, !1, {
         fileName: "app/routes/_app.tsx",
         lineNumber: 165,
         columnNumber: 13
-      }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)("p", { className: "mb-5", children: msg }, void 0, !1, {
-        fileName: "app/routes/_app.tsx",
-        lineNumber: 166,
-        columnNumber: 13
       }, this)
     ] }, void 0, !0, {
       fileName: "app/routes/_app.tsx",
-      lineNumber: 163,
+      lineNumber: 162,
       columnNumber: 11
     }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime17.jsxDEV)(Button, { tag: "a", href: "/", children: "Go Back" }, void 0, !1, {
+    /* @__PURE__ */ (0, import_jsx_dev_runtime19.jsxDEV)(Button, { tag: "a", href: "/", children: "Go Back" }, void 0, !1, {
       fileName: "app/routes/_app.tsx",
-      lineNumber: 168,
+      lineNumber: 167,
       columnNumber: 11
     }, this)
   ] }, void 0, !0, {
     fileName: "app/routes/_app.tsx",
-    lineNumber: 162,
+    lineNumber: 161,
     columnNumber: 9
   }, this) }, void 0, !1, {
     fileName: "app/routes/_app.tsx",
-    lineNumber: 161,
+    lineNumber: 160,
     columnNumber: 7
   }, this) }, void 0, !1, {
     fileName: "app/routes/_app.tsx",
-    lineNumber: 160,
-    columnNumber: 5
-  }, this);
-}
-
-// app/routes/auth.auth0/route.tsx
-var route_exports7 = {};
-__export(route_exports7, {
-  action: () => action2,
-  loader: () => loader3
-});
-var import_cloudflare5 = __toESM(require_dist(), 1);
-var loader3 = () => (0, import_cloudflare5.redirect)("/auth/login"), action2 = async ({ context, request }) => {
-  let sessionConfig = {
-    kv: context.env.KV,
-    node_env: context.env.NODE_ENV,
-    secrets: context.env.AUTH_SECRET.split(","),
-    tag: config.cookieTag
-  }, sessionStorage2 = await appSessionStorage(sessionConfig);
-  return (await getAuthenticator(context, sessionStorage2)).authenticate("auth0", request);
-};
-
-// app/routes/auth.login/route.tsx
-var route_exports8 = {};
-__export(route_exports8, {
-  default: () => LoginView
-});
-var import_jsx_dev_runtime18 = __toESM(require_jsx_dev_runtime(), 1);
-function LoginView() {
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime18.jsxDEV)(import_jsx_dev_runtime18.Fragment, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime18.jsxDEV)("div", { className: "flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8", children: [
-    /* @__PURE__ */ (0, import_jsx_dev_runtime18.jsxDEV)("div", { className: "sm:mx-auto sm:w-full sm:max-w-md", children: [
-      /* @__PURE__ */ (0, import_jsx_dev_runtime18.jsxDEV)("div", { className: "flex justify-center", children: /* @__PURE__ */ (0, import_jsx_dev_runtime18.jsxDEV)("div", { className: "inline-flex text-lg font-bold md:text-2xl", children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime18.jsxDEV)("span", { className: "lowercase", children: "helios" }, void 0, !1, {
-          fileName: "app/routes/auth.login/route.tsx",
-          lineNumber: 13,
-          columnNumber: 15
-        }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime18.jsxDEV)("span", { className: "uppercase text-accent", children: "UI" }, void 0, !1, {
-          fileName: "app/routes/auth.login/route.tsx",
-          lineNumber: 14,
-          columnNumber: 15
-        }, this)
-      ] }, void 0, !0, {
-        fileName: "app/routes/auth.login/route.tsx",
-        lineNumber: 12,
-        columnNumber: 13
-      }, this) }, void 0, !1, {
-        fileName: "app/routes/auth.login/route.tsx",
-        lineNumber: 11,
-        columnNumber: 11
-      }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime18.jsxDEV)("h2", { className: "mt-6 text-center text-2xl leading-9 tracking-tight", children: "Sign in to your account" }, void 0, !1, {
-        fileName: "app/routes/auth.login/route.tsx",
-        lineNumber: 17,
-        columnNumber: 11
-      }, this)
-    ] }, void 0, !0, {
-      fileName: "app/routes/auth.login/route.tsx",
-      lineNumber: 10,
-      columnNumber: 9
-    }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime18.jsxDEV)("div", { className: "mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]", children: /* @__PURE__ */ (0, import_jsx_dev_runtime18.jsxDEV)("div", { className: "border border-opacity-50 px-6 py-12 shadow sm:rounded-lg sm:px-12", children: /* @__PURE__ */ (0, import_jsx_dev_runtime18.jsxDEV)(Form, { className: "space-y-6", action: "/auth/auth0", method: "POST", children: /* @__PURE__ */ (0, import_jsx_dev_runtime18.jsxDEV)(
-      Button,
-      {
-        type: "submit",
-        fullWidth: !0,
-        startIcon: /* @__PURE__ */ (0, import_jsx_dev_runtime18.jsxDEV)(
-          "svg",
-          {
-            xmlns: "http://www.w3.org/2000/svg",
-            "aria-label": "Auth0",
-            role: "img",
-            viewBox: "0 0 512 512",
-            width: "24",
-            height: "24",
-            fill: "#000000",
-            children: [
-              /* @__PURE__ */ (0, import_jsx_dev_runtime18.jsxDEV)("g", { id: "SVGRepo_bgCarrier", strokeWidth: "0" }, void 0, !1, {
-                fileName: "app/routes/auth.login/route.tsx",
-                lineNumber: 35,
-                columnNumber: 21
-              }, this),
-              /* @__PURE__ */ (0, import_jsx_dev_runtime18.jsxDEV)("g", { id: "SVGRepo_tracerCarrier", strokeLinecap: "round", strokeLinejoin: "round" }, void 0, !1, {
-                fileName: "app/routes/auth.login/route.tsx",
-                lineNumber: 36,
-                columnNumber: 21
-              }, this),
-              /* @__PURE__ */ (0, import_jsx_dev_runtime18.jsxDEV)("g", { id: "SVGRepo_iconCarrier", children: [
-                /* @__PURE__ */ (0, import_jsx_dev_runtime18.jsxDEV)("rect", { width: "512", height: "512", rx: "15%" }, void 0, !1, {
-                  fileName: "app/routes/auth.login/route.tsx",
-                  lineNumber: 38,
-                  columnNumber: 23
-                }, this),
-                /* @__PURE__ */ (0, import_jsx_dev_runtime18.jsxDEV)(
-                  "path",
-                  {
-                    d: "M358.1 378.8L319.6 260L420.5 186.9H295.7l-38.6-118.7l-.01-.03h124.8l38.6 118.7v-.003l0.03-.02c22.4 68.8-.7 147 -62.4 192zm-201.9 0l-.036 .03L257.13 452.2L358.09 378.84L257.17 305.51ZM93.85 186.85c-23.57 72.57 3.79 149.46 62.36 192l0.01-.036L194.77 260.17L93.89 186.87H218.6L257.15 68.2L257.2 68.2H132.4Z",
-                    fill: "#eb5424"
-                  },
-                  void 0,
-                  !1,
-                  {
-                    fileName: "app/routes/auth.login/route.tsx",
-                    lineNumber: 39,
-                    columnNumber: 23
-                  },
-                  this
-                )
-              ] }, void 0, !0, {
-                fileName: "app/routes/auth.login/route.tsx",
-                lineNumber: 37,
-                columnNumber: 21
-              }, this)
-            ]
-          },
-          void 0,
-          !0,
-          {
-            fileName: "app/routes/auth.login/route.tsx",
-            lineNumber: 26,
-            columnNumber: 19
-          },
-          this
-        ),
-        children: "Sign with Auth0"
-      },
-      void 0,
-      !1,
-      {
-        fileName: "app/routes/auth.login/route.tsx",
-        lineNumber: 22,
-        columnNumber: 15
-      },
-      this
-    ) }, void 0, !1, {
-      fileName: "app/routes/auth.login/route.tsx",
-      lineNumber: 21,
-      columnNumber: 13
-    }, this) }, void 0, !1, {
-      fileName: "app/routes/auth.login/route.tsx",
-      lineNumber: 20,
-      columnNumber: 11
-    }, this) }, void 0, !1, {
-      fileName: "app/routes/auth.login/route.tsx",
-      lineNumber: 19,
-      columnNumber: 9
-    }, this)
-  ] }, void 0, !0, {
-    fileName: "app/routes/auth.login/route.tsx",
-    lineNumber: 9,
-    columnNumber: 7
-  }, this) }, void 0, !1, {
-    fileName: "app/routes/auth.login/route.tsx",
-    lineNumber: 8,
+    lineNumber: 159,
     columnNumber: 5
   }, this);
 }
 
 // server-assets-manifest:@remix-run/dev/assets-manifest
-var assets_manifest_default = { entry: { module: "/build/entry.client-2DIAZOZ5.js", imports: ["/build/_shared/chunk-IFJ75IDK.js", "/build/_shared/chunk-DOZ7KLCA.js", "/build/_shared/chunk-RYE6BCZB.js", "/build/_shared/chunk-ED7KKCRB.js", "/build/_shared/chunk-JPOBK6FD.js", "/build/_shared/chunk-ZIPKILLR.js", "/build/_shared/chunk-PECDPABK.js", "/build/_shared/chunk-PNG5AS42.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-MTYOXKIE.js", imports: ["/build/_shared/chunk-LGFWKWVC.js"], hasAction: !1, hasLoader: !1, hasErrorBoundary: !0 }, "routes/_appLayout": { id: "routes/_appLayout", parentId: "root", path: void 0, index: void 0, caseSensitive: void 0, module: "/build/routes/_appLayout-VOGKENZB.js", imports: ["/build/_shared/chunk-PGRJMGFZ.js", "/build/_shared/chunk-NM3UGVOT.js"], hasAction: !1, hasLoader: !0, hasErrorBoundary: !0 }, "routes/_appLayout._index": { id: "routes/_appLayout._index", parentId: "routes/_appLayout", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/_appLayout._index-NSBZWTQ7.js", imports: void 0, hasAction: !1, hasLoader: !1, hasErrorBoundary: !1 }, "routes/_appLayout.dashboard": { id: "routes/_appLayout.dashboard", parentId: "routes/_appLayout", path: "dashboard", index: void 0, caseSensitive: void 0, module: "/build/routes/_appLayout.dashboard-YK6DOE2B.js", imports: void 0, hasAction: !1, hasLoader: !1, hasErrorBoundary: !1 }, "routes/_appLayout.media": { id: "routes/_appLayout.media", parentId: "routes/_appLayout", path: "media", index: void 0, caseSensitive: void 0, module: "/build/routes/_appLayout.media-FVLIJQ5N.js", imports: void 0, hasAction: !1, hasLoader: !1, hasErrorBoundary: !1 }, "routes/_appLayout.nodes": { id: "routes/_appLayout.nodes", parentId: "routes/_appLayout", path: "nodes", index: void 0, caseSensitive: void 0, module: "/build/routes/_appLayout.nodes-SFJZY47D.js", imports: void 0, hasAction: !1, hasLoader: !1, hasErrorBoundary: !1 }, "routes/auth.auth0": { id: "routes/auth.auth0", parentId: "root", path: "auth/auth0", index: void 0, caseSensitive: void 0, module: "/build/routes/auth.auth0-YSCAHRZH.js", imports: void 0, hasAction: !0, hasLoader: !0, hasErrorBoundary: !1 }, "routes/auth.auth0.callback": { id: "routes/auth.auth0.callback", parentId: "routes/auth.auth0", path: "callback", index: void 0, caseSensitive: void 0, module: "/build/routes/auth.auth0.callback-Q4BXYYLS.js", imports: void 0, hasAction: !1, hasLoader: !0, hasErrorBoundary: !1 }, "routes/auth.login": { id: "routes/auth.login", parentId: "root", path: "auth/login", index: void 0, caseSensitive: void 0, module: "/build/routes/auth.login-7WPPEWHZ.js", imports: ["/build/_shared/chunk-PGRJMGFZ.js", "/build/_shared/chunk-NM3UGVOT.js"], hasAction: !1, hasLoader: !1, hasErrorBoundary: !1 }, "routes/auth.logout": { id: "routes/auth.logout", parentId: "root", path: "auth/logout", index: void 0, caseSensitive: void 0, module: "/build/routes/auth.logout-UJQV2KBX.js", imports: void 0, hasAction: !0, hasLoader: !1, hasErrorBoundary: !1 } }, version: "421df031", hmr: { runtime: "/build/_shared/chunk-JPOBK6FD.js", timestamp: 1700960636785 }, url: "/build/manifest-421DF031.js" };
+var assets_manifest_default = { entry: { module: "/build/entry.client-SQF5ZQ4P.js", imports: ["/build/_shared/chunk-EBBJSAGM.js", "/build/_shared/chunk-Y2XVR2JS.js", "/build/_shared/chunk-NJHGJUYQ.js", "/build/_shared/chunk-45S4A7DX.js", "/build/_shared/chunk-SZVA6ZSZ.js", "/build/_shared/chunk-5V44UHDH.js", "/build/_shared/chunk-DG4RSSW4.js", "/build/_shared/chunk-PNG5AS42.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-UELZR4TW.js", imports: ["/build/_shared/chunk-MCZDESER.js"], hasAction: !1, hasLoader: !1, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !0 }, "routes/_app": { id: "routes/_app", parentId: "root", path: void 0, index: void 0, caseSensitive: void 0, module: "/build/routes/_app-7EHK7IVP.js", imports: ["/build/_shared/chunk-3AVPPNKI.js", "/build/_shared/chunk-6SBTKNDC.js"], hasAction: !1, hasLoader: !0, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !0 }, "routes/_app.$accountId._index": { id: "routes/_app.$accountId._index", parentId: "routes/_app", path: ":accountId", index: !0, caseSensitive: void 0, module: "/build/routes/_app.$accountId._index-DZJBYDPN.js", imports: void 0, hasAction: !1, hasLoader: !1, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/_app.$accountId.nodes": { id: "routes/_app.$accountId.nodes", parentId: "routes/_app", path: ":accountId/nodes", index: void 0, caseSensitive: void 0, module: "/build/routes/_app.$accountId.nodes-YGGYFRVN.js", imports: void 0, hasAction: !1, hasLoader: !1, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/_app.$accountId.nodes.$nodeId": { id: "routes/_app.$accountId.nodes.$nodeId", parentId: "routes/_app.$accountId.nodes", path: ":nodeId", index: void 0, caseSensitive: void 0, module: "/build/routes/_app.$accountId.nodes.$nodeId-CAJTOXU2.js", imports: void 0, hasAction: !1, hasLoader: !1, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/_app.$accountId.profiles.$userId": { id: "routes/_app.$accountId.profiles.$userId", parentId: "routes/_app", path: ":accountId/profiles/:userId", index: void 0, caseSensitive: void 0, module: "/build/routes/_app.$accountId.profiles.$userId-U6EGUCJQ.js", imports: void 0, hasAction: !1, hasLoader: !1, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/_app._index": { id: "routes/_app._index", parentId: "routes/_app", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/_app._index-3JGF3TY7.js", imports: void 0, hasAction: !1, hasLoader: !1, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/_app.dashboard": { id: "routes/_app.dashboard", parentId: "routes/_app", path: "dashboard", index: void 0, caseSensitive: void 0, module: "/build/routes/_app.dashboard-AE4LJRK3.js", imports: void 0, hasAction: !1, hasLoader: !1, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/_app.media": { id: "routes/_app.media", parentId: "routes/_app", path: "media", index: void 0, caseSensitive: void 0, module: "/build/routes/_app.media-GKGCQRIM.js", imports: void 0, hasAction: !1, hasLoader: !1, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/auth.auth0": { id: "routes/auth.auth0", parentId: "root", path: "auth/auth0", index: void 0, caseSensitive: void 0, module: "/build/routes/auth.auth0-YSCAHRZH.js", imports: void 0, hasAction: !0, hasLoader: !0, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/auth.auth0.callback": { id: "routes/auth.auth0.callback", parentId: "routes/auth.auth0", path: "callback", index: void 0, caseSensitive: void 0, module: "/build/routes/auth.auth0.callback-Q4BXYYLS.js", imports: void 0, hasAction: !1, hasLoader: !0, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/auth.login": { id: "routes/auth.login", parentId: "root", path: "auth/login", index: void 0, caseSensitive: void 0, module: "/build/routes/auth.login-M2SY6ZWJ.js", imports: ["/build/_shared/chunk-3AVPPNKI.js", "/build/_shared/chunk-6SBTKNDC.js"], hasAction: !1, hasLoader: !1, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/auth.logout": { id: "routes/auth.logout", parentId: "root", path: "auth/logout", index: void 0, caseSensitive: void 0, module: "/build/routes/auth.logout-UJQV2KBX.js", imports: void 0, hasAction: !0, hasLoader: !1, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/blog._index": { id: "routes/blog._index", parentId: "root", path: "blog", index: !0, caseSensitive: void 0, module: "/build/routes/blog._index-7PZ6JLR5.js", imports: void 0, hasAction: !1, hasLoader: !1, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 } }, version: "768f4f88", hmr: { runtime: "/build/_shared/chunk-45S4A7DX.js", timestamp: 1703625971587 }, url: "/build/manifest-768F4F88.js" };
 
 // server-entry-module:@remix-run/dev/server-build
-var mode = "development", assetsBuildDirectory = "public/build", future = { v3_fetcherPersist: !1 }, publicPath = "/build/", entry = { module: entry_server_exports }, routes = {
+var mode = "development", assetsBuildDirectory = "public/build", future = { v3_fetcherPersist: !1, v3_relativeSplatPath: !1 }, publicPath = "/build/", entry = { module: entry_server_exports }, routes = {
   root: {
     id: "root",
     parentId: void 0,
@@ -48687,13 +50044,37 @@ var mode = "development", assetsBuildDirectory = "public/build", future = { v3_f
     caseSensitive: void 0,
     module: root_exports
   },
-  "routes/_appLayout.dashboard": {
-    id: "routes/_appLayout.dashboard",
-    parentId: "routes/_appLayout",
-    path: "dashboard",
+  "routes/_app.$accountId.profiles.$userId": {
+    id: "routes/_app.$accountId.profiles.$userId",
+    parentId: "routes/_app",
+    path: ":accountId/profiles/:userId",
     index: void 0,
     caseSensitive: void 0,
     module: route_exports
+  },
+  "routes/_app.$accountId.nodes.$nodeId": {
+    id: "routes/_app.$accountId.nodes.$nodeId",
+    parentId: "routes/_app.$accountId.nodes",
+    path: ":nodeId",
+    index: void 0,
+    caseSensitive: void 0,
+    module: route_exports2
+  },
+  "routes/_app.$accountId._index": {
+    id: "routes/_app.$accountId._index",
+    parentId: "routes/_app",
+    path: ":accountId",
+    index: !0,
+    caseSensitive: void 0,
+    module: route_exports3
+  },
+  "routes/_app.$accountId.nodes": {
+    id: "routes/_app.$accountId.nodes",
+    parentId: "routes/_app",
+    path: ":accountId/nodes",
+    index: void 0,
+    caseSensitive: void 0,
+    module: route_exports4
   },
   "routes/auth.auth0.callback": {
     id: "routes/auth.auth0.callback",
@@ -48701,31 +50082,23 @@ var mode = "development", assetsBuildDirectory = "public/build", future = { v3_f
     path: "callback",
     index: void 0,
     caseSensitive: void 0,
-    module: route_exports2
+    module: route_exports5
   },
-  "routes/_appLayout._index": {
-    id: "routes/_appLayout._index",
-    parentId: "routes/_appLayout",
+  "routes/_app.dashboard": {
+    id: "routes/_app.dashboard",
+    parentId: "routes/_app",
+    path: "dashboard",
+    index: void 0,
+    caseSensitive: void 0,
+    module: route_exports6
+  },
+  "routes/_app._index": {
+    id: "routes/_app._index",
+    parentId: "routes/_app",
     path: void 0,
     index: !0,
     caseSensitive: void 0,
-    module: route_exports3
-  },
-  "routes/_appLayout.media": {
-    id: "routes/_appLayout.media",
-    parentId: "routes/_appLayout",
-    path: "media",
-    index: void 0,
-    caseSensitive: void 0,
-    module: route_exports4
-  },
-  "routes/_appLayout.nodes": {
-    id: "routes/_appLayout.nodes",
-    parentId: "routes/_appLayout",
-    path: "nodes",
-    index: void 0,
-    caseSensitive: void 0,
-    module: route_exports5
+    module: route_exports7
   },
   "routes/auth.logout": {
     id: "routes/auth.logout",
@@ -48733,15 +50106,23 @@ var mode = "development", assetsBuildDirectory = "public/build", future = { v3_f
     path: "auth/logout",
     index: void 0,
     caseSensitive: void 0,
-    module: route_exports6
+    module: route_exports8
   },
-  "routes/_appLayout": {
-    id: "routes/_appLayout",
+  "routes/blog._index": {
+    id: "routes/blog._index",
     parentId: "root",
-    path: void 0,
+    path: "blog",
+    index: !0,
+    caseSensitive: void 0,
+    module: route_exports9
+  },
+  "routes/_app.media": {
+    id: "routes/_app.media",
+    parentId: "routes/_app",
+    path: "media",
     index: void 0,
     caseSensitive: void 0,
-    module: appLayout_exports
+    module: route_exports10
   },
   "routes/auth.auth0": {
     id: "routes/auth.auth0",
@@ -48749,7 +50130,7 @@ var mode = "development", assetsBuildDirectory = "public/build", future = { v3_f
     path: "auth/auth0",
     index: void 0,
     caseSensitive: void 0,
-    module: route_exports7
+    module: route_exports11
   },
   "routes/auth.login": {
     id: "routes/auth.login",
@@ -48757,7 +50138,15 @@ var mode = "development", assetsBuildDirectory = "public/build", future = { v3_f
     path: "auth/login",
     index: void 0,
     caseSensitive: void 0,
-    module: route_exports8
+    module: route_exports12
+  },
+  "routes/_app": {
+    id: "routes/_app",
+    parentId: "root",
+    path: void 0,
+    index: void 0,
+    caseSensitive: void 0,
+    module: app_exports
   }
 };
 
@@ -48783,7 +50172,7 @@ cookie/index.js:
 
 @remix-run/server-runtime/dist/esm/warnings.js:
   (**
-   * @remix-run/server-runtime v2.3.0
+   * @remix-run/server-runtime v2.4.1
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -48795,7 +50184,7 @@ cookie/index.js:
 
 @remix-run/server-runtime/dist/esm/cookies.js:
   (**
-   * @remix-run/server-runtime v2.3.0
+   * @remix-run/server-runtime v2.4.1
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -48807,7 +50196,7 @@ cookie/index.js:
 
 @remix-run/server-runtime/dist/esm/formData.js:
   (**
-   * @remix-run/server-runtime v2.3.0
+   * @remix-run/server-runtime v2.4.1
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -48819,7 +50208,7 @@ cookie/index.js:
 
 @remix-run/router/dist/router.js:
   (**
-   * @remix-run/router v1.12.0
+   * @remix-run/router v1.14.1
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -48831,7 +50220,7 @@ cookie/index.js:
 
 @remix-run/server-runtime/dist/esm/mode.js:
   (**
-   * @remix-run/server-runtime v2.3.0
+   * @remix-run/server-runtime v2.4.1
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -48843,7 +50232,7 @@ cookie/index.js:
 
 @remix-run/server-runtime/dist/esm/errors.js:
   (**
-   * @remix-run/server-runtime v2.3.0
+   * @remix-run/server-runtime v2.4.1
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -48855,7 +50244,7 @@ cookie/index.js:
 
 @remix-run/server-runtime/dist/esm/responses.js:
   (**
-   * @remix-run/server-runtime v2.3.0
+   * @remix-run/server-runtime v2.4.1
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -48867,7 +50256,7 @@ cookie/index.js:
 
 @remix-run/server-runtime/dist/esm/entry.js:
   (**
-   * @remix-run/server-runtime v2.3.0
+   * @remix-run/server-runtime v2.4.1
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -48879,7 +50268,7 @@ cookie/index.js:
 
 @remix-run/server-runtime/dist/esm/headers.js:
   (**
-   * @remix-run/server-runtime v2.3.0
+   * @remix-run/server-runtime v2.4.1
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -48891,7 +50280,7 @@ cookie/index.js:
 
 @remix-run/server-runtime/dist/esm/invariant.js:
   (**
-   * @remix-run/server-runtime v2.3.0
+   * @remix-run/server-runtime v2.4.1
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -48903,7 +50292,7 @@ cookie/index.js:
 
 @remix-run/server-runtime/dist/esm/routeMatching.js:
   (**
-   * @remix-run/server-runtime v2.3.0
+   * @remix-run/server-runtime v2.4.1
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -48915,7 +50304,7 @@ cookie/index.js:
 
 @remix-run/server-runtime/dist/esm/data.js:
   (**
-   * @remix-run/server-runtime v2.3.0
+   * @remix-run/server-runtime v2.4.1
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -48927,7 +50316,7 @@ cookie/index.js:
 
 @remix-run/server-runtime/dist/esm/routes.js:
   (**
-   * @remix-run/server-runtime v2.3.0
+   * @remix-run/server-runtime v2.4.1
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -48939,7 +50328,7 @@ cookie/index.js:
 
 @remix-run/server-runtime/dist/esm/markup.js:
   (**
-   * @remix-run/server-runtime v2.3.0
+   * @remix-run/server-runtime v2.4.1
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -48951,79 +50340,7 @@ cookie/index.js:
 
 @remix-run/server-runtime/dist/esm/serverHandoff.js:
   (**
-   * @remix-run/server-runtime v2.3.0
-   *
-   * Copyright (c) Remix Software Inc.
-   *
-   * This source code is licensed under the MIT license found in the
-   * LICENSE.md file in the root directory of this source tree.
-   *
-   * @license MIT
-   *)
-
-@remix-run/server-runtime/dist/esm/server.js:
-  (**
-   * @remix-run/server-runtime v2.3.0
-   *
-   * Copyright (c) Remix Software Inc.
-   *
-   * This source code is licensed under the MIT license found in the
-   * LICENSE.md file in the root directory of this source tree.
-   *
-   * @license MIT
-   *)
-
-@remix-run/server-runtime/dist/esm/sessions.js:
-  (**
-   * @remix-run/server-runtime v2.3.0
-   *
-   * Copyright (c) Remix Software Inc.
-   *
-   * This source code is licensed under the MIT license found in the
-   * LICENSE.md file in the root directory of this source tree.
-   *
-   * @license MIT
-   *)
-
-@remix-run/server-runtime/dist/esm/sessions/cookieStorage.js:
-  (**
-   * @remix-run/server-runtime v2.3.0
-   *
-   * Copyright (c) Remix Software Inc.
-   *
-   * This source code is licensed under the MIT license found in the
-   * LICENSE.md file in the root directory of this source tree.
-   *
-   * @license MIT
-   *)
-
-@remix-run/server-runtime/dist/esm/sessions/memoryStorage.js:
-  (**
-   * @remix-run/server-runtime v2.3.0
-   *
-   * Copyright (c) Remix Software Inc.
-   *
-   * This source code is licensed under the MIT license found in the
-   * LICENSE.md file in the root directory of this source tree.
-   *
-   * @license MIT
-   *)
-
-@remix-run/server-runtime/dist/esm/upload/errors.js:
-  (**
-   * @remix-run/server-runtime v2.3.0
-   *
-   * Copyright (c) Remix Software Inc.
-   *
-   * This source code is licensed under the MIT license found in the
-   * LICENSE.md file in the root directory of this source tree.
-   *
-   * @license MIT
-   *)
-
-@remix-run/server-runtime/dist/esm/upload/memoryUploadHandler.js:
-  (**
-   * @remix-run/server-runtime v2.3.0
+   * @remix-run/server-runtime v2.4.1
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -49035,7 +50352,79 @@ cookie/index.js:
 
 @remix-run/server-runtime/dist/esm/dev.js:
   (**
-   * @remix-run/server-runtime v2.3.0
+   * @remix-run/server-runtime v2.4.1
+   *
+   * Copyright (c) Remix Software Inc.
+   *
+   * This source code is licensed under the MIT license found in the
+   * LICENSE.md file in the root directory of this source tree.
+   *
+   * @license MIT
+   *)
+
+@remix-run/server-runtime/dist/esm/server.js:
+  (**
+   * @remix-run/server-runtime v2.4.1
+   *
+   * Copyright (c) Remix Software Inc.
+   *
+   * This source code is licensed under the MIT license found in the
+   * LICENSE.md file in the root directory of this source tree.
+   *
+   * @license MIT
+   *)
+
+@remix-run/server-runtime/dist/esm/sessions.js:
+  (**
+   * @remix-run/server-runtime v2.4.1
+   *
+   * Copyright (c) Remix Software Inc.
+   *
+   * This source code is licensed under the MIT license found in the
+   * LICENSE.md file in the root directory of this source tree.
+   *
+   * @license MIT
+   *)
+
+@remix-run/server-runtime/dist/esm/sessions/cookieStorage.js:
+  (**
+   * @remix-run/server-runtime v2.4.1
+   *
+   * Copyright (c) Remix Software Inc.
+   *
+   * This source code is licensed under the MIT license found in the
+   * LICENSE.md file in the root directory of this source tree.
+   *
+   * @license MIT
+   *)
+
+@remix-run/server-runtime/dist/esm/sessions/memoryStorage.js:
+  (**
+   * @remix-run/server-runtime v2.4.1
+   *
+   * Copyright (c) Remix Software Inc.
+   *
+   * This source code is licensed under the MIT license found in the
+   * LICENSE.md file in the root directory of this source tree.
+   *
+   * @license MIT
+   *)
+
+@remix-run/server-runtime/dist/esm/upload/errors.js:
+  (**
+   * @remix-run/server-runtime v2.4.1
+   *
+   * Copyright (c) Remix Software Inc.
+   *
+   * This source code is licensed under the MIT license found in the
+   * LICENSE.md file in the root directory of this source tree.
+   *
+   * @license MIT
+   *)
+
+@remix-run/server-runtime/dist/esm/upload/memoryUploadHandler.js:
+  (**
+   * @remix-run/server-runtime v2.4.1
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -49047,7 +50436,7 @@ cookie/index.js:
 
 @remix-run/server-runtime/dist/esm/index.js:
   (**
-   * @remix-run/server-runtime v2.3.0
+   * @remix-run/server-runtime v2.4.1
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -49059,7 +50448,7 @@ cookie/index.js:
 
 @remix-run/cloudflare/dist/crypto.js:
   (**
-   * @remix-run/cloudflare v2.3.0
+   * @remix-run/cloudflare v2.4.1
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -49071,7 +50460,7 @@ cookie/index.js:
 
 @remix-run/cloudflare/dist/implementations.js:
   (**
-   * @remix-run/cloudflare v2.3.0
+   * @remix-run/cloudflare v2.4.1
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -49083,7 +50472,7 @@ cookie/index.js:
 
 @remix-run/cloudflare/dist/sessions/workersKVStorage.js:
   (**
-   * @remix-run/cloudflare v2.3.0
+   * @remix-run/cloudflare v2.4.1
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -49095,7 +50484,7 @@ cookie/index.js:
 
 @remix-run/cloudflare/dist/index.js:
   (**
-   * @remix-run/cloudflare v2.3.0
+   * @remix-run/cloudflare v2.4.1
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -49153,7 +50542,7 @@ react-dom/cjs/react-dom.development.js:
 
 react-router/dist/index.js:
   (**
-   * React Router v6.19.0
+   * React Router v6.21.1
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -49165,7 +50554,7 @@ react-router/dist/index.js:
 
 react-router-dom/dist/index.js:
   (**
-   * React Router DOM v6.19.0
+   * React Router DOM v6.21.1
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -49208,6 +50597,9 @@ react/cjs/react-jsx-dev-runtime.development.js:
    * LICENSE file in the root directory of this source tree.
    *)
 
+@noble/hashes/utils.js:
+  (*! noble-hashes - MIT License (c) 2022 Paul Miller (paulmillr.com) *)
+
 react/cjs/react-jsx-runtime.development.js:
   (**
    * @license React
@@ -49232,7 +50624,7 @@ use-sync-external-store/cjs/use-sync-external-store-shim.development.js:
 
 @remix-run/cloudflare-pages/dist/esm/worker.js:
   (**
-   * @remix-run/cloudflare-pages v2.3.0
+   * @remix-run/cloudflare-pages v2.4.1
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -49244,7 +50636,7 @@ use-sync-external-store/cjs/use-sync-external-store-shim.development.js:
 
 @remix-run/cloudflare-pages/dist/esm/index.js:
   (**
-   * @remix-run/cloudflare-pages v2.3.0
+   * @remix-run/cloudflare-pages v2.4.1
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -49256,7 +50648,7 @@ use-sync-external-store/cjs/use-sync-external-store-shim.development.js:
 
 @remix-run/react/dist/esm/_virtual/_rollupPluginBabelHelpers.js:
   (**
-   * @remix-run/react v2.3.0
+   * @remix-run/react v2.4.1
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -49268,7 +50660,7 @@ use-sync-external-store/cjs/use-sync-external-store-shim.development.js:
 
 @remix-run/react/dist/esm/invariant.js:
   (**
-   * @remix-run/react v2.3.0
+   * @remix-run/react v2.4.1
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -49280,7 +50672,7 @@ use-sync-external-store/cjs/use-sync-external-store-shim.development.js:
 
 @remix-run/react/dist/esm/routeModules.js:
   (**
-   * @remix-run/react v2.3.0
+   * @remix-run/react v2.4.1
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -49292,7 +50684,7 @@ use-sync-external-store/cjs/use-sync-external-store-shim.development.js:
 
 @remix-run/react/dist/esm/links.js:
   (**
-   * @remix-run/react v2.3.0
+   * @remix-run/react v2.4.1
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -49304,7 +50696,7 @@ use-sync-external-store/cjs/use-sync-external-store-shim.development.js:
 
 @remix-run/react/dist/esm/markup.js:
   (**
-   * @remix-run/react v2.3.0
+   * @remix-run/react v2.4.1
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -49316,7 +50708,7 @@ use-sync-external-store/cjs/use-sync-external-store-shim.development.js:
 
 @remix-run/react/dist/esm/components.js:
   (**
-   * @remix-run/react v2.3.0
+   * @remix-run/react v2.4.1
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -49328,7 +50720,19 @@ use-sync-external-store/cjs/use-sync-external-store-shim.development.js:
 
 @remix-run/react/dist/esm/errorBoundaries.js:
   (**
-   * @remix-run/react v2.3.0
+   * @remix-run/react v2.4.1
+   *
+   * Copyright (c) Remix Software Inc.
+   *
+   * This source code is licensed under the MIT license found in the
+   * LICENSE.md file in the root directory of this source tree.
+   *
+   * @license MIT
+   *)
+
+@remix-run/react/dist/esm/fallback.js:
+  (**
+   * @remix-run/react v2.4.1
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -49340,7 +50744,7 @@ use-sync-external-store/cjs/use-sync-external-store-shim.development.js:
 
 @remix-run/react/dist/esm/routes.js:
   (**
-   * @remix-run/react v2.3.0
+   * @remix-run/react v2.4.1
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -49352,7 +50756,7 @@ use-sync-external-store/cjs/use-sync-external-store-shim.development.js:
 
 @remix-run/react/dist/esm/scroll-restoration.js:
   (**
-   * @remix-run/react v2.3.0
+   * @remix-run/react v2.4.1
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -49364,7 +50768,7 @@ use-sync-external-store/cjs/use-sync-external-store-shim.development.js:
 
 @remix-run/react/dist/esm/server.js:
   (**
-   * @remix-run/react v2.3.0
+   * @remix-run/react v2.4.1
    *
    * Copyright (c) Remix Software Inc.
    *
@@ -49376,7 +50780,7 @@ use-sync-external-store/cjs/use-sync-external-store-shim.development.js:
 
 @remix-run/react/dist/esm/index.js:
   (**
-   * @remix-run/react v2.3.0
+   * @remix-run/react v2.4.1
    *
    * Copyright (c) Remix Software Inc.
    *
