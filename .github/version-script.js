@@ -19,7 +19,7 @@ try {
   const pkg = JSON.parse(readFileSync(packageJsonPath));
   const stdout = execSync("git rev-parse --short HEAD", { encoding: "utf8" });
   pkg.version = "0.0.0-" + stdout.trim();
-  writeFileSync(packageJsonPath, JSON.stringify(package, null, "\t") + "\n");
+  writeFileSync(packageJsonPath, JSON.stringify(pkg, null, "\t") + "\n");
 } catch (error) {
   console.error(error);
   process.exit(1);
