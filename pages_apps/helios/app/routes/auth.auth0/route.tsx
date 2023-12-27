@@ -9,7 +9,7 @@ export const loader = () => redirect('/auth/login');
 
 export const action = async ({ context, request }: ActionFunctionArgs) => {
   const sessionConfig: SessionConfig = {
-    kv: context.env.KV,
+    kv: context.env.OLYMPUS_KV,
     node_env: context.env.NODE_ENV,
     secrets: context.env.AUTH_SECRET.split(','),
     tag: appConfig.cookieTag

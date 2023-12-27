@@ -6,7 +6,7 @@ import type { SessionConfig } from '@services/sessions.server';
 
 export const loader = async ({ context, request }: LoaderFunctionArgs) => {
   const sessionConfig: SessionConfig = {
-    kv: context.env.KV,
+    kv: context.env.OLYMPUS_KV,
     node_env: context.env.NODE_ENV,
     secrets: context.env.AUTH_SECRET.split(','),
     tag: appConfig.cookieTag

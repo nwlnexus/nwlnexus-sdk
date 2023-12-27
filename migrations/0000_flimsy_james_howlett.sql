@@ -64,7 +64,6 @@ CREATE TABLE `profiles` (
 	`auth_provider` text NOT NULL,
 	`email` text NOT NULL,
 	`email_verified` integer DEFAULT false NOT NULL,
-	`photo` text,
 	`idp_groups` text,
 	`display_name` text NOT NULL,
 	`created_at` integer DEFAULT CURRENT_TIMESTAMP NOT NULL,
@@ -72,10 +71,12 @@ CREATE TABLE `profiles` (
 	`deleted_at` integer
 );
 --> statement-breakpoint
-CREATE TABLE `profiles_tenants` (
-	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+CREATE TABLE `profiles_to_tenants` (
 	`profile_id` text NOT NULL,
-	`tenant_id` text NOT NULL
+	`tenant_id` text NOT NULL,
+	PRIMARY KEY(`profile_id`, `tenant_id`),
+	FOREIGN KEY (`profile_id`) REFERENCES `profiles`(`id`) ON UPDATE no action ON DELETE no action,
+	FOREIGN KEY (`tenant_id`) REFERENCES `tenants`(`id`) ON UPDATE no action ON DELETE no action
 );
 --> statement-breakpoint
 CREATE TABLE `tenants` (

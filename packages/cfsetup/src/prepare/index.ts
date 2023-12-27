@@ -14,13 +14,15 @@ export function prepareOptions(args: RootArgumentsArgv) {
       choices: STORAGE_MEDIUM,
       default: 'all',
       type: 'string',
-      demandOption: true
+      demandOption: false
     })
     .option('wrangler-file', {
       description: 'Path to custom wrangler TOML file.',
+      default: path.join(process.cwd(), './wrangler.toml'),
+      requiresArg: true,
+      nargs: 1,
       type: 'string',
       demandOption: true,
-      default: path.join(process.cwd(), './wrangler.toml'),
       normalize: true
     })
     .option('persist-to', {
@@ -36,7 +38,16 @@ export function prepareOptions(args: RootArgumentsArgv) {
       demandOption: true,
       requiresArg: true,
       nargs: 1,
-      type: 'string'
+      type: 'string',
+      normalize: true
+    })
+    .option('seed-dir', {
+      description: 'Directory to source pregenerated seed files from.',
+      demandOption: false,
+      requiresArg: true,
+      nargs: 1,
+      type: 'string',
+      normalize: true
     })
     .option('reset', {
       alias: 'r',

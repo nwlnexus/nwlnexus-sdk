@@ -1,8 +1,8 @@
 import { createId } from '@paralleldrive/cuid2';
-import { index, integer, real, sqliteTable, text, uniqueIndex } from 'drizzle-orm/sqlite-core';
-import { createSelectSchema } from 'drizzle-zod';
+import { index, integer, primaryKey, real, sqliteTable, text, uniqueIndex } from 'drizzle-orm/sqlite-core';
 
 import { commonTime } from './common';
+import { relations } from 'drizzle-orm';
 
 export const profiles = sqliteTable(
   'profiles',
@@ -15,7 +15,6 @@ export const profiles = sqliteTable(
     authProvider: text('auth_provider').notNull(),
     email: text('email').notNull().unique(),
     emailVerified: integer('email_verified', { mode: 'boolean' }).notNull().default(false),
-    photo: text('photo'),
     idpGroups: text('idp_groups', { mode: 'json' }).$type<string[]>(),
     displayName: text('display_name').notNull(),
     ...commonTime
@@ -25,6 +24,10 @@ export const profiles = sqliteTable(
     providerIdx: index('provider_idx').on(profiles.authProvider)
   })
 );
+
+export const profileRelations = relations(profiles, ({ many }) => ({
+  profilesToTenants: many(profilesToTenants)
+}));
 
 export const tenants = sqliteTable(
   'tenants',
@@ -40,11 +43,35 @@ export const tenants = sqliteTable(
   })
 );
 
-export const profiles_tenants = sqliteTable('profiles_tenants', {
-  id: integer('id').primaryKey({ autoIncrement: true }),
-  profileId: text('profile_id').notNull(),
-  tenantId: text('tenant_id').notNull()
-});
+export const tenantRelations = relations(tenants, ({ many }) => ({
+  profilesToTenants: many(profilesToTenants)
+}));
+
+export const profilesToTenants = sqliteTable(
+  'profiles_to_tenants',
+  {
+    profileId: text('profile_id')
+      .notNull()
+      .references(() => profiles.id),
+    tenantId: text('tenant_id')
+      .notNull()
+      .references(() => tenants.id)
+  },
+  t => ({
+    pk: primaryKey({ columns: [t.profileId, t.tenantId] })
+  })
+);
+
+export const profilesToTenantsRelations = relations(profilesToTenants, ({ one }) => ({
+  tenant: one(tenants, {
+    fields: [profilesToTenants.tenantId],
+    references: [tenants.id]
+  }),
+  profile: one(profiles, {
+    fields: [profilesToTenants.profileId],
+    references: [profiles.id]
+  })
+}));
 
 export const locations = sqliteTable(
   'locations',
@@ -91,8 +118,6 @@ export const locations = sqliteTable(
     locCodeIdx: uniqueIndex('location_code_idx').on(locations.code)
   })
 );
-
-export const selectLocationSchema = createSelectSchema(locations);
 
 export const nodes = sqliteTable(
   'nodes',

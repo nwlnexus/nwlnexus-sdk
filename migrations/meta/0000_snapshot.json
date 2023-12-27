@@ -1,7 +1,7 @@
 {
   "version": "5",
   "dialect": "sqlite",
-  "id": "a9d25f5f-4e82-41ad-b8b6-adea2e95ea1a",
+  "id": "3102765a-01b4-4c07-adb3-0a73de307e79",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "locations": {
@@ -554,13 +554,6 @@
           "autoincrement": false,
           "default": false
         },
-        "photo": {
-          "name": "photo",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
         "idp_groups": {
           "name": "idp_groups",
           "type": "text",
@@ -625,16 +618,9 @@
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "profiles_tenants": {
-      "name": "profiles_tenants",
+    "profiles_to_tenants": {
+      "name": "profiles_to_tenants",
       "columns": {
-        "id": {
-          "name": "id",
-          "type": "integer",
-          "primaryKey": true,
-          "notNull": true,
-          "autoincrement": true
-        },
         "profile_id": {
           "name": "profile_id",
           "type": "text",
@@ -651,8 +637,43 @@
         }
       },
       "indexes": {},
-      "foreignKeys": {},
-      "compositePrimaryKeys": {},
+      "foreignKeys": {
+        "profiles_to_tenants_profile_id_profiles_id_fk": {
+          "name": "profiles_to_tenants_profile_id_profiles_id_fk",
+          "tableFrom": "profiles_to_tenants",
+          "tableTo": "profiles",
+          "columnsFrom": [
+            "profile_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "profiles_to_tenants_tenant_id_tenants_id_fk": {
+          "name": "profiles_to_tenants_tenant_id_tenants_id_fk",
+          "tableFrom": "profiles_to_tenants",
+          "tableTo": "tenants",
+          "columnsFrom": [
+            "tenant_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "profiles_to_tenants_profile_id_tenant_id_pk": {
+          "columns": [
+            "profile_id",
+            "tenant_id"
+          ],
+          "name": "profiles_to_tenants_profile_id_tenant_id_pk"
+        }
+      },
       "uniqueConstraints": {}
     },
     "tenants": {

@@ -13,7 +13,14 @@ const getAuthenticator = async (context: AppLoadContext, sessionStorage: Session
   };
 
   const auth0Strategy = new Auth0Strategy(authConfig, async ({ profile }) => {
-    const userProfile = await findOrCreateProfile({ d1DB: context.env.DB, profile });
+    console.log('Profile', profile);
+    const userProfile = await findOrCreateProfile({
+      d1DB: context.env.OLYMPUS_DB,
+      profile,
+      tenantId: context.env.AUTH_AUTH0_ID
+    });
+
+    console.log(userProfile);
     return userProfile;
   });
 

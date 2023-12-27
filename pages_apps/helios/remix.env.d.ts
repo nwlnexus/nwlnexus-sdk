@@ -6,8 +6,8 @@
 declare module '@remix-run/server-runtime' {
   export interface AppLoadContext {
     env: {
-      DB: D1Database;
-      KV: KVNamespace;
+      OLYMPUS_DB: D1Database;
+      OLYMPUS_KV: KVNamespace;
       WEATHERAPI_KEY: string;
       AUTH_AUTH0_ID: string;
       AUTH_AUTH0_SECRET: string;

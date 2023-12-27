@@ -26,7 +26,7 @@ export const loader = async ({ request, context }: LoaderFunctionArgs) => {
   const req = request.clone();
   const { pathname } = new URL(req.url);
   const sessionConfig: SessionConfig = {
-    kv: context.env.KV,
+    kv: context.env.OLYMPUS_KV,
     node_env: context.env.NODE_ENV,
     secrets: context.env.AUTH_SECRET.split(','),
     tag: appConfig.cookieTag

@@ -1,5 +1,5 @@
 d1_databases = [
-  { binding = "OLYMPUS_DB", database_name = "olympus", database_id = "<UUID>", preview_database_id = "OLYMPUS_DB" }
+  { binding = "OLYMPUS_DB", database_name = "olympus", database_id = "<UUID>", preview_database_id = "OLYMPUS_DB", migrations_dir = "../../migrations" }
 ]
 
 kv_namespaces = [
