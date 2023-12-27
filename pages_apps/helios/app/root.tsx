@@ -11,7 +11,6 @@ import {
   useRouteError
 } from '@remix-run/react';
 import { cssBundleHref } from '@remix-run/css-bundle';
-import { AppThemeProvider } from '@providers/AppThemeProvider';
 import type { LinksFunction } from '@remix-run/cloudflare';
 
 import tailwindCSS from '@css/tailwind.css';
@@ -48,7 +47,7 @@ export default function Helios() {
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className={'bg-background min-h-screen font-sans antialiased'}>
         <Outlet />
         <ScrollRestoration />
         <Scripts />
@@ -80,24 +79,22 @@ export function ErrorBoundary() {
         <Links />
       </head>
       <body className='h-full'>
-        <AppThemeProvider>
-          <main className='grid min-h-full place-items-center px-6 py-24 sm:py-32 lg:px-8'>
-            <div className='text-center'>
-              <p className='text-base font-bold'>{status_code}</p>
-              <h1 className='mt-4 text-3xl font-semibold tracking-tight sm:text-5xl'>{status_msg}</h1>
-              <p className='mt-6 text-base leading-7'>{msg}</p>
-              <div className='mt-10 flex items-center justify-center gap-x-6'>
-                <NavLink to='/' className='btn btn-accent px-3.5 py-2.5 text-sm shadow-sm'>
-                  Go back home
-                </NavLink>
-                <Link to='/support' className='btn btn-neutral text-sm'>
-                  Contact support <span aria-hidden='true'>&rarr;</span>
-                </Link>
-              </div>
+        <main className='grid min-h-full place-items-center px-6 py-24 sm:py-32 lg:px-8'>
+          <div className='text-center'>
+            <p className='text-base font-bold'>{status_code}</p>
+            <h1 className='mt-4 text-3xl font-semibold tracking-tight sm:text-5xl'>{status_msg}</h1>
+            <p className='mt-6 text-base leading-7'>{msg}</p>
+            <div className='mt-10 flex items-center justify-center gap-x-6'>
+              <NavLink to='/' className='btn btn-accent px-3.5 py-2.5 text-sm shadow-sm'>
+                Go back home
+              </NavLink>
+              <Link to='/support' className='btn btn-neutral text-sm'>
+                Contact support <span aria-hidden='true'>&rarr;</span>
+              </Link>
             </div>
-          </main>
-          <Scripts />
-        </AppThemeProvider>
+          </div>
+        </main>
+        <Scripts />
       </body>
     </html>
   );

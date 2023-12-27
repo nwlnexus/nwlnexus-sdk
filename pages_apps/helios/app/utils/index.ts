@@ -1,6 +1,9 @@
 import { getClientIPAddress } from 'remix-utils/get-client-ip-address';
 import { ulidFactory } from 'ulid-workers';
 import type { AppLoadContext } from '@remix-run/cloudflare';
+import type { ClassValue } from 'clsx';
+import { clsx } from 'clsx';
+import { twMerge } from 'tailwind-merge';
 
 function isBrowser(): boolean {
   return typeof window !== 'undefined';
@@ -50,4 +53,8 @@ const getIPAddress = async (req: Request, _ctx: AppLoadContext): Promise<string>
 };
 const ulid = ulidFactory();
 
-export { isBrowser, getOS, getIPAddress, slugify, ulid };
+function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+
+export { cn, isBrowser, getOS, getIPAddress, slugify, ulid };
