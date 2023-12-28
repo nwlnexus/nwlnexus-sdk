@@ -16,6 +16,7 @@ pages_apps/**/functions/**/*
 **/functions/\[\[path\]\].js
 **/functions/\[\[path\]\].js.map
 **/public/build
+migrations/
 
 /functions/_assets
 

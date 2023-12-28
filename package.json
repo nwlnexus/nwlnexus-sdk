@@ -13,18 +13,19 @@
     "build": "turbo build",
     "check": "turbo check:lint check:type check:format type:tests",
     "check:format": "prettier . --check --ignore-unknown",
-    "check:lint": "node ensure-turbo-build-output.mjs && dotenv -- turbo check:lint",
-    "check:type": "dotenv -- turbo check:type type:tests",
+    "check:lint": "node ensure-turbo-build-output.mjs && check:lint",
+    "check:type": "turbo check:type type:tests",
     "dev": "turbo dev",
     "fix": "pnpm run prettify && turbo check:lint -- --fix",
     "prettify": "prettier . --write --ignore-unknown",
     "test": "turbo test",
     "test:ci": "vitest run && dotenv -- turbo test:ci --filter=cfsetup",
     "test:watch": "turbo test:watch",
-    "type:tests": "dotenv -- turbo type:tests",
+    "type:tests": "turbo type:tests",
     "gen:package": "turbo gen package",
     "db:prepare": "pnpm run --filter=\"@nwlnexus/helios\" db:prepare",
-    "db:prepare:reset": "cfsetup prepare --reset --schema-dir=\"./app/db/schema\" --persist-to=\"../../.wrangler\""
+    "db:prepare:reset": "cfsetup prepare --reset --schema-dir=\"./app/db/schema\" --persist-to=\"../../.wrangler\"",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@changesets/changelog-github": "^0.5.0",
@@ -49,6 +50,8 @@
   "devDependencies": {
     "@nwlnexus/eslint-config": "workspace:*",
     "@nwlnexus/typescript-config": "workspace:*",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0",
     "prettier": "^3.1.1",
     "semver": "^7.5.2",
     "turbo": "latest"
@@ -71,5 +74,8 @@
         "@types/react-dom": "18"
       }
     }
+  },
+  "lint-staged": {
+    "*": ["turbo check:lint check:type check:format type:tests"]
   }
 }

@@ -6,7 +6,7 @@
     "@nwlnexus/helios#dev": {
       "cache": false,
       "persistent": true,
-      "dependsOn": ["@nwlnexus/helios#db:prepare"]
+      "dependsOn": ["@nwlnexus/cfsetup#build", "@nwlnexus/helios#db:prepare"]
     },
     "@nwlnexus/helios#db:prepare": {
       "cache": false
@@ -14,14 +14,13 @@
     "@nwlnexus/hermes#dev": {
       "cache": false,
       "persistent": true,
-      "dependsOn": ["@nwlnexus/hermes#db:prepare"]
+      "dependsOn": ["@nwlnexus/cfsetup#build", "@nwlnexus/hermes#db:prepare"]
     },
     "@nwlnexus/hermes#db:prepare": {
       "cache": false
     },
-    "build": {
-      "dependsOn": ["^build"],
-      "outputs": [".build/**", "!.cache/**", ".svelte-kit/**", "public/build/**"]
+    "@nwlnexus/cfsetup#build": {
+      "outputs": [".build/**", "!.cache/**", ".svelte-kit/**", "public/build/**", "dist/**"]
     },
     "test": {
       "dependsOn": ["^build"],
@@ -45,7 +44,7 @@
     },
     "//#db:prepare": {
       "outputs": ["./migrations/**/*"],
-      "dependsOn": ["@nwlnexus/cfsetup#build","@nwlnexus/helios#db:prepare"]
+      "dependsOn": ["@nwlnexus/cfsetup#build", "@nwlnexus/helios#db:prepare"]
     },
     "check:format": { "cache": false }
   }

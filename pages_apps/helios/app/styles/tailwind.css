@@ -27,7 +27,7 @@
   }
 
   .dark,
-  :root[class~="dark"] {
+  :root[class~='dark'] {
     --background: 20 14.3% 4.1%;
     --foreground: 0 0% 95%;
     --card: 24 9.8% 10%;
