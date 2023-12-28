@@ -1,19 +1,12 @@
 /** @type {import("eslint").Linter.Config} */
 module.exports = {
-  extends: ['eslint:recommended', 'prettier', 'eslint-config-turbo'],
-  plugins: ['@typescript-eslint', 'only-warn'],
-  parser: '@typescript-eslint/parser',
-  parserOptions: {
-    ecmaVersion: 2022,
-    sourceType: 'module',
-    project: true
+  env: {
+    node: true
   },
+  extends: ['eslint:recommended', 'prettier', 'eslint-config-turbo'],
   globals: {
     React: true,
     JSX: true
-  },
-  env: {
-    node: true
   },
   ignorePatterns: [
     // Ignore dotfiles
@@ -28,6 +21,13 @@ module.exports = {
     'templates',
     'emitted-types'
   ],
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaVersion: 2022,
+    sourceType: 'module',
+    project: true
+  },
+  plugins: ['@typescript-eslint', 'only-warn'],
   rules: {
     '@typescript-eslint/no-unused-vars': [
       'error',
@@ -38,16 +38,5 @@ module.exports = {
         argsIgnorePattern: '^_'
       }
     ]
-    // 'no-restricted-globals': [
-    //   'error',
-    //   {
-    //     name: '__dirname',
-    //     message: 'Use `getBasePath()` instead.'
-    //   },
-    //   {
-    //     name: '__filename',
-    //     message: 'Use `getBasePath()` instead.'
-    //   }
-    // ]
   }
 };
