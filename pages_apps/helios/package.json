@@ -66,7 +66,7 @@
     "*": [
       "prettier . --write --ignore-unknown"
     ],
-    "*.ts": [
+    "*.{ts,js,tsx,jsx}": [
       "prettier --check",
       "eslint"
     ]
