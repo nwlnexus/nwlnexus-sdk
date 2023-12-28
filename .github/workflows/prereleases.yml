@@ -53,6 +53,12 @@ jobs:
       - name: Modify package.json version
         run: node .github/version-script.js
 
+      - name: Prettify code base
+        run: pnpm run prettify
+        env:
+          NODE_ENV: "production"
+          CI_OS: ${{ runner.os }}
+
       - name: Build
         run: pnpm run build --filter ${{ matrix.packages }}
         env:
