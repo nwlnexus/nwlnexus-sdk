@@ -1,38 +1,31 @@
-import type { Argv } from 'yargs';
-
 import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
 
+import { withConfig } from '../config';
 import { STORAGE_MEDIUM } from '../constants';
 import { logger } from '../logger';
-import { StrictYargsOptionsToInterface } from '../root-arguments';
+import { CommonYargsArgv, StrictYargsOptionsToInterface } from '../root-arguments';
 
-export function resetOptions(args: Argv) {
+export function resetOptions(args: CommonYargsArgv) {
   return args
     .positional('storage', {
       choices: STORAGE_MEDIUM,
       type: 'string',
       demandOption: true
     })
-    .options({
-      'wrangler-file': {
-        description: 'Path to custom wrangler TOML file.',
-        type: 'string',
-        demandOption: true,
-        default: path.join(process.cwd(), './wrangler.toml'),
-        normalize: true
-      },
-      persistTo: {
-        description: 'Directory for wrangler state.',
-        default: path.join(process.cwd(), '.wrangler/'),
-        requiresArg: true,
-        type: 'string',
-        normalize: true
-      }
+    .option('persist-to', {
+      description: 'Directory for wrangler state.',
+      default: path.join(process.cwd(), '.wrangler/'),
+      requiresArg: true,
+      type: 'string',
+      normalize: true
     });
 }
-export async function resetHandler(args: StrictYargsOptionsToInterface<typeof resetOptions>) {
+
+type ResetHandlerOptions = StrictYargsOptionsToInterface<typeof resetOptions>;
+
+export const resetHandler = withConfig<ResetHandlerOptions>(async args => {
   switch (args.storage) {
     case 'all': {
       resetCFAssets(args.persistTo);
@@ -54,7 +47,7 @@ export async function resetHandler(args: StrictYargsOptionsToInterface<typeof re
       break;
     }
   }
-}
+});
 
 export function resetCFAssets(dir: string) {
   fs.rmSync(dir, { recursive: true, force: true });

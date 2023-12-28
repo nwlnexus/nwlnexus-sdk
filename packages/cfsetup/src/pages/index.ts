@@ -1,8 +1,8 @@
-import { RootArgumentsArgv } from '../root-arguments';
+import { CommonYargsArgv } from '../root-arguments';
 import * as Deployments from './deployments';
 import * as Projects from './projects';
 
-export function pages(args: RootArgumentsArgv) {
+export function pages(args: CommonYargsArgv) {
   return args
     .command('project', '⚡️ Interact with your Pages projects', yargs =>
       yargs

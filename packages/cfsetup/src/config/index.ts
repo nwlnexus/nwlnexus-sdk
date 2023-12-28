@@ -1,5 +1,5 @@
 import type { CfWorkerInit } from '../deployment-bundle/worker';
-import type { RootArgumentsArgv } from '../root-arguments';
+import type { CommonYargsOptions } from '../root-arguments';
 import type { Config, RawConfig } from './config';
 
 import { findUpSync } from 'find-up';
@@ -13,17 +13,17 @@ export type { Config, RawConfig, ConfigFields, DevConfig, RawDevConfig } from '.
 export type { Environment, RawEnvironment, ConfigModuleRuleType } from './environment';
 
 /**
- * Get the Wrangler configuration; read it from the give `configPath` if available.
+ * Get the Wrangler configuration; read it from the given `configPath` if available.
  */
 
 export function readConfig<CommandArgs>(
   configPath: string | undefined,
-  // Include command specific args as well as the wrangler global flags
-  args: CommandArgs & OnlyCamelCase<RootArgumentsArgv>
+  // Include command specific args as well as the cfsetup global flags
+  args: CommandArgs & OnlyCamelCase<CommonYargsOptions>
 ): Config {
   let rawConfig: RawConfig = {};
   if (!configPath) {
-    configPath = findWranglerToml(process.cwd());
+    configPath = findWranglerToml(process.cwd(), args.experimentalJsonConfig);
   }
   // Load the configuration from disk if available
   if (configPath?.endsWith('toml')) {
@@ -57,7 +57,7 @@ export function findWranglerToml(referencePath: string = process.cwd(), preferJs
 }
 
 /**
- * Print all the bindings a worker using a given config would have access to
+ * Print all the bindings using a given config would have access to
  */
 export function printBindings(bindings: CfWorkerInit['bindings']) {
   const truncate = (item: string | Record<string, unknown>) => {
@@ -386,4 +386,12 @@ export function printBindings(bindings: CfWorkerInit['bindings']) {
   ].join('\n');
 
   logger.log(message);
+}
+
+export function withConfig<T>(
+  handler: (t: OnlyCamelCase<T & CommonYargsOptions> & { config: Config }) => Promise<void>
+) {
+  return (t: OnlyCamelCase<T & CommonYargsOptions>) => {
+    return handler({ ...t, config: readConfig(t.config, t) });
+  };
 }

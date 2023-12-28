@@ -1,5 +1,5 @@
-import { RootArgumentsArgv } from '../root-arguments';
+import { CommonYargsArgv } from '../root-arguments';
 
-export function ListOptions(yargs: RootArgumentsArgv) {}
-export function CreateOptions(yargs: RootArgumentsArgv) {}
-export function DeleteOptions(yargs: RootArgumentsArgv) {}
+export function ListOptions(yargs: CommonYargsArgv) {}
+export function CreateOptions(yargs: CommonYargsArgv) {}
+export function DeleteOptions(yargs: CommonYargsArgv) {}

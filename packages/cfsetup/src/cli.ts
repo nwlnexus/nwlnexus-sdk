@@ -6,7 +6,7 @@ import Yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import makeCLI from 'yargs/yargs';
 
-import { version as cfsetupVersion, name as pkgName } from '../package.json';
+import { version as cfsetupVersion } from '../package.json';
 import { dumpHandler, dumpOptions } from './dump';
 import { FatalError } from './errors';
 import { logger } from './logger';
@@ -14,7 +14,7 @@ import { pages } from './pages';
 import { formatMessage, ParseError } from './parse';
 import { prepareHandler, prepareOptions } from './prepare';
 import { resetHandler, resetOptions } from './reset';
-import { RootArguments, RootArgumentsArgv } from './root-arguments';
+import { CommonYargsArgv, CommonYargsOptions } from './root-arguments';
 import { printCfSetupBanner } from './update-check';
 
 export class CommandLineArgsError extends Error {}
@@ -39,7 +39,7 @@ export function demandOneOfOption(...options: string[]) {
 }
 
 function createCLIParser(argv: string[]) {
-  const cfsetup: RootArgumentsArgv = makeCLI(argv)
+  const cfsetup: CommonYargsArgv = makeCLI(argv)
     .strict()
     .showHelpOnFail(false)
     .fail((msg, error) => {
@@ -50,17 +50,28 @@ function createCLIParser(argv: string[]) {
       }
       throw error;
     })
-    .scriptName(pkgName)
+    .scriptName('cfsetup')
     .wrap(null)
     // Define global options here, so they get included in the `Argv` type of
     // the `cfsetup` variable
     .version(false)
+    .option('config', {
+      alias: 'c',
+      describe: 'Path to .toml configuration file',
+      type: 'string',
+      requiresArg: true
+    })
+    .option('experimental-json-config', {
+      alias: 'j',
+      describe: `Experimental: Support wrangler.json`,
+      type: 'boolean'
+    })
     .option('yaml', {
-      description: 'Output in YAML format.',
+      description: 'Output in YAML format',
       type: 'boolean'
     })
     .option('debug', {
-      description: 'Debug mode.',
+      description: 'Debug mode',
       type: 'boolean'
     })
     .option('v', {
@@ -69,11 +80,11 @@ function createCLIParser(argv: string[]) {
       type: 'boolean'
     });
 
-  cfsetup.group(['yaml', 'debug', 'help', 'version'], 'Flags:');
+  cfsetup.group(['experimental-json-config', 'config', 'yaml', 'debug', 'help', 'version'], 'Flags:');
   cfsetup.help().alias('h', 'help');
 
   // Default help command that supports the subcommands
-  const subHelp: Yargs.CommandModule<RootArguments, RootArguments> = {
+  const subHelp: Yargs.CommandModule<CommonYargsOptions, CommonYargsOptions> = {
     command: ['*'],
     handler: async args => {
       setImmediate(() => cfsetup.parse([...args._.map((a: any) => `${a}`), '--help']));

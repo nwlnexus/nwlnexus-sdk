@@ -2,13 +2,15 @@
 
 import type { ArgumentsCamelCase, Argv, CamelCaseKey } from 'yargs';
 
-export type RootArguments = {
+export type CommonYargsOptions = {
   yaml: boolean | undefined;
   debug: boolean | undefined;
   v: boolean | undefined;
+  config: string | undefined;
+  'experimental-json-config': boolean | undefined;
 };
 
-export type RootArgumentsArgv = Argv<RootArguments>;
+export type CommonYargsArgv = Argv<CommonYargsOptions>;
 
 export type YargvToInterface<T> = T extends Argv<infer P> ? ArgumentsCamelCase<P> : never;
 
@@ -27,8 +29,8 @@ export type OnlyCamelCase<T = Record<string, never>> = {
  * Given some Yargs Options function factory, extract the interface
  * that corresponds to the yargs arguments, remove index types, and only allow camelCase
  */
-export type StrictYargsOptionsToInterface<T extends (yargs: RootArgumentsArgv) => Argv> = T extends (
-  yargs: RootArgumentsArgv
+export type StrictYargsOptionsToInterface<T extends (yargs: CommonYargsArgv) => Argv> = T extends (
+  yargs: CommonYargsArgv
 ) => Argv<infer P>
   ? OnlyCamelCase<RemoveIndex<ArgumentsCamelCase<P>>>
   : never;

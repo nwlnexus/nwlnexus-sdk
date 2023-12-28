@@ -1,11 +1,11 @@
 import { confirm } from '../dialogs';
 import { logger } from '../logger';
-import { RootArgumentsArgv, StrictYargsOptionsToInterface } from '../root-arguments';
+import { CommonYargsArgv, StrictYargsOptionsToInterface } from '../root-arguments';
 
-export function ListOptions(yargs: RootArgumentsArgv) {
+export function ListOptions(yargs: CommonYargsArgv) {
   return yargs;
 }
-export function CreateOptions(yargs: RootArgumentsArgv) {
+export function CreateOptions(yargs: CommonYargsArgv) {
   return yargs
     .positional('project-name', {
       type: 'string',
@@ -30,7 +30,7 @@ export function CreateOptions(yargs: RootArgumentsArgv) {
       requiresArg: true
     });
 }
-export function DeleteOptions(yargs: RootArgumentsArgv) {
+export function DeleteOptions(yargs: CommonYargsArgv) {
   return yargs
     .positional('project-name', {
       type: 'string',
