@@ -36,7 +36,7 @@
     "build:watch": "pnpm run clean && pnpm run bundle -- --watch",
     "bundle": "node -r esbuild-register scripts/bundle.ts",
     "check:format": "prettier . --check --ignore-unknown",
-    "check:lint": "eslint ..",
+    "check:lint": "eslint .",
     "check:type": "tsc",
     "clean": "rimraf dist emitted-types",
     "dev": "pnpm run clean && concurrently -c black,blue --kill-others-on-fail false \"pnpm run bundle --watch\" \"pnpm run check:type --watch --preserveWatchOutput\"",
