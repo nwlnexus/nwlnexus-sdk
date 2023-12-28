@@ -1,8 +1,9 @@
-import { drizzle } from 'drizzle-orm/d1';
 import type { Auth0Profile } from 'remix-auth-auth0';
+
 import * as schema from '@nwlnexus/db-schema/schema';
 import { profiles } from '@nwlnexus/db-schema/schema';
 import { sql } from 'drizzle-orm';
+import { drizzle } from 'drizzle-orm/d1';
 
 type UserProfile = typeof profiles.$inferSelect;
 const findOrCreateProfile = async ({
@@ -25,6 +26,7 @@ const findOrCreateProfile = async ({
     const [new_profile] = await db
       .insert(profiles)
       .values({
+        // @ts-ignore
         email: profile._json?.email?.toLowerCase(),
         emailVerified: profile._json?.email_verified,
         authId: profile.id?.split('|')[1],

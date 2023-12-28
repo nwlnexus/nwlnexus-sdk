@@ -1,8 +1,10 @@
+import type { AppLoadContext, SessionStorage } from '@remix-run/cloudflare';
 import type { UserProfile } from '@services/db.server';
-import { findOrCreateProfile } from '@services/db.server';
+
 import { Authenticator } from 'remix-auth';
 import { Auth0Strategy } from 'remix-auth-auth0';
-import type { AppLoadContext, SessionStorage } from '@remix-run/cloudflare';
+
+import { findOrCreateProfile } from '@services/db.server';
 
 const getAuthenticator = async (context: AppLoadContext, sessionStorage: SessionStorage) => {
   const authConfig = {
@@ -13,15 +15,11 @@ const getAuthenticator = async (context: AppLoadContext, sessionStorage: Session
   };
 
   const auth0Strategy = new Auth0Strategy(authConfig, async ({ profile }) => {
-    console.log('Profile', profile);
-    const userProfile = await findOrCreateProfile({
+    return await findOrCreateProfile({
       d1DB: context.env.OLYMPUS_DB,
       profile,
       tenantId: context.env.AUTH_AUTH0_ID
     });
-
-    console.log(userProfile);
-    return userProfile;
   });
 
   const authenticator = new Authenticator<UserProfile>(sessionStorage, { throwOnError: true });
