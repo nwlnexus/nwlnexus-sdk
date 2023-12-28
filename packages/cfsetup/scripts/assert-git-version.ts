@@ -1,6 +1,5 @@
 import assert from 'node:assert';
 import { spawnSync } from 'node:child_process';
-
 import semiver from 'semiver';
 
 const error = new Error('Git version 2.28 or higher must be installed to run the wrangler test suite!');

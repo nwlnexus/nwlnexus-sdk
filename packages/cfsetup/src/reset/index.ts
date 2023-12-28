@@ -1,8 +1,8 @@
+import type { Argv } from 'yargs';
+
 import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
-
-import type { Argv } from 'yargs';
 
 import { STORAGE_MEDIUM } from '../constants';
 import { logger } from '../logger';

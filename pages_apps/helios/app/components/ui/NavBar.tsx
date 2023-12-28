@@ -1,8 +1,14 @@
+import type { WeatherData } from '@components//WeatherData';
+import type { UserProfile } from '@services/auth.server';
+
 import { Await } from '@remix-run/react';
 import { Suspense, useEffect, useState } from 'react';
 import { Button, Join, Loading, Navbar, Tooltip } from 'react-daisyui';
 import { IconContext } from 'react-icons';
 import { RiLoginBoxLine } from 'react-icons/ri';
+import clsx from 'clsx';
+import { useTheme } from 'next-themes';
+
 import Search from '@components//Search';
 import { Logo } from '@components//ui/Logo';
 import ThemeToggle from '@components//ui/ThemeToggle';
@@ -10,10 +16,6 @@ import UserMenu from '@components//ui/UserMenu';
 import Weather from '@components//WeatherData';
 import { appConfig } from '@config/app.config';
 import useScroll from '@hooks/useScroll';
-import clsx from 'clsx';
-import { useTheme } from 'next-themes';
-import type { WeatherData } from '@components//WeatherData';
-import type { UserProfile } from '@services/auth.server';
 
 type NavBarProps = {
   apiKey: string;
@@ -52,7 +54,7 @@ export default function NavBar({
     <>
       <Navbar
         className={clsx(
-          'sticky top-0 z-30 h-16 justify-center bg-base-100 bg-opacity-90 text-base-content backdrop-blur transition-all duration-100 [transform:translate3d(0,0,0)]',
+          'bg-base-100 text-base-content sticky top-0 z-30 h-16 justify-center bg-opacity-90 backdrop-blur transition-all duration-100 [transform:translate3d(0,0,0)]',
           { 'shadow-sm': scrolled }
         )}
       >

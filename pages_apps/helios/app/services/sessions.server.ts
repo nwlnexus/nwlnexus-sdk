@@ -1,5 +1,6 @@
 import { createCookieSessionStorage, createWorkersKVSessionStorage } from '@remix-run/cloudflare';
 import { createThemeSessionResolver } from 'remix-themes';
+
 const isProduction = process.env.NODE_ENV === 'production';
 
 type SessionConfig = {

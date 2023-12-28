@@ -1,3 +1,5 @@
+import type { LinksFunction } from '@remix-run/cloudflare';
+
 import {
   isRouteErrorResponse,
   Link,
@@ -11,7 +13,6 @@ import {
   useRouteError
 } from '@remix-run/react';
 import { cssBundleHref } from '@remix-run/css-bundle';
-import type { LinksFunction } from '@remix-run/cloudflare';
 
 import tailwindCSS from '@css/tailwind.css';
 

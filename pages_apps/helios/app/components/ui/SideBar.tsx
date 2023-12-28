@@ -1,12 +1,14 @@
+import type { UserProfile } from '@services/auth.server';
+
 import { Form, NavLink } from '@remix-run/react';
 import { Avatar, Button, Divider, Menu, Tooltip } from 'react-daisyui';
 import { IconContext } from 'react-icons';
 import { RiLogoutBoxLine, RiSettings4Line } from 'react-icons/ri';
-import AppMenu from '@components/ui/AppMenu';
-import { Logo } from '@components/ui/Logo';
 import clsx from 'clsx';
 import { twMerge } from 'tailwind-merge';
-import type { UserProfile } from '@services/auth.server';
+
+import AppMenu from '@components/ui/AppMenu';
+import { Logo } from '@components/ui/Logo';
 
 type SideBarProps = {
   hideLogoOnLargeScreen?: boolean;
@@ -41,7 +43,7 @@ export default function SideBar({
     <>
       <div
         className={twMerge(
-          'sticky top-0 z-20 items-center gap-2 bg-base-100 bg-opacity-90 px-4 pb-2 pt-0 backdrop-blur',
+          'bg-base-100 sticky top-0 z-20 items-center gap-2 bg-opacity-90 px-4 pb-2 pt-0 backdrop-blur',
           className,
           clsx({ hidden: !visible })
         )}

@@ -1,9 +1,11 @@
+import type { ActionFunctionArgs } from '@remix-run/cloudflare';
+import type { SessionConfig } from '@services/sessions.server';
+
 import { redirect } from '@remix-run/cloudflare';
+
 import { appConfig } from '@config/app.config';
 import { getAuthenticator } from '@services/auth.server';
 import { appSessionStorage } from '@services/sessions.server';
-import type { ActionFunctionArgs } from '@remix-run/cloudflare';
-import type { SessionConfig } from '@services/sessions.server';
 
 export const loader = () => redirect('/auth/login');
 

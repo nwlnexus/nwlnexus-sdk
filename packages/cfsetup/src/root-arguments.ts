@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+
 import type { ArgumentsCamelCase, Argv, CamelCaseKey } from 'yargs';
 
 export type RootArguments = {

@@ -1,4 +1,5 @@
 import type { WeatherData, WeatherProps } from './types';
+
 import { useWeatherData } from './useWeatherData';
 import Weather from './Weather';
 

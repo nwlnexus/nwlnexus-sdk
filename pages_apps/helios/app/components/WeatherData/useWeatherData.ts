@@ -1,5 +1,7 @@
-import { useEffect, useState } from 'react';
 import type { HourElement, WeatherData, WeatherDataProps } from './types';
+
+import { useEffect, useState } from 'react';
+
 import { DEFAULTOPTIONS, formatDate, getNextHours } from './weather-funcs';
 
 const useWeatherData = ({ apiKey, options = DEFAULTOPTIONS }: WeatherDataProps) => {

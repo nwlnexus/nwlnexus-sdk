@@ -1,6 +1,5 @@
 import path from 'node:path';
 import process from 'node:process';
-
 import { build, BuildOptions, context } from 'esbuild';
 
 import { EXTERNAL_DEPENDENCIES } from './deps';

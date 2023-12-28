@@ -11,7 +11,7 @@ export default function LoginView() {
           <div className='flex justify-center'>
             <div className='inline-flex text-lg font-bold md:text-2xl'>
               <span className='lowercase'>helios</span>
-              <span className='uppercase text-accent'>UI</span>
+              <span className='text-accent uppercase'>UI</span>
             </div>
           </div>
           <h2 className='mt-6 text-center text-2xl leading-9 tracking-tight'>Sign in to your account</h2>

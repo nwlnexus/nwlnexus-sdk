@@ -1,8 +1,9 @@
+import type { LoaderFunctionArgs } from '@remix-run/cloudflare';
+import type { SessionConfig } from '@services/sessions.server';
+
 import { appConfig } from '@config/app.config';
 import { getAuthenticator } from '@services/auth.server';
 import { appSessionStorage } from '@services/sessions.server';
-import type { LoaderFunctionArgs } from '@remix-run/cloudflare';
-import type { SessionConfig } from '@services/sessions.server';
 
 export const loader = async ({ context, request }: LoaderFunctionArgs) => {
   const sessionConfig: SessionConfig = {

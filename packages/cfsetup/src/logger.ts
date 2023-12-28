@@ -1,11 +1,11 @@
 // noinspection JSUnusedGlobalSymbols
 
-import { format } from 'node:util';
+import type { Message } from 'esbuild';
 
+import { format } from 'node:util';
 import chalk from 'chalk';
 import CLITable from 'cli-table3';
 import { formatMessagesSync } from 'esbuild';
-import type { Message } from 'esbuild';
 
 import { getEnvironmentVariableFactory } from './environment-variables/factory';
 import { getSanitizeLogs } from './environment-variables/misc-variables';

@@ -1,10 +1,11 @@
 /* eslint-disable no-unused-vars */
-import { EventEmitter } from 'node:events';
 
-// @ts-ignore
-import { render as inkRender } from 'ink';
 import type { WriteStream } from 'node:tty';
 import type { ReactElement } from 'react';
+
+import { EventEmitter } from 'node:events';
+// @ts-ignore
+import { render as inkRender } from 'ink';
 
 export function renderToString(tree: ReactElement): string {
   const { output, cleanup } = render(tree);

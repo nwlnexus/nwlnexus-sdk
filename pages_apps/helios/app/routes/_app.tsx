@@ -9,11 +9,11 @@ import { defer, redirect } from '@remix-run/cloudflare';
 import { AppState, createAppState } from '@providers/AppState';
 
 import { getIPAddress } from '@app/utils';
+import { Drawer } from '@components/ui/drawer';
 import { DEFAULTOPTIONS } from '@components/WeatherData/weather-funcs';
 import { appConfig } from '@config/app.config';
 import { getAuthenticator } from '@services/auth.server';
 import { appSessionStorage } from '@services/sessions.server';
-import { Drawer } from '@components/ui/drawer';
 
 declare global {
   interface Array<T> {

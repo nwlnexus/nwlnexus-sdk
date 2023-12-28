@@ -2,7 +2,6 @@
 
 import os from 'node:os';
 import process from 'node:process';
-
 import Yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import makeCLI from 'yargs/yargs';

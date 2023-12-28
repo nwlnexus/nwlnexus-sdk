@@ -1,7 +1,8 @@
 import { NavLink } from '@remix-run/react';
 import { Menu } from 'react-daisyui';
-import { appConfig } from '@config/app.config';
 import { twMerge } from 'tailwind-merge';
+
+import { appConfig } from '@config/app.config';
 
 type AppMenuProps = {
   className?: string;

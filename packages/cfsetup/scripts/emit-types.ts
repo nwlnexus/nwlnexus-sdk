@@ -1,6 +1,5 @@
 import fs from 'node:fs';
 import path from 'node:path';
-
 import { Extractor, ExtractorConfig } from '@microsoft/api-extractor';
 
 import { BUNDLED_DEPENDENCIES } from './deps';

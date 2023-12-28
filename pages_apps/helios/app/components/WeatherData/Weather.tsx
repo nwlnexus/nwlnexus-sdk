@@ -1,3 +1,6 @@
+import type { ReactNode } from 'react';
+import type { WeatherIconProp, WeatherProps } from './types';
+
 import {
   WiDayCloudy,
   WiDayFog,
@@ -18,10 +21,9 @@ import {
   WiSnow,
   WiWindy
 } from 'react-icons/wi';
-import { formatDate, getNextHours } from './weather-funcs';
 import { twMerge } from 'tailwind-merge';
-import type { ReactNode } from 'react';
-import type { WeatherIconProp, WeatherProps } from './types';
+
+import { formatDate, getNextHours } from './weather-funcs';
 
 const weatherIcon = ({ code, size = 'lg', is_day }: WeatherIconProp) => {
   const iSize = size == 'lg' ? '108' : '56';

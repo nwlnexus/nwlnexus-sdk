@@ -1,7 +1,8 @@
 // noinspection HtmlUnknownTarget
 
-import { Avatar, Dropdown } from 'react-daisyui';
 import type { UserProfile } from '@services/auth.server';
+
+import { Avatar, Dropdown } from 'react-daisyui';
 
 export default function UserMenu({ user }: { user: UserProfile }) {
   const letters =

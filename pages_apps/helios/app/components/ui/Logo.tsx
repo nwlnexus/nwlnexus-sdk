@@ -19,7 +19,7 @@ export function Logo({ hideLogoOnLargeScreen = false, showVersion = true, versio
         >
           <div className='font-title inline-flex text-lg md:text-2xl'>
             <span className='lowercase'>helios</span>
-            <span className='uppercase text-accent'>UI</span>
+            <span className='text-accent uppercase'>UI</span>
           </div>
         </NavLink>
         {showVersion && <div className='font-mono text-xs'>{version}</div>}

@@ -1,7 +1,8 @@
+import type { Result } from 'update-check';
+
 import chalk from 'chalk';
 import supportsColor from 'supports-color';
 import checkForUpdate from 'update-check';
-import type { Result } from 'update-check';
 
 import pkg, { version as cfsetupVersion } from '../package.json';
 import { logger } from './logger';

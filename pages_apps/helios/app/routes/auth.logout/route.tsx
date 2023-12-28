@@ -1,8 +1,10 @@
-import { redirect } from '@remix-run/cloudflare';
-import { appConfig } from '@config/app.config';
-import { appSessionStorage } from '@services/sessions.server';
 import type { ActionFunctionArgs } from '@remix-run/cloudflare';
 import type { SessionConfig } from '@services/sessions.server';
+
+import { redirect } from '@remix-run/cloudflare';
+
+import { appConfig } from '@config/app.config';
+import { appSessionStorage } from '@services/sessions.server';
 
 export const action = async ({ request, context }: ActionFunctionArgs) => {
   const sessionConfig: SessionConfig = {
