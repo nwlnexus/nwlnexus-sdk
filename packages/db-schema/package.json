@@ -8,7 +8,7 @@
   "devDependencies": {
     "@nwlnexus/eslint-config": "workspace:*",
     "@nwlnexus/typescript-config": "workspace:*",
-    "eslint-plugin-drizzle": "^0.2.2"
+    "eslint-plugin-drizzle": "^0.2.3"
   },
   "dependencies": {
     "@paralleldrive/cuid2": "^2.2.2"

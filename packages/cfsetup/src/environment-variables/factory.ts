@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars,no-redeclare */
+
 import { logger } from '../logger';
 
 type VariableNames =
@@ -10,7 +11,9 @@ type VariableNames =
   | 'CFSETUP_CLIENT_ID'
   | 'CFSETUP_LOG'
   | 'CFSETUP_LOG_PATH'
-  | 'CFSETUP_LOG_SANITIZE';
+  | 'CFSETUP_LOG_SANITIZE'
+  | 'NO_CONSTELLATION_WARNING'
+  | 'NO_HYPERDRIVE_WARNING';
 
 type DeprecatedNames = 'CF_ACCOUNT_ID' | 'CF_API_TOKEN' | 'CF_API_KEY' | 'CF_EMAIL' | 'CF_API_BASE_URL';
 

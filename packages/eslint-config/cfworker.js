@@ -12,8 +12,13 @@ module.exports = {
     sourceType: 'module',
     project: true
   },
+  settings: {
+    react: {
+      version: 'detect'
+    }
+  },
   plugins: ['@typescript-eslint', 'import', 'no-only-tests'],
-  extends: ['plugin:@typescript-eslint/eslint-recommended', 'prettier'],
+  extends: ['plugin:@typescript-eslint/eslint-recommended', 'turbo', 'prettier'],
   env: {
     browser: true,
     worker: true,
