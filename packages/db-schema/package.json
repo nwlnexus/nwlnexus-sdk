@@ -12,5 +12,11 @@
   },
   "dependencies": {
     "@paralleldrive/cuid2": "^2.2.2"
+  },
+  "lint-staged": {
+    "*": [
+      "prettier --write --ignore-unknown",
+      "eslint"
+    ]
   }
 }

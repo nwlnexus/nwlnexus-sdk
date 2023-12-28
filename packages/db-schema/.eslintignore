@@ -1,0 +1,9 @@
+/.cache
+/.github
+/build
+/public/build/
+node_modules
+**/*.ignore.*
+*.json
+*.md
+*.txt
