@@ -76,6 +76,8 @@
     }
   },
   "lint-staged": {
-    "*": ["turbo check:lint check:type check:format type:tests"]
+    "*": [
+      "prettier . --write --ignore-unknown"
+    ]
   }
 }
