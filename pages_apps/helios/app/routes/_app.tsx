@@ -2,8 +2,8 @@ import type { WeatherData } from '@components/WeatherData';
 import type { LoaderFunctionArgs } from '@remix-run/cloudflare';
 import type { SessionConfig } from '@services/sessions.server';
 
-import { isRouteErrorResponse, Outlet, useLoaderData, useLocation, useRouteError } from '@remix-run/react';
-import { useCallback, useEffect, useState } from 'react';
+import { isRouteErrorResponse, Outlet, useLocation, useRouteError } from '@remix-run/react';
+import { useEffect, useState } from 'react';
 import { Button, Hero } from 'react-daisyui';
 import { defer, redirect } from '@remix-run/cloudflare';
 import { AppState, createAppState } from '@providers/AppState';
@@ -11,7 +11,6 @@ import { AppState, createAppState } from '@providers/AppState';
 import { getIPAddress } from '@app/utils';
 import { DEFAULTOPTIONS } from '@components/WeatherData/weather-funcs';
 import { appConfig } from '@config/app.config';
-import useMediaQuery from '@hooks/useMediaQuery';
 import { getAuthenticator } from '@services/auth.server';
 import { appSessionStorage } from '@services/sessions.server';
 import { Drawer } from '@components/ui/drawer';
@@ -55,13 +54,13 @@ export const loader = async ({ request, context }: LoaderFunctionArgs) => {
 
 export default function AppLayout() {
   const { pathname } = useLocation();
-  const { version, apiKey, weatherData, user } = useLoaderData<typeof loader>();
-  const [visible, setVisible] = useState(false);
-  const toggleVisible = useCallback(() => {
-    setVisible(visible => !visible);
-  }, []);
+  // const { version, apiKey, weatherData, user } = useLoaderData<typeof loader>();
+  const [visible] = useState(false);
+  // const toggleVisible = useCallback(() => {
+  //   setVisible(visible => !visible);
+  // }, []);
 
-  const { device } = useMediaQuery();
+  // const { device } = useMediaQuery();
 
   useEffect(() => {
     document.documentElement.style.scrollPaddingTop = '5rem';

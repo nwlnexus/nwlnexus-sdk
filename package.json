@@ -13,7 +13,7 @@
     "build": "turbo build",
     "check": "turbo check:lint check:type check:format type:tests",
     "check:format": "prettier . --check --ignore-unknown",
-    "check:lint": "node ensure-turbo-build-output.mjs && check:lint",
+    "check:lint": "turbo check:lint",
     "check:type": "turbo check:type type:tests",
     "dev": "turbo dev",
     "fix": "pnpm run prettify && turbo check:lint -- --fix",
@@ -76,7 +76,7 @@
     }
   },
   "lint-staged": {
-    "*": [
+    "*.json": [
       "prettier . --write --ignore-unknown"
     ]
   }
