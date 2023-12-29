@@ -1,15 +1,19 @@
 import type { Config } from '../config';
-import type { Database } from './types';
+import type { Database as D1Database } from './types';
 
 import child_process from 'node:child_process';
+import crypto from 'node:crypto';
 import path from 'node:path';
+import Database from 'better-sqlite3';
 import chalk from 'chalk';
+import { drizzle } from 'drizzle-orm/better-sqlite3';
+import { migrate } from 'drizzle-orm/better-sqlite3/migrator';
 
 import { yellow } from '../colors';
 import { resetCFAssets } from '../reset';
 import { DEFAULT_MIGRATION_PATH, DEFAULT_MIGRATION_TABLE } from './constants';
 
-export function getDatabaseInfoFromConfig(config: Config, name: string): Database | null {
+export function getDatabaseInfoFromConfig(config: Config, name: string): D1Database | null {
   for (const d1Database of config.d1_databases) {
     if (d1Database.database_id && (name === d1Database.database_name || name === d1Database.binding)) {
       return {
@@ -32,29 +36,41 @@ export const handleD1 = async (
   persistTo: string,
   reset?: boolean
 ) => {
+  const persistencePath = path.join(persistTo, 'v3', 'd1');
   if (d1_databases && d1_databases.length > 0) {
     for (const database of d1_databases) {
       const mDir = database.migrations_dir ?? DEFAULT_MIGRATION_PATH;
       if (reset) {
         resetCFAssets(mDir);
-        resetCFAssets(path.join(persistTo, 'v3', 'd1'));
+        resetCFAssets(persistencePath);
       }
 
       console.info(chalk.blue(`Preparing to setup D1 Database: ${database.binding}`));
+      const mfD1Prefix = 'miniflare-D1DatabaseObject';
+      const hashedBindingPath = durableObjectNamespaceIdFromName(mfD1Prefix, database.binding);
+
       // const schema = path.normalize(schemaDir);
       // const outDir = path.normalize(`${migrationsDir}`);
       console.info(chalk.blue(`Preparing generate SQL...`));
-      const cmd = `drizzle-kit generate:sqlite --schema=${schemaDir} --out=${mDir}`;
-      child_process.execSync(cmd, {
+      const genSQLCmd = `drizzle-kit generate:sqlite --schema=${schemaDir} --out=${mDir}`;
+      child_process.execSync(genSQLCmd, {
         stdio: 'inherit',
         encoding: 'utf8'
       });
-      console.info(chalk.blue(`Preparing apply SQL...`));
-      const wranglerCmd = `NO_D1_WARNING=true wrangler d1 migrations apply ${database.binding} --local --persist-to=${persistTo}`;
-      child_process.execSync(wranglerCmd, {
-        stdio: 'inherit',
-        encoding: 'utf8'
-      });
+      console.info(chalk.blue(`Preparing to apply SQL...`));
+      console.info(chalk.blue(`Handling DB operations...`));
+      const dbPath = path.join(persistencePath, 'miniflare-D1DatabaseObject', `${hashedBindingPath}.sqlite`);
+      const betterSqlite = new Database(dbPath);
+      console.log(betterSqlite.name);
+      betterSqlite.pragma('table_list');
+      const db = drizzle(betterSqlite);
+      console.log(db);
+      migrate(db, { migrationsFolder: mDir, migrationsTable: DEFAULT_MIGRATION_TABLE });
+      // const wranglerCmd = `NO_D1_WARNING=true wrangler d1 migrations apply ${database.binding} --local --persist-to=${persistTo}`;
+      // child_process.execSync(wranglerCmd, {
+      //   stdio: 'inherit',
+      //   encoding: 'utf8'
+      // });
       console.info(chalk.blue(`Completed setup of D1 Database: ${database.binding}`));
     }
   } else {
@@ -87,3 +103,10 @@ export const handleR2 = async (r2_buckets: Config['r2_buckets'], persistTo: stri
     console.info(yellow(`Skipping R2 setup. --r2 not specified or no r2_buckets defined in wrangler.toml`));
   }
 };
+
+function durableObjectNamespaceIdFromName(uniqueKey: string, name: string) {
+  const key = crypto.createHash('sha256').update(uniqueKey).digest();
+  const nameHmac = crypto.createHmac('sha256', key).update(name).digest().subarray(0, 16);
+  const hmac = crypto.createHmac('sha256', key).update(nameHmac).digest().subarray(0, 16);
+  return Buffer.concat([nameHmac, hmac]).toString('hex');
+}
