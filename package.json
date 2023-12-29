@@ -25,7 +25,7 @@
     "gen:package": "turbo gen package",
     "db:prepare": "pnpm run --filter=\"@nwlnexus/helios\" db:prepare",
     "db:prepare:reset": "cfsetup prepare --reset --schema-dir=\"./app/db/schema\" --persist-to=\"../../.wrangler\"",
-    "prepare": "husky install"
+    "prepare": "is-ci || husky install"
   },
   "dependencies": {
     "@changesets/changelog-github": "^0.5.0",
@@ -39,6 +39,7 @@
     "drizzle-orm": "^0.29.2",
     "drizzle-zod": "^0.5.1",
     "esbuild-register": "^3.5.0",
+    "is-ci": "^3.0.1",
     "prettier-plugin-packagejson": "^2.4.8",
     "prettier-plugin-tailwindcss": "^0.5.10",
     "rimraf": "^5.0.5",
