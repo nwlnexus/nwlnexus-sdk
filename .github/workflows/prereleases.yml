@@ -4,9 +4,6 @@ on:
   push:
     branches-ignore:
       - main
-    paths:
-      - 'packages/**'
-      - .github/workflows/prereleases.yml
 
 jobs:
   prerelease:
