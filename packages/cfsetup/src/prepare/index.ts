@@ -1,9 +1,10 @@
+import type { CommonYargsArgv, StrictYargsOptionsToInterface } from '../root-arguments';
+
 import path from 'node:path';
 import process from 'node:process';
 
 import { withConfig } from '../config';
 import { STORAGE_MEDIUM } from '../constants';
-import { CommonYargsArgv, StrictYargsOptionsToInterface } from '../root-arguments';
 import { handleD1, handleKV, handleR2 } from './utils';
 
 export function prepareOptions(args: CommonYargsArgv) {
@@ -57,13 +58,13 @@ export const prepareHandler = withConfig<StrictYargsOptionsToInterface<typeof pr
   async ({ config, schemaDir, persistTo, reset, storage }) => {
     switch (storage) {
       case 'all': {
-        await handleD1(config.d1_databases, schemaDir, persistTo, reset);
+        await handleD1(config, schemaDir, persistTo, reset);
         await handleKV(config.kv_namespaces, persistTo, reset);
         await handleR2(config.r2_buckets, persistTo, reset);
         break;
       }
       case 'd1': {
-        await handleD1(config.d1_databases, schemaDir, persistTo, reset);
+        await handleD1(config, schemaDir, persistTo, reset);
         break;
       }
       case 'kv': {

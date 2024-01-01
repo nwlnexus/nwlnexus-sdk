@@ -7,3 +7,18 @@ export type Database = {
   migrationsTableName: string;
   migrationsFolderPath: string;
 };
+
+export type Migration = {
+  id: string;
+  name: string;
+  applied_at: string;
+};
+
+export type QueryResult = {
+  results: Record<string, string | number | boolean>[];
+  success: boolean;
+  meta?: {
+    duration?: number;
+  };
+  query?: string;
+};

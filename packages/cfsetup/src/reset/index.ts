@@ -1,3 +1,5 @@
+import type { CommonYargsArgv, StrictYargsOptionsToInterface } from '../root-arguments';
+
 import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
@@ -5,7 +7,7 @@ import process from 'node:process';
 import { withConfig } from '../config';
 import { STORAGE_MEDIUM } from '../constants';
 import { logger } from '../logger';
-import { CommonYargsArgv, StrictYargsOptionsToInterface } from '../root-arguments';
+import { getPersistencePath } from '../prepare/helpers';
 
 export function resetOptions(args: CommonYargsArgv) {
   return args
@@ -25,30 +27,41 @@ export function resetOptions(args: CommonYargsArgv) {
 
 type ResetHandlerOptions = StrictYargsOptionsToInterface<typeof resetOptions>;
 
-export const resetHandler = withConfig<ResetHandlerOptions>(async args => {
-  switch (args.storage) {
+export const resetHandler = withConfig<ResetHandlerOptions>(async ({ storage, persistTo }) => {
+  const d1_path = getPersistencePath(persistTo, 'd1') as string;
+  const kv_path = getPersistencePath(persistTo, 'kv') as string;
+  const r2_path = getPersistencePath(persistTo, 'r2') as string;
+
+  switch (storage) {
     case 'all': {
-      resetCFAssets(args.persistTo);
+      resetCFAssets([d1_path, kv_path, r2_path]);
       break;
     }
     case 'd1': {
-      logger.log(`Resetting local D1 storage located at ${path.join(args.persistTo, 'v3/d1')}`);
-      resetCFAssets(path.join(args.persistTo, 'v3/d1'));
+      logger.log(`Resetting local D1 storage located at ${d1_path}`);
+      resetCFAssets(d1_path);
       break;
     }
     case 'kv': {
-      logger.log(`Resetting local KV storage located at ${path.join(args.persistTo, 'v3/kv')}`);
-      resetCFAssets(path.join(args.persistTo, 'v3/kv'));
+      logger.log(`Resetting local KV storage located at ${kv_path}`);
+      resetCFAssets(kv_path);
       break;
     }
     case 'r2': {
-      logger.log(`Resetting local R2 storage located at ${path.join(args.persistTo, 'v3/r2')}`);
-      resetCFAssets(path.join(args.persistTo, 'v3/r2'));
+      logger.log(`Resetting local R2 storage located at ${r2_path}`);
+      resetCFAssets(r2_path);
       break;
     }
   }
 });
 
-export function resetCFAssets(dir: string) {
-  fs.rmSync(dir, { recursive: true, force: true });
+export function resetCFAssets(paths: string | string[]) {
+  if (Array.isArray(paths) && paths.length > 0) {
+    for (const p of paths) {
+      fs.rmSync(p, { recursive: true, force: true });
+    }
+  }
+  if (typeof paths == 'string') {
+    fs.rmSync(paths, { recursive: true, force: true });
+  }
 }

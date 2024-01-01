@@ -17,32 +17,45 @@ module.exports = {
       version: 'detect'
     }
   },
-  plugins: ['@typescript-eslint', 'import', 'no-only-tests'],
-  extends: ['plugin:@typescript-eslint/eslint-recommended', 'turbo', 'prettier'],
+  plugins: ['@typescript-eslint', 'import', 'no-only-tests', 'eslint-plugin-react', 'eslint-plugin-react-hooks'],
+  extends: ['turbo'],
   env: {
     browser: true,
     worker: true,
     node: true
   },
-  rules: {
-    'no-empty': 'off',
-    'no-empty-function': 'off',
-    'no-mixed-spaces-and-tabs': ['error', 'smart-tabs'],
-    'no-only-tests/no-only-tests': 'error',
-    'no-shadow': 'error',
-    'require-yield': 'off',
-    '@typescript-eslint/consistent-type-imports': ['error'],
-    '@typescript-eslint/no-empty-function': 'off',
-    '@typescript-eslint/no-explicit-any': 'error',
-    '@typescript-eslint/no-floating-promises': 'error',
-    '@typescript-eslint/no-unused-vars': [
-      'error',
-      {
-        vars: 'all',
-        varsIgnorePattern: '^_',
-        args: 'after-used',
-        argsIgnorePattern: '^_'
+  overrides: [
+    {
+      files: ['*.ts', '*.tsx'],
+      extends: [
+        'eslint:recommended',
+        'plugin:@typescript-eslint/eslint-recommended',
+        'plugin:react/recommended',
+        'plugin:react-hooks/recommended',
+        'turbo',
+        'prettier'
+      ],
+      rules: {
+        'no-empty': 'off',
+        'no-empty-function': 'off',
+        'no-mixed-spaces-and-tabs': ['error', 'smart-tabs'],
+        'no-only-tests/no-only-tests': 'error',
+        'no-shadow': 'error',
+        'require-yield': 'off',
+        '@typescript-eslint/consistent-type-imports': ['error'],
+        '@typescript-eslint/no-empty-function': 'off',
+        '@typescript-eslint/no-explicit-any': 'error',
+        '@typescript-eslint/no-floating-promises': 'error',
+        '@typescript-eslint/no-unused-vars': [
+          'error',
+          {
+            vars: 'all',
+            varsIgnorePattern: '^_',
+            args: 'after-used',
+            argsIgnorePattern: '^_'
+          }
+        ]
       }
-    ]
-  }
+    }
+  ]
 };
