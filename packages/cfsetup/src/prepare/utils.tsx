@@ -1,28 +1,18 @@
-import type { Database } from 'better-sqlite3';
 import type { Config } from '../config';
 
 import child_process from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
-import React from 'react';
-import DatabaseConstructor from 'better-sqlite3';
+import { createClient } from '@libsql/client';
 import chalk from 'chalk';
-import { drizzle } from 'drizzle-orm/better-sqlite3';
-import { migrate } from 'drizzle-orm/better-sqlite3/migrator';
-import { Box, Text } from 'ink';
-import Table from 'ink-table';
+import { drizzle } from 'drizzle-orm/libsql';
+import { migrate } from 'drizzle-orm/libsql/migrator';
 
 import { yellow } from '../colors';
 import { logger } from '../logger';
 import { resetCFAssets } from '../reset';
-import { renderToString } from '../utils/render';
 import { DEFAULT_MIGRATION_PATH, DEFAULT_MIGRATION_TABLE, MF_D1_PREFIX } from './constants';
-import {
-  durableObjectNamespaceIdFromName,
-  getPersistencePath,
-  getUnappliedMigrations,
-  initMigrationsTable
-} from './helpers';
+import { durableObjectNamespaceIdFromName, getPersistencePath } from './helpers';
 
 export const handleD1 = async (config: Config, schemaDir: string, persistTo: string, reset?: boolean) => {
   const d1_databases = config.d1_databases;
@@ -48,23 +38,13 @@ export const handleD1 = async (config: Config, schemaDir: string, persistTo: str
       const migrationsTableName = database?.migrations_table || DEFAULT_MIGRATION_TABLE;
       const d1PersistPath = path.join(getPersistencePath(persistTo, 'd1') as string, MF_D1_PREFIX);
       try {
-        // CHeck if directory exists
         if (!fs.existsSync(d1PersistPath)) {
-          fs.mkdirSync(d1PersistPath);
+          fs.mkdirSync(d1PersistPath, { recursive: true });
         }
 
-        const betterSqlite: Database = new DatabaseConstructor(
-          path.join(d1PersistPath, `${hashedBindingPath}.sqlite`),
-          {}
-        );
-        const localDB = drizzle(betterSqlite);
-        migrate(localDB, { migrationsFolder: migrationsPath, migrationsTable: migrationsTableName });
-        //   await initMigrationsTable({
-        //     migrationsTableName,
-        //     name: database.binding,
-        //     persistTo: persistTo,
-        //     config
-        //   });
+        const dbClient = createClient({ url: 'file:' + path.join(d1PersistPath, `${hashedBindingPath}.sqlite`) });
+        const localDB = drizzle(dbClient);
+        await migrate(localDB, { migrationsFolder: migrationsPath, migrationsTable: migrationsTableName });
         //
         //   const unappliedMigrations = (
         //     await getUnappliedMigrations({

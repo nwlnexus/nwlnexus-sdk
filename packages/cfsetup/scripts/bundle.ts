@@ -1,6 +1,9 @@
+import type { BuildOptions } from 'esbuild';
+
 import path from 'node:path';
 import process from 'node:process';
-import { build, BuildOptions, context } from 'esbuild';
+import { build, context } from 'esbuild';
+import copy from 'esbuild-plugin-copy';
 
 import { EXTERNAL_DEPENDENCIES } from './deps';
 
@@ -26,7 +29,16 @@ const run = async () => {
       __RELATIVE_PACKAGE_PATH__,
       'import.meta.url': 'import_meta_url',
       'process.env.NODE_ENV': `'${process.env.NODE_ENV || 'production'}'`
-    }
+    },
+    plugins: [
+      copy({
+        resolveFrom: 'cwd',
+        assets: {
+          from: ['node_modules/better-sqlite3/build/Release/**/*'],
+          to: ['./Release']
+        }
+      })
+    ]
   };
 
   const runBuild = async () => {
@@ -34,7 +46,7 @@ const run = async () => {
   };
 
   const runWatch = async () => {
-    let ctx = await context(options);
+    const ctx = await context(options);
     await ctx.watch();
     console.log('Watching...');
   };
