@@ -1,7 +1,7 @@
 {
   "name": "@nwlnexus/cfsetup",
   "packageManager": "pnpm@7.21.0",
-  "version": "0.0.0-2b26545",
+  "version": "0.0.0-bed4bd2",
   "description": "Custom CLI application to setup and manage Cloudflare application repositories",
   "keywords": [
     "nwlnexus",

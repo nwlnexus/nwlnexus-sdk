@@ -10,12 +10,29 @@
  * `<package-name>` defaults to `cfsetup` if not provided.
  */
 
-const { readFileSync, writeFileSync } = require("fs");
-const { execSync } = require("child_process");
+const { existsSync, readFileSync, writeFileSync } = require("node:fs");
+const { execSync } = require("node:child_process");
+const { join } = require('node:path')
+const process = require('node:process');
 
 try {
-  const packageName = getArgs()[0] ?? "cfsetup";
-  const packageJsonPath = `./packages/${packageName}/package.json`;
+  /** packageName {string} **/
+  let packageName = getArgs()[0] ?? "cfsetup";
+  if(/^@.*\/.*/.test(packageName)) {
+    packageName = packageName.split('/')[1]
+  }
+  /** packageJsonPath {string} **/
+  let packageJsonPath;
+  if (existsSync(join(process.cwd(), 'packages', packageName))) {
+    packageJsonPath = join(process.cwd(), 'packages', packageName, 'package.json');
+  } else if (existsSync(join(process.cwd(), 'pages_apps', packageName))){
+    packageJsonPath = join(process.cwd(), 'pages_apps', packageName, 'package.json')
+  } else if (existsSync(join(process.cwd(), 'worker_apps', packageName))) {
+    packageJsonPath = join(process.cwd(), 'worker_apps', packageName, 'package.json')
+  }
+  if (!packageJsonPath) {
+    throw Error("Package not found");
+  }
   const pkg = JSON.parse(readFileSync(packageJsonPath));
   const stdout = execSync("git rev-parse --short HEAD", { encoding: "utf8" });
   pkg.version = "0.0.0-" + stdout.trim();

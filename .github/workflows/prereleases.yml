@@ -4,6 +4,9 @@ on:
   push:
     branches-ignore:
       - main
+    paths:
+      - 'packages/**/*'
+      - '.github/workflows/prereleases.yml'
 
 jobs:
   prerelease:
@@ -57,22 +60,20 @@ jobs:
           CI_OS: ${{ runner.os }}
 
       - name: Build
-        run: pnpm run build --filter ${{ matrix.packages }}
+        run: pnpm --filter=${{ matrix.packages }} run build
         env:
           NODE_ENV: "production"
           CI_OS: ${{ runner.os }}
 
       - name: Check for errors
-        run: pnpm run check --filter ${{ matrix.packages }}
+        run: pnpm --filter=${{ matrix.packages }} run check
         env:
           NODE_OPTIONS: "--max_old_space_size=8192"
 
       - name: Publish Beta to NPM
-        run: pnpm publish --filter ${{ matrix.packages }} --tag beta
+        run: pnpm --filter=${{ matrix.packages }} publish --tag beta
         env:
           NPM_PUBLISH_TOKEN: ${{ steps.load-1password-env.outputs.NPM_PUBLISH_TOKEN }}
-        working-directory: packages/cfsetup
 
       - name: Get Package Version
-        run: echo "CFSETUP_VERSION=$(npm view @nwlnexus/cfsetup@beta version)" >> $GITHUB_ENV
-        working-directory: packages/cfsetup
+        run: echo "CFSETUP_VERSION=$(npm view ${{ matrix.packages }}@beta version)" >> $GITHUB_ENV
