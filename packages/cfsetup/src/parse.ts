@@ -289,7 +289,7 @@ export function parseHumanDuration(s: string): number {
   const unitsMap = new Map(Object.entries(units));
   s = s.trim().toLowerCase();
   let base = 1;
-  for (const [name, _] of unitsMap) {
+  for (const [name, __] of unitsMap) {
     if (s.endsWith(name)) {
       s = s.substring(0, s.length - name.length);
       base = unitsMap.get(name) || 1;

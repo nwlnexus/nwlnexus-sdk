@@ -41,6 +41,7 @@ module.exports = {
         'no-mixed-spaces-and-tabs': ['error', 'smart-tabs'],
         'no-only-tests/no-only-tests': 'error',
         'no-shadow': 'error',
+        'no-unused-vars': 'off',
         'require-yield': 'off',
         '@typescript-eslint/consistent-type-imports': ['error'],
         '@typescript-eslint/no-empty-function': 'off',

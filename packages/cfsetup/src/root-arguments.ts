@@ -6,7 +6,7 @@ export type CommonYargsOptions = {
   yaml: boolean | undefined;
   debug: boolean | undefined;
   v: boolean | undefined;
-  config: string | undefined;
+  'wrangler-config': string | undefined;
   'experimental-json-config': boolean | undefined;
 };
 

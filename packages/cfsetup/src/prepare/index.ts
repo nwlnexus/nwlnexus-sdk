@@ -3,7 +3,7 @@ import type { CommonYargsArgv, StrictYargsOptionsToInterface } from '../root-arg
 import path from 'node:path';
 import process from 'node:process';
 
-import { withConfig } from '../config';
+import { withWranglerConfig } from '../config';
 import { STORAGE_MEDIUM } from '../constants';
 import { handleD1, handleKV, handleR2 } from './utils';
 
@@ -54,25 +54,25 @@ export function prepareOptions(args: CommonYargsArgv) {
     });
 }
 
-export const prepareHandler = withConfig<StrictYargsOptionsToInterface<typeof prepareOptions>>(
-  async ({ config, schemaDir, persistTo, reset, storage }) => {
+export const prepareHandler = withWranglerConfig<StrictYargsOptionsToInterface<typeof prepareOptions>>(
+  async ({ wranglerConfig, schemaDir, persistTo, reset, storage }) => {
     switch (storage) {
       case 'all': {
-        await handleD1(config, schemaDir, persistTo, reset);
-        await handleKV(config.kv_namespaces, persistTo, reset);
-        await handleR2(config.r2_buckets, persistTo, reset);
+        await handleD1(wranglerConfig, schemaDir, persistTo, reset);
+        await handleKV(wranglerConfig.kv_namespaces, persistTo, reset);
+        await handleR2(wranglerConfig.r2_buckets, persistTo, reset);
         break;
       }
       case 'd1': {
-        await handleD1(config, schemaDir, persistTo, reset);
+        await handleD1(wranglerConfig, schemaDir, persistTo, reset);
         break;
       }
       case 'kv': {
-        await handleKV(config.kv_namespaces, persistTo, reset);
+        await handleKV(wranglerConfig.kv_namespaces, persistTo, reset);
         break;
       }
       case 'r2': {
-        await handleR2(config.r2_buckets, persistTo, reset);
+        await handleR2(wranglerConfig.r2_buckets, persistTo, reset);
         break;
       }
     }

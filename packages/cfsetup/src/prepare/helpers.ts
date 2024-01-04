@@ -48,17 +48,17 @@ export async function getMigrationsPath({
 export async function getUnappliedMigrations({
   migrationsTableName,
   migrationsPath,
-  config,
+  wranglerConfig,
   name,
   persistTo
 }: {
   migrationsTableName: string;
   migrationsPath: string;
-  config: ConfigFields<DevConfig> & Environment;
+  wranglerConfig: ConfigFields<DevConfig> & Environment;
   name: string;
   persistTo: string;
 }): Promise<Array<string>> {
-  const appliedMigrations = (await listAppliedMigrations(migrationsTableName, config, name, persistTo)).map(
+  const appliedMigrations = (await listAppliedMigrations(migrationsTableName, wranglerConfig, name, persistTo)).map(
     migration => {
       return migration.name;
     }
@@ -78,12 +78,12 @@ export async function getUnappliedMigrations({
 
 const listAppliedMigrations = async (
   migrationsTableName: string,
-  config: ConfigFields<DevConfig> & Environment,
+  wranglerConfig: ConfigFields<DevConfig> & Environment,
   name: string,
   persistTo: string
 ): Promise<Migration[]> => {
   const response: QueryResult[] | null = await executeSql({
-    config,
+    wranglerConfig,
     name,
     shouldPrompt: isInteractive() && !CI.isCI(),
     persistTo,
@@ -130,17 +130,17 @@ export function getNextMigrationNumber(migrationsPath: string): number {
 
 export const initMigrationsTable = async ({
   migrationsTableName,
-  config,
+  wranglerConfig,
   name,
   persistTo
 }: {
   migrationsTableName: string;
-  config: ConfigFields<DevConfig> & Environment;
+  wranglerConfig: ConfigFields<DevConfig> & Environment;
   name: string;
   persistTo: string;
 }) => {
   return executeSql({
-    config,
+    wranglerConfig,
     name,
     shouldPrompt: isInteractive() && !CI.isCI(),
     persistTo,
@@ -155,15 +155,14 @@ export const initMigrationsTable = async ({
 };
 
 export async function executeSql({
-  config,
+  wranglerConfig,
   name,
-  shouldPrompt,
   persistTo,
   file,
   command,
   json
 }: {
-  config: ConfigFields<DevConfig> & Environment;
+  wranglerConfig: ConfigFields<DevConfig> & Environment;
   name: string;
   shouldPrompt: boolean | undefined;
   persistTo: string;
@@ -190,7 +189,7 @@ export async function executeSql({
     }
   }
   const result = await executeLocally({
-    config,
+    wranglerConfig,
     name,
     queries,
     persistTo
@@ -201,17 +200,17 @@ export async function executeSql({
 }
 
 async function executeLocally({
-  config,
+  wranglerConfig,
   name,
   queries,
   persistTo
 }: {
-  config: Config;
+  wranglerConfig: Config;
   name: string;
   queries: string[];
   persistTo: string;
 }) {
-  const localDB = getDatabaseInfoFromConfig(config, name);
+  const localDB = getDatabaseInfoFromConfig(wranglerConfig, name);
   if (!localDB) {
     throw new Error(`Can't find a DB with name/binding '${name}' in local config. Check info in wrangler.toml...`);
   }
@@ -255,8 +254,8 @@ async function executeLocally({
   }));
 }
 
-export function getDatabaseInfoFromConfig(config: Config, name: string): Database | null {
-  for (const d1Database of config.d1_databases) {
+export function getDatabaseInfoFromConfig(wranglerConfig: Config, name: string): Database | null {
+  for (const d1Database of wranglerConfig.d1_databases) {
     if (d1Database.database_id && (name === d1Database.database_name || name === d1Database.binding)) {
       return {
         uuid: d1Database.database_id,

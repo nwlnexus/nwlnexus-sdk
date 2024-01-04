@@ -1,6 +1,7 @@
+import type { CommonYargsArgv, StrictYargsOptionsToInterface } from '../root-arguments';
+
 import { confirm } from '../dialogs';
 import { logger } from '../logger';
-import { CommonYargsArgv, StrictYargsOptionsToInterface } from '../root-arguments';
 
 export function ListOptions(yargs: CommonYargsArgv) {
   return yargs;

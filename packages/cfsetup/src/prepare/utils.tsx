@@ -14,8 +14,8 @@ import { resetCFAssets } from '../reset';
 import { DEFAULT_MIGRATION_PATH, DEFAULT_MIGRATION_TABLE, MF_D1_PREFIX } from './constants';
 import { durableObjectNamespaceIdFromName, getPersistencePath } from './helpers';
 
-export const handleD1 = async (config: Config, schemaDir: string, persistTo: string, reset?: boolean) => {
-  const d1_databases = config.d1_databases;
+export const handleD1 = async (wranglerConfig: Config, schemaDir: string, persistTo: string, reset?: boolean) => {
+  const d1_databases = wranglerConfig.d1_databases;
   logger.loggerLevel = 'info';
   if (d1_databases && d1_databases.length > 0) {
     for (const database of d1_databases) {
@@ -50,7 +50,7 @@ export const handleD1 = async (config: Config, schemaDir: string, persistTo: str
         //     await getUnappliedMigrations({
         //       migrationsTableName,
         //       migrationsPath,
-        //       config,
+        //       wranglerConfig,
         //       name: database.binding,
         //       persistTo
         //     })

@@ -1,8 +1,10 @@
 // noinspection SpellCheckingInspection
 
+import type Yargs from 'yargs';
+import type { CommonYargsArgv, CommonYargsOptions } from './root-arguments';
+
 import os from 'node:os';
 import process from 'node:process';
-import Yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import makeCLI from 'yargs/yargs';
 
@@ -14,7 +16,6 @@ import { pages } from './pages';
 import { formatMessage, ParseError } from './parse';
 import { prepareHandler, prepareOptions } from './prepare';
 import { resetHandler, resetOptions } from './reset';
-import { CommonYargsArgv, CommonYargsOptions } from './root-arguments';
 import { printCfSetupBanner } from './update-check';
 
 export class CommandLineArgsError extends Error {}
@@ -55,8 +56,8 @@ function createCLIParser(argv: string[]) {
     // Define global options here, so they get included in the `Argv` type of
     // the `cfsetup` variable
     .version(false)
-    .option('config', {
-      alias: 'c',
+    .option('wrangler-config', {
+      alias: 'w',
       describe: 'Path to .toml configuration file',
       type: 'string',
       requiresArg: true
@@ -80,14 +81,14 @@ function createCLIParser(argv: string[]) {
       type: 'boolean'
     });
 
-  cfsetup.group(['experimental-json-config', 'config', 'yaml', 'debug', 'help', 'version'], 'Flags:');
+  cfsetup.group(['experimental-json-config', 'wrangler-config', 'yaml', 'debug', 'help', 'version'], 'Flags:');
   cfsetup.help().alias('h', 'help');
 
   // Default help command that supports the subcommands
   const subHelp: Yargs.CommandModule<CommonYargsOptions, CommonYargsOptions> = {
     command: ['*'],
     handler: async args => {
-      setImmediate(() => cfsetup.parse([...args._.map((a: any) => `${a}`), '--help']));
+      setImmediate(() => cfsetup.parse([...args._.map((a: unknown) => `${a}`), '--help']));
     }
   };
 

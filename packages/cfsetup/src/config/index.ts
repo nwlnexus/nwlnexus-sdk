@@ -1,12 +1,11 @@
 import type { CfWorkerInit } from '../deployment-bundle/worker';
-import type { CommonYargsOptions } from '../root-arguments';
+import type { CommonYargsOptions, OnlyCamelCase } from '../root-arguments';
 import type { Config, RawConfig } from './config';
 
 import { findUpSync } from 'find-up';
 
 import { logger } from '../logger';
 import { parseJSONC, parseTOML, readFileSync } from '../parse';
-import { OnlyCamelCase } from '../root-arguments';
 import { normalizeAndValidateConfig } from './validation';
 
 export type { Config, RawConfig, ConfigFields, DevConfig, RawDevConfig } from './config';
@@ -388,10 +387,10 @@ export function printBindings(bindings: CfWorkerInit['bindings']) {
   logger.log(message);
 }
 
-export function withConfig<T>(
-  handler: (t: OnlyCamelCase<T & CommonYargsOptions> & { config: Config }) => Promise<void>
+export function withWranglerConfig<T>(
+  handler: (t: OnlyCamelCase<T & CommonYargsOptions> & { wranglerConfig: Config }) => Promise<void>
 ) {
   return (t: OnlyCamelCase<T & CommonYargsOptions>) => {
-    return handler({ ...t, config: readConfig(t.config, t) });
+    return handler({ ...t, wranglerConfig: readConfig(t.wranglerConfig, t) });
   };
 }

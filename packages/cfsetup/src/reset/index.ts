@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
 
-import { withConfig } from '../config';
+import { withWranglerConfig } from '../config';
 import { STORAGE_MEDIUM } from '../constants';
 import { logger } from '../logger';
 import { getPersistencePath } from '../prepare/helpers';
@@ -27,7 +27,7 @@ export function resetOptions(args: CommonYargsArgv) {
 
 type ResetHandlerOptions = StrictYargsOptionsToInterface<typeof resetOptions>;
 
-export const resetHandler = withConfig<ResetHandlerOptions>(async ({ storage, persistTo }) => {
+export const resetHandler = withWranglerConfig<ResetHandlerOptions>(async ({ storage, persistTo }) => {
   const d1_path = getPersistencePath(persistTo, 'd1') as string;
   const kv_path = getPersistencePath(persistTo, 'kv') as string;
   const r2_path = getPersistencePath(persistTo, 'r2') as string;

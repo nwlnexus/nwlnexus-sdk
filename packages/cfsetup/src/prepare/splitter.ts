@@ -38,7 +38,7 @@ export default function splitSqlQuery(sql: string): string[] {
 function splitSqlIntoStatements(sql: string): string[] {
   const statements: string[] = [];
   let str = '';
-  const compoundStatementStack: ((s: string) => boolean)[] = [];
+  const compoundStatementStack: ((_s: string) => boolean)[] = [];
 
   const iterator = sql[Symbol.iterator]();
   let next = iterator.next();
@@ -108,7 +108,7 @@ function splitSqlIntoStatements(sql: string): string[] {
 /**
  * Pulls characters from the string iterator while the predicate remains true.
  */
-function consumeWhile(iterator: Iterator<string>, predicate: (str: string) => boolean) {
+function consumeWhile(iterator: Iterator<string>, predicate: (_str: string) => boolean) {
   let next = iterator.next();
   let str = '';
   while (!next.done) {

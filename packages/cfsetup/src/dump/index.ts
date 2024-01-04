@@ -1,7 +1,8 @@
+import type { CommonYargsArgv, StrictYargsOptionsToInterface } from '../root-arguments';
+
 import { inspect } from 'node:util';
 
 import { withConfig } from '../config';
-import { CommonYargsArgv, StrictYargsOptionsToInterface } from '../root-arguments';
 
 export function dumpOptions(args: CommonYargsArgv) {
   return args.option('file', {

@@ -1,4 +1,5 @@
-import { CommonYargsArgv } from '../root-arguments';
+import type { CommonYargsArgv } from '../root-arguments';
+
 import * as Deployments from './deployments';
 import * as Projects from './projects';
 
