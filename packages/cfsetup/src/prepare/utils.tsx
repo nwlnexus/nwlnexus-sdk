@@ -3,20 +3,32 @@ import type { Config } from '../config';
 import child_process from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
+import React from 'react';
 import { createClient } from '@libsql/client';
 import chalk from 'chalk';
 import { drizzle } from 'drizzle-orm/libsql';
 import { migrate } from 'drizzle-orm/libsql/migrator';
+import { globSync } from 'glob';
+import { Box, Text } from 'ink';
+import Table from 'ink-table';
 
 import { yellow } from '../colors';
 import { logger } from '../logger';
 import { resetCFAssets } from '../reset';
+import { renderToString } from '../utils/render';
 import { DEFAULT_MIGRATION_PATH, DEFAULT_MIGRATION_TABLE, MF_D1_PREFIX } from './constants';
 import { durableObjectNamespaceIdFromName, getPersistencePath } from './helpers';
 
-export const handleD1 = async (wranglerConfig: Config, schemaDir: string, persistTo: string, reset?: boolean) => {
+type HanderArgs = {
+  wranglerConfig: Config;
+  schemaDir: string;
+  persistTo: string;
+  reset?: boolean;
+  seed?: boolean;
+};
+
+export const handleD1 = async ({ wranglerConfig, schemaDir, persistTo, reset = false, seed }: HanderArgs) => {
   const d1_databases = wranglerConfig.d1_databases;
-  logger.loggerLevel = 'info';
   if (d1_databases && d1_databases.length > 0) {
     for (const database of d1_databases) {
       const migrationsPath = database?.migrations_dir || DEFAULT_MIGRATION_PATH;
@@ -24,16 +36,16 @@ export const handleD1 = async (wranglerConfig: Config, schemaDir: string, persis
         resetCFAssets(getPersistencePath(persistTo, 'd1', [migrationsPath]));
       }
 
-      logger.info(`Preparing to setup D1 Database: ${database.binding}`);
+      logger.log(`Preparing to setup D1 Database: ${database.binding}`);
       const hashedBindingPath = durableObjectNamespaceIdFromName(MF_D1_PREFIX, database.binding);
 
-      logger.info(`Generating SQL...`);
+      logger.log(`Generating SQL...`);
       const genSQLCmd = `drizzle-kit generate:sqlite --schema=${schemaDir} --out=${migrationsPath}`;
       child_process.execSync(genSQLCmd, {
         stdio: 'inherit',
         encoding: 'utf8'
       });
-      console.info(chalk.blue(`Handling DB operations...`));
+      logger.log(`Handling DB operations...`);
 
       const migrationsTableName = database?.migrations_table || DEFAULT_MIGRATION_TABLE;
       const d1PersistPath = path.join(getPersistencePath(persistTo, 'd1') as string, MF_D1_PREFIX);
@@ -89,7 +101,39 @@ export const handleD1 = async (wranglerConfig: Config, schemaDir: string, persis
         //     );
         //   }
         //
-        console.info(chalk.blue(`Completed setup of D1 Database: ${database.binding}`));
+        if (seed) {
+          logger.log(`Handling seeding operations...`);
+          const SEED_DIR = path.join(process.cwd(), 'seeds');
+          const SQL_PATTERN = `${SEED_DIR}/**/*.sql`;
+
+          // Get all SQL seed files
+          const seedFiles = globSync(SQL_PATTERN, {
+            nodir: true,
+            stat: true,
+            absolute: true,
+            dotRelative: true
+          });
+
+          if (seedFiles.length <= 0) {
+            logger.log(renderToString(<Text>✅ No SQL seed files!</Text>));
+          } else {
+            const unappliedSeedFiles = seedFiles.map(f => {
+              return {
+                name: f,
+                status: '🕒️'
+              };
+            });
+            logger.log(
+              renderToString(
+                <Box flexDirection='column'>
+                  <Text>Seeds to be applied:</Text>
+                  <Table data={unappliedSeedFiles} columns={['name']}></Table>
+                </Box>
+              )
+            );
+          }
+        }
+        logger.log(`Completed setup of D1 Database: ${database.binding}`);
       } catch (e) {
         logger.error(e);
       }
@@ -99,7 +143,9 @@ export const handleD1 = async (wranglerConfig: Config, schemaDir: string, persis
   }
 };
 
-export const handleKV = async (kv_namespaces: Config['kv_namespaces'], persistTo: string, reset?: boolean) => {
+export const handleKV = async ({ wranglerConfig, persistTo, reset = false, seed }: Omit<HanderArgs, 'schemaDir'>) => {
+  logger.log(seed);
+  const kv_namespaces = wranglerConfig.kv_namespaces;
   const persistencePath = path.join(persistTo, 'v3', 'kv');
   if (kv_namespaces && kv_namespaces.length > 0) {
     for (const kv of kv_namespaces) {
@@ -113,7 +159,9 @@ export const handleKV = async (kv_namespaces: Config['kv_namespaces'], persistTo
   }
 };
 
-export const handleR2 = async (r2_buckets: Config['r2_buckets'], persistTo: string, reset?: boolean) => {
+export const handleR2 = async ({ wranglerConfig, persistTo, reset = false, seed }: Omit<HanderArgs, 'schemaDir'>) => {
+  logger.log(seed);
+  const r2_buckets = wranglerConfig.r2_buckets;
   const persistencePath = path.join(persistTo, 'v3', 'r2');
   if (r2_buckets && r2_buckets.length > 0) {
     for (const r2_bucket of r2_buckets) {

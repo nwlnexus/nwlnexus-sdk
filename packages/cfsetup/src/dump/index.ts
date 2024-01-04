@@ -2,7 +2,7 @@ import type { CommonYargsArgv, StrictYargsOptionsToInterface } from '../root-arg
 
 import { inspect } from 'node:util';
 
-import { withConfig } from '../config';
+import { withWranglerConfig } from '../config';
 
 export function dumpOptions(args: CommonYargsArgv) {
   return args.option('file', {
@@ -15,6 +15,6 @@ export function dumpOptions(args: CommonYargsArgv) {
 
 type DumpHandlerOptions = StrictYargsOptionsToInterface<typeof dumpOptions>;
 
-export const dumpHandler = withConfig<DumpHandlerOptions>(async ({ config }) => {
-  console.log(inspect(config, { sorted: true, colors: true, depth: 5 }));
+export const dumpHandler = withWranglerConfig<DumpHandlerOptions>(async ({ wranglerConfig }) => {
+  console.log(inspect(wranglerConfig, { sorted: true, colors: true, depth: 5 }));
 });

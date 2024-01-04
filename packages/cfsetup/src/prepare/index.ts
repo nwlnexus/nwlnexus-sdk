@@ -31,13 +31,11 @@ export function prepareOptions(args: CommonYargsArgv) {
       type: 'string',
       normalize: true
     })
-    .option('seed-dir', {
-      description: 'Directory to source pregenerated seed files from.',
-      demandOption: false,
-      requiresArg: true,
-      nargs: 1,
-      type: 'string',
-      normalize: true
+    .option('seed', {
+      description: 'Apply seed files as well.',
+      default: true,
+      type: 'boolean',
+      conflicts: ['dry-run']
     })
     .option('reset', {
       alias: 'r',
@@ -55,24 +53,24 @@ export function prepareOptions(args: CommonYargsArgv) {
 }
 
 export const prepareHandler = withWranglerConfig<StrictYargsOptionsToInterface<typeof prepareOptions>>(
-  async ({ wranglerConfig, schemaDir, persistTo, reset, storage }) => {
+  async ({ wranglerConfig, schemaDir, persistTo, reset, storage, seed }) => {
     switch (storage) {
       case 'all': {
-        await handleD1(wranglerConfig, schemaDir, persistTo, reset);
-        await handleKV(wranglerConfig.kv_namespaces, persistTo, reset);
-        await handleR2(wranglerConfig.r2_buckets, persistTo, reset);
+        await handleD1({ wranglerConfig, schemaDir, persistTo, reset, seed });
+        await handleKV({ wranglerConfig, persistTo, reset, seed });
+        await handleR2({ wranglerConfig, persistTo, reset, seed });
         break;
       }
       case 'd1': {
-        await handleD1(wranglerConfig, schemaDir, persistTo, reset);
+        await handleD1({ wranglerConfig, schemaDir, persistTo, reset, seed });
         break;
       }
       case 'kv': {
-        await handleKV(wranglerConfig.kv_namespaces, persistTo, reset);
+        await handleKV({ wranglerConfig, persistTo, reset, seed });
         break;
       }
       case 'r2': {
-        await handleR2(wranglerConfig.r2_buckets, persistTo, reset);
+        await handleR2({ wranglerConfig, persistTo, reset, seed });
         break;
       }
     }

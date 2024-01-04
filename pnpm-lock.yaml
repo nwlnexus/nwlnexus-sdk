@@ -113,6 +113,9 @@ importers:
       find-up:
         specifier: ^7.0.0
         version: 7.0.0
+      glob:
+        specifier: ^10.3.10
+        version: 10.3.10
       miniflare:
         specifier: ^3.20231030.2
         version: 3.20231030.4(supports-color@9.4.0)
