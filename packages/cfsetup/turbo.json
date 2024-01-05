@@ -15,6 +15,7 @@
         "WRANGLER_AUTH_DOMAIN",
         "PATH",
         "WRANGLER_LOG",
+        "CFSETUP_LOG",
         "EXPERIMENTAL_MIDDLEWARE",
         "FORMAT_WRANGLER_ERRORS",
         "CF_PAGES",

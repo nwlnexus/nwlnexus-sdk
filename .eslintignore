@@ -7,3 +7,7 @@ node_modules
 **/functions/\[\[path\]\].js
 **/functions/\[\[path\]\].js.map
 **/public/build
+vitest.projects.js
+vitest.config.js
+node-types.d.ts
+**/*.pem

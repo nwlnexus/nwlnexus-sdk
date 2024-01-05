@@ -246,3 +246,4 @@ vendor/vscode/
 wrangler-local-state
 # Runtime dependencies report
 runtime-versions.md
+!**/Cloudflare_CA.pem

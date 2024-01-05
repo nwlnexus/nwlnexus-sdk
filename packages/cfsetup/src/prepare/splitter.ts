@@ -13,7 +13,7 @@ import { trimSqlQuery } from './trimmer';
  * Is the given `sql` string likely to contain multiple statements.
  *
  * If `mayContainMultipleStatements()` returns `false` you can be confident that the sql
- * does not contain multiple statements. Otherwise you have to check further.
+ * does not contain multiple statements. Otherwise, you have to check further.
  */
 export function mayContainMultipleStatements(sql: string): boolean {
   const trimmed = sql.trimEnd();

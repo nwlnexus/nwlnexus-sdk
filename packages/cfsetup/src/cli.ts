@@ -14,7 +14,7 @@ import { FatalError } from './errors';
 import { logger } from './logger';
 import { pages } from './pages';
 import { formatMessage, ParseError } from './parse';
-import { prepareHandler, prepareOptions } from './prepare';
+import { prepare } from './prepare';
 import { resetHandler, resetOptions } from './reset';
 import { printCfSetupBanner } from './update-check';
 
@@ -121,35 +121,31 @@ function createCLIParser(argv: string[]) {
   // (It's also annoying that choices[] doesn't get inferred as an enum. 🤷‍♂.)
 
   //init
-  cfsetup.command('init', '✨  Create local repository project', prepareOptions, prepareHandler);
+  cfsetup.command('init', '✨  Create local repository project', {}, () => {
+    logger.log('Not yet implemented');
+  });
 
   cfsetup.command('dump', '✨  Dump current environment variables and parsed files', dumpOptions, dumpHandler);
 
   //prepare
-  cfsetup.command(
-    'prepare <storage> [options..]',
-    '🥣 Prepare local development environment',
-    prepareOptions,
-    prepareHandler
-  );
+  cfsetup.command('prepare', '🥣 Prepare local development environment', prepareYargs => {
+    return prepare(prepareYargs.command(subHelp));
+  });
 
   //reset
-  cfsetup.command(
-    'reset <storage> [options..]',
-    '💥 Reset local Cloudflare Storage assets',
-    resetOptions,
-    resetHandler
-  );
+  cfsetup.command('reset <storage> [options]', '💥 Reset local Cloudflare Storage assets', resetOptions, resetHandler);
 
   //project
-  cfsetup.command('pages [command..]', '⚡️ Manage CF Pages Project', pagesYargs => {
+  cfsetup.command('pages', '⚡️ Manage CF Pages Project', pagesYargs => {
     return pages(pagesYargs.command(subHelp));
   });
 
   //deploy
-  cfsetup.command('deploy', '🚀 Deploy local project', prepareOptions, prepareHandler);
+  cfsetup.command('deploy', '🚀 Deploy local project', {}, () => {
+    logger.log('Not yet implemented');
+  });
 
-  // This set is to false to allow overwriting of default behaviour
+  // This set is to false which allows overwriting of default behaviour
   cfsetup.version(false);
 
   // version
@@ -170,7 +166,7 @@ function createCLIParser(argv: string[]) {
 
   return cfsetup;
 }
-async function main(argv: string[]): Promise<void> {
+export async function main(argv: string[]): Promise<void> {
   const cfsetup = createCLIParser(argv);
   try {
     await cfsetup.parse();

@@ -21,7 +21,7 @@ export function trimSqlQuery(sql: string): string {
   return trimmedSql;
 }
 
-// sqlite may start an sql dump file with pragmas,
+// sqlite may start a sql dump file with pragmas,
 // so we can't just use sql.startsWith here.
 export function mayContainTransaction(sql: string): boolean {
   return sql.includes('BEGIN TRANSACTION');

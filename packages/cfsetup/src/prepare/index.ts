@@ -1,31 +1,17 @@
-import type { CommonYargsArgv, StrictYargsOptionsToInterface } from '../root-arguments';
+import type { CommonYargsArgv } from '../root-arguments';
 
 import path from 'node:path';
 import process from 'node:process';
 
-import { withWranglerConfig } from '../config';
-import { STORAGE_MEDIUM } from '../constants';
-import { handleD1, handleKV, handleR2 } from './utils';
+import * as D1 from './d1';
+import * as KV from './kv';
+import * as R2 from './r2';
 
-export function prepareOptions(args: CommonYargsArgv) {
-  return args
-    .positional('storage', {
-      choices: STORAGE_MEDIUM,
-      default: 'all',
-      type: 'string',
-      demandOption: false
-    })
+export function CommonOptions(yargs: CommonYargsArgv) {
+  return yargs
     .option('persist-to', {
       description: 'Directory for wrangler state.',
       default: path.join(process.cwd(), '.wrangler/'),
-      requiresArg: true,
-      nargs: 1,
-      type: 'string',
-      normalize: true
-    })
-    .option('schema-dir', {
-      description: 'Directory to source schemas from.',
-      demandOption: true,
       requiresArg: true,
       nargs: 1,
       type: 'string',
@@ -52,27 +38,9 @@ export function prepareOptions(args: CommonYargsArgv) {
     });
 }
 
-export const prepareHandler = withWranglerConfig<StrictYargsOptionsToInterface<typeof prepareOptions>>(
-  async ({ wranglerConfig, schemaDir, persistTo, reset, storage, seed }) => {
-    switch (storage) {
-      case 'all': {
-        await handleD1({ wranglerConfig, schemaDir, persistTo, reset, seed });
-        await handleKV({ wranglerConfig, persistTo, reset, seed });
-        await handleR2({ wranglerConfig, persistTo, reset, seed });
-        break;
-      }
-      case 'd1': {
-        await handleD1({ wranglerConfig, schemaDir, persistTo, reset, seed });
-        break;
-      }
-      case 'kv': {
-        await handleKV({ wranglerConfig, persistTo, reset, seed });
-        break;
-      }
-      case 'r2': {
-        await handleR2({ wranglerConfig, persistTo, reset, seed });
-        break;
-      }
-    }
-  }
-);
+export async function prepare(args: CommonYargsArgv) {
+  return args
+    .command('d1', 'Prepare D1 Database', D1.CmdOptions, D1.CmdHandler)
+    .command('kv', 'Prepare KV Namespace', KV.CmdOptions, KV.CmdHandler)
+    .command('r2', 'Prepare R2 Bucket', R2.CmdOptions, R2.CmdHandler);
+}
