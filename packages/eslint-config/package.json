@@ -6,11 +6,13 @@
   "main": "cfworker.js",
   "files": [
     "remix.js",
-    "cfworker.js"
+    "cfworker.js",
+    "library.js"
   ],
   "exports": {
     "./remix": "./remix.js",
-    "./cfworker": "./cfworker.js"
+    "./cfworker": "./cfworker.js",
+    "./library": "./library.js"
   },
   "peerDependencies": {
     "@typescript-eslint/eslint-plugin": "^6.16.0"
