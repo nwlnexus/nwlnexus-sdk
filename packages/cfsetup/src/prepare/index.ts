@@ -2,6 +2,7 @@ import type { CommonYargsArgv } from '../root-arguments';
 
 import path from 'node:path';
 import process from 'node:process';
+import deepMerge from 'deepmerge';
 
 import * as D1 from './d1';
 import * as KV from './kv';
@@ -24,7 +25,6 @@ export function CommonOptions(yargs: CommonYargsArgv) {
       conflicts: ['dry-run']
     })
     .option('reset', {
-      alias: 'r',
       description: 'Delete migrations and the D1 databases/KV before applying changes.',
       requiresArg: false,
       type: 'boolean',
@@ -40,6 +40,9 @@ export function CommonOptions(yargs: CommonYargsArgv) {
 
 export async function prepare(args: CommonYargsArgv) {
   return args
+    .command('all', 'Prepare all CF assets', yargs => {
+      return deepMerge.all([D1.CmdOptions(yargs), KV.CmdOptions(yargs), R2.CmdOptions(yargs)]);
+    })
     .command('d1', 'Prepare D1 Database', D1.CmdOptions, D1.CmdHandler)
     .command('kv', 'Prepare KV Namespace', KV.CmdOptions, KV.CmdHandler)
     .command('r2', 'Prepare R2 Bucket', R2.CmdOptions, R2.CmdHandler);

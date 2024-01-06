@@ -1,4 +1,4 @@
-import { expect, it, suite } from 'vitest';
+import { afterEach, beforeEach, describe, expect, suite, test } from 'vitest';
 
 import { Logger } from '../logger';
 import { mockConsoleMethods } from './helpers/mock-console';
@@ -6,7 +6,7 @@ import { mockConsoleMethods } from './helpers/mock-console';
 suite('logger', () => {
   const std = mockConsoleMethods();
 
-  it('should add colored markers to error and warning messages', () => {
+  test('should add colored markers to error and warning messages', () => {
     const logger = new Logger();
     logger.loggerLevel = 'debug';
     logger.debug('This is a debug message');
@@ -29,7 +29,7 @@ suite('logger', () => {
   });
 
   describe('loggerLevel=debug', () => {
-    it('should render messages that are at or above the log level set in the logger', () => {
+    test('should render messages that are at or above the log level set in the logger', () => {
       const logger = new Logger();
       logger.loggerLevel = 'debug';
       logger.debug('This is a debug message');
@@ -53,7 +53,7 @@ suite('logger', () => {
   });
 
   describe('loggerLevel=log', () => {
-    it('should render messages that are at or above the log level set in the logger', () => {
+    test('should render messages that are at or above the log level set in the logger', () => {
       const logger = new Logger();
       logger.loggerLevel = 'log';
       logger.debug('This is a debug message');
@@ -77,7 +77,7 @@ suite('logger', () => {
   });
 
   describe('loggerLevel=warn', () => {
-    it('should render messages that are at or above the log level set in the logger', () => {
+    test('should render messages that are at or above the log level set in the logger', () => {
       const logger = new Logger();
       logger.loggerLevel = 'warn';
       logger.debug('This is a debug message');
@@ -101,7 +101,7 @@ suite('logger', () => {
   });
 
   describe('loggerLevel=error', () => {
-    it('should render messages that are at or above the log level set in the logger', () => {
+    test('should render messages that are at or above the log level set in the logger', () => {
       const logger = new Logger();
       logger.loggerLevel = 'error';
       logger.debug('This is a debug message');
@@ -128,7 +128,7 @@ suite('logger', () => {
       process.env.CFSETUP_LOG = undefined;
     });
 
-    it('should render messages that are at or above the log level set in the env var', () => {
+    test('should render messages that are at or above the log level set in the env var', () => {
       const logger = new Logger();
       logger.debug('This is a debug message');
       logger.log('This is a log message');
@@ -154,7 +154,7 @@ suite('logger', () => {
       process.env.CFSETUP_LOG = undefined;
     });
 
-    it('should render messages that are at or above the log level set in the env var', () => {
+    test('should render messages that are at or above the log level set in the env var', () => {
       const logger = new Logger();
       logger.debug('This is a debug message');
       logger.log('This is a log message');
@@ -184,7 +184,7 @@ suite('logger', () => {
       process.env.CFSETUP_LOG = undefined;
     });
 
-    it('should render messages that are at or above the log level set in the env var', () => {
+    test('should render messages that are at or above the log level set in the env var', () => {
       const logger = new Logger();
       logger.debug('This is a debug message');
       logger.log('This is a log message');
@@ -194,7 +194,7 @@ suite('logger', () => {
       expect(std.debug).toMatchInlineSnapshot(`""`);
       expect(std.out).toMatchInlineSnapshot(`"This is a log message"`);
       expect(std.warn).toMatchInlineSnapshot(`
-        "Unrecognised CFSETUP_LOG value \\"everything\\", expected \\"none\\" | \\"error\\" | \\"warn\\" | \\"info\\" | \\"log\\" | \\"debug\\", defaulting to \\"log\\"...
+        "Unrecognised CFSETUP_LOG value "everything", expected "none" | "error" | "warn" | "info" | "log" | "debug", defaulting to "log"...
         [33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mThis is a warn message[0m
 
         "

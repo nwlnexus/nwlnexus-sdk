@@ -94,9 +94,9 @@ const listAppliedMigrations = async (
     json: true
   });
 
-  if (!response || response[0].results.length === 0) return [];
+  if (!response || response[0]!.results.length === 0) return [];
 
-  return response[0].results as Migration[];
+  return response[0]!.results as Migration[];
 };
 
 function getMigrationNames(migrationsPath: string): Array<string> {
@@ -118,7 +118,7 @@ export function getNextMigrationNumber(migrationsPath: string): number {
   let highestMigrationNumber = -1;
 
   for (const migration in getMigrationNames(migrationsPath)) {
-    const migrationNumber = parseInt(migration.split('_')[0]);
+    const migrationNumber = parseInt(migration.split('_')[0]!);
 
     if (migrationNumber > highestMigrationNumber) {
       highestMigrationNumber = migrationNumber;
@@ -181,7 +181,7 @@ export async function executeSql({
   const queries = splitSqlQuery(sql);
 
   if (file && sql) {
-    if (queries[0].startsWith('SQLite format 3')) {
+    if (queries[0]!.startsWith('SQLite format 3')) {
       //TODO: update this error to recommend using `wrangler d1 restore` when it exists
       throw new Error(
         'Provided file is a binary SQLite database file instead of an SQL text file.\nThe execute command can only process SQL text files.\nPlease export an SQL file from your SQLite database and try again.'

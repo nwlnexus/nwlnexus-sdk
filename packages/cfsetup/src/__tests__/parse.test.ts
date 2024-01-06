@@ -1,5 +1,6 @@
 import type { Message } from '../parse';
 
+import { fail } from 'node:assert';
 import { describe, expect, it } from 'vitest';
 
 import { formatMessage, indexLocation, parseJSON, parseJSONC, parseTOML, searchLocation } from '../parse';
@@ -215,7 +216,7 @@ describe('parseJSON', () => {
     } catch (err) {
       expect({ ...(err as Error) }).toStrictEqual({
         name: 'ParseError',
-        text: 'Unexpected string',
+        text: "Expected ':' after property name",
         kind: 'error',
         location: {
           line: 3,

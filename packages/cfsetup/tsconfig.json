@@ -1,25 +1,15 @@
 {
-  "root": true,
+  "extends": "@nwlnexus/typescript-config/base.json",
   "compilerOptions": {
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true,
-    "isolatedModules": true,
-    "incremental": false,
+    "jsx": "react",
+    "lib": ["esnext"],
     "module": "CommonJS",
-    "types": ["node"],
     "moduleDetection": "auto",
     "moduleResolution": "node",
     "outDir": "dist",
-    "removeComments": true,
-    "lib": ["esnext"],
-    "jsx": "react",
-    "resolveJsonModule": true,
-    "skipLibCheck": true,
     "sourceMap": true,
-    "alwaysStrict": false,
-    "strict": true,
-    "target": "esnext"
+    "target": "esnext",
+    "types": ["node"]
   },
   "include": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.mjs", "**/*.mts"],
   "exclude": ["node_modules", "dist", "**/*.test.ts", "**/__tests__"]

@@ -102,10 +102,10 @@ export async function select<Values extends string>(text: string, options: Selec
     logger.log(`? ${text}`);
     logger.log(
       `🤖 ${chalk.dim('Using default value in non-interactive context:')} ${chalk.white.bold(
-        options.choices[options.defaultOption].title
+        options.choices[options.defaultOption]?.title
       )}`
     );
-    return options.choices[options.defaultOption].value;
+    return options.choices[options.defaultOption]!.value;
   }
 
   const { value } = await prompts({

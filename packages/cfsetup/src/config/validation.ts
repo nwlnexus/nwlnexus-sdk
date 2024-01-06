@@ -1,3 +1,5 @@
+// noinspection SuspiciousTypeOfGuard,SqlNoDataSourceInspection,UnnecessaryLocalVariableJS,SqlWithoutWhere,JSDeprecatedSymbols,ES6ShorthandObjectProperty
+
 import type { Config, DevConfig, RawConfig, RawDevConfig } from './config';
 import type {
   DeprecatedUpload,
@@ -344,7 +346,7 @@ function normalizeAndValidateMigrations(
     return [];
   } else {
     for (let i = 0; i < rawMigrations.length; i++) {
-      const { tag, new_classes, renamed_classes, deleted_classes, ...rest } = rawMigrations[i];
+      const { tag, new_classes, renamed_classes, deleted_classes, ...rest } = rawMigrations[i]!;
 
       validateAdditionalProperties(diagnostics, 'migrations', Object.keys(rest), []);
 
@@ -1833,19 +1835,19 @@ const validateBindingsHaveUniqueNames = (
   const bindingsGroupedByName: Record<string, string[]> = {};
 
   for (const bindingType in bindingsGroupedByType) {
-    const bindingNames = bindingsGroupedByType[bindingType];
+    const bindingNames = bindingsGroupedByType[bindingType]!;
 
     for (const bindingName of bindingNames) {
       if (!(bindingName in bindingsGroupedByName)) {
         bindingsGroupedByName[bindingName] = [];
       }
 
-      bindingsGroupedByName[bindingName].push(bindingType);
+      bindingsGroupedByName[bindingName]!.push(bindingType);
     }
   }
 
   for (const bindingName in bindingsGroupedByName) {
-    const bindingTypes = bindingsGroupedByName[bindingName];
+    const bindingTypes = bindingsGroupedByName[bindingName]!;
     if (bindingTypes.length < 2) {
       // there's only one (or zero) binding(s) with this name, which is fine, actually
       continue;

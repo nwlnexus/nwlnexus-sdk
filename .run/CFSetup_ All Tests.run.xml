@@ -1,9 +1,9 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="All Tests" type="JavaScriptTestRunnerVitest" nameIsGenerated="true">
-    <config value="$PROJECT_DIR$/pages_apps/helios/vitest.config.ts" />
+  <configuration default="false" name="CFSetup: All Tests" type="JavaScriptTestRunnerVitest">
+    <config value="$PROJECT_DIR$/packages/cfsetup/vitest.config.mts" />
     <node-interpreter value="project" />
     <vitest-package value="$PROJECT_DIR$/node_modules/vitest" />
-    <working-dir value="$PROJECT_DIR$" />
+    <working-dir value="$PROJECT_DIR$/packages/cfsetup" />
     <vitest-options value="--watch" />
     <envs />
     <scope-kind value="ALL" />

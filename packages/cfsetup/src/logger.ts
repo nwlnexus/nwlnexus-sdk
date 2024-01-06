@@ -70,7 +70,7 @@ export class Logger {
   warn = (...args: unknown[]) => this.doLog('warn', args);
   error = (...args: unknown[]) => this.doLog('error', args);
   table<Keys extends string>(data: TableRow<Keys>[]) {
-    const keys: Keys[] = data.length === 0 ? [] : (Object.keys(data[0]) as Keys[]);
+    const keys: Keys[] = data.length === 0 ? [] : (Object.keys(data[0]!) as Keys[]);
     const t = new CLITable({
       head: keys,
       style: {
@@ -110,7 +110,7 @@ export class Logger {
         color: true,
         kind,
         terminalWidth: this.columns
-      })[0];
+      })[0]!;
     } else {
       return message;
     }

@@ -1,4 +1,4 @@
-import { describe, expect, it, suite } from 'vitest';
+import { describe, expect, suite, test } from 'vitest';
 
 import { endEventLoop } from './helpers/end-event-loop';
 import { mockConsoleMethods } from './helpers/mock-console';
@@ -8,24 +8,23 @@ suite('cfsetup', async () => {
   const std = mockConsoleMethods();
 
   describe('no command', () => {
-    it('should display a list of commands', async () => {
+    test('should display a list of commands', async () => {
       await runCfsetup();
 
       expect(std.out).toMatchInlineSnapshot(`
         "cfsetup
 
         Commands:
-          cfsetup init                       ✨  Create local repository project
-          cfsetup dump                       ✨  Dump current environment variables and parsed files
-          cfsetup prepare                    🥣 Prepare local development environment
-          cfsetup reset <storage> [options]  💥 Reset local Cloudflare Storage assets
-          cfsetup pages                      ⚡️ Manage CF Pages Project
-          cfsetup deploy                     🚀 Deploy local project
+          cfsetup init     ✨ Create local repository project
+          cfsetup dump     ✨ Dump current environment variables and parsed files
+          cfsetup prepare  🥣 Prepare local development environment
+          cfsetup reset    💥 Reset local Cloudflare Storage assets
+          cfsetup pages    ⚡️ Manage CF Pages Project
+          cfsetup deploy   🚀 Deploy local project
 
         Flags:
           -j, --experimental-json-config  Experimental: Support wrangler.json  [boolean]
           -w, --wrangler-config           Path to .toml configuration file  [string]
-              --yaml                      Output in YAML format  [boolean]
               --debug                     Debug mode  [boolean]
           -h, --help                      Show help  [boolean]
           -v, --version                   Show version number  [boolean]"
@@ -36,24 +35,23 @@ suite('cfsetup', async () => {
   });
 
   describe('invalid command', () => {
-    it('should display an error', async () => {
+    test('should display an error', async () => {
       await expect(runCfsetup('invalid-command')).resolves.toThrowErrorMatchingInlineSnapshot(`undefined`);
       expect(std.out).toMatchInlineSnapshot(`
         "
         cfsetup
 
         Commands:
-          cfsetup init                       ✨  Create local repository project
-          cfsetup dump                       ✨  Dump current environment variables and parsed files
-          cfsetup prepare                    🥣 Prepare local development environment
-          cfsetup reset <storage> [options]  💥 Reset local Cloudflare Storage assets
-          cfsetup pages                      ⚡️ Manage CF Pages Project
-          cfsetup deploy                     🚀 Deploy local project
+          cfsetup init     ✨ Create local repository project
+          cfsetup dump     ✨ Dump current environment variables and parsed files
+          cfsetup prepare  🥣 Prepare local development environment
+          cfsetup reset    💥 Reset local Cloudflare Storage assets
+          cfsetup pages    ⚡️ Manage CF Pages Project
+          cfsetup deploy   🚀 Deploy local project
 
         Flags:
           -j, --experimental-json-config  Experimental: Support wrangler.json  [boolean]
           -w, --wrangler-config           Path to .toml configuration file  [string]
-              --yaml                      Output in YAML format  [boolean]
               --debug                     Debug mode  [boolean]
           -h, --help                      Show help  [boolean]
           -v, --version                   Show version number  [boolean]"
@@ -68,7 +66,7 @@ suite('cfsetup', async () => {
   });
 
   describe('subcommand implicit help ran on incomplete command execution', () => {
-    it("no subcommand for 'pages' should display a list of available subcommands", async () => {
+    test("no subcommand for 'pages' should display a list of available subcommands", async () => {
       await runCfsetup('pages');
       await endEventLoop();
 
@@ -84,14 +82,13 @@ suite('cfsetup', async () => {
         Flags:
           -j, --experimental-json-config  Experimental: Support wrangler.json  [boolean]
           -w, --wrangler-config           Path to .toml configuration file  [string]
-              --yaml                      Output in YAML format  [boolean]
               --debug                     Debug mode  [boolean]
           -h, --help                      Show help  [boolean]
           -v, --version                   Show version number  [boolean]"
       `);
     });
 
-    it("no subcommand for 'prepare' should display a list of available subcommands", async () => {
+    test("no subcommand for 'prepare' should display a list of available subcommands", async () => {
       await runCfsetup('prepare');
       await endEventLoop();
 
@@ -101,14 +98,14 @@ suite('cfsetup', async () => {
       🥣 Prepare local development environment
 
       Commands:
-        cfsetup prepare d1  Prepare D1 Database
-        cfsetup prepare kv  Prepare KV Namespace
-        cfsetup prepare r2  Prepare R2 Bucket
+        cfsetup prepare all  Prepare all CF assets
+        cfsetup prepare d1   Prepare D1 Database
+        cfsetup prepare kv   Prepare KV Namespace
+        cfsetup prepare r2   Prepare R2 Bucket
 
       Flags:
         -j, --experimental-json-config  Experimental: Support wrangler.json  [boolean]
         -w, --wrangler-config           Path to .toml configuration file  [string]
-            --yaml                      Output in YAML format  [boolean]
             --debug                     Debug mode  [boolean]
         -h, --help                      Show help  [boolean]
         -v, --version                   Show version number  [boolean]"

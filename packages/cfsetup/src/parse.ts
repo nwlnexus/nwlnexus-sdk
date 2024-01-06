@@ -143,10 +143,10 @@ export function parseJSONC<T>(input: string, file?: string): T {
   const data = jsoncParse(input, errors);
   if (errors.length) {
     throw new ParseError({
-      text: printParseErrorCode(errors[0].error),
+      text: printParseErrorCode(errors[0]!.error),
       location: {
-        ...indexLocation({ file, fileText: input }, errors[0].offset + 1),
-        length: errors[0].length
+        ...indexLocation({ file, fileText: input }, errors[0]!.offset + 1),
+        length: errors[0]!.length
       }
     });
   }

@@ -67,10 +67,6 @@ function createCLIParser(argv: string[]) {
       describe: `Experimental: Support wrangler.json`,
       type: 'boolean'
     })
-    .option('yaml', {
-      description: 'Output in YAML format',
-      type: 'boolean'
-    })
     .option('debug', {
       description: 'Debug mode',
       type: 'boolean'
@@ -81,7 +77,7 @@ function createCLIParser(argv: string[]) {
       type: 'boolean'
     });
 
-  cfsetup.group(['experimental-json-config', 'wrangler-config', 'yaml', 'debug', 'help', 'version'], 'Flags:');
+  cfsetup.group(['experimental-json-config', 'wrangler-config', 'debug', 'help', 'version'], 'Flags:');
   cfsetup.help().alias('h', 'help');
 
   // Default help command that supports the subcommands
@@ -120,27 +116,40 @@ function createCLIParser(argv: string[]) {
   // I wish we could enforce this pattern, but this comment will have to do for now.
   // (It's also annoying that choices[] doesn't get inferred as an enum. 🤷‍♂.)
 
-  //init
-  cfsetup.command('init', '✨  Create local repository project', {}, () => {
+  /**
+   * Init command
+   */
+  cfsetup.command('init', '✨ Create local repository project', {}, () => {
     logger.log('Not yet implemented');
   });
 
-  cfsetup.command('dump', '✨  Dump current environment variables and parsed files', dumpOptions, dumpHandler);
+  /**
+   * Dump command
+   */
+  cfsetup.command('dump', '✨ Dump current environment variables and parsed files', dumpOptions, dumpHandler);
 
-  //prepare
+  /**
+   * Prepare command
+   */
   cfsetup.command('prepare', '🥣 Prepare local development environment', prepareYargs => {
     return prepare(prepareYargs.command(subHelp));
   });
 
-  //reset
-  cfsetup.command('reset <storage> [options]', '💥 Reset local Cloudflare Storage assets', resetOptions, resetHandler);
+  /**
+   * Reset command
+   */
+  cfsetup.command('reset', '💥 Reset local Cloudflare Storage assets', resetOptions, resetHandler);
 
-  //project
+  /**
+   * Project command
+   */
   cfsetup.command('pages', '⚡️ Manage CF Pages Project', pagesYargs => {
     return pages(pagesYargs.command(subHelp));
   });
 
-  //deploy
+  /**
+   * Deploy command
+   */
   cfsetup.command('deploy', '🚀 Deploy local project', {}, () => {
     logger.log('Not yet implemented');
   });
@@ -148,7 +157,9 @@ function createCLIParser(argv: string[]) {
   // This set is to false which allows overwriting of default behaviour
   cfsetup.version(false);
 
-  // version
+  /**
+   * Version command
+   */
   cfsetup.command(
     'version',
     false,
@@ -180,7 +191,7 @@ export async function main(argv: string[]): Promise<void> {
       await createCLIParser([...argv, '--help']).parse();
     } else if (e instanceof ParseError) {
       e.notes.push({
-        text: '\nIf you think this is a bug, please open an issue at: https://github.com/cloudflare/workers-sdk/issues/new/choose'
+        text: '\nIf you think this is a bug, please open an issue at: https://github.com/nwlnexus/nwlnexus-sdk/issues/new/choose'
       });
       logger.log(formatMessage(e));
     } else if (e instanceof Error && e.message.includes('Raw mode is not supported on')) {

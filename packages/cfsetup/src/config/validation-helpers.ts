@@ -171,12 +171,12 @@ function unwindPropertyPath<T extends object>(
   let container: object = root;
   const parts = (path as string).split('.');
   for (let i = 0; i < parts.length - 1; i++) {
-    if (!hasProperty(container, parts[i])) {
+    if (!hasProperty(container, parts[i]!)) {
       return;
     }
-    container = container[parts[i]];
+    container = container[parts[i]!]!;
   }
-  return { container, field: parts[parts.length - 1] };
+  return { container, field: parts![parts.length - 1]! };
 }
 
 /**

@@ -14,6 +14,7 @@ export function CmdOptions(yargs: CommonYargsArgv) {
 }
 
 type KVHandlerOptions = StrictYargsOptionsToInterface<typeof CmdOptions>;
+
 export const CmdHandler = withWranglerConfig<KVHandlerOptions>(
   async ({ wranglerConfig, persistTo, reset = false, seed }): Promise<void> => {
     logger.log(seed);

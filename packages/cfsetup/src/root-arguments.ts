@@ -3,7 +3,6 @@
 import type { ArgumentsCamelCase, Argv, CamelCaseKey } from 'yargs';
 
 export type CommonYargsOptions = {
-  yaml: boolean | undefined;
   debug: boolean | undefined;
   v: boolean | undefined;
   'wrangler-config': string | undefined;

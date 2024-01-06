@@ -23,8 +23,8 @@ export async function printCfSetupBanner(performUpdateCheck = true) {
 
   // Log a slightly more noticeable message if this is a major bump
   if (maybeNewVersion !== undefined) {
-    const currentMajor = parseInt(cfsetupVersion.split('.')[0]);
-    const newMajor = parseInt(maybeNewVersion.split('.')[0]);
+    const currentMajor = parseInt(cfsetupVersion.split('.')[0]!);
+    const newMajor = parseInt(maybeNewVersion.split('.')[0]!);
     if (newMajor > currentMajor) {
       logger.warn(
         `The version of CFSetup you are using is now out-of-date.
