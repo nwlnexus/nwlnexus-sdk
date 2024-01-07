@@ -1,12 +1,14 @@
-import type { D1Result } from '@cloudflare/workers-types/experimental';
+import type { ResultSet } from '@libsql/client';
+import type { LibSQLDatabase } from 'drizzle-orm/libsql';
 import type { Config, ConfigFields, DevConfig, Environment } from '../config';
 import type { Database, Migration, QueryResult } from './types';
 
 import assert from 'node:assert';
 import crypto from 'node:crypto';
 import fs from 'node:fs';
+import { isArray } from 'node:util';
 import path from 'path';
-import { Miniflare } from 'miniflare';
+import { sql } from 'drizzle-orm';
 
 import { confirm } from '../dialogs';
 import { CI } from '../is-ci';
@@ -50,19 +52,21 @@ export async function getUnappliedMigrations({
   migrationsPath,
   wranglerConfig,
   name,
+  client,
   persistTo
 }: {
   migrationsTableName: string;
   migrationsPath: string;
   wranglerConfig: ConfigFields<DevConfig> & Environment;
   name: string;
+  client: LibSQLDatabase<Record<string, never>>;
   persistTo: string;
 }): Promise<Array<string>> {
-  const appliedMigrations = (await listAppliedMigrations(migrationsTableName, wranglerConfig, name, persistTo)).map(
-    migration => {
-      return migration.name;
-    }
-  );
+  const appliedMigrations = (
+    await listAppliedMigrations(migrationsTableName, wranglerConfig, name, client, persistTo)
+  ).map(migration => {
+    return migration.name;
+  });
   const projectMigrations = getMigrationNames(migrationsPath);
 
   const unappliedMigrations: Array<string> = [];
@@ -80,11 +84,13 @@ const listAppliedMigrations = async (
   migrationsTableName: string,
   wranglerConfig: ConfigFields<DevConfig> & Environment,
   name: string,
+  client: LibSQLDatabase<Record<string, never>>,
   persistTo: string
 ): Promise<Migration[]> => {
   const response: QueryResult[] | null = await executeSql({
     wranglerConfig,
     name,
+    client,
     shouldPrompt: isInteractive() && !CI.isCI(),
     persistTo,
     command: `SELECT *
@@ -132,21 +138,25 @@ export const initMigrationsTable = async ({
   migrationsTableName,
   wranglerConfig,
   name,
+  client,
   persistTo
 }: {
   migrationsTableName: string;
   wranglerConfig: ConfigFields<DevConfig> & Environment;
   name: string;
+  client: LibSQLDatabase<Record<string, never>>;
   persistTo: string;
 }) => {
   return executeSql({
     wranglerConfig,
     name,
+    client,
     shouldPrompt: isInteractive() && !CI.isCI(),
     persistTo,
     command: `CREATE TABLE IF NOT EXISTS ${migrationsTableName}(
 		id         INTEGER PRIMARY KEY AUTOINCREMENT,
 		name       TEXT UNIQUE,
+    hash       TEXT UNIQUE,
 		applied_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
 );`,
     file: undefined,
@@ -157,6 +167,7 @@ export const initMigrationsTable = async ({
 export async function executeSql({
   wranglerConfig,
   name,
+  client,
   persistTo,
   file,
   command,
@@ -164,6 +175,7 @@ export async function executeSql({
 }: {
   wranglerConfig: ConfigFields<DevConfig> & Environment;
   name: string;
+  client: LibSQLDatabase<Record<string, never>>;
   shouldPrompt: boolean | undefined;
   persistTo: string;
   file: string | undefined;
@@ -172,17 +184,17 @@ export async function executeSql({
 }) {
   const existingLogLevel = logger.loggerLevel;
   if (json) {
-    // set loggerLevel to error to avoid logs appearing in JSON output
     logger.loggerLevel = 'error';
+  } else {
+    logger.loggerLevel = 'info';
   }
   const sql = file ? readFileSync(file) : command;
-  if (!sql) throw new Error(`Error: must provide --command or --file.`);
+  if (!sql) throw new Error(`Error: must provide command or file.`);
   logger.log(`🌀 Mapping SQL input into an array of statements`);
   const queries = splitSqlQuery(sql);
 
   if (file && sql) {
     if (queries[0]!.startsWith('SQLite format 3')) {
-      //TODO: update this error to recommend using `wrangler d1 restore` when it exists
       throw new Error(
         'Provided file is a binary SQLite database file instead of an SQL text file.\nThe execute command can only process SQL text files.\nPlease export an SQL file from your SQLite database and try again.'
       );
@@ -191,22 +203,24 @@ export async function executeSql({
   const result = await executeLocally({
     wranglerConfig,
     name,
+    client,
     queries,
     persistTo
   });
-  console.log(result);
   if (json) logger.loggerLevel = existingLogLevel;
-  return result;
+  return null;
 }
 
 async function executeLocally({
   wranglerConfig,
   name,
+  client,
   queries,
   persistTo
 }: {
   wranglerConfig: Config;
   name: string;
+  client: LibSQLDatabase<Record<string, never>>;
   queries: string[];
   persistTo: string;
 }) {
@@ -216,42 +230,19 @@ async function executeLocally({
   }
 
   const id = localDB.previewDatabaseUuid ?? localDB.uuid;
-  const d1Persist = persistTo;
-  // const d1Persist = getPersistencePath(persistTo, 'd1') as string;
-  console.log(`🌀 Executing on local database ${name} (${id}) from ${readableRelative(d1Persist)}:`);
+  logger.log(`🌀 Executing on local database ${name} (${id}) from ${readableRelative(persistTo)}:`);
 
-  logger.log(`🌀 Executing on local database ${name} (${id}) from ${readableRelative(d1Persist)}:`);
-
-  const mf = new Miniflare({
-    modules: true,
-    script: '',
-    d1Persist,
-    d1Databases: { DATABASE: id }
-  });
-  const db = await mf.getD1Database('DATABASE');
-
-  let results: D1Result<Record<string, string | number | boolean>>[];
+  let results: ResultSet;
   try {
-    results = await db.batch(queries.map(query => db.prepare(query)));
+    for (const q of queries) {
+      results = await client.run(sql.raw(q)).execute();
+    }
   } catch (e: unknown) {
     throw (e as { cause?: unknown })?.cause ?? e;
-  } finally {
-    await mf.dispose();
   }
-  assert(Array.isArray(results));
-  return results.map<QueryResult>(result => ({
-    results: (result.results ?? []).map(row =>
-      Object.fromEntries(
-        Object.entries(row).map(([key, value]) => {
-          if (Array.isArray(value)) value = `[${value.join(', ')}]`;
-          if (value === null) value = 'null';
-          return [key, value];
-        })
-      )
-    ),
-    success: result.success,
-    meta: { duration: result.meta?.duration }
-  }));
+
+  // assert(Array.isArray(results));
+  return results;
 }
 
 export function getDatabaseInfoFromConfig(wranglerConfig: Config, name: string): Database | null {

@@ -6,7 +6,6 @@ import path from 'node:path';
 import React from 'react';
 import { createClient } from '@libsql/client';
 import { drizzle } from 'drizzle-orm/libsql';
-import { migrate } from 'drizzle-orm/libsql/migrator';
 import { globSync } from 'glob';
 import { Box, Text } from 'ink';
 import Table from 'ink-table';
@@ -17,7 +16,7 @@ import { logger } from '../logger';
 import { resetCFAssets } from '../reset';
 import { renderToString } from '../utils/render';
 import { DEFAULT_MIGRATION_PATH, DEFAULT_MIGRATION_TABLE, MF_D1_PREFIX } from './constants';
-import { durableObjectNamespaceIdFromName, getPersistencePath } from './helpers';
+import { durableObjectNamespaceIdFromName, getPersistencePath, initMigrationsTable } from './helpers';
 import { CommonOptions } from './index';
 
 export function CmdOptions(yargs: CommonYargsArgv) {
@@ -62,8 +61,14 @@ export const CmdHandler = withWranglerConfig<D1HandlerOptions>(
           }
 
           const dbClient = createClient({ url: 'file:' + path.join(d1PersistPath, `${hashedBindingPath}.sqlite`) });
-          const localDB = drizzle(dbClient);
-          await migrate(localDB, { migrationsFolder: migrationsPath, migrationsTable: migrationsTableName });
+          const client = drizzle(dbClient);
+          await initMigrationsTable({
+            name: database.binding,
+            client,
+            migrationsTableName,
+            persistTo: d1PersistPath,
+            wranglerConfig
+          });
           //
           //   const unappliedMigrations = (
           //     await getUnappliedMigrations({

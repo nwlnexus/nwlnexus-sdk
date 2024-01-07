@@ -5,7 +5,9 @@ export default defineProject({
     environment: 'node',
     setupFiles: ['src/__tests__/vitest.setup.ts'],
     coverage: {
-      provider: 'istanbul'
+      provider: 'istanbul',
+      reporter: ['text', 'json-summary', 'json'],
+      reportOnFailure: true,
     }
   }
 });

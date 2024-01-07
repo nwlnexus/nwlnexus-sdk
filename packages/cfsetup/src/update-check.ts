@@ -36,6 +36,7 @@ Please update to the latest version to prevent critical errors.`
 
 async function doUpdateCheck(): Promise<string | undefined> {
   let update: Result | null = null;
+
   try {
     // default cache for update check is 1 day
     update = await checkForUpdate(pkg, {
