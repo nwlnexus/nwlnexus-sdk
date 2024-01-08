@@ -104,7 +104,7 @@ const listAppliedSQLFiles = async (
 
   if (!response || !Array.isArray(response) || response.length === 0) return [];
 
-  return response.rows as unknown as Migration[];
+  return response;
 };
 
 /**
