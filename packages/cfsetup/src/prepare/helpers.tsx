@@ -1,14 +1,12 @@
-import type { ResultSet } from '@libsql/client';
-import type { LibSQLDatabase } from 'drizzle-orm/libsql';
+import type { Client, ResultSet } from '@libsql/client';
 import type { Config, ConfigFields, DevConfig, Environment } from '../config';
-import type { Database, Migration, QueryResult } from './types';
+import type { Database, Migration } from './types';
 
-import assert from 'node:assert';
 import crypto from 'node:crypto';
 import fs from 'node:fs';
-import { isArray } from 'node:util';
 import path from 'path';
 import { sql } from 'drizzle-orm';
+import { drizzle } from 'drizzle-orm/libsql';
 
 import { confirm } from '../dialogs';
 import { CI } from '../is-ci';
@@ -47,47 +45,51 @@ export async function getMigrationsPath({
   throw new Error(`No migrations present at ${dir}.`);
 }
 
-export async function getUnappliedMigrations({
+/**
+ *  Queries the database to determine which sql files have not been applied/acted on yet
+ */
+export async function getUnappliedSQLFiles({
   migrationsTableName,
-  migrationsPath,
+  sqlFilesPath,
   wranglerConfig,
   name,
   client,
   persistTo
 }: {
   migrationsTableName: string;
-  migrationsPath: string;
+  sqlFilesPath: string;
   wranglerConfig: ConfigFields<DevConfig> & Environment;
   name: string;
-  client: LibSQLDatabase<Record<string, never>>;
+  client: Client;
   persistTo: string;
 }): Promise<Array<string>> {
-  const appliedMigrations = (
-    await listAppliedMigrations(migrationsTableName, wranglerConfig, name, client, persistTo)
-  ).map(migration => {
-    return migration.name;
-  });
-  const projectMigrations = getMigrationNames(migrationsPath);
+  const appliedSqlFiles = (await listAppliedSQLFiles(migrationsTableName, wranglerConfig, name, client, persistTo)).map(
+    migration => {
+      return migration.name;
+    }
+  );
 
-  const unappliedMigrations: Array<string> = [];
+  const projectSqlFiles = getSQLFilesNames(sqlFilesPath);
 
-  for (const migration of projectMigrations) {
-    if (!appliedMigrations.includes(migration)) {
-      unappliedMigrations.push(migration);
+  const unappliedSqlFiles: Array<string> = [];
+
+  for (const sqlFile of projectSqlFiles) {
+    if (!appliedSqlFiles.includes(sqlFile)) {
+      unappliedSqlFiles.push(sqlFile);
     }
   }
 
-  return unappliedMigrations;
+  return unappliedSqlFiles;
 }
 
-const listAppliedMigrations = async (
+const listAppliedSQLFiles = async (
   migrationsTableName: string,
   wranglerConfig: ConfigFields<DevConfig> & Environment,
   name: string,
-  client: LibSQLDatabase<Record<string, never>>,
+  client: Client,
   persistTo: string
 ): Promise<Migration[]> => {
-  const response: QueryResult[] | null = await executeSql({
+  const response = await executeSql({
     wranglerConfig,
     name,
     client,
@@ -100,15 +102,19 @@ const listAppliedMigrations = async (
     json: true
   });
 
-  if (!response || response[0]!.results.length === 0) return [];
+  if (!response || !Array.isArray(response) || response.length === 0) return [];
 
-  return response[0]!.results as Migration[];
+  return response.rows as unknown as Migration[];
 };
 
-function getMigrationNames(migrationsPath: string): Array<string> {
+/**
+ *  Searches a directory path and finds all files ending in '.sql'
+ *  and return list of found files or empty array.
+ */
+function getSQLFilesNames(p: string): Array<string> {
   const migrations = [];
 
-  const dir = fs.opendirSync(migrationsPath);
+  const dir = fs.opendirSync(p);
 
   let dirent;
   while ((dirent = dir.readSync()) !== null) {
@@ -123,7 +129,7 @@ function getMigrationNames(migrationsPath: string): Array<string> {
 export function getNextMigrationNumber(migrationsPath: string): number {
   let highestMigrationNumber = -1;
 
-  for (const migration in getMigrationNames(migrationsPath)) {
+  for (const migration in getSQLFilesNames(migrationsPath)) {
     const migrationNumber = parseInt(migration.split('_')[0]!);
 
     if (migrationNumber > highestMigrationNumber) {
@@ -144,7 +150,7 @@ export const initMigrationsTable = async ({
   migrationsTableName: string;
   wranglerConfig: ConfigFields<DevConfig> & Environment;
   name: string;
-  client: LibSQLDatabase<Record<string, never>>;
+  client: Client;
   persistTo: string;
 }) => {
   return executeSql({
@@ -175,7 +181,7 @@ export async function executeSql({
 }: {
   wranglerConfig: ConfigFields<DevConfig> & Environment;
   name: string;
-  client: LibSQLDatabase<Record<string, never>>;
+  client: Client;
   shouldPrompt: boolean | undefined;
   persistTo: string;
   file: string | undefined;
@@ -188,13 +194,13 @@ export async function executeSql({
   } else {
     logger.loggerLevel = 'info';
   }
-  const sql = file ? readFileSync(file) : command;
-  if (!sql) throw new Error(`Error: must provide command or file.`);
+  const sqlQuery = file ? readFileSync(file) : command;
+  if (!sqlQuery) throw new Error(`Error: must provide command or file.`);
   logger.log(`🌀 Mapping SQL input into an array of statements`);
-  const queries = splitSqlQuery(sql);
+  const queries = splitSqlQuery(sqlQuery);
 
-  if (file && sql) {
-    if (queries[0]!.startsWith('SQLite format 3')) {
+  if (file && sqlQuery) {
+    if (queries[0] && queries[0].startsWith('SQLite format 3')) {
       throw new Error(
         'Provided file is a binary SQLite database file instead of an SQL text file.\nThe execute command can only process SQL text files.\nPlease export an SQL file from your SQLite database and try again.'
       );
@@ -208,7 +214,7 @@ export async function executeSql({
     persistTo
   });
   if (json) logger.loggerLevel = existingLogLevel;
-  return null;
+  return result;
 }
 
 async function executeLocally({
@@ -220,28 +226,29 @@ async function executeLocally({
 }: {
   wranglerConfig: Config;
   name: string;
-  client: LibSQLDatabase<Record<string, never>>;
+  client: Client;
   queries: string[];
   persistTo: string;
 }) {
   const localDB = getDatabaseInfoFromConfig(wranglerConfig, name);
+  const dClient = drizzle(client);
   if (!localDB) {
     throw new Error(`Can't find a DB with name/binding '${name}' in local config. Check info in wrangler.toml...`);
   }
 
   const id = localDB.previewDatabaseUuid ?? localDB.uuid;
-  logger.log(`🌀 Executing on local database ${name} (${id}) from ${readableRelative(persistTo)}:`);
+  console.log(`🌀 Executing on local database ${name} (${id}) from ${readableRelative(persistTo)}`);
 
-  let results: ResultSet;
+  const results: ResultSet[] = [];
   try {
     for (const q of queries) {
-      results = await client.run(sql.raw(q)).execute();
+      results.push(await dClient.run(sql.raw(q)).execute());
     }
   } catch (e: unknown) {
     throw (e as { cause?: unknown })?.cause ?? e;
   }
-
   // assert(Array.isArray(results));
+  // @ts-ignore
   return results;
 }
 

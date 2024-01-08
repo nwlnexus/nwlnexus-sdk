@@ -19,9 +19,9 @@ export const profiles = sqliteTable(
     displayName: text('display_name').notNull(),
     ...commonTime
   },
-  profiles => ({
-    userEmailIdx: uniqueIndex('users_email_idx').on(profiles.email),
-    providerIdx: index('provider_idx').on(profiles.authProvider)
+  table => ({
+    userEmailIdx: uniqueIndex('users_email_idx').on(table.email),
+    providerIdx: index('provider_idx').on(table.authProvider)
   })
 );
 
@@ -38,8 +38,8 @@ export const tenants = sqliteTable(
     status: integer('status', { mode: 'boolean' }),
     ...commonTime
   },
-  tenants => ({
-    tenantNameIdx: uniqueIndex('tenant_name_idx').on(tenants.sanitizedName)
+  table => ({
+    tenantNameIdx: uniqueIndex('tenant_name_idx').on(table.sanitizedName)
   })
 );
 
@@ -111,11 +111,11 @@ export const locations = sqliteTable(
     }),
     ...commonTime
   },
-  locations => ({
-    locNameIdx: index('location_name_idx').on(locations.name),
-    locDistrictIdx: index('location_district_idx').on(locations.district),
-    locRegionIdx: index('location_region_idx').on(locations.region),
-    locCodeIdx: uniqueIndex('location_code_idx').on(locations.code)
+  table => ({
+    locNameIdx: index('location_name_idx').on(table.name),
+    locDistrictIdx: index('location_district_idx').on(table.district),
+    locRegionIdx: index('location_region_idx').on(table.region),
+    locCodeIdx: uniqueIndex('location_code_idx').on(table.code)
   })
 );
 
@@ -143,10 +143,10 @@ export const nodes = sqliteTable(
     xiq_nodeId: text('xiq_node_id'),
     ...commonTime
   },
-  nodes => ({
-    nodeNameIdx: uniqueIndex('node_name_idx').on(nodes.name),
-    serialIdx: uniqueIndex('serial_idx').on(nodes.serial),
-    manufacturerIdx: index('manu_idx').on(nodes.manufacturer),
-    modelIdx: index('model_idx').on(nodes.model)
+  table => ({
+    nodeNameIdx: uniqueIndex('node_name_idx').on(table.name),
+    serialIdx: uniqueIndex('serial_idx').on(table.serial),
+    manufacturerIdx: index('manu_idx').on(table.manufacturer),
+    modelIdx: index('model_idx').on(table.model)
   })
 );

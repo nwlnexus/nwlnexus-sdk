@@ -11,6 +11,7 @@ export type Database = {
 export type Migration = {
   id: string;
   name: string;
+  hash: string;
   applied_at: string;
 };
 
