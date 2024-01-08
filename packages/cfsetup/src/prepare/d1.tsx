@@ -7,7 +7,6 @@ import fs from 'node:fs';
 import path from 'node:path';
 import React from 'react';
 import { createClient } from '@libsql/client';
-import { globSync } from 'glob';
 import { Box, Text } from 'ink';
 import Table from 'ink-table';
 
@@ -121,7 +120,6 @@ export const CmdHandler = withWranglerConfig<D1HandlerOptions>(
 
           if (unappliedMigrations.length === 0) {
             logger.log(renderToString(<Text>✅ No migrations to apply!</Text>));
-            return;
           } else {
             logger.log(
               renderToString(
@@ -131,108 +129,187 @@ export const CmdHandler = withWranglerConfig<D1HandlerOptions>(
                 </Box>
               )
             );
-          }
 
-          const ok = await confirm(`About to apply ${unappliedMigrations.length} migration(s)
+            const ok = await confirm(`About to apply ${unappliedMigrations.length} migration(s)
 Your database may not be available to serve requests during the operation, continue?`);
-          if (!ok) return;
-
-          for (const migration of unappliedMigrations) {
-            let query = fs.readFileSync(`${migrationsPath}/${migration.name}`, 'utf-8');
-            query += `
+            if (ok) {
+              for (const migration of unappliedMigrations) {
+                let query = fs.readFileSync(`${migrationsPath}/${migration.name}`, 'utf-8');
+                query += `
                         INSERT INTO ${migrationsTableName} (name, hash)
                         values ('${migration.name}',
                                 '${crypto.createHash('sha1').update(query).digest('hex')}');
                     `;
 
-            let success = true;
-            let errorNotes: string[] = [];
-            try {
-              const response = await executeSql({
-                client: dbClient,
-                command: query,
-                file: undefined,
-                json: undefined,
-                name: database.binding,
-                persistTo,
-                shouldPrompt: isInteractive() && !CI.isCI(),
-                wranglerConfig
-              });
+                let success = true;
+                let errorNotes: string[] = [];
+                try {
+                  const response = await executeSql({
+                    client: dbClient,
+                    command: query,
+                    file: undefined,
+                    json: undefined,
+                    name: database.binding,
+                    persistTo,
+                    shouldPrompt: isInteractive() && !CI.isCI(),
+                    wranglerConfig
+                  });
 
-              if (response === null) return;
-            } catch (e) {
-              const err = e as ParseError;
-              const maybeCause = (err.cause ?? err) as Error;
+                  if (response === null) return;
+                } catch (e) {
+                  const err = e as ParseError;
+                  const maybeCause = (err.cause ?? err) as Error;
 
-              success = false;
-              errorNotes = err.notes?.map(msg => msg.text) ?? [maybeCause?.message ?? maybeCause.toString()];
-            }
+                  success = false;
+                  errorNotes = err.notes?.map(msg => msg.text) ?? [maybeCause?.message ?? maybeCause.toString()];
+                }
 
-            migration.status = success ? '✅' : '❌';
+                migration.status = success ? '✅' : '❌';
 
-            logger.log(
-              renderToString(
-                <Box flexDirection='column'>
-                  <Table data={unappliedMigrations} columns={['name', 'status']} />
-                  {errorNotes.length > 0 && (
+                console.log(
+                  renderToString(
                     <Box flexDirection='column'>
-                      <Text>&nbsp;</Text>
-                      <Text>
-                        ❌ Migration {migration.name} {errorNotes.length > 0 ? 'failed with the following errors:' : ''}
-                      </Text>
+                      <Table data={unappliedMigrations} columns={['name', 'status']} />
+                      {errorNotes.length > 0 && (
+                        <Box flexDirection='column'>
+                          <Text>&nbsp;</Text>
+                          <Text>
+                            ❌ Migration {migration.name}{' '}
+                            {errorNotes.length > 0 ? 'failed with the following errors:' : ''}
+                          </Text>
+                        </Box>
+                      )}
                     </Box>
-                  )}
-                </Box>
-              )
-            );
+                  )
+                );
 
-            if (errorNotes.length > 0) {
-              new Error(
-                errorNotes
-                  .map(err => {
-                    return err;
-                  })
-                  .join('\n')
-              );
+                if (errorNotes.length > 0) {
+                  new Error(
+                    errorNotes
+                      .map(err => {
+                        return err;
+                      })
+                      .join('\n')
+                  );
+                }
+              }
             }
           }
 
-          // if (seed) {
-          //   const SEED_DIR = path.join(process.cwd(), 'seeds');
-          //   const SQL_PATTERN = `${SEED_DIR}/**/*.sql`;
-          //
-          //   // Get all SQL seed files
-          //   const seedFiles = globSync(SQL_PATTERN, {
-          //     nodir: true,
-          //     stat: true,
-          //     absolute: true,
-          //     dotRelative: true
-          //   });
-          //
-          //   if (seedFiles.length === 0) {
-          //     logger.log(renderToString(<Text>✅ No SQL seed files!</Text>));
-          //     return;
-          //   } else {
-          //     const unappliedSeedFiles = seedFiles.map(f => {
-          //       return {
-          //         name: f,
-          //         status: '🕒️'
-          //       };
-          //     });
-          //     logger.log(
-          //       renderToString(
-          //         <Box flexDirection='column'>
-          //           <Text>Seeds to be applied:</Text>
-          //           <Table data={unappliedSeedFiles} columns={['name']}></Table>
-          //         </Box>
-          //       )
-          //     );
-          //   }
-          // }
+          if (seed) {
+            const SEED_DIR = path.join(process.cwd(), 'seeds');
 
-          logger.log(`Completed setup of D1 Database: ${database.binding}`);
+            // Get all SQL seed files
+            const unappliedSeedFiles = (
+              await getUnappliedSQLFiles({
+                name: database.binding,
+                client: dbClient,
+                migrationsTableName,
+                persistTo,
+                wranglerConfig,
+                sqlFilesPath: SEED_DIR
+              })
+            )
+              .map(seedFile => {
+                return {
+                  name: seedFile,
+                  status: '🕒️'
+                };
+              })
+              .sort((a, b) => {
+                const migrationNumberA = parseInt(a?.name?.split('_')[0]!);
+                const migrationNumberB = parseInt(b?.name?.split('_')[0]!);
+                if (migrationNumberA < migrationNumberB) {
+                  return -1;
+                }
+                if (migrationNumberA > migrationNumberB) {
+                  return 1;
+                }
+
+                // numbers must be equal
+                return 0;
+              });
+
+            if (unappliedSeedFiles.length === 0) {
+              console.log(renderToString(<Text>✅ No SQL seed files!</Text>));
+            } else {
+              console.log(
+                renderToString(
+                  <Box flexDirection='column'>
+                    <Text>Seeds to be applied:</Text>
+                    <Table data={unappliedSeedFiles} columns={['name']}></Table>
+                  </Box>
+                )
+              );
+
+              const ok = await confirm(`About to apply ${unappliedSeedFiles.length} migration(s)
+Your database may not be available to serve requests during the operation, continue?`);
+              if (ok) {
+                for (const seedFile of unappliedSeedFiles) {
+                  let query = fs.readFileSync(`${SEED_DIR}/${seedFile.name}`, 'utf-8');
+                  query += `
+                        INSERT INTO ${migrationsTableName} (name, hash)
+                        values ('${seedFile.name}',
+                                '${crypto.createHash('sha1').update(query).digest('hex')}');
+                    `;
+
+                  let success = true;
+                  let errorNotes: string[] = [];
+                  try {
+                    const response = await executeSql({
+                      client: dbClient,
+                      command: query,
+                      file: undefined,
+                      json: undefined,
+                      name: database.binding,
+                      persistTo,
+                      shouldPrompt: isInteractive() && !CI.isCI(),
+                      wranglerConfig
+                    });
+
+                    if (response === null) return;
+                  } catch (e) {
+                    const err = e as ParseError;
+                    const maybeCause = (err.cause ?? err) as Error;
+
+                    success = false;
+                    errorNotes = err.notes?.map(msg => msg.text) ?? [maybeCause?.message ?? maybeCause.toString()];
+                  }
+
+                  seedFile.status = success ? '✅' : '❌';
+
+                  console.log(
+                    renderToString(
+                      <Box flexDirection='column'>
+                        <Table data={unappliedSeedFiles} columns={['name', 'status']} />
+                        {errorNotes.length > 0 && (
+                          <Box flexDirection='column'>
+                            <Text>&nbsp;</Text>
+                            <Text>
+                              ❌ Migration {seedFile.name}{' '}
+                              {errorNotes.length > 0 ? 'failed with the following errors:' : ''}
+                            </Text>
+                          </Box>
+                        )}
+                      </Box>
+                    )
+                  );
+
+                  if (errorNotes.length > 0) {
+                    new Error(
+                      errorNotes
+                        .map(err => {
+                          return err;
+                        })
+                        .join('\n')
+                    );
+                  }
+                }
+              }
+            }
+          }
         } catch (e) {
-          logger.error(e);
+          console.error(e);
         }
       }
     } else {

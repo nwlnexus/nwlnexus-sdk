@@ -7,7 +7,7 @@ export default defineProject({
     coverage: {
       provider: 'istanbul',
       reporter: ['text', 'json-summary', 'json'],
-      reportOnFailure: true,
+      reportOnFailure: true
     }
   }
 });

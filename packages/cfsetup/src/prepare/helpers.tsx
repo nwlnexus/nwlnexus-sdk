@@ -68,7 +68,6 @@ export async function getUnappliedSQLFiles({
       return migration.name;
     }
   );
-
   const projectSqlFiles = getSQLFilesNames(sqlFilesPath);
 
   const unappliedSqlFiles: Array<string> = [];
@@ -102,16 +101,16 @@ const listAppliedSQLFiles = async (
     json: true
   });
 
-  if (!response || !Array.isArray(response) || response.length === 0) return [];
+  if (!response || !Array.isArray(response) || response[0]!.rows.length === 0) return [];
 
-  return response.rows as unknown as Migration[];
+  return response[0]!.rows as unknown as Migration[];
 };
 
 /**
  *  Searches a directory path and finds all files ending in '.sql'
  *  and return list of found files or empty array.
  */
-function getSQLFilesNames(p: string): Array<string> {
+export function getSQLFilesNames(p: string): Array<string> {
   const migrations = [];
 
   const dir = fs.opendirSync(p);
@@ -237,7 +236,7 @@ async function executeLocally({
   }
 
   const id = localDB.previewDatabaseUuid ?? localDB.uuid;
-  console.log(`🌀 Executing on local database ${name} (${id}) from ${readableRelative(persistTo)}`);
+  logger.log(`🌀 Executing on local database ${name} (${id}) from ${readableRelative(persistTo)}`);
 
   const results: ResultSet[] = [];
   try {

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
+// noinspection EqualityComparisonWithCoercionJS,JSCheckFunctionSignatures,ES6ConvertRequireIntoImport
 // noinspection EqualityComparisonWithCoercionJS
-
 const { spawn } = require('node:child_process');
 const path = require('node:path');
 
