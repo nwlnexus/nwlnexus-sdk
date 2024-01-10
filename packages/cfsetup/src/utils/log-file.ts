@@ -1,9 +1,9 @@
+import type { LoggerLevel } from '../logger';
+
 import { appendFile, mkdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
-
 import { Mutex } from 'miniflare';
 import { onExit } from 'signal-exit';
-import type { LoggerLevel } from '../logger';
 
 import { getEnvironmentVariableFactory } from '../environment-variables/factory';
 import { getGlobalConfigPath } from '../global-config-path';

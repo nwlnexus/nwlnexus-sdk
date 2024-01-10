@@ -1,61 +1,86 @@
+import type { CommonYargsArgv, StrictYargsOptionsToInterface } from '../root-arguments';
+
 import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
 
-import type { Argv } from 'yargs';
-
-import { STORAGE_MEDIUM } from '../constants';
+import { demandOneOfOption } from '../cli';
+import { withWranglerConfig } from '../config';
 import { logger } from '../logger';
-import { StrictYargsOptionsToInterface } from '../root-arguments';
+import { getPersistencePath } from '../prepare/helpers';
 
-export function resetOptions(args: Argv) {
+export function resetOptions(args: CommonYargsArgv) {
   return args
-    .positional('storage', {
-      choices: STORAGE_MEDIUM,
-      type: 'string',
-      demandOption: true
+    .option('all', {
+      description: 'Reset all storage assets',
+      default: false,
+      demandOption: false,
+      type: 'boolean'
     })
-    .options({
-      'wrangler-file': {
-        description: 'Path to custom wrangler TOML file.',
-        type: 'string',
-        demandOption: true,
-        default: path.join(process.cwd(), './wrangler.toml'),
-        normalize: true
-      },
-      persistTo: {
-        description: 'Directory for wrangler state.',
-        default: path.join(process.cwd(), '.wrangler/'),
-        requiresArg: true,
-        type: 'string',
-        normalize: true
-      }
-    });
+    .option('d1', {
+      description: 'Reset D1 storage assets',
+      default: false,
+      demandOption: false,
+      type: 'boolean'
+    })
+    .option('kv', {
+      description: 'Reset KV storage assets',
+      default: false,
+      demandOption: false,
+      type: 'boolean'
+    })
+    .option('r2', {
+      description: 'Reset R2 storage assets',
+      default: false,
+      demandOption: false,
+      type: 'boolean'
+    })
+    .option('persist-to', {
+      description: 'Directory for wrangler state.',
+      default: path.join(process.cwd(), '.wrangler/'),
+      requiresArg: true,
+      type: 'string',
+      demandOption: false,
+      normalize: true
+    })
+    .check(demandOneOfOption('all', 'd1', 'kv', 'r2'));
 }
-export async function resetHandler(args: StrictYargsOptionsToInterface<typeof resetOptions>) {
-  switch (args.storage) {
-    case 'all': {
-      resetCFAssets(args.persistTo);
-      break;
-    }
-    case 'd1': {
-      logger.log(`Resetting local D1 storage located at ${path.join(args.persistTo, 'v3/d1')}`);
-      resetCFAssets(path.join(args.persistTo, 'v3/d1'));
-      break;
-    }
-    case 'kv': {
-      logger.log(`Resetting local KV storage located at ${path.join(args.persistTo, 'v3/kv')}`);
-      resetCFAssets(path.join(args.persistTo, 'v3/kv'));
-      break;
-    }
-    case 'r2': {
-      logger.log(`Resetting local R2 storage located at ${path.join(args.persistTo, 'v3/r2')}`);
-      resetCFAssets(path.join(args.persistTo, 'v3/r2'));
-      break;
+
+type ResetHandlerOptions = StrictYargsOptionsToInterface<typeof resetOptions>;
+
+export const resetHandler = withWranglerConfig<ResetHandlerOptions>(async ({ all, d1, r2, kv, persistTo }) => {
+  const d1_path = getPersistencePath(persistTo, 'd1') as string;
+  const kv_path = getPersistencePath(persistTo, 'kv') as string;
+  const r2_path = getPersistencePath(persistTo, 'r2') as string;
+
+  if (all) {
+    resetCFAssets([d1_path, kv_path, r2_path]);
+    return;
+  }
+  if (d1) {
+    logger.log(`Resetting local D1 storage located at ${d1_path}`);
+    resetCFAssets(d1_path);
+    return;
+  }
+  if (kv) {
+    logger.log(`Resetting local KV storage located at ${kv_path}`);
+    resetCFAssets(kv_path);
+    return;
+  }
+  if (r2) {
+    logger.log(`Resetting local R2 storage located at ${r2_path}`);
+    resetCFAssets(r2_path);
+    return;
+  }
+});
+
+export function resetCFAssets(paths: string | string[]) {
+  if (Array.isArray(paths) && paths.length > 0) {
+    for (const p of paths) {
+      fs.rmSync(p, { recursive: true, force: true });
     }
   }
-}
-
-export function resetCFAssets(dir: string) {
-  fs.rmSync(dir, { recursive: true, force: true });
+  if (typeof paths == 'string') {
+    fs.rmSync(paths, { recursive: true, force: true });
+  }
 }

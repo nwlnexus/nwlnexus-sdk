@@ -1,6 +1,6 @@
 #!/usr/bin/env node
+// noinspection EqualityComparisonWithCoercionJS,JSCheckFunctionSignatures,ES6ConvertRequireIntoImport
 // noinspection EqualityComparisonWithCoercionJS
-
 const { spawn } = require('node:child_process');
 const path = require('node:path');
 
@@ -36,10 +36,10 @@ Consider using a Node.js version manager such as https://volta.sh/ or https://gi
       }
     }
   )
-    .on('exit', (code) => {
+    .on('exit', code => {
       process.exit(code === undefined || code === null ? 0 : code);
     })
-    .on('message', (message) => {
+    .on('message', message => {
       if (process.send) {
         process.send(message);
       }

@@ -1,11 +1,11 @@
 // noinspection JSUnusedGlobalSymbols
 
-import { format } from 'node:util';
+import type { Message } from 'esbuild';
 
+import { format } from 'node:util';
 import chalk from 'chalk';
 import CLITable from 'cli-table3';
 import { formatMessagesSync } from 'esbuild';
-import type { Message } from 'esbuild';
 
 import { getEnvironmentVariableFactory } from './environment-variables/factory';
 import { getSanitizeLogs } from './environment-variables/misc-variables';
@@ -40,7 +40,7 @@ function getLoggerLevel(): LoggerLevel {
   if (fromEnv !== undefined) {
     if (fromEnv in LOGGER_LEVELS) return fromEnv as LoggerLevel;
     const expected = Object.keys(LOGGER_LEVELS)
-      .map((level) => `"${level}"`)
+      .map(level => `"${level}"`)
       .join(' | ');
     console.warn(
       `Unrecognised CFSETUP_LOG value ${JSON.stringify(fromEnv)}, expected ${expected}, defaulting to "log"...`
@@ -70,7 +70,7 @@ export class Logger {
   warn = (...args: unknown[]) => this.doLog('warn', args);
   error = (...args: unknown[]) => this.doLog('error', args);
   table<Keys extends string>(data: TableRow<Keys>[]) {
-    const keys: Keys[] = data.length === 0 ? [] : (Object.keys(data[0]) as Keys[]);
+    const keys: Keys[] = data.length === 0 ? [] : (Object.keys(data[0]!) as Keys[]);
     const t = new CLITable({
       head: keys,
       style: {
@@ -78,7 +78,7 @@ export class Logger {
         border: chalk.level ? ['gray'] : []
       }
     });
-    t.push(...data.map((row) => keys.map((k) => row[k])));
+    t.push(...data.map(row => keys.map(k => row[k])));
     return this.doLog('log', [t.toString()]);
   }
 
@@ -105,12 +105,12 @@ export class Logger {
       // The first line of the message is the main `text`,
       // subsequent lines are put into the `notes`.
       const [firstLine, ...otherLines] = message.split('\n');
-      const notes = otherLines.length > 0 ? otherLines.map((text) => ({ text })) : undefined;
+      const notes = otherLines.length > 0 ? otherLines.map(text => ({ text })) : undefined;
       return formatMessagesSync([{ text: firstLine, notes }], {
         color: true,
         kind,
         terminalWidth: this.columns
-      })[0];
+      })[0]!;
     } else {
       return message;
     }

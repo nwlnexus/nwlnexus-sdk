@@ -49,13 +49,7 @@
     "xxhash",
     "zjcompt"
   ],
-  "cSpell.ignoreWords": [
-    "TESTTEXTBLOBNAME",
-    "TESTWASMNAME",
-    "extensionless",
-    "webcontainer",
-    "yxxx"
-  ],
+  "cSpell.ignoreWords": ["TESTTEXTBLOBNAME", "TESTWASMNAME", "extensionless", "webcontainer", "yxxx"],
   "eslint.runtime": "node",
   "files.trimTrailingWhitespace": true,
   "typescript.tsdk": "node_modules/typescript/lib",

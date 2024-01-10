@@ -1,21 +1,21 @@
 // noinspection SpellCheckingInspection
 
+import type Yargs from 'yargs';
+import type { CommonYargsArgv, CommonYargsOptions } from './root-arguments';
+
 import os from 'node:os';
 import process from 'node:process';
-
-import Yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import makeCLI from 'yargs/yargs';
 
-import { version as cfsetupVersion, name as pkgName } from '../package.json';
+import { version as cfsetupVersion } from '../package.json';
 import { dumpHandler, dumpOptions } from './dump';
 import { FatalError } from './errors';
 import { logger } from './logger';
 import { pages } from './pages';
 import { formatMessage, ParseError } from './parse';
-import { prepareHandler, prepareOptions } from './prepare';
+import { prepare } from './prepare';
 import { resetHandler, resetOptions } from './reset';
-import { RootArguments, RootArgumentsArgv } from './root-arguments';
 import { printCfSetupBanner } from './update-check';
 
 export class CommandLineArgsError extends Error {}
@@ -24,7 +24,7 @@ export class CommandLineArgsError extends Error {}
 // via https://github.com/yargs/yargs/issues/1093#issuecomment-491299261
 export function demandOneOfOption(...options: string[]) {
   return function (argv: Yargs.Arguments) {
-    const count = options.filter((option) => argv[option]).length;
+    const count = options.filter(option => argv[option]).length;
     const lastOption = options.pop();
 
     if (count === 0) {
@@ -40,7 +40,7 @@ export function demandOneOfOption(...options: string[]) {
 }
 
 function createCLIParser(argv: string[]) {
-  const cfsetup: RootArgumentsArgv = makeCLI(argv)
+  const cfsetup: CommonYargsArgv = makeCLI(argv)
     .strict()
     .showHelpOnFail(false)
     .fail((msg, error) => {
@@ -51,17 +51,24 @@ function createCLIParser(argv: string[]) {
       }
       throw error;
     })
-    .scriptName(pkgName)
+    .scriptName('cfsetup')
     .wrap(null)
     // Define global options here, so they get included in the `Argv` type of
     // the `cfsetup` variable
     .version(false)
-    .option('yaml', {
-      description: 'Output in YAML format.',
+    .option('wrangler-config', {
+      alias: 'w',
+      describe: 'Path to .toml configuration file',
+      type: 'string',
+      requiresArg: true
+    })
+    .option('experimental-json-config', {
+      alias: 'j',
+      describe: `Experimental: Support wrangler.json`,
       type: 'boolean'
     })
     .option('debug', {
-      description: 'Debug mode.',
+      description: 'Debug mode',
       type: 'boolean'
     })
     .option('v', {
@@ -70,14 +77,14 @@ function createCLIParser(argv: string[]) {
       type: 'boolean'
     });
 
-  cfsetup.group(['yaml', 'debug', 'help', 'version'], 'Flags:');
+  cfsetup.group(['experimental-json-config', 'wrangler-config', 'debug', 'help', 'version'], 'Flags:');
   cfsetup.help().alias('h', 'help');
 
   // Default help command that supports the subcommands
-  const subHelp: Yargs.CommandModule<RootArguments, RootArguments> = {
+  const subHelp: Yargs.CommandModule<CommonYargsOptions, CommonYargsOptions> = {
     command: ['*'],
-    handler: async (args) => {
-      setImmediate(() => cfsetup.parse([...args._.map((a: any) => `${a}`), '--help']));
+    handler: async args => {
+      setImmediate(() => cfsetup.parse([...args._.map((a: unknown) => `${a}`), '--help']));
     }
   };
 
@@ -85,7 +92,7 @@ function createCLIParser(argv: string[]) {
     ['*'],
     false,
     () => {},
-    async (args) => {
+    async args => {
       if (args._.length > 0) {
         throw new CommandLineArgsError(`Unknown command: ${args._}.`);
       } else {
@@ -109,39 +116,50 @@ function createCLIParser(argv: string[]) {
   // I wish we could enforce this pattern, but this comment will have to do for now.
   // (It's also annoying that choices[] doesn't get inferred as an enum. 🤷‍♂.)
 
-  //init
-  cfsetup.command('init', '✨  Create local repository project', prepareOptions, prepareHandler);
+  /**
+   * Init command
+   */
+  cfsetup.command('init', '✨ Create local repository project', {}, () => {
+    logger.log('Not yet implemented');
+  });
 
-  cfsetup.command('dump', '✨  Dump current environment variables and parsed files', dumpOptions, dumpHandler);
+  /**
+   * Dump command
+   */
+  cfsetup.command('dump', '✨ Dump current environment variables and parsed files', dumpOptions, dumpHandler);
 
-  //prepare
-  cfsetup.command(
-    'prepare <storage> [options..]',
-    '🥣 Prepare local development environment',
-    prepareOptions,
-    prepareHandler
-  );
+  /**
+   * Prepare command
+   */
+  cfsetup.command('prepare', '🥣 Prepare local development environment', prepareYargs => {
+    return prepare(prepareYargs.command(subHelp));
+  });
 
-  //reset
-  cfsetup.command(
-    'reset <storage> [options..]',
-    '💥 Reset local Cloudflare Storage assets',
-    resetOptions,
-    resetHandler
-  );
+  /**
+   * Reset command
+   */
+  cfsetup.command('reset', '💥 Reset local Cloudflare Storage assets', resetOptions, resetHandler);
 
-  //project
-  cfsetup.command('pages [command..]', '⚡️ Manage CF Pages Project', (pagesYargs) => {
+  /**
+   * Project command
+   */
+  cfsetup.command('pages', '⚡️ Manage CF Pages Project', pagesYargs => {
     return pages(pagesYargs.command(subHelp));
   });
 
-  //deploy
-  cfsetup.command('deploy', '🚀 Deploy local project', prepareOptions, prepareHandler);
+  /**
+   * Deploy command
+   */
+  cfsetup.command('deploy', '🚀 Deploy local project', {}, () => {
+    logger.log('Not yet implemented');
+  });
 
-  // This set is to false to allow overwriting of default behaviour
+  // This set is to false which allows overwriting of default behaviour
   cfsetup.version(false);
 
-  // version
+  /**
+   * Version command
+   */
   cfsetup.command(
     'version',
     false,
@@ -159,7 +177,7 @@ function createCLIParser(argv: string[]) {
 
   return cfsetup;
 }
-async function main(argv: string[]): Promise<void> {
+export async function main(argv: string[]): Promise<void> {
   const cfsetup = createCLIParser(argv);
   try {
     await cfsetup.parse();
@@ -173,7 +191,7 @@ async function main(argv: string[]): Promise<void> {
       await createCLIParser([...argv, '--help']).parse();
     } else if (e instanceof ParseError) {
       e.notes.push({
-        text: '\nIf you think this is a bug, please open an issue at: https://github.com/cloudflare/workers-sdk/issues/new/choose'
+        text: '\nIf you think this is a bug, please open an issue at: https://github.com/nwlnexus/nwlnexus-sdk/issues/new/choose'
       });
       logger.log(formatMessage(e));
     } else if (e instanceof Error && e.message.includes('Raw mode is not supported on')) {
@@ -205,7 +223,7 @@ async function main(argv: string[]): Promise<void> {
  */
 // @ts-expect-error
 if (typeof jest === 'undefined' && require.main === module) {
-  main(hideBin(process.argv)).catch((e) => {
+  main(hideBin(process.argv)).catch(e => {
     // The logging of any error that was thrown from `main()` is handled in the `yargs.fail()` handler.
     // Here we just want to ensure that the process exits with a non-zero code.
     // We don't want to do this inside the `main()` function, since that would kill the process when running our tests.

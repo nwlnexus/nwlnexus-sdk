@@ -1,7 +1,7 @@
 {
   "version": "5",
   "dialect": "sqlite",
-  "id": "97fc56be-ceb7-4ced-b489-75b8eca60fbc",
+  "id": "5f20b815-0e99-414f-86da-df0ec43776d1",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "locations": {
@@ -133,13 +133,6 @@
           "notNull": true,
           "autoincrement": false
         },
-        "ip_backup_cidr": {
-          "name": "ip_backup_cidr",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
         "ip_primary_cidr": {
           "name": "ip_primary_cidr",
           "type": "text",
@@ -227,13 +220,6 @@
         "tenant_id": {
           "name": "tenant_id",
           "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "xiq_loc_id": {
-          "name": "xiq_loc_id",
-          "type": "integer",
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
@@ -560,8 +546,16 @@
           "notNull": true,
           "autoincrement": false
         },
-        "groups": {
-          "name": "groups",
+        "email_verified": {
+          "name": "email_verified",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": false
+        },
+        "idp_groups": {
+          "name": "idp_groups",
           "type": "text",
           "primaryKey": false,
           "notNull": false,
@@ -624,16 +618,9 @@
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "profiles_tenants": {
-      "name": "profiles_tenants",
+    "profiles_to_tenants": {
+      "name": "profiles_to_tenants",
       "columns": {
-        "id": {
-          "name": "id",
-          "type": "integer",
-          "primaryKey": true,
-          "notNull": true,
-          "autoincrement": true
-        },
         "profile_id": {
           "name": "profile_id",
           "type": "text",
@@ -650,96 +637,43 @@
         }
       },
       "indexes": {},
-      "foreignKeys": {},
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
-    },
-    "purchase_orders": {
-      "name": "purchase_orders",
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "text",
-          "primaryKey": true,
-          "notNull": true,
-          "autoincrement": false
+      "foreignKeys": {
+        "profiles_to_tenants_profile_id_profiles_id_fk": {
+          "name": "profiles_to_tenants_profile_id_profiles_id_fk",
+          "tableFrom": "profiles_to_tenants",
+          "tableTo": "profiles",
+          "columnsFrom": [
+            "profile_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
         },
-        "po_num": {
-          "name": "po_num",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "vendor": {
-          "name": "vendor",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "requestor": {
-          "name": "requestor",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "reason": {
-          "name": "reason",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "amt": {
-          "name": "amt",
-          "type": "real",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "created_at": {
-          "name": "created_at",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false,
-          "default": "CURRENT_TIMESTAMP"
-        },
-        "updated_at": {
-          "name": "updated_at",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "deleted_at": {
-          "name": "deleted_at",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
+        "profiles_to_tenants_tenant_id_tenants_id_fk": {
+          "name": "profiles_to_tenants_tenant_id_tenants_id_fk",
+          "tableFrom": "profiles_to_tenants",
+          "tableTo": "tenants",
+          "columnsFrom": [
+            "tenant_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
         }
       },
-      "indexes": {
-        "vendor_idx": {
-          "name": "vendor_idx",
+      "compositePrimaryKeys": {
+        "profiles_to_tenants_profile_id_tenant_id_pk": {
           "columns": [
-            "vendor"
+            "profile_id",
+            "tenant_id"
           ],
-          "isUnique": false
-        },
-        "requestor_idx": {
-          "name": "requestor_idx",
-          "columns": [
-            "requestor"
-          ],
-          "isUnique": false
+          "name": "profiles_to_tenants_profile_id_tenant_id_pk"
         }
       },
-      "foreignKeys": {},
-      "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
     "tenants": {

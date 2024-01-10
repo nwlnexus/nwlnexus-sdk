@@ -1,16 +1,17 @@
-import { RootArgumentsArgv } from '../root-arguments';
+import type { CommonYargsArgv } from '../root-arguments';
+
 import * as Deployments from './deployments';
 import * as Projects from './projects';
 
-export function pages(args: RootArgumentsArgv) {
+export function pages(args: CommonYargsArgv) {
   return args
-    .command('project', '⚡️ Interact with your Pages projects', (yargs) =>
+    .command('project', '⚡️ Interact with your Pages projects', yargs =>
       yargs
         .command('list', 'List CF Pages projects', Projects.ListOptions)
         .command('create [project-name]', 'Create a new CF Pages project', Projects.CreateOptions)
         .command('delete [project-name]', 'Delete a CF Pages project', Projects.DeleteOptions, Projects.DeleteHandler)
     )
-    .command('deployment', '🚀 Interact with the deployments of a project', (yargs) =>
+    .command('deployment', '🚀 Interact with the deployments of a project', yargs =>
       yargs.command('list', 'List deployments in your Cloudflare Pages project', Deployments.ListOptions)
     );
 }

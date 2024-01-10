@@ -13,46 +13,58 @@
     "build": "turbo build",
     "check": "turbo check:lint check:type check:format type:tests",
     "check:format": "prettier . --check --ignore-unknown",
-    "check:lint": "node ensure-turbo-build-output.mjs && dotenv -- turbo check:lint",
-    "check:type": "dotenv -- turbo check:type type:tests",
+    "check:lint": "turbo check:lint",
+    "check:type": "turbo check:type type:tests",
     "dev": "turbo dev",
     "fix": "pnpm run prettify && turbo check:lint -- --fix",
     "prettify": "prettier . --write --ignore-unknown",
     "test": "turbo test",
     "test:ci": "vitest run && dotenv -- turbo test:ci --filter=cfsetup",
     "test:watch": "turbo test:watch",
-    "type:tests": "dotenv -- turbo type:tests",
+    "type:tests": "turbo type:tests",
     "gen:package": "turbo gen package",
-    "db:prepare": "pnpm run db:prepare:helios && pnpm run db:prepare:hermes",
-    "db:prepare:helios": "cfsetup prepare all --schema-dir=\"packages/db-schema/src\" --persist-to=\".wrangler\" --wrangler-file=\"apps/helios/wrangler.toml\"",
-    "db:prepare:hermes": "cfsetup prepare all --schema-dir=\"packages/db-schema/src\" --persist-to=\".wrangler\" --wrangler-file=\"apps/hermes/wrangler.toml\"",
-    "db:prepare:reset": "cfsetup prepare --reset --schema-dir=\"./app/db/schema\" --persist-to=\"../../.wrangler\""
+    "db:prepare": "cfsetup prepare all --schema-dir=\"./packages/db-schema/src\" --wrangler-config=\"pages_apps/helios/wrangler.toml\"",
+    "db:prepare:reset": "cfsetup prepare all --schema-dir=\"./packages/db-schema/src\" --wrangler-config=\"pages_apps/helios/wrangler.toml\" --reset",
+    "prepare": "is-ci || husky install"
   },
   "dependencies": {
     "@changesets/changelog-github": "^0.5.0",
     "@changesets/cli": "^2.27.1",
-    "@cloudflare/workers-types": "^4.20230518.0",
+    "@cloudflare/workers-types": "^4.20231218.0",
     "@faker-js/faker": "^8.3.1",
     "@ianvs/prettier-plugin-sort-imports": "^4.1.1",
     "@nwlnexus/cfsetup": "workspace:*",
-    "@types/node": "^20.10.5",
-    "drizzle-kit": "^0.20.6",
-    "drizzle-orm": "^0.29.0",
+    "@paralleldrive/cuid2": "^2.2.2",
+    "@types/eslint": "^8.56.1",
+    "@types/is-ci": "^3.0.4",
+    "@types/node": "^20.10.6",
+    "@typescript-eslint/eslint-plugin": "^6.17.0",
+    "@typescript-eslint/parser": "^6.17.0",
+    "@vitest/coverage-istanbul": "^1.1.3",
+    "@vitest/ui": "^1.1.3",
+    "drizzle-kit": "^0.20.10",
+    "drizzle-orm": "^0.29.3",
     "drizzle-zod": "^0.5.1",
     "esbuild-register": "^3.5.0",
-    "prettier-plugin-packagejson": "^2.4.7",
-    "prettier-plugin-tailwindcss": "^0.5.9",
+    "eslint": "^8.55.0",
+    "eslint-config-prettier": "^9.1.0",
+    "is-ci": "^3.0.1",
+    "prettier": "^3.1.1",
+    "prettier-plugin-packagejson": "^2.4.9",
+    "prettier-plugin-tailwindcss": "^0.5.11",
     "rimraf": "^5.0.5",
     "typescript": "^5.3.3",
-    "vite": "^5.0.10",
-    "vitest": "^0.34.6",
-    "wrangler": "^3.22.0"
+    "vite": "^5.0.11",
+    "vitest": "^1.1.3",
+    "wrangler": "^3.22.3"
   },
   "devDependencies": {
     "@nwlnexus/eslint-config": "workspace:*",
     "@nwlnexus/typescript-config": "workspace:*",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0",
     "prettier": "^3.1.1",
-    "semver": "^7.5.2",
+    "semver": "^7.5.4",
     "turbo": "latest"
   },
   "engines": {
@@ -73,5 +85,10 @@
         "@types/react-dom": "18"
       }
     }
+  },
+  "lint-staged": {
+    "*.json": [
+      "prettier . --write --ignore-unknown"
+    ]
   }
 }

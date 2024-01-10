@@ -7,7 +7,7 @@ export function collectKeyValues(array?: string[]) {
   return (
     array?.reduce<Record<string, string>>((recordsToCollect, v) => {
       const [key, ...value] = v.split(':');
-      recordsToCollect[key] = value.join(':');
+      recordsToCollect[key!] = value.join(':');
       return recordsToCollect;
     }, {}) || {}
   );

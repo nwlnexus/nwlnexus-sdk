@@ -1,7 +1,8 @@
+import type { Result } from 'update-check';
+
 import chalk from 'chalk';
 import supportsColor from 'supports-color';
 import checkForUpdate from 'update-check';
-import type { Result } from 'update-check';
 
 import pkg, { version as cfsetupVersion } from '../package.json';
 import { logger } from './logger';
@@ -22,8 +23,8 @@ export async function printCfSetupBanner(performUpdateCheck = true) {
 
   // Log a slightly more noticeable message if this is a major bump
   if (maybeNewVersion !== undefined) {
-    const currentMajor = parseInt(cfsetupVersion.split('.')[0]);
-    const newMajor = parseInt(maybeNewVersion.split('.')[0]);
+    const currentMajor = parseInt(cfsetupVersion.split('.')[0]!);
+    const newMajor = parseInt(maybeNewVersion.split('.')[0]!);
     if (newMajor > currentMajor) {
       logger.warn(
         `The version of CFSetup you are using is now out-of-date.
@@ -35,6 +36,7 @@ Please update to the latest version to prevent critical errors.`
 
 async function doUpdateCheck(): Promise<string | undefined> {
   let update: Result | null = null;
+
   try {
     // default cache for update check is 1 day
     update = await checkForUpdate(pkg, {

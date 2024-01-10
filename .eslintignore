@@ -4,3 +4,10 @@
 /public/build/
 node_modules
 **/*.ignore.*
+**/functions/\[\[path\]\].js
+**/functions/\[\[path\]\].js.map
+**/public/build
+vitest.projects.js
+vitest.config.js
+node-types.d.ts
+**/*.pem

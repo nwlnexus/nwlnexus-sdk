@@ -13,7 +13,7 @@ export function dedent(strings: TemplateStringsArray, ...values: unknown[]) {
   assert(lines.length > 0);
 
   // If the last line is just whitespace, remove it
-  if (lines[lines.length - 1].trim() === '') {
+  if (lines[lines.length - 1]?.trim() === '') {
     lines = lines.slice(0, lines.length - 1);
   }
 
@@ -31,9 +31,9 @@ export function dedent(strings: TemplateStringsArray, ...values: unknown[]) {
   }
 
   // If the first line is just whitespace, remove it
-  if (lines.length > 0 && lines[0].trim() === '') lines = lines.slice(1);
+  if (lines.length > 0 && lines[0]?.trim() === '') lines = lines.slice(1);
 
   // Remove indent from all lines, and return them all joined together
-  lines = lines.map((line) => (line.startsWith(minIndent) ? line.substring(minIndent.length) : line));
+  lines = lines.map(line => (line.startsWith(minIndent) ? line.substring(minIndent.length) : line));
   return lines.join('\n');
 }

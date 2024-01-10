@@ -6,9 +6,8 @@
   "main": "cfworker.js",
   "files": [
     "remix.js",
-    "library.js",
     "cfworker.js",
-    "react-internal.js"
+    "library.js"
   ],
   "exports": {
     "./remix": "./remix.js",
@@ -16,17 +15,24 @@
     "./library": "./library.js"
   },
   "peerDependencies": {
-    "@typescript-eslint/eslint-plugin": "^6.15.0"
+    "@typescript-eslint/eslint-plugin": "^6.16.0"
   },
   "dependencies": {
     "@remix-run/eslint-config": "^2.4.0",
-    "@typescript-eslint/parser": "^6.15.0",
+    "@typescript-eslint/parser": "^6.16.0",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-config-turbo": "^1.11.2",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-no-only-tests": "^3.1.0",
     "eslint-plugin-only-warn": "^1.1.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-unused-imports": "^3.0.0"
+  },
+  "lint-staged": {
+    "*": [
+      "prettier --write --ignore-unknown"
+    ]
   }
 }

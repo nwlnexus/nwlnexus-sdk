@@ -8,14 +8,21 @@
       "persistent": true,
       "dependsOn": ["//#db:prepare"]
     },
+    "@nwlnexus/helios#db:prepare": {
+      "cache": false,
+      "dependsOn": ["@nwlnexus/cfsetup#build"]
+    },
     "@nwlnexus/hermes#dev": {
       "cache": false,
       "persistent": true,
       "dependsOn": ["//#db:prepare"]
     },
+    "@nwlnexus/hermes#db:prepare": {
+      "cache": false,
+      "dependsOn": ["@nwlnexus/cfsetup#build"]
+    },
     "build": {
-      "dependsOn": ["^build"],
-      "outputs": [".build/**", "!.cache/**", ".svelte-kit/**", "public/build/**"]
+      "dependsOn": ["^build"]
     },
     "test": {
       "dependsOn": ["^build"],
@@ -40,6 +47,7 @@
     "//#db:prepare": {
       "outputs": ["./migrations/**/*"],
       "dependsOn": ["@nwlnexus/cfsetup#build"]
-    }
+    },
+    "check:format": { "cache": false }
   }
 }

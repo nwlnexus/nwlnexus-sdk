@@ -1,6 +1,6 @@
 import { createId } from '@paralleldrive/cuid2';
-import { index, integer, real, sqliteTable, text, uniqueIndex } from 'drizzle-orm/sqlite-core';
-import { createSelectSchema } from 'drizzle-zod';
+import { relations } from 'drizzle-orm';
+import { index, integer, primaryKey, real, sqliteTable, text, uniqueIndex } from 'drizzle-orm/sqlite-core';
 
 import { commonTime } from './common';
 
@@ -14,15 +14,20 @@ export const profiles = sqliteTable(
     authTenantId: text('auth_tenant_id').notNull(),
     authProvider: text('auth_provider').notNull(),
     email: text('email').notNull().unique(),
-    idp_groups: text('groups', { mode: 'json' }).$type<string[]>(),
+    emailVerified: integer('email_verified', { mode: 'boolean' }).notNull().default(false),
+    idpGroups: text('idp_groups', { mode: 'json' }).$type<string[]>(),
     displayName: text('display_name').notNull(),
     ...commonTime
   },
-  profiles => ({
-    userEmailIdx: uniqueIndex('users_email_idx').on(profiles.email),
-    providerIdx: index('provider_idx').on(profiles.authProvider)
+  table => ({
+    userEmailIdx: uniqueIndex('users_email_idx').on(table.email),
+    providerIdx: index('provider_idx').on(table.authProvider)
   })
 );
+
+export const profileRelations = relations(profiles, ({ many }) => ({
+  profilesToTenants: many(profilesToTenants)
+}));
 
 export const tenants = sqliteTable(
   'tenants',
@@ -33,16 +38,40 @@ export const tenants = sqliteTable(
     status: integer('status', { mode: 'boolean' }),
     ...commonTime
   },
-  tenants => ({
-    tenantNameIdx: uniqueIndex('tenant_name_idx').on(tenants.sanitizedName)
+  table => ({
+    tenantNameIdx: uniqueIndex('tenant_name_idx').on(table.sanitizedName)
   })
 );
 
-export const profiles_tenants = sqliteTable('profiles_tenants', {
-  id: integer('id').primaryKey({ autoIncrement: true }),
-  profileId: text('profile_id').notNull(),
-  tenantId: text('tenant_id').notNull()
-});
+export const tenantRelations = relations(tenants, ({ many }) => ({
+  profilesToTenants: many(profilesToTenants)
+}));
+
+export const profilesToTenants = sqliteTable(
+  'profiles_to_tenants',
+  {
+    profileId: text('profile_id')
+      .notNull()
+      .references(() => profiles.id),
+    tenantId: text('tenant_id')
+      .notNull()
+      .references(() => tenants.id)
+  },
+  t => ({
+    pk: primaryKey({ columns: [t.profileId, t.tenantId] })
+  })
+);
+
+export const profilesToTenantsRelations = relations(profilesToTenants, ({ one }) => ({
+  tenant: one(tenants, {
+    fields: [profilesToTenants.tenantId],
+    references: [tenants.id]
+  }),
+  profile: one(profiles, {
+    fields: [profilesToTenants.profileId],
+    references: [profiles.id]
+  })
+}));
 
 export const locations = sqliteTable(
   'locations',
@@ -65,7 +94,6 @@ export const locations = sqliteTable(
     countryId: integer('country_id'),
     district: text('district'),
     id: text('id').primaryKey().unique(),
-    ipBackupCidr: text('ip_backup_cidr'),
     ipPrimaryCidr: text('ip_primary_cidr'),
     ipSchema: text('ip_schema'),
     itOpsStatus: text('it_ops_status'),
@@ -81,18 +109,15 @@ export const locations = sqliteTable(
     tenantId: text('tenant_id').references(() => tenants.id, {
       onDelete: 'set null'
     }),
-    xiqLocId: integer('xiq_loc_id'),
     ...commonTime
   },
-  locations => ({
-    locNameIdx: index('location_name_idx').on(locations.name),
-    locDistrictIdx: index('location_district_idx').on(locations.district),
-    locRegionIdx: index('location_region_idx').on(locations.region),
-    locCodeIdx: uniqueIndex('location_code_idx').on(locations.code)
+  table => ({
+    locNameIdx: index('location_name_idx').on(table.name),
+    locDistrictIdx: index('location_district_idx').on(table.district),
+    locRegionIdx: index('location_region_idx').on(table.region),
+    locCodeIdx: uniqueIndex('location_code_idx').on(table.code)
   })
 );
-
-export const selectLocationSchema = createSelectSchema(locations);
 
 export const nodes = sqliteTable(
   'nodes',
@@ -118,29 +143,10 @@ export const nodes = sqliteTable(
     xiq_nodeId: text('xiq_node_id'),
     ...commonTime
   },
-  nodes => ({
-    nodeNameIdx: uniqueIndex('node_name_idx').on(nodes.name),
-    serialIdx: uniqueIndex('serial_idx').on(nodes.serial),
-    manufacturerIdx: index('manu_idx').on(nodes.manufacturer),
-    modelIdx: index('model_idx').on(nodes.model)
-  })
-);
-
-export const purchase_orders = sqliteTable(
-  'purchase_orders',
-  {
-    id: text('id')
-      .$defaultFn(() => createId())
-      .primaryKey(),
-    po_num: integer('po_num', { mode: 'number' }),
-    vendor: text('vendor').notNull(),
-    requestor: text('requestor').notNull(),
-    reason: text('reason').notNull(),
-    amt: real('amt').notNull(),
-    ...commonTime
-  },
-  purchase_orders => ({
-    vendorIdx: index('vendor_idx').on(purchase_orders.vendor),
-    requestorIdx: index('requestor_idx').on(purchase_orders.requestor)
+  table => ({
+    nodeNameIdx: uniqueIndex('node_name_idx').on(table.name),
+    serialIdx: uniqueIndex('serial_idx').on(table.serial),
+    manufacturerIdx: index('manu_idx').on(table.manufacturer),
+    modelIdx: index('model_idx').on(table.model)
   })
 );

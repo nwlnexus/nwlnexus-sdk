@@ -1,10 +1,11 @@
 bazel-*
 /.cache
-/functions/\[\[path\]\].js
-/functions/\[\[path\]\].js.map
-/public/build
+**/functions/\[\[path\]\].js
+**/functions/\[\[path\]\].js.map
+**/functions/metafile*.json
+**/functions/version.txt
+**/public/build
 
-/functions/_assets
 /.mf
 /test-results/
 /playwright-report/
@@ -58,10 +59,8 @@ dist/**
 .vercel
 
 # Build Outputs
-.next/
 out/
 build
-dist
 
 ### Node ###
 # Logs
@@ -76,7 +75,7 @@ lerna-debug.log*
 # Misc
 .DS_Store
 *.pem
-/.wrangler/
+/.wrangler
 
 
 # Created by https://www.toptal.com/developers/gitignore/api/node,macos
@@ -183,11 +182,11 @@ web_modules/
 .parcel-cache
 
 # Next.js build output
-.next
+/.next
 out
 
 # Nuxt.js build / generate output
-.nuxt
+/.nuxt
 dist
 
 # Gatsby files
@@ -231,16 +230,8 @@ dist
 
 # End of https://www.toptal.com/developers/gitignore/api/node,macos
 
-wrangler-dist/
-miniflare-dist
-packages/wrangler/wrangler.toml
-packages/prerelease-registry/_worker.bundle
-packages/wranglerjs-compat-webpack-plugin/lib
-.wrangler-1-cache
+
 emitted-types/
-_routes.generated.json
-packages/quick-edit/vscode
-packages/quick-edit/web
 
 # Vendored npm dependencies
 !vendor/*.tgz
@@ -253,7 +244,6 @@ packages/quick-edit/web
 vendor/vscode/
 
 wrangler-local-state
-.wrangler
-
 # Runtime dependencies report
 runtime-versions.md
+!**/Cloudflare_CA.pem

@@ -25,4 +25,4 @@ const { dependencies, devDependencies } = JSON.parse(packageJson);
 export const BUNDLED_DEPENDENCIES = Object.keys({
   ...dependencies,
   ...devDependencies
-}).filter((dep) => !EXTERNAL_DEPENDENCIES.includes(dep));
+}).filter(dep => !EXTERNAL_DEPENDENCIES.includes(dep));

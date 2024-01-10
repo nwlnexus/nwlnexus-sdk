@@ -1,10 +1,10 @@
+import type { ParseError as JsoncParseError } from 'jsonc-parser';
+
 import * as fs from 'node:fs';
 import { resolve } from 'node:path';
-
 import TOML from '@iarna/toml';
 import { formatMessagesSync } from 'esbuild';
 import { parse as jsoncParse, printParseErrorCode } from 'jsonc-parser';
-import type { ParseError as JsoncParseError } from 'jsonc-parser';
 
 import { logger } from './logger';
 
@@ -143,10 +143,10 @@ export function parseJSONC<T>(input: string, file?: string): T {
   const data = jsoncParse(input, errors);
   if (errors.length) {
     throw new ParseError({
-      text: printParseErrorCode(errors[0].error),
+      text: printParseErrorCode(errors[0]!.error),
       location: {
-        ...indexLocation({ file, fileText: input }, errors[0].offset + 1),
-        length: errors[0].length
+        ...indexLocation({ file, fileText: input }, errors[0]!.offset + 1),
+        length: errors[0]!.length
       }
     });
   }
@@ -289,7 +289,7 @@ export function parseHumanDuration(s: string): number {
   const unitsMap = new Map(Object.entries(units));
   s = s.trim().toLowerCase();
   let base = 1;
-  for (const [name, _] of unitsMap) {
+  for (const [name, __] of unitsMap) {
     if (s.endsWith(name)) {
       s = s.substring(0, s.length - name.length);
       base = unitsMap.get(name) || 1;

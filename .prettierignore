@@ -1,10 +1,10 @@
 node_modules
 .cache/
 **/build/
-apps/**/styles
+pages_apps/**/styles
 **/*.ignore.*
 .DS_Store
-apps/**/functions/**/*
+pages_apps/**/functions/**/*
 /package
 .env
 .env.*
@@ -13,6 +13,12 @@ apps/**/functions/**/*
 /.idea
 /.cache
 /.wrangler
+**/functions/\[\[path\]\].js
+**/functions/\[\[path\]\].js.map
+**/public/build
+migrations/
+
+/functions/_assets
 
 packages/cfsetup/dist/
 packages/cfsetup/emitted-types/
@@ -33,3 +39,5 @@ fixtures/**/dist/**
 
 # TurboRepo CodeGen .hbs files
 **/*.hbs
+dist
+**/dist/**/*
