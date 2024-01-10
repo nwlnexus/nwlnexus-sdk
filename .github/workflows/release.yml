@@ -24,7 +24,8 @@ jobs:
     name: Release
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
+      pull-requests: write
       deployments: write
     steps:
       - name: Configure 1Password Service Account
