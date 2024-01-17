@@ -1,5 +1,5 @@
 ---
-"@nwlnexus/cfsetup": major
+'@nwlnexus/cfsetup': major
 ---
 
 First release
