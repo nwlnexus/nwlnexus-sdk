@@ -3,6 +3,11 @@
   "globalDependencies": ["**/.env.*local", "**/.env", "**/.dev.vars"],
   "globalEnv": ["NODE_ENV", "NODE_VERSION", "CI_OS"],
   "pipeline": {
+    "@nwlnexus/odin#dev": {
+      "cache": false,
+      "persistent": true,
+      "dependsOn": ["//#db:prepare"]
+    },
     "@nwlnexus/helios#dev": {
       "cache": false,
       "persistent": true,

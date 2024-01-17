@@ -75,7 +75,7 @@ lerna-debug.log*
 # Misc
 .DS_Store
 *.pem
-/.wrangler
+**/.wrangler
 
 
 # Created by https://www.toptal.com/developers/gitignore/api/node,macos

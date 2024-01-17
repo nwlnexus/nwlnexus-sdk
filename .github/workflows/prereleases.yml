@@ -33,14 +33,14 @@ jobs:
         with:
           export-env: false
         env:
-          GH_ACCESS_TOKEN: op://Dev/3hwptanyvn7stnz63n5urtdwo4/gh_pat_classic
-          NPM_PUBLISH_TOKEN: op://Dev/gpwxrxcaff6ksvee6bgbmbqpca/publish_root_token
-          COMPAT_DATE: op://Dev/nztlf5np6ljbte7yhwi4xfsqjm/compat_date
-          WEATHERAPI_KEY: op://Dev/fsdgtvziuoqdeq36rqkhbwzcde/api_key
-          AUTH_SECRET: op://Dev/nztlf5np6ljbte7yhwi4xfsqjm/session_secret
-          AUTH_AUTH0_ID: op://Dev/nztlf5np6ljbte7yhwi4xfsqjm/auth0_client_id
-          AUTH_AUTH0_SECRET: op://Dev/nztlf5np6ljbte7yhwi4xfsqjm/auth0_client_secret
-          AUTH_AUTH0_DOMAIN: op://Dev/nztlf5np6ljbte7yhwi4xfsqjm/auth0_domain
+          GH_ACCESS_TOKEN: op://h2apd5x5ncu6djh6svr3lcr25a/3hwptanyvn7stnz63n5urtdwo4/gh_pat_classic
+          NPM_PUBLISH_TOKEN: op://h2apd5x5ncu6djh6svr3lcr25a/gpwxrxcaff6ksvee6bgbmbqpca/publish_root_token
+          COMPAT_DATE: op://h2apd5x5ncu6djh6svr3lcr25a/nztlf5np6ljbte7yhwi4xfsqjm/compat_date
+          WEATHERAPI_KEY: op://h2apd5x5ncu6djh6svr3lcr25a/fsdgtvziuoqdeq36rqkhbwzcde/api_key
+          AUTH_SECRET: op://h2apd5x5ncu6djh6svr3lcr25a/nztlf5np6ljbte7yhwi4xfsqjm/session_secret
+          AUTH_AUTH0_ID: op://h2apd5x5ncu6djh6svr3lcr25a/nztlf5np6ljbte7yhwi4xfsqjm/auth0_client_id
+          AUTH_AUTH0_SECRET: op://h2apd5x5ncu6djh6svr3lcr25a/nztlf5np6ljbte7yhwi4xfsqjm/auth0_client_secret
+          AUTH_AUTH0_DOMAIN: op://h2apd5x5ncu6djh6svr3lcr25a/nztlf5np6ljbte7yhwi4xfsqjm/auth0_domain
 
       - name: Checkout Repo
         uses: actions/checkout@v4
