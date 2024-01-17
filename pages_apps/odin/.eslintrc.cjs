@@ -11,7 +11,7 @@ module.exports = {
   },
   env: {
     browser: true,
-    es2017: true,
+    es2024: true,
     node: true
   },
   overrides: [

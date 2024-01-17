@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: theme('colors.neutral.900');
+  color: theme('colors.white');
+  font-family: 'Fira Code Variable', sans-serif;
+  min-height: 100vh;
+}
+
+@media (max-width: 640px) {
+  .container {
+    @apply px-4;
+  }
+}
