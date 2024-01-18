@@ -3,7 +3,7 @@
 </script>
 
 <svelte:head>
-  <title>{appConfig.name} | Dashboard</title>
+  <title>{appConfig.name} | Nodes</title>
 </svelte:head>
 
-<h1>Dashboard</h1>
+<h1>Nodes</h1>

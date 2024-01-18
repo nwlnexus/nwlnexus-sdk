@@ -2,10 +2,14 @@
   import '@fontsource-variable/fira-code';
   import '../app.postcss';
 
+  import type { LayoutData } from './$types';
+
   import { page } from '$app/stores';
-  import { SiteNavbar } from '$components';
+  import { SiteNavbar } from '$components/nav';
   import { cn } from '$utils';
   import { ModeWatcher } from 'mode-watcher';
+
+  export let data: LayoutData;
 
   $: isRoot = $page.url.pathname === '/';
 </script>
