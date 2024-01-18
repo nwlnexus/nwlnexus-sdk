@@ -1,11 +1,15 @@
 <script lang="ts">
+  import type { WeatherData } from '$components/weather/types';
+
   import { page } from '$app/stores';
-  import { GitHub, Logo } from '$components';
+  import { GitHub, Logo, Weather } from '$components';
   import { MobileNav } from '$components/nav';
   import { ThemeSwitch } from '$components/theme-switch';
   import { appConfig } from '$lib/app-config';
   import { cn } from '$utils';
   import { mode } from 'mode-watcher';
+
+  export let wData: WeatherData | undefined = undefined;
 
   $: isRoot = $page.url.pathname === '/';
 </script>
@@ -30,6 +34,9 @@
   <div class="flex flex-1 items-center justify-between space-x-2 sm:space-x-4 md:justify-end">
     <div class="w-full flex-1 md:w-auto md:flex-none">
       <!-- Search/CMDK here eventually -->
+      {#if wData}
+        <Weather data={wData} size="sm" />
+      {/if}
     </div>
   </div>
   <nav class="flex items-center text-sm font-semibold leading-6">

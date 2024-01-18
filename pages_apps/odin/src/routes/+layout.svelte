@@ -11,6 +11,8 @@
 
   export let data: LayoutData;
 
+  console.log(data);
+
   $: isRoot = $page.url.pathname === '/';
 </script>
 

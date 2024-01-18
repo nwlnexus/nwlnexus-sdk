@@ -2,6 +2,8 @@
 <script lang="ts">
   import type { CurrentElement, DayElement, LocationElement } from './types';
 
+  import { Humidity, Windy } from 'svelte-weather';
+
   import { default as WeatherIcon } from './weather-icon.svelte';
 
   let className = '';
@@ -31,11 +33,11 @@
           &deg;F
         </span>
         <span class="ml-1 mt-1 flex items-center text-sm font-semibold">
-          <WiHumidity size="24" />
+          <Humidity size="24" />
           {Math.round(day.avghumidity)}
         </span>
         <span class="ml-1 mt-1 flex items-center text-sm font-semibold">
-          <WiWindy size="24" />
+          <Windy size="24" />
           {Math.round(day.maxwind_mph)}
         </span>
         <span class="ml-1 flex items-center text-sm font-semibold">{precipIndicator}</span>
