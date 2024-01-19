@@ -26,6 +26,6 @@
       !isRoot && 'bg-neutral-900'
     )}
   >
-    <SiteNavbar wData={data.weatherData}/>
+    <SiteNavbar wData={data.weatherData} />
   </header>
 </div>

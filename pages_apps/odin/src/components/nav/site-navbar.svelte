@@ -35,7 +35,7 @@
     <div class="w-full flex-1 md:w-auto md:flex-none">
       <!-- Search/CMDK here eventually -->
       {#if wData}
-        <Weather data={wData} size="sm" class="mr-4"/>
+        <Weather data={wData} size="sm" class="mr-4" />
       {/if}
     </div>
   </div>
