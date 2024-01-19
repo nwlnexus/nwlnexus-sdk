@@ -11,8 +11,6 @@
 
   export let data: LayoutData;
 
-  console.log(data);
-
   $: isRoot = $page.url.pathname === '/';
 </script>
 
@@ -28,6 +26,6 @@
       !isRoot && 'bg-neutral-900'
     )}
   >
-    <SiteNavbar />
+    <SiteNavbar wData={data.weatherData}/>
   </header>
 </div>

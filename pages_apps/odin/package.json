@@ -13,7 +13,7 @@
     "format": "prettier --write .",
     "test:integration": "playwright test",
     "test:unit": "vitest",
-    "dev": "wrangler pages dev --compatibility-date=2023-12-18 --proxy 5173 --port 8786 --inspector-port 9230 -- pnpm run vite:dev",
+    "dev": "wrangler pages dev --compatibility-date=${COMPAT_DATE} --compatibility-flag=nodejs_compat --proxy 5173 --port 8786 --inspector-port 9230 --persist-to=\"../../.wrangler\" -- pnpm run vite:dev",
     "pages:deploy": "pnpm run build && wrangler pages deploy .svelte-kit/cloudflare"
   },
   "devDependencies": {
