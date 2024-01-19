@@ -4,16 +4,22 @@ import type { Handle } from '@sveltejs/kit';
 
 import { SvelteKitAuth } from '@auth/sveltekit';
 import Auth0Provider from '@auth/sveltekit/providers/auth0';
+import {
+  AUTH_AUTH0_ID,
+  AUTH_AUTH0_SECRET,
+  AUTH_SECRET
+  // @ts-expect-error Unsure why
+} from '$env/static/private';
 
-export const handle = SvelteKitAuth(async event => {
+export const handle = SvelteKitAuth(async () => {
   const authOptions = {
     providers: [
       Auth0Provider({
-        clientId: event.platform?.env.AUTH_AUTH0_ID,
-        clientSecret: event.platform?.env.AUTH_AUTH0_SECRET
+        clientId: AUTH_AUTH0_ID,
+        clientSecret: AUTH_AUTH0_SECRET
       })
     ],
-    secret: event.platform?.env.AUTH_SECRET,
+    secret: AUTH_SECRET,
     trustHost: true
   };
   return authOptions;

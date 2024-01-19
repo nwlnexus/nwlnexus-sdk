@@ -2,6 +2,8 @@ import { preprocessMeltUI, sequence } from '@melt-ui/pp';
 import adapter from '@sveltejs/adapter-cloudflare';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
+// import pkg from './package.json' assert { type: 'json' };
+
 /** @type {import('@sveltejs/kit').Config}*/
 const config = {
   // Consult https://kit.svelte.dev/docs/integrations#preprocessors
@@ -16,6 +18,9 @@ const config = {
       $components: 'src/components',
       $utils: 'src/utils'
     },
+    // env: {
+    //   privatePrefix: (pkg.name.startsWith('@') ? pkg.name.split('/')[1] : pkg.name).toUpperCase() + '_'
+    // },
     typescript: {
       config: config => {
         return {

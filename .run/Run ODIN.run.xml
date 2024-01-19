@@ -1,0 +1,15 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Run ODIN" type="js.build_tools.npm">
+    <package-json value="$PROJECT_DIR$/package.json" />
+    <command value="run" />
+    <scripts>
+      <script value="dev" />
+    </scripts>
+    <arguments value="--filter @nwlnexus/odin" />
+    <node-interpreter value="project" />
+    <envs />
+    <method v="2">
+      <option name="ToolBeforeRunTask" enabled="true" actionId="Tool_External Tools_Direnv Allow" />
+    </method>
+  </configuration>
+</component>

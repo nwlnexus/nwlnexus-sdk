@@ -1,13 +1,17 @@
 import type { LayoutServerLoad } from './$types';
 
-import { dev } from '$app/environment';
 import { DEFAULTOPTIONS } from '$components/weather';
 // @ts-expect-error Unsure why
-import { env } from '$env/dynamic/private';
+import { WEATHERAPI_KEY } from '$env/static/private';
 
-export const load: LayoutServerLoad = async ({ platform, getClientAddress }) => {
-  const apiKey = dev ? env.WEATHERAPI_KEY : platform?.env.WEATHERAPI_KEY;
-  const ipAddress = getClientAddress();
+export const load: LayoutServerLoad = async ({ getClientAddress }) => {
+  const apiKey = WEATHERAPI_KEY;
+  let ipAddress = getClientAddress();
+  if (!ipAddress || ipAddress === '::1' || ipAddress === '127.0.0.1') {
+    const q = await fetch('https://api.ipify.org?format=json');
+    const { ip } = await q.json();
+    ipAddress = ip;
+  }
   const { days, alerts } = Object.assign(DEFAULTOPTIONS, {});
 
   const res_weatherData = await fetch(

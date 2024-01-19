@@ -23,8 +23,8 @@
     "test:watch": "turbo test:watch",
     "type:tests": "turbo type:tests",
     "gen:package": "turbo gen package",
-    "db:prepare": "cfsetup prepare all --schema-dir=\"./packages/db-schema/src\" --wrangler-config=\"pages_apps/helios/wrangler.toml\"",
-    "db:prepare:reset": "cfsetup prepare all --schema-dir=\"./packages/db-schema/src\" --wrangler-config=\"pages_apps/helios/wrangler.toml\" --reset",
+    "db:prepare": "cfsetup prepare all --schema-dir=\"./packages/db-schema/src\" --wrangler-config=\"pages_apps/odin/wrangler.toml\"",
+    "db:prepare:reset": "cfsetup prepare all --schema-dir=\"./packages/db-schema/src\" --wrangler-config=\"pages_apps/odin/wrangler.toml\" --reset",
     "prepare": "is-ci || husky install"
   },
   "dependencies": {

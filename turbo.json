@@ -8,15 +8,6 @@
       "persistent": true,
       "dependsOn": ["//#db:prepare"]
     },
-    "@nwlnexus/helios#dev": {
-      "cache": false,
-      "persistent": true,
-      "dependsOn": ["//#db:prepare"]
-    },
-    "@nwlnexus/helios#db:prepare": {
-      "cache": false,
-      "dependsOn": ["@nwlnexus/cfsetup#build"]
-    },
     "@nwlnexus/hermes#dev": {
       "cache": false,
       "persistent": true,

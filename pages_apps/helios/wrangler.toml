@@ -1,7 +1,0 @@
-d1_databases = [
-  { binding = "OLYMPUS_DB", database_name = "olympus", database_id = "<UUID>", preview_database_id = "OLYMPUS_DB" }
-]
-
-kv_namespaces = [
-  { binding = "OLYMPUS_KV", id = "<UUID>", preview_id = "OLYMPUS_KV" }
-]
