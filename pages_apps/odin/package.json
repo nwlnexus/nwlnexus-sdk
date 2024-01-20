@@ -17,6 +17,7 @@
     "pages:deploy": "pnpm run build && wrangler pages deploy .svelte-kit/cloudflare"
   },
   "devDependencies": {
+    "@iarna/toml": "^2.2.5",
     "@melt-ui/pp": "^0.3.0",
     "@melt-ui/svelte": "^0.70.0",
     "@playwright/test": "^1.41.0",
@@ -35,6 +36,7 @@
     "dotenv-cli": "^7.3.0",
     "eslint-plugin-svelte": "^2.35.1",
     "lucide-svelte": "^0.312.0",
+    "miniflare": "^3.20231030.2",
     "mode-watcher": "^0.1.2",
     "postcss": "^8.4.33",
     "postcss-import": "^16.0.0",

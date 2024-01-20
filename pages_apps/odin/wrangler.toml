@@ -3,5 +3,5 @@ d1_databases = [
 ]
 
 kv_namespaces = [
-  { binding = "OLYMPUS_KV", id = "<UUID>", preview_id = "OLYMPUS_KV" }
+  { binding = "OLYMPUS_KV", id = "OLYMPUS_KV", preview_id = "OLYMPUS_KV" }
 ]

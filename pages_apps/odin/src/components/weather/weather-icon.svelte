@@ -22,11 +22,13 @@
   export let is_day = false;
 
   const iconCtx = {
-    size: size == 'lg' ? '108' : '56'
+    size: size == 'lg' ? '96' : '48'
   };
   setContext('iconCtx', iconCtx);
 
-  const dayOptions = new Map<number, any>();
+  type AppIcontype = typeof DaySunny;
+
+  const dayOptions = new Map<number, AppIcontype>();
   dayOptions.set(1000, DaySunny);
   dayOptions.set(1003, DayCloudy);
   dayOptions.set(1006, DayCloudy);
@@ -36,8 +38,11 @@
   dayOptions.set(1066, DaySnow);
   dayOptions.set(1183, Rain);
   dayOptions.set(1135, DayFog);
+  dayOptions.set(1213, DaySnow);
+  dayOptions.set(1147, DayFog);
+  dayOptions.set(1210, DaySnow);
 
-  const nightOptions = new Map<number, any>();
+  const nightOptions = new Map<number, AppIcontype>();
   nightOptions.set(1000, NightClear);
   nightOptions.set(1003, NightAltPartlyCloudy);
   nightOptions.set(1006, NightAltPartlyCloudy);
@@ -47,6 +52,9 @@
   nightOptions.set(1066, NightAltSnow);
   nightOptions.set(1183, NightAltRain);
   nightOptions.set(1135, NightFog);
+  nightOptions.set(1213, NightAltSnow);
+  nightOptions.set(1147, NightFog);
+  nightOptions.set(1210, NightAltSnow);
 </script>
 
 {#if is_day}

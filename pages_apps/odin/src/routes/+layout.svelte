@@ -10,7 +10,6 @@
   import { ModeWatcher } from 'mode-watcher';
 
   export let data: LayoutData;
-
   $: isRoot = $page.url.pathname === '/';
 </script>
 
