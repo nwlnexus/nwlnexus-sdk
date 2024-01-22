@@ -1,5 +1,4 @@
 import type { Handle } from '@sveltejs/kit';
-import type { RouteId } from '../.svelte-kit/types/src/routes/$types';
 
 import { SvelteKitAuth } from '@auth/sveltekit';
 import Auth0Provider from '@auth/sveltekit/providers/auth0';
@@ -24,8 +23,21 @@ const cfDevShim = (async ({ event, resolve }) => {
   return resolve(event);
 }) satisfies Handle;
 
-const authSvelteKit = SvelteKitAuth(async () => {
-  return {
+const authGuard = (async ({ event, resolve }) => {
+  // const layoutId: RouteId;
+  const session = await event.locals.getSession();
+  const routeId = event.route.id;
+  const pathId = event.url.pathname;
+
+  if (!session && routeId?.startsWith('/(app)/')) {
+    throw redirect(303, '/auth');
+  }
+  return resolve(event);
+}) satisfies Handle;
+
+export const handle = sequence(
+  cfDevShim,
+  SvelteKitAuth({
     debug: true,
     providers: [
       Auth0Provider({
@@ -36,18 +48,6 @@ const authSvelteKit = SvelteKitAuth(async () => {
     ],
     secret: AUTH_SECRET,
     trustHost: true
-  };
-});
-
-const authGuard = (async ({ event, resolve }) => {
-  // const layoutId: RouteId;
-  const session = await event.locals.getSession();
-  const routeId = event.route.id;
-  const pathId = event.url.pathname;
-
-  if (!session && routeId?.startsWith('/(app)/')) {
-    throw error(401, 'Requires authentication');
-  }
-  return resolve(event);
-}) satisfies Handle;
-export const handle = sequence(cfDevShim, authSvelteKit, authGuard);
+  }),
+  authGuard
+);

@@ -4,7 +4,8 @@ import { DEFAULTOPTIONS } from '$components/weather';
 // @ts-expect-error Unsure why
 import { WEATHERAPI_KEY } from '$env/static/private';
 
-export const load: LayoutServerLoad = async ({ getClientAddress, locals }) => {
+export const load: LayoutServerLoad = async ({ getClientAddress, locals, url }) => {
+  url.pathname;
   const apiKey = WEATHERAPI_KEY;
   let ipAddress = getClientAddress();
   if (!ipAddress || ipAddress === '::1' || ipAddress === '127.0.0.1') {
