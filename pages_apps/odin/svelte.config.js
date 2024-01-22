@@ -18,6 +18,9 @@ const config = {
       $components: 'src/components',
       $utils: 'src/utils'
     },
+    csrf: {
+      checkOrigin: process.env.NODE_ENV !== 'development'
+    },
     // env: {
     //   privatePrefix: (pkg.name.startsWith('@') ? pkg.name.split('/')[1] : pkg.name).toUpperCase() + '_'
     // },

@@ -2,6 +2,7 @@
   import type { WeatherData } from '$components/weather/types';
 
   import { signIn } from '@auth/sveltekit/client';
+  import { dev } from '$app/environment';
   import { page } from '$app/stores';
   import { Button, GitHub, Logo, Weather } from '$components';
   import { MobileNav } from '$components/nav';
@@ -58,7 +59,11 @@
         size="sm"
         variant="faded"
         on:click={() => {
-          signIn('auth0');
+          signIn('auth0', {
+            callbackUrl: dev
+              ? 'http://localhost:8786/auth/callback/auth0'
+              : 'https://app.nwlnexus.xyz/auth/callback/auth0'
+          });
         }}>Login</Button
       >
     {/if}
