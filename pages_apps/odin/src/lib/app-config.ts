@@ -47,15 +47,13 @@ type AppConfig = {
   };
   navMenu: Array<NavItem> | [];
   pagesThatDontNeedSidebar: string[];
-  publicPages: string[];
 };
 
-const config = {
+const config: AppConfig = {
   name: 'Odin UI',
-  url: '',
+  url: 'https://app.nwlnexus.xyz',
   ogImage: 'https://melt-ui.com/og.jpg',
-  description:
-    'An open-source collection of accessible & customizable component builders for creating user interfaces with Svelte.',
+  description: 'An open-source system management application.',
   links: {
     github: 'https://github.com/nwlnexus/nwlnexus-sdk?tab=readme-ov-file#readme'
   },
@@ -69,24 +67,34 @@ const config = {
   },
   navMenu: [
     {
-      href: '/dashboard',
-      title: 'Dashboard',
-      description: ''
+      href: '/locations',
+      title: 'Locations',
+      description: 'Location management'
     },
     {
       href: '/nodes',
       title: 'Nodes',
-      description: ''
+      description: 'Node management'
     },
     {
       href: '/media',
       title: 'Media',
-      description: ''
+      description: 'Media management'
+    },
+    {
+      href: '/settings',
+      title: 'Settings',
+      description: 'Settings management'
+    },
+    {
+      href: '/docs',
+      title: 'Docs',
+      description: 'Documentation',
+      isPublic: true
     }
   ],
-  pagesThatDontNeedSidebar: ['/', '/about'],
-  publicPages: ['/', '/about']
-} satisfies AppConfig;
+  pagesThatDontNeedSidebar: ['/', '/about']
+};
 
 interface NavItem {
   href: string;
@@ -94,6 +102,7 @@ interface NavItem {
   description: string;
   hasSidebar?: boolean;
   subMenu?: NavItem[];
+  isPublic?: boolean;
   icon?: Element;
 }
 

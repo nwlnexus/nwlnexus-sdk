@@ -22,7 +22,7 @@
   import type { Select, SelectOption } from '@melt-ui/svelte';
 
   import { createSelect, melt } from '@melt-ui/svelte';
-  import Tooltip from '$components/tooltip.svelte';
+  import { ToolTip } from '$components';
   import { flyAndScale } from '$utils';
   import { mode, userPrefersMode } from 'mode-watcher';
 
@@ -57,7 +57,7 @@
   } = select;
 </script>
 
-<Tooltip text="Switch theme">
+<ToolTip text="Switch theme">
   <button
     class="transition-colors hover:text-neutral-50"
     aria-label="Open theme switcher"
@@ -65,9 +65,9 @@
     use:melt={$trigger}
   >
     <ThemeIcon theme={$mode} />
-    <span class="sr-only">Open popover</span>
+    <span class="sr-only">Open theme switcher</span>
   </button>
-</Tooltip>
+</ToolTip>
 
 {#if $open}
   <div

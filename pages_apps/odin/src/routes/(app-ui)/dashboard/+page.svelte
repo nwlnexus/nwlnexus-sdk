@@ -1,9 +1,1 @@
-<script>
-  import { appConfig } from '$lib/app-config';
-</script>
-
-<svelte:head>
-  <title>{appConfig.name} | Dashboard</title>
-</svelte:head>
-
 <h1>Dashboard</h1>

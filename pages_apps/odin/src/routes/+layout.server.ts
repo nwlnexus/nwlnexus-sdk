@@ -1,10 +1,9 @@
 import type { LayoutServerLoad } from './$types';
 
 import { DEFAULTOPTIONS } from '$components/weather';
-// @ts-expect-error Unsure why
 import { WEATHERAPI_KEY } from '$env/static/private';
 
-export const load: LayoutServerLoad = async ({ getClientAddress, locals, url }) => {
+export const load: LayoutServerLoad = async ({ getClientAddress, url, fetch, locals }) => {
   url.pathname;
   const apiKey = WEATHERAPI_KEY;
   let ipAddress = getClientAddress();
@@ -13,15 +12,14 @@ export const load: LayoutServerLoad = async ({ getClientAddress, locals, url }) 
     const { ip } = await q.json();
     ipAddress = ip;
   }
-  const { days, alerts } = Object.assign(DEFAULTOPTIONS, {});
+  const { days, alerts } = Object.assign({}, DEFAULTOPTIONS);
 
   const res_weatherData = await fetch(
     `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${ipAddress}&days=${days}&aqi=no&alerts=${alerts}`
   );
-  const weatherData = await res_weatherData.json();
 
   return {
-    weatherData,
-    session: await locals.getSession()
+    weatherData: await res_weatherData.json(),
+    session: locals.session
   };
 };

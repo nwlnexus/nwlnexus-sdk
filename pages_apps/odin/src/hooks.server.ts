@@ -5,13 +5,7 @@ import Auth0Provider from '@auth/sveltekit/providers/auth0';
 import { redirect } from '@sveltejs/kit';
 import { sequence } from '@sveltejs/kit/hooks';
 import { dev } from '$app/environment';
-import {
-  AUTH_AUTH0_DOMAIN,
-  AUTH_AUTH0_ID,
-  AUTH_AUTH0_SECRET,
-  AUTH_SECRET
-  // @ts-expect-error Unsure why
-} from '$env/static/private';
+import { AUTH_AUTH0_DOMAIN, AUTH_AUTH0_ID, AUTH_AUTH0_SECRET, AUTH_SECRET } from '$env/static/private';
 
 const cfDevShim = (async ({ event, resolve }) => {
   if (dev && !event.platform) {
@@ -23,13 +17,10 @@ const cfDevShim = (async ({ event, resolve }) => {
 
 const authGuard = (async ({ event, resolve }) => {
   // const layoutId: RouteId;
-  const session = await event.locals.getSession();
+  event.locals.session = await event.locals.getSession();
   const routeId = event.route.id;
 
-  console.log('Route ID:', routeId);
-  console.log('Session:', session);
-
-  if (!session && routeId?.startsWith('/(app-ui)/')) {
+  if (!event.locals.session && routeId?.startsWith('/(app-ui)/')) {
     throw redirect(303, '/auth/signin');
   }
   return resolve(event);

@@ -4,9 +4,8 @@
   import { signIn } from '@auth/sveltekit/client';
   import { dev } from '$app/environment';
   import { page } from '$app/stores';
-  import { Button, GitHub, Logo, Weather } from '$components';
-  import { MobileNav } from '$components/nav';
-  import { ThemeSwitch } from '$components/theme-switch';
+  import { Button, GitHub, Logo, ThemeSwitch, Weather } from '$components';
+  import { MobileNav, UserMenu } from '$components/nav';
   import { appConfig } from '$lib/app-config';
   import { cn } from '$utils';
   import { mode } from 'mode-watcher';
@@ -25,7 +24,7 @@
 >
   <div class="flex">
     <a
-      href="/"
+      href={$page.data.session ? '/dashboard' : '/'}
       aria-label={appConfig.name}
       class="mr-6 flex items-center transition-opacity hover:opacity-75"
       data-sveltekit-preload-data
@@ -42,16 +41,18 @@
       {/if}
     </div>
   </div>
-  <nav class="flex items-center text-sm font-semibold leading-6 border-neutral-700 md:border-l sm:pl-6">
-    <!-- Nav menu -->
+  <nav class="flex items-center text-sm font-semibold leading-6 md:divide-neutral-700 md:divide-x sm:pl-6">
+    <!-- Protected Nav menu -->
     {#if $page.data.session}
       <ul class="hidden space-x-8 md:flex">
-        {#each appConfig.navMenu as navItem}
-          <li>
-            <a href={navItem.href} class="transition-colors hover:text-magnum-500">
-              {navItem.title}
-            </a>
-          </li>
+        {#each appConfig.navMenu as { href, title, isPublic }}
+          {#if !isPublic}
+            <li>
+              <a {href} class="transition-colors hover:text-magnum-500">
+                {title}
+              </a>
+            </li>
+          {/if}
         {/each}
       </ul>
     {:else}
@@ -67,7 +68,21 @@
         }}>Login</Button
       >
     {/if}
-    <div class="flex items-center gap-6 border-neutral-700 text-neutral-400 sm:ml-6 sm:pl-6 md:border-l">
+    <div class="flex items-center sm:ml-6 sm:pl-6">
+      <!-- Public Nav Menu -->
+      <ul class="hidden space-x-8 md:flex">
+        {#each appConfig.navMenu as { href, title, isPublic }}
+          {#if isPublic}
+            <li>
+              <a {href} class="transition-colors hover:text-magnum-500">
+                {title}
+              </a>
+            </li>
+          {/if}
+        {/each}
+      </ul>
+    </div>
+    <div class="flex items-center gap-6 text-neutral-400 sm:ml-6 sm:pl-6">
       <a
         href={appConfig.links.github}
         target="_blank"
@@ -78,6 +93,9 @@
         <span class="sr-only">View the {appConfig.name} GitHub Repository</span>
       </a>
       <ThemeSwitch />
+      {#if $page.data.session}
+        <UserMenu user={$page.data.session.user?.name} />
+      {/if}
       <MobileNav />
     </div>
   </nav>
