@@ -5,48 +5,13 @@ type AppConfig = {
   description: string;
   links: Record<string, string>;
   keywords: string[];
-  appThemes: (
-    | 'light'
-    | 'dark'
-    | 'cupcake'
-    | 'bumblebee'
-    | 'emerald'
-    | 'corporate'
-    | 'synthwave'
-    | 'retro'
-    | 'cyberpunk'
-    | 'valentine'
-    | 'halloween'
-    | 'garden'
-    | 'forest'
-    | 'aqua'
-    | 'lofi'
-    | 'pastel'
-    | 'fantasy'
-    | 'wireframe'
-    | 'black'
-    | 'luxury'
-    | 'dracula'
-    | 'cmyk'
-    | 'autumn'
-    | 'business'
-    | 'acid'
-    | 'lemonade'
-    | 'night'
-    | 'coffee'
-    | 'winter'
-    | 'dim'
-    | 'nord'
-    | 'sunset'
-  )[];
-  appDefaultTheme: string;
   defaultWeatherOptions: {
     q: string;
     days: number;
     alerts: 'yes' | 'no';
   };
-  navMenu: Array<NavItem> | [];
-  pagesThatDontNeedSidebar: string[];
+  navMenu: NavItem[] | [];
+  docsMenu: NavItem[] | [];
 };
 
 const config: AppConfig = {
@@ -58,8 +23,6 @@ const config: AppConfig = {
     github: 'https://github.com/nwlnexus/nwlnexus-sdk?tab=readme-ov-file#readme'
   },
   keywords: ['odinui', 'svelte', 'sveltekit'],
-  appThemes: ['cupcake', 'sunset', 'business', 'night'],
-  appDefaultTheme: 'sunset',
   defaultWeatherOptions: {
     alerts: 'yes',
     days: 4,
@@ -93,7 +56,13 @@ const config: AppConfig = {
       isPublic: true
     }
   ],
-  pagesThatDontNeedSidebar: ['/', '/about']
+  docsMenu: [
+    {
+      title: 'Introduction',
+      description: '',
+      href: '/docs/introduction'
+    }
+  ]
 };
 
 interface NavItem {
