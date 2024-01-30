@@ -13,7 +13,7 @@
     "format": "prettier --write .",
     "test:integration": "playwright test",
     "test:unit": "vitest",
-    "dev": "dotenv -e .env -- wrangler pages dev --compatibility-date=${COMPAT_DATE} --compatibility-flag=nodejs_compat --proxy 5173 --port 8786 --inspector-port 9230 --persist-to=\"../../.wrangler\" -- pnpm run vite:dev",
+    "dev": "dotenv -e .env -- wrangler pages dev --compatibility-date=${COMPAT_DATE} --compatibility-flag=nodejs_compat --port 8786 --inspector-port 9230 --persist-to=\"../../.wrangler\" -- pnpm run vite:dev",
     "pages:deploy": "pnpm run build && wrangler pages deploy .svelte-kit/cloudflare"
   },
   "devDependencies": {
@@ -47,7 +47,7 @@
     "rehype-rewrite": "^4.0.2",
     "remark-code-import": "^1.2.0",
     "remark-gfm": "^4.0.0",
-    "shiki-es": "^0.14.0",
+    "shikiji": "^0.10.1",
     "svelte": "^4.2.9",
     "svelte-check": "^3.6.3",
     "svelte-meta-tags": "^3.1.0",

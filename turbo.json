@@ -13,10 +13,6 @@
       "persistent": true,
       "dependsOn": ["//#db:prepare"]
     },
-    "@nwlnexus/hermes#db:prepare": {
-      "cache": false,
-      "dependsOn": ["@nwlnexus/cfsetup#build"]
-    },
     "build": {
       "dependsOn": ["^build"]
     },

@@ -1,4 +1,4 @@
 packages:
   - 'pages_apps/*'
-  - 'workers_apps/*'
+  - 'worker_apps/*'
   - 'packages/*'

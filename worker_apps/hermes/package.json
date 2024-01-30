@@ -1,0 +1,17 @@
+{
+  "name": "@nwlnexus/hermes",
+  "version": "0.0.1",
+  "devDependencies": {
+    "@nwlnexus/eslint-config": "workspace:*",
+    "@nwlnexus/typescript-config": "workspace:*"
+  },
+  "private": true,
+  "scripts": {
+    "dev": "wrangler dev --persist-to '../../.wrangler' --test-scheduled || pnpm run kill",
+    "kill": "lsof -i :8787 | awk 'NR!=1 {print $2}' | xargs kill",
+    "check:lint": "eslint ./"
+  },
+  "engines": {
+    "node": ">=16.13"
+  }
+}

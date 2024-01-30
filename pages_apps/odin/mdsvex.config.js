@@ -5,7 +5,7 @@ import { toHtml } from 'hast-util-to-html';
 import rehypePrettyCode from 'rehype-pretty-code';
 import { codeImport } from 'remark-code-import';
 import remarkGfm from 'remark-gfm';
-import { BUNDLED_LANGUAGES, getHighlighter } from 'shiki-es';
+import { getHighlighter } from 'shikiji';
 import { visit } from 'unist-util-visit';
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
@@ -26,10 +26,7 @@ const prettyCodeOptions = {
   },
   getHighlighter: options => {
     return getHighlighter({
-      ...options,
-      langs: BUNDLED_LANGUAGES.filter(({ id }) => {
-        return ['svelte', 'typescript', 'css', 'javascript', 'json', 'bash'].includes(id);
-      })
+      ...options
     });
   }
 };
@@ -37,7 +34,7 @@ const prettyCodeOptions = {
 /** @type {import('mdsvex').MdsvexOptions} */
 export const mdsvexOptions = {
   extensions: ['.md', '.svx'],
-  layout: resolve(__dirname, './src/md/layout.svelte'),
+  layout: resolve(__dirname, './src/docs/layout.svelte'),
   smartypants: {
     quotes: true,
     ellipses: true,
